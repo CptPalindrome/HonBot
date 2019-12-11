@@ -45,5 +45,7 @@ Current Commands:
   -Put this anywhere in any message in any case with or without the comma, and after 2 seconds (roughly), Honbar will delete your message.
 
 
+
 Extra Features:
+
 -When a new text channel is created, Honbar will immediately go to that channel and comment in it, laying stake to his claim.
