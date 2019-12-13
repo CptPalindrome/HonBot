@@ -12,18 +12,6 @@ Current Commands:
 
   -Honbar says hello back to you
 
-<b>h</b>
-
-  -Honbar begs for his rescue
-
-<b>where</b>
-
-  -In case you somehow forgot what text channel you're in
-
-<b>img</b>
-
-  -Posts 1 image. It's the same image. Always.
-
 <b>face</b>
 
   -Honbar will say the best emoji face in existence.
@@ -34,7 +22,11 @@ Current Commands:
 
 <b>say</b>
 
-  -Honbar will say whatever it is you type after "say" and delete your message for you. He's talking!
+  -Honbar will say whatever it is you type after "say" and delete your message for you. He's talking! You can add /tts at the beginning and have him use tts in his message. Powerful!
+
+<b>gandhi</b>
+
+-Honbar spouts a <i>totally real</i> Gandhi quote.
 
 <b>help</b>
 

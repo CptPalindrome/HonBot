@@ -103,19 +103,24 @@ client.on('message', msg => {
         }
 
         if(str.startsWith('say')) {
+            let appendTts = false;
             str = str.substr(4);
+            if(str.startsWith('/tts')) {
+                str = str.substr(5);
+                appendTts = true;
+            }
             tagUser = false;
                 bannedWords.forEach(word => {
                     if(str.indexOf(word) != -1) {
                         tagUser = true;
                     }
                 });
-                if(tagUser) {
-                    msg.channel.send(`<${msg.author.username}> ${str}`);
-                }
-                else {
-                    msg.channel.send(str);
-                }
+                    if(tagUser) {
+                        msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
+                    }
+                    else {
+                        msg.channel.send(str, {tts: appendTts});
+                    }
                 msg.delete().catch(console.error);
         }
 
