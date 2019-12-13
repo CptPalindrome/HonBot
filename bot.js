@@ -98,6 +98,10 @@ client.on('message', msg => {
                 case 'help':
                     msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, say, watch, and gandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
                     break;
+
+                case 'help gandhi':
+                    msg.channel.send(`Using 'h.gandhi' will dispense one of 52 of Gandhi's glorious and enlightened quotes.`);
+                    break;
                 
             }
         }
