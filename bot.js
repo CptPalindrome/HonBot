@@ -4,6 +4,7 @@ const auth = require('./auth.json');
 
 let prefix = 'h.';
 let typeWatcher = false;
+let bannedWords = ["chink", "daygo", "dego", "douchebag", "dyke", "gook", "homo", "kike", "negro", "nigga", "nigger", "nigguh", "spic"];
 let quotes = [
     'whenever an Indian dies or the white man, or his mother, or himself, learns of the aspirations of the Indian, the Indian reveals the darkness and acts, because the Indian alone knows what is inside his heart and within his soul.', 
     'If I am forced to choose between people who are rich and happy or people who are poor and miserable, I will choose the rich and happy.',
@@ -73,19 +74,6 @@ client.on('message', msg => {
                 case 'hi':
                     msg.channel.send(`Honbar says hello to you, ${msg.author.username}`);
                     break;
-                
-                case 'h':
-                    msg.channel.send('Honbar says help!');
-                    break;
-                    
-                case 'where':
-                    msg.channel.send(`This channel is ${msg.channel}`);
-                    break;
-        
-                case 'img':
-                    att = new Attachment('./test.png');
-                    msg.channel.send(`Honbar wants to send you an image!`, att);
-                    break;
 
                 case 'face':
                     msg.channel.send(`:eyes:`);
@@ -108,7 +96,7 @@ client.on('message', msg => {
                     break;
                 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, img, face, say, and watch. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
+                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, say, watch, and gandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
                     break;
                 
             }
@@ -116,7 +104,18 @@ client.on('message', msg => {
 
         if(str.startsWith('say')) {
             str = str.substr(4);
-                msg.channel.send(`<${msg.author.username}> ${str}`);
+            tagUser = false;
+                bannedWords.forEach(word => {
+                    if(str.indexOf(word) != -1) {
+                        tagUser = true;
+                    }
+                });
+                if(tagUser) {
+                    msg.channel.send(`<${msg.author.username}> ${str}`);
+                }
+                else {
+                    msg.channel.send(str);
+                }
                 msg.delete().catch(console.error);
         }
 
