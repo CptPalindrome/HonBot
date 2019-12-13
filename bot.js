@@ -116,7 +116,7 @@ client.on('message', msg => {
 
         if(str.startsWith('say')) {
             str = str.substr(4);
-                msg.channel.send(str);
+                msg.channel.send(`<${msg.author.username}> ${str}`);
                 msg.delete().catch(console.error);
         }
 
