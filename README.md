@@ -16,10 +16,6 @@ Current Commands:
 
   -Honbar will say the best emoji face in existence.
 
-<b>watch</b>
-
-  -Toggles the "Type Watch" feature on and off. Type watch has Honbar comment whenever someone starts typing.
-
 <b>say</b>
 
   -Honbar will say whatever it is you type after "say" and delete your message for you. He's talking! You can add /tts at the beginning and have him use tts in his message. Powerful!
