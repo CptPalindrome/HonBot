@@ -30,6 +30,10 @@ client.on('message', msg => {
                     msg.channel.send(`\`\`\`${quotes.quotes[Math.floor(Math.random() * quotes.quotes.length)]} \n\n--Gandhi\`\`\``);
                     break;
                 
+                case 'git':
+                    msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
+                    break;
+
                 case 'help':
                     msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, say, and gandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
                     break;

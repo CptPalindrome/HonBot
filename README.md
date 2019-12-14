@@ -24,6 +24,10 @@ Current Commands:
 
 -Honbar spouts a <i>totally real</i> Gandhi quote.
 
+<b>git</b>
+
+-Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
+
 <b>help</b>
 
   -Lists all of these useful commands
