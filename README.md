@@ -1,12 +1,12 @@
-############# HonBot #############
+<h1>############# HonBot #############
 
 A discord bot with stupid functions
 
-##################################
+##################################</h1>
 
-Current Commands:
+<h2>Current Commands:</h2>
 
-[These all are precluded with 'h.']
+<h3>[These all are precluded with 'h.']</h3>
 
 <b>hi</b>
 
@@ -32,12 +32,15 @@ Current Commands:
 
   -Lists all of these useful commands
 
+<b>help gandhi</b>
+
+-Displays information about h.gandhi's functional purpose. It's pretty easy to figure out after literally one use, but whatever.
+
 <b>Honbar, delete this</b>
 
   -Put this anywhere in any message in any case with or without the comma, and after 2 seconds (roughly), Honbar will delete your message.
 
 
-
-Extra Features:
+<h2>Extra "Features":</h2>
 
 -When a new text channel is created, Honbar will immediately go to that channel and comment in it, laying stake to his claim.

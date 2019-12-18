@@ -40,7 +40,7 @@ client.on('message', msg => {
                     break;
 
                 case 'help gandhi':
-                    msg.channel.send(`Using 'h.gandhi' will dispense one of 52 of Gandhi's glorious and enlightened quotes.`);
+                    msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. Quote count always rising!* \n\n*Quote count not actually always rising`);
                     break;
                 
             }
