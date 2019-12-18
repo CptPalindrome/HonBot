@@ -27,7 +27,8 @@ client.on('message', msg => {
                     break;
 
                 case 'gandhi':
-                    msg.channel.send(`\`\`\`${quotes.quotes[Math.floor(Math.random() * quotes.quotes.length)]} \n\n--Gandhi\`\`\``);
+                    let quoteNum = Math.floor(Math.random() * quotes.quotes.length);
+                    msg.channel.send(`\`\`\`Gandhi Quote #${quoteNum}/${quotes.quotes.length}:\n${quotes.quotes[quoteNum]} \n\n--Gandhi\`\`\``);
                     break;
                 
                 case 'git':
