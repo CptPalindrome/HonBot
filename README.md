@@ -1,4 +1,4 @@
-<h1 style="text-align: center">############# HonBot #############
+<h1 style=text-align:center>############# HonBot #############
 
 A discord bot with stupid functions
 
