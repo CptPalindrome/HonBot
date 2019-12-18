@@ -1,8 +1,8 @@
-<h1 style=text-align:center>############# HonBot #############
+############# <h2>HonBot</h2> #############
 
 A discord bot with stupid functions
 
-##################################</h1>
+##################################
 
 <h2>Current Commands:</h2>
 
