@@ -1,4 +1,4 @@
-############# <h2>HonBot</h2> #############
+############# HonBot #############
 
 A discord bot with stupid functions
 
