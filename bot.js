@@ -31,21 +31,6 @@ client.on('message', msg => {
                     msg.channel.send(`\`\`\`Gandhi Quote #${quoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[quoteNum]} \n\n--Gandhi\`\`\``);
                     break;
                 
-                case 'sneeze':
-                    if(msg.member.voiceChannel) {
-                        const broadcast = client.createVoiceBroadcast();
-                        broadcast.playFile('./UUUAAAH.mp3');
-                        msg.member.voiceChannel.join().catch(console.log);
-                        msg.guild.voiceConnection.playBroadcast(broadcast);
-                        broadcast.on('end', () => {
-                            setTimeout(function(){leaveVoice(msg)}, 1000);
-                        });
-                    }    
-                    else {
-                        msg.channel.send(`You need to join a voice channel first!`);
-                    }
-                    break;
-
                 case 'git':
                     msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
                     break;
@@ -111,11 +96,5 @@ client.on('ready', () => {
         }
     });
 });
-
-function leaveVoice(msg) {
-    if(msg.guild.voiceConnection){
-        msg.guild.voiceConnection.disconnect();
-    }
-}
 
 client.login(auth.token);
