@@ -1,10 +1,20 @@
 const { Client, Attachment, Message } = require('discord.js');
 const client = new Client();
 const auth = require('./auth.json');
+const winston = require('winston');
+const moment = require('moment');
 
 let prefix = 'h.';
 let bannedWords = require('./bannedWords.json');
 let quotes = require('./gandhiQuotes.json');
+
+const logger = winston.createLogger({
+    format: winston.format.simple(),
+    transports: [
+        new winston.transports.File({ filename: './HonLogs/error.log', level: 'error' }),
+        new winston.transports.File({ filename: './HonLogs/combined.log' })
+    ]
+});
 
 client.on('message', msg => {
     if(msg.author.id != '266744954922074112') {
@@ -50,17 +60,18 @@ client.on('message', msg => {
                 appendTts = true;
             }
             tagUser = false;
-                bannedWords.forEach(word => {
+                bannedWords.bannedWords.forEach(word => {
                     if(str.indexOf(word) != -1) {
                         tagUser = true;
                     }
                 });
-                    if(tagUser) {
-                        msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
-                    }
-                    else {
-                        msg.channel.send(str, {tts: appendTts});
-                    }
+                if(tagUser) {
+                    msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
+                }
+                else {
+                    msg.channel.send(str, {tts: appendTts});
+                }
+                logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
                 msg.delete().catch(console.error);
         }
 
@@ -70,6 +81,7 @@ client.on('message', msg => {
             if(str.toLowerCase().indexOf(hdt) != -1 || str.toLowerCase().indexOf(hdt2) != -1) {
                 console.log(str.indexOf('delete this') != -1);
                 msg.channel.send(`As you wish, ${msg.author.username}.`);
+                logger.info(`${now()}: Deleted message '${msg} from ${msg.author.username}, as they desired.`);
                 msg.delete(2000)
                     .then(msg => console.log(`Deleted message '${msg} from ${msg.author.username}, as they desired.`))
                     .catch(console.error);
@@ -92,5 +104,9 @@ client.on('ready', () => {
         }
     });
 });
+
+function now() {
+    return moment().format('lll');
+}
 
 client.login(auth.token);
