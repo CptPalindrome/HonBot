@@ -3,7 +3,7 @@ const client = new Client();
 const auth = require('./auth.json');
 
 let prefix = 'h.';
-let bannedWords = ["chink", "dago", "daygo", "dego", "dyke", "gook", "kike", "negro", "nigga", "nigger", "nigguh", "spic", "wop", "zaddy"];
+let bannedWords = require('./bannedWords.json');
 let quotes = require('./gandhiQuotes.json');
 
 client.on('ready', () => {
@@ -36,7 +36,7 @@ client.on('message', msg => {
                     break;
 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, say, and gandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
+                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, git, say, and gandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
                     break;
 
                 case 'help gandhi':
@@ -84,8 +84,7 @@ client.on('message', msg => {
 });
 
 client.on('channelCreate', channel => {
-    channel.send(`Honbar notices your new channel :eyes:`);
-    channel.send(`Honbar steals the first message :sunglasses:`)
+    channel.send(`Honbar notices your new channel :eyes: and steals the first message :sunglasses:`);
 });
 
 client.on('ready', () => {
