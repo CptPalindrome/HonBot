@@ -6,10 +6,6 @@ let prefix = 'h.';
 let bannedWords = require('./bannedWords.json');
 let quotes = require('./gandhiQuotes.json');
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-});
-
 client.on('message', msg => {
     if(msg.author.id != '266744954922074112') {
         let str = msg.content;
@@ -88,6 +84,7 @@ client.on('channelCreate', channel => {
 });
 
 client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
     client.user.setStatus('available');
     client.user.setPresence({
         game: {
