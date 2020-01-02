@@ -2,7 +2,15 @@
 
 A discord bot with stupid functions
 
+Created by CptPalindrome
+
 ##################################
+
+<h3>To start the bot</h3>
+
+You will need to have node.js, then run 'node bot.js' once you have changed out the auth token for your own.
+
+Feel free to fork this repo and modify it to your heart's content.
 
 <h2>Current Commands:</h2>
 
