@@ -36,17 +36,23 @@ client.on('message', msg => {
                     let quoteNum = Math.floor(Math.random() * quotes.quotes.length);
                     msg.channel.send(`\`\`\`Gandhi Quote #${quoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[quoteNum]} \n\n--Gandhi\`\`\``);
                     break;
+
+                case 'ngandhi':
+                    let subsetSize = quotes.quotes.length * 0.40;
+                    let nQuoteNum = quotes.quotes.length - Math.floor(Math.random() * subsetSize);
+                    msg.channel.send(`\`\`\`Gandhi Quote #${nQuoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[nQuoteNum]} \n\n--Gandhi\`\`\``);
+                    break;
                 
                 case 'git':
                     msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
                     break;
 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, git, say, and gandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
+                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, git, say, gandhi, and ngandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
                     break;
 
                 case 'help gandhi':
-                    msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. Quote count always rising!* \n\n*Quote count not actually always rising`);
+                    msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
                     break;
                 
             }
