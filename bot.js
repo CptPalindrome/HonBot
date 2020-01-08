@@ -39,7 +39,7 @@ client.on('message', msg => {
 
                 case 'ngandhi':
                     let subsetSize = quotes.quotes.length * 0.40;
-                    let nQuoteNum = quotes.quotes.length - Math.floor(Math.random() * subsetSize);
+                    let nQuoteNum = quotes.quotes.length - Math.floor(Math.random() * subsetSize) - 1;
                     msg.channel.send(`\`\`\`Gandhi Quote #${nQuoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[nQuoteNum]} \n\n--Gandhi\`\`\``);
                     break;
                 
