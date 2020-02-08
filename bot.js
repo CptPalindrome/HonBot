@@ -44,9 +44,7 @@ client.on('message', msg => {
                     break;
 
                 case 'dr':
-                    msg.channel.send(`<:dontread:675498364040642576>
-                    __DON'T__ https://youtu.be/DtAiDUymlBk __READ__ <:dontread:675498364040642576>
-                    `);
+                    msg.channel.send(`<:dontread:675498364040642576> __DON'T__ https://youtu.be/DtAiDUymlBk __READ__ <:dontread:675498364040642576>`);
                     break;
                 
                 case 'git':
