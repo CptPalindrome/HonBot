@@ -42,6 +42,10 @@ client.on('message', msg => {
                     let nQuoteNum = quotes.quotes.length - Math.floor(Math.random() * subsetSize) - 1;
                     msg.channel.send(`\`\`\`Gandhi Quote #${nQuoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[nQuoteNum]} \n\n--Gandhi\`\`\``);
                     break;
+
+                case 'dr':
+                    msg.channel.send(`:dontread: __DON'T__ https://youtu.be/DtAiDUymlBk __READ__ :dontread:`);
+                    break;
                 
                 case 'git':
                     msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
