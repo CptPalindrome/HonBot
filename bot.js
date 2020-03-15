@@ -22,19 +22,11 @@ client.on('message', msg => {
         if(str.startsWith(prefix)) {
             str = str.substr(prefix.length);
             switch(str) {
-                case 'hi':
-                    msg.channel.send(`Honbar says hello to you, ${msg.author.username}`);
-                    break;
 
                 case 'face':
                     msg.channel.send(`:eyes:`);
                     msg.channel.send(`:nose:`);
                     msg.channel.send(`:lips:`);
-                    break;
-
-                case 'gandhi':
-                    let quoteNum = Math.floor(Math.random() * quotes.quotes.length);
-                    msg.channel.send(`\`\`\`Gandhi Quote #${quoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[quoteNum]} \n\n--Gandhi\`\`\``);
                     break;
 
                 case 'ngandhi':
@@ -52,37 +44,54 @@ client.on('message', msg => {
                     break;
 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. My commands are hi, face, git, say, gandhi, and ngandhi. If you include the text 'Honbar, delete this' in any message, I will delete it for you.`);
+                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, say, dr, gandhi, and ngandhi. More info on the readme on github.`);
                     break;
 
                 case 'help gandhi':
-                    msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
+                    msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. You can add a number afterwards to select a specific quote. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
                     break;
                 
             }
-        }
 
-        if(str.startsWith('say')) {
-            let appendTts = false;
-            str = str.substr(4);
-            if(str.startsWith('/tts')) {
-                str = str.substr(5);
-                appendTts = true;
-            }
-            tagUser = false;
-                bannedWords.bannedWords.forEach(word => {
-                    if(str.indexOf(word) != -1) {
-                        tagUser = true;
+            if (str.startsWith('gandhi')) {
+                let gandhiArgs = str.split(' ');
+                if(gandhiArgs.length == 1) {
+                    gandhiQuote(randomNumberWithinQuoteCount(), msg);
+                }
+
+                else if(gandhiArgs.length > 1) {
+                    let quoteNum = gandhiArgs[1] - 1;
+                    if(quoteNum > 0 && quoteNum <= quotes.quotes.length) {
+                        gandhiQuote(quoteNum, msg);
                     }
-                });
-                if(tagUser) {
-                    msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
+                    else {
+                        gandhiQuote(randomNumberWithinQuoteCount(), msg);
+                    }
                 }
-                else {
-                    msg.channel.send(str, {tts: appendTts});
+            }
+            
+            if(str.startsWith('say')) {
+                let appendTts = false;
+                str = str.substr(4);
+                if(str.startsWith('/tts')) {
+                    str = str.substr(5);
+                    appendTts = true;
                 }
-                logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
-                msg.delete().catch(console.error);
+                tagUser = false;
+                    bannedWords.bannedWords.forEach(word => {
+                        if(str.indexOf(word) != -1) {
+                            tagUser = true;
+                        }
+                    });
+                    if(tagUser) {
+                        msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
+                    }
+                    else {
+                        msg.channel.send(str, {tts: appendTts});
+                    }
+                    logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
+                    msg.delete().catch(console.error);
+            }
         }
 
         const hdt = 'honbar, delete this';
@@ -117,6 +126,14 @@ client.on('ready', () => {
 
 function now() {
     return moment().format('lll');
+}
+
+function gandhiQuote(quoteNum, msg) {
+    msg.channel.send(`\`\`\`Gandhi Quote #${quoteNum + 1}/${quotes.quotes.length}:\n${quotes.quotes[quoteNum]} \n\n--Gandhi\`\`\``);
+}
+
+function randomNumberWithinQuoteCount() {
+    return Math.floor(Math.random() * quotes.quotes.length);
 }
 
 client.login(auth.token);

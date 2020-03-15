@@ -16,10 +16,6 @@ Feel free to fork this repo and modify it to your heart's content.
 
 <h3>[These all are precluded with 'h.']</h3>
 
-<b>hi</b>
-
-  -Honbar says hello back to you
-
 <b>face</b>
 
   -Honbar will say the best emoji face in existence.
@@ -28,9 +24,14 @@ Feel free to fork this repo and modify it to your heart's content.
 
   -Honbar will say whatever it is you type after "say" and delete your message for you. He's talking! You can add /tts at the beginning and have him use tts in his message. Powerful!
 
-<b>gandhi</b>
+<b>dr</b>
+
+  -Short for "don't read", this will post a link to a youtube video and frame it with a custom emoji from my server. If someone finds this and really wants it, let me know and I can hook you up. You might need to change the code for your new emoji id though.
+
+<b>gandhi (#)</b>
 
 -Honbar spouts a <i>totally real</i> Gandhi quote.
+-Optionally you can include a number after the word gandhi (i.e. h.gandhi 43) to select that quote. If it is outside the limit, either too low or too high, it will pull at random.
 
 <b>git</b>
 
