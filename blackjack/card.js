@@ -1,16 +1,15 @@
-class Card {
-    constructor(number, suit) {
+var Card = /** @class */ (function () {
+    function Card(number, suit) {
         this.number = number;
         this.suit = suit;
     }
-
-    getNumber() {
+    Card.prototype.getNumber = function () {
         return this.number;
-    }
-
-    getSuit() {
+    };
+    Card.prototype.getSuit = function () {
         return this.suit;
-    }
-}
-
-module.exports = Card
+    };
+    return Card;
+}());
+module.exports = Card;
+//# sourceMappingURL=card.js.map
