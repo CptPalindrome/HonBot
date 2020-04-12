@@ -28,6 +28,24 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Short for "don't read", this will post a link to a youtube video and frame it with a custom emoji from my server. If someone finds this and really wants it, let me know and I can hook you up. You might need to change the code for your new emoji id though.
 
+### roulette
+
+- Use this command and separate your roulette items with commas and it will randomly pick one from the list. The final result will be obvious when it's picked.
+
+- Example: h.roulette item 1, item 2, item 3, ...
+
+- Note, it will spend 3 seconds per item in the list at minimum, and up to another 15 seconds. Blame discord's rate limit for this one.
+
+### cf
+
+- Shorthand for "coin flip," this command is for whenever you can't decide on a binary choice, like whether McDonalds should be called McDoogles or MacDonlads.
+
+### cfsim
+
+- Similarly, this is "coin flip simulation". This will run a bunch of coin flip trials (up to 10,000).
+
+- If no parameter is entered after the command (i.e. h.cfsim 3000), it will simply default to 100 trials. Don't use commas in your numbers. It won't work.
+
 ### gandhi (#)
 
 - Honbar spouts a *totally real* Gandhi quote.
