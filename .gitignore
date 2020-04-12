@@ -1,4 +1,4 @@
 .gitignore
 auth.json
 /HonLogs/*
-node_modules/*
+node_modules/

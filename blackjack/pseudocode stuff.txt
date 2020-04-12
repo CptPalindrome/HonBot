@@ -1,0 +1,51 @@
+play() {
+    h.blackjack
+
+    h.join
+    limit number of players?
+
+    h.bet 100
+
+    minimum bid?
+    max bet amount? 5000? 10000?
+    bids be mod 25, otherwise round (to nearest 25?) basically figure out how to get pretty numbers
+    or if greater than 1000 do mod 250?
+
+    honbar iterates through list of players in order they joined and asks for hit/stand/evaluates a blackjack deal 
+    if player does not respond in 15s? skip them (stand)
+    if player says h.hit/stand when honbar is on them, respond and hit, otherwise do nothing
+    if hit, stay on player, if stand, continue to next player until all players have stood or busted
+
+    on round end >
+
+    if a player runs out of points/money after their bet is lost, give them back the minimum amount (1000)?
+    increase a tally of how many times they've bankrupted?
+
+    h.leave
+
+    h.join available
+
+    h.continue to do another round once one is over
+
+    h.stop after a round is over or timeout to 60 seconds and stop playing
+}
+
+-----------player lifetime total storage
+
+append new users to the list & update existing
+
+on player join check if a user is in the list already, if not add them and give them starting money (100?)
+
+
+
+{
+    players: [
+        discord user id --> 1938570913875098137: {
+            totalPoints?money?score?: 500
+        }
+
+        11282848493: {
+            totalPoints: 500
+        }
+    ]
+}

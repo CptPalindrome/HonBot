@@ -1,12 +1,17 @@
-const { Client, Attachment, Message } = require('discord.js');
+const { Client } = require('discord.js');
 const client = new Client();
 const auth = require('./auth.json');
 const winston = require('winston');
 const moment = require('moment');
+const gameClass = require('./blackjack/gameTest.js');
 
 let prefix = 'h.';
+let game = new gameClass;
+let handInProgress = false;
 let bannedWords = require('./bannedWords.json');
 let quotes = require('./gandhiQuotes.json');
+let gameStarted = false;
+let currentGameChannel;
 
 const logger = winston.createLogger({
     format: winston.format.simple(),
@@ -51,6 +56,72 @@ client.on('message', msg => {
                     msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. You can add a number afterwards to select a specific quote. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
                     break;
                 
+                case 'start':
+                    if(gameIsStarted()) {
+                        msg.channel.send(`A game is already in progress!`);
+                    }
+                    else {
+                        setTimeout(() => play(), 10000);
+                        msg.channel.send(`Game starts in 60 seconds. Use h.join to join the game!`);
+                        gameStarted = true;
+                        currentGameChannel = msg.channel;
+                    }
+                    break;
+
+                case 'join':
+                    if (gameIsStarted()) {
+                        game.addPlayer(msg.author.id, msg.author.username);
+                        msg.channel.send(`${msg.author.username} has joined the game.`);
+                        //say a message confirming the username who joined and their money total
+                    }
+                    else {
+                        msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
+                    }
+                    break;
+
+                case 'leave':
+                    if (!gameIsStarted()) {
+                        msg.channel.send(`You can't leave a game that hasn't started, doofus!`);
+                    }
+                    else if (!isHandInProgress()) {
+                        game.removePlayer(msg.author.id);
+                        msg.channel.send(`Okay, bye ${msg.author.username}`);
+                    }
+                    break;
+            }
+
+            if (str.startsWith('bet')) {
+                if(!gameIsStarted()) {
+                    msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
+                    return;
+                }
+                let betArgs = str.split(' ');
+                if (betArgs.length > 1) {
+                    let bet = parseInt(betArgs[1]);
+                    if (isNaN(bet)) {
+                        msg.channel.send(`Invalid bet amount. Example "h.bet 100".`);
+                        return;
+                    }
+                    if (game.players.includes(msg.author.id)) {
+                        game.players[game.players.indexOf(msg.author.id)].bet = bet;
+                    }
+                    else {
+                        msg.channel.send(`Dweeb! You are not in the game! Dweeb!`);
+                    }
+                }
+                return;
+            }
+
+            if (str.startsWith('stop')) {
+                //TODO: remove this later. This is just for testing purposes
+                if(gameIsStarted()) {
+                    msg.channel.send(`Game has stopped`);
+                    gameStarted = false;
+                }
+                else {
+                    msg.channel.send(`Game is not started yet`);
+                }
+                return;
             }
 
             if (str.startsWith('gandhi')) {
@@ -68,6 +139,7 @@ client.on('message', msg => {
                         gandhiQuote(randomNumberWithinQuoteCount(), msg);
                     }
                 }
+                return;
             }
             
             if(str.startsWith('say')) {
@@ -78,19 +150,20 @@ client.on('message', msg => {
                     appendTts = true;
                 }
                 tagUser = false;
-                    bannedWords.bannedWords.forEach(word => {
-                        if(str.indexOf(word) != -1) {
-                            tagUser = true;
-                        }
-                    });
-                    if(tagUser) {
-                        msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
+                bannedWords.bannedWords.forEach(word => {
+                    if(str.indexOf(word) != -1) {
+                        tagUser = true;
                     }
-                    else {
-                        msg.channel.send(str, {tts: appendTts});
-                    }
-                    logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
-                    msg.delete().catch(console.error);
+                });
+                if(tagUser) {
+                    msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
+                }
+                else {
+                    msg.channel.send(str, {tts: appendTts});
+                }
+                logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
+                msg.delete().catch(console.error);
+                return;
             }
         }
 
@@ -123,6 +196,23 @@ client.on('ready', () => {
         }
     });
 });
+
+function play() {
+    console.log(`Now playing!`);
+    currentGameChannel.send(`Now beginning game. ${game.players[0].username} are in.`);
+    return;
+}
+
+function gameIsStarted() {
+    if(!gameStarted) {
+        return false;
+    }
+    return true;
+}
+
+function isHandInProgress() {
+    return handInProgress;
+}
 
 function now() {
     return moment().format('lll');
