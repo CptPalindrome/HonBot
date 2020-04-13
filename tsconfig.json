@@ -7,7 +7,7 @@
         "sourceMap": true
     },
     "include": [
-        "./bot.js",
+        "bot.ts",
         "./blackjack/**/*"
     ],
     "exclude": ["./node_modules"]

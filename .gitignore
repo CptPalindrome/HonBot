@@ -3,4 +3,6 @@ auth.json
 /HonLogs/*
 node_modules/
 blackjack/**/*.map
-blackjack/card.js
+blackjack/**/*.js
+bot.js
+bot.js.map
