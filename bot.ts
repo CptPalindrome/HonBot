@@ -197,7 +197,7 @@ client.on('message', msg => {
                         let num = Math.floor(Math.random() * options.length - 1);
                         msg.channel.send(options[num])
                         .then(message => {
-                            roulette(message, options);
+                            roulette(message as Message, options);
                         });
                     }
                 }
@@ -347,7 +347,7 @@ function roulette(botMsg: Message, options: any[]) {
             botMsg.edit(`**__${options[curOption]}__** is the winner!`);
         }
     }
-    
+
     timer();
 }
 
