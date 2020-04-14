@@ -55,11 +55,20 @@ client.on('message', msg => {
                     break;
 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, say, dr, gandhi, and ngandhi. More info on the readme on github.`);
+                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, say, dr, roulette, cf, cfsim, gandhi, and ngandhi. More info on the readme on github.`);
                     break;
 
                 case 'help gandhi':
                     msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. You can add a number afterwards to select a specific quote. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
+                    break;
+
+                case 'cf':
+                    let coin = Math.floor(Math.random() * 2);
+                    if(coin) {
+                        msg.channel.send(`Heads 👌`);
+                    } else {
+                        msg.channel.send(`Tails 🚫`);
+                    }
                     break;
                 
                 case 'start':
@@ -175,6 +184,52 @@ client.on('message', msg => {
                 }
                 logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
                 msg.delete().catch(console.error);
+
+                if(str.startsWith("roulette")) {
+                    let options: string[] = []
+                    if(str.substr(8)) {
+                        options = str.substr(8).split(',');
+                    }
+                    if(options.length == 1) {
+                        msg.channel.send(`You must submit more than 1 item, or it's not a roulette you big stupid **DOOF**`);
+                    }
+                    if(options.length > 1) {
+                        let num = Math.floor(Math.random() * options.length - 1);
+                        msg.channel.send(options[num])
+                        .then(message => {
+                            roulette(message, options);
+                        });
+                    }
+                }
+
+                if(str.startsWith('cfsim')) {
+                    let coinSimArgs = str.split(' ');
+                    let simulationCount = 0;
+                    if(coinSimArgs.length == 1) {
+                        simulationCount = 100;
+                    }
+    
+                    else if(coinSimArgs.length > 1) {
+                        simulationCount = parseInt(coinSimArgs[1]);
+                        if(simulationCount > 10000) {
+                            simulationCount = 10000;
+                        }
+                    }
+                    let coinSim;
+                    let headsCount = 0;
+                    let tailsCount = 0;
+                    for (let i = 0; i < simulationCount; i++) {
+                        coinSim = Math.floor(Math.random() * 2);
+                        if(coinSim) {
+                            headsCount++;
+                        }
+                        else {
+                            tailsCount++;
+                        }
+                    }
+                    msg.channel.send(`In **${simulationCount}** trials, it was heads **${headsCount}** times and tails **${tailsCount}** times.`);
+                }
+
                 return;
             }
         }
@@ -267,6 +322,33 @@ function gandhiQuote(quoteNum: number, msg: Message) {
 
 function randomNumberWithinQuoteCount() {
     return Math.floor(Math.random() * quotes.quotes.length);
+}
+
+function roulette(botMsg: Message, options: any[]) {
+    options = options.map(item => item.trim());
+    let curOption = options.indexOf(botMsg.content);
+    let interval = 1375;
+    let numberOfSpins = 0;
+    let maxSpins = Math.floor(Math.random() * 20) + (2 * options.length);
+
+    function timer() {
+        if(curOption < options.length - 1) {
+            curOption++;
+        }
+        else {
+            curOption = 0;
+        }
+        botMsg.edit(options[curOption])
+        if (numberOfSpins < maxSpins) {
+            numberOfSpins++;
+            setTimeout(timer, interval);
+        }
+        else {
+            botMsg.edit(`**__${options[curOption]}__** is the winner!`);
+        }
+    }
+    
+    timer();
 }
 
 client.login(auth.token);
