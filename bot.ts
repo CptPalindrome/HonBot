@@ -195,6 +195,36 @@ client.on('message', msg => {
             
 });
 
+/**
+ * TODO: finish classifying HonBot
+ */
+// class HonBot {
+//     public static play(): void {
+//         console.log('Now playing!');
+//         currentGameChannel.send(`Now beginning game. ${currentGame.players[0].username} are in.`);
+//     }
+
+//     public static get gameIsStarted(): boolean {
+//         return gameStarted;
+//     }
+
+//     public static get handInProgress(): boolean {
+//         return handInProgress;
+//     }
+
+//     public static get now(): string {
+//         return moment().format('lll');
+//     }
+
+//     public static sendGandhiQuote(quoteNumber: number, message: Message): void {
+//         message.channel.send(`\`\`\`Gandhi Quote #${quoteNumber + 1}/${quotes.quotes.length}:\n${quotes.quotes[quoteNumber]} \n\n--Gandhi\`\`\``);
+//     }
+
+//     public static randomNumberWithinQuoteCount(): number {
+//         return Math.floor(Math.random() * quotes.quotes.length);
+//     }
+// }
+
 client.on('channelCreate', channel => {
     // This seems like it would have crashed HonBot, since send doesn't exist on channel
     // channel.send(`Honbar notices your new channel :eyes: and steals the first message :sunglasses:`);
