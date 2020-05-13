@@ -3,6 +3,10 @@ const client = new Client();
 const auth = require('./auth.json');
 const winston = require('winston');
 const moment = require('moment');
+const https = require('https');
+const fs = require('fs');
+const PNG = require('pngjs').PNG;
+const pixelmatch = require('pixelmatch');
 
 let prefix = 'h.';
 let bannedWords = require('./bannedWords.json');
@@ -60,7 +64,10 @@ client.on('message', msg => {
                         msg.channel.send(`Tails 🚫`);
                     }
                     break;
-                
+                    
+                case 'iic':
+                    isItChristmas(msg);
+                    break;
             }
 
             if (str.startsWith('gandhi')) {
@@ -214,6 +221,72 @@ function roulette(botMsg, options) {
         }
     }
     timer();
+}
+
+function isItChristmas(msg) {
+    if(moment().month() == 11) {
+        if(moment().date() == 25) {
+            msg.channel.send(`Oh, why yes it is in fact Christmas!`);
+            return;
+        }
+    }
+
+    console.log(`it's not actually...`);
+    downloadAvatar(msg);    
+}
+
+function downloadAvatar(msg) {
+    let chrisId = '182325251927965697';
+    let chrisUser = client.users.find(user => user.id == chrisId);
+    if (!chrisUser) {
+        console.log("Chris isn't here...");
+        return;
+    }
+    let avatarFileName = chrisUser.username + '.png';
+    let avatarURL = chrisUser.displayAvatarURL;
+    const file = fs.createWriteStream(avatarFileName);
+    const req = https.get(avatarURL, res => {
+        res.pipe(file);
+        file.on('finish', () => {
+            file.close();
+            compareAgainstChristmas(avatarFileName, msg);
+        });
+    }).on('error', e => {
+        fs.unlink(avatarFileName);
+    });
+
+    console.log(`${avatarFileName} downloaded. Checking...`);
+
+    return;
+}
+
+function compareAgainstChristmas(filename, msg) {
+    const img1 = PNG.sync.read(fs.readFileSync(filename));
+    const img2 = PNG.sync.read(fs.readFileSync('christmaschris.png'));
+    const {width, height} = img1;
+    const diff = new PNG({width, height});
+    const totalPixels = width * height;
+
+    try {
+        const numDiffPixels = pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.01});
+        let diffPercent = numDiffPixels/totalPixels;
+        console.log(`${numDiffPixels} pixels out of ${totalPixels} were different: ${(numDiffPixels/totalPixels*100).toFixed(2)}% different`);
+
+        fs.writeFileSync('diff.png', PNG.sync.write(diff));
+        if(diffPercent > 0.01 && diffPercent < 0.2) {
+            msg.channel.send(`Probably not? Further intel required`);
+        }
+        else if(diffPercent > 0.2 && diffPercent < 0.4) {
+            msg.channel.send(`According to Chris, yup. It sure is.`);
+        }
+        else {
+            msg.channel.send(`It's finally not! POG!`);
+        }
+    }
+    catch(e) {
+        console.log(e);
+        msg.channel.send(`Well, it broke, so it's probably a different resolution image, which means it's *probably* not! Probably!`);
+    }   
 }
 
 client.login(auth.token);
