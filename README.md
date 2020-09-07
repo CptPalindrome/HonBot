@@ -52,6 +52,14 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Optionally you can include a number after the word gandhi (i.e. h.gandhi 43) to select that quote. If it is outside the limit, either too low or too high, it will pull at random.
 
+### chris
+
+- Honbar puts out an *actually real* Fake Chris quote.
+
+### 8ball
+
+- Honbar will tell your fortune and answer your most burning yes no questions. Mostly just the second one.
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
@@ -63,11 +71,3 @@ Feel free to fork this repo and modify it to your heart's content.
 ### help gandhi
 
 - Displays information about h.gandhi's functional purpose. It's pretty easy to figure out after literally one use, but whatever.
-
-### Honbar, delete this
-
-- Put this anywhere in any message in any case with or without the comma, and after 2 seconds (roughly), Honbar will delete your message.
-
-## Extra "Features"
-
-- When a new text channel is created, Honbar will immediately go to that channel and comment in it, laying stake to his claim.
