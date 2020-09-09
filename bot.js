@@ -179,7 +179,7 @@ client.on('message', msg => {
                 }
             }
 
-            if (str.startsWith('ch')) {
+            if (str.startsWith('chris')) {
                 chrisQuote(msg);
             }
 
