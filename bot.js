@@ -179,7 +179,7 @@ client.on('message', msg => {
                 }
             }
 
-            if (str.startsWith('chris')) {
+            if (str.startsWith('ch')) {
                 chrisQuote(msg);
             }
 
@@ -313,7 +313,19 @@ function gandhiQuote(quoteNum, msg) {
 
 function chrisQuote(msg) {
     let cQuoteNum = Math.floor(Math.random() * chrisQuotes.quotes.length);
-    msg.channel.send(`\`\`\`${chrisQuotes.quotes[cQuoteNum]} \n\n--Chris\`\`\``);
+    if (cQuoteNum == 10) {
+        let cVerbNum = Math.floor(Math.random() * chrisQuotes.verbs.length);
+        let cNounNum = Math.floor(Math.random() * chrisQuotes.nouns.length);
+        let cQuote = chrisQuotes.quotes[cQuoteNum];
+        let cVerb = chrisQuotes.verbs[cVerbNum];
+        let cNoun = chrisQuotes.nouns[cNounNum];
+        cQuote = cQuote.replace('1', cVerb)
+        cQuote = cQuote.replace('2', cNoun)
+        msg.channel.send(`\`\`\`${cQuote} \n\n--Chris\`\`\``);
+    }
+    else {
+        msg.channel.send(`\`\`\`${chrisQuotes.quotes[cQuoteNum]} \n\n--Chris\`\`\``);
+    }
 }
 
 function fortune(msg, question) {
