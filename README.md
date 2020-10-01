@@ -60,6 +60,12 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Honbar will tell your fortune and answer your most burning yes no questions. Mostly just the second one.
 
+### wyd (name)
+
+- Honbar will tell you what the person you typed is up to or thinking. You can use an @ or just plaintext.
+
+- If no name is provided, it will give you Honbar's inner thoughts.
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!

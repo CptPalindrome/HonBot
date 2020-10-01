@@ -9,6 +9,7 @@ let bannedWords = require('./bannedWords.json');
 let quotes = require('./gandhiQuotes.json');
 let chrisQuotes = require('./chrisQuotes.json');
 let fortunes = require('./magic8ball.json');
+let madlibComponents = require('./madlibComponents.json');
 
 const logger = winston.createLogger({
     format: winston.format.simple(),
@@ -46,7 +47,7 @@ client.on('message', msg => {
                     break;
 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, say, dr, roulette, cf, cfsim, chris, 8ball, gandhi, and ngandhi. More info on the readme on github.`);
+                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, say, dr, roulette, cf, cfsim, chris, 8ball, wyd, gandhi, and ngandhi. More info on the readme on github.`);
                     break;
 
                 case 'help gandhi':
@@ -177,6 +178,20 @@ client.on('message', msg => {
                         gandhiQuote(randomNumberWithinQuoteCount(), msg);
                     }
                 }
+            }
+
+            if (str.startsWith('wyd')) {
+                //take an @ and use them if present, otherwise do "I"
+                let wydArgs = str.split(' ');
+                if(wydArgs.length == 1) {
+                    wyd(msg, '');
+                }
+
+                else if(wyd.length > 1) {
+                    wydArgs.shift();
+                    wyd(msg, wydArgs.join(' '));
+                }
+
             }
 
             if (str.startsWith('chris')) {
@@ -326,6 +341,58 @@ function chrisQuote(msg) {
     else {
         msg.channel.send(`\`\`\`${chrisQuotes.quotes[cQuoteNum]} \n\n--Chris\`\`\``);
     }
+}
+
+function wyd(msg, name) {
+    let outString = buildString();
+    if(name == '') {
+        name = 'Honbar';
+    }
+
+    if(msg.mentions.users.size > 0) {
+        name = msg.mentions.users.first().username;
+    }
+    msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
+}
+
+function buildString() {
+    let noun1 = Math.floor(Math.random() * madlibComponents.nouns.length);
+    let noun2 = Math.floor(Math.random() * madlibComponents.nouns.length);
+    while (noun1 == noun2) {
+        noun2 = Math.floor(Math.random() * madlibComponents.nouns.length);
+    }
+
+    let verb1 = Math.floor(Math.random() * madlibComponents.verbs.length);
+    let verb2 = Math.floor(Math.random() * madlibComponents.verbs.length);
+    while (verb1 == verb2) {
+        verb2 = Math.floor(Math.random() * madlibComponents.verbs.length);
+    }
+
+    let adjective1 = Math.floor(Math.random() * madlibComponents.adjectives.length);
+    let adjective2 = Math.floor(Math.random() * madlibComponents.adjectives.length);
+    while (adjective1 == adjective2) {
+        adjective2 = Math.floor(Math.random() * madlibComponents.adjectives.length);
+    }
+
+    let adverb1 = Math.floor(Math.random() * madlibComponents.adverbs.length);
+    let adverb2 = Math.floor(Math.random() * madlibComponents.adverbs.length);
+    while (adverb1 == adverb2) {
+        adverb2 = Math.floor(Math.random() * madlibComponents.adverbs.length);
+    }
+
+    let sentence = madlibComponents.sentences[Math.floor(Math.random() * madlibComponents.sentences.length)];
+
+    sentence = sentence.replace('n1', madlibComponents.nouns[noun1]);
+    sentence = sentence.replace('n2', madlibComponents.nouns[noun2]);
+    sentence = sentence.replace('v1', madlibComponents.verbs[verb1]);
+    sentence = sentence.replace('v2', madlibComponents.verbs[verb2]);
+    sentence = sentence.replace('a1', madlibComponents.adjectives[adjective1]);
+    sentence = sentence.replace('a2', madlibComponents.adjectives[adjective2]);
+    sentence = sentence.replace('advb1', madlibComponents.adverbs[adverb1]);
+    sentence = sentence.replace('advb2', madlibComponents.adverbs[adverb2]);
+
+    return sentence;
+
 }
 
 function fortune(msg, question) {
