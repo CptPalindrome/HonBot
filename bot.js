@@ -368,6 +368,12 @@ function buildString() {
         verb2 = Math.floor(Math.random() * madlibComponents.verbs.length);
     }
 
+    let iverb1 = Math.floor(Math.random() * madlibComponents.verbsIntransitive.length);
+    let iverb2 = Math.floor(Math.random() * madlibComponents.verbsIntransitive.length);
+    while (iverb1 == iverb2) {
+        iverb2 == Math.floor(Math.random() * madlibComponents.verbsIntransitive.length);
+    }
+
     let adjective1 = Math.floor(Math.random() * madlibComponents.adjectives.length);
     let adjective2 = Math.floor(Math.random() * madlibComponents.adjectives.length);
     while (adjective1 == adjective2) {
@@ -390,6 +396,8 @@ function buildString() {
     sentence = sentence.replace('a2', madlibComponents.adjectives[adjective2]);
     sentence = sentence.replace('advb1', madlibComponents.adverbs[adverb1]);
     sentence = sentence.replace('advb2', madlibComponents.adverbs[adverb2]);
+    sentence = sentence.replace('iv1', madlibComponents.verbsIntransitive[iverb1]);
+    sentence = sentence.replace('iv2', madlibComponents.verbsIntransitive[iverb2]);
 
     return sentence;
 
