@@ -66,7 +66,8 @@
         "action",
         "consequence",
         "chili dog",
-        "How I Met Your Mother Season 2 on DVD"
+        "How I Met Your Mother Season 2 on DVD",
+        "world"
     ],
     "people": [
         "Thanos",
@@ -129,7 +130,8 @@
         "God",
         "Jesus",
         "Moses",
-        "Your Eminence"
+        "Your Eminence",
+        "Scatman John"
     ],
     "verbs": [
         "drive",
@@ -344,6 +346,8 @@
         "{v1} your teeth, bitch.",
         "{v1} Mog.",
         "Sorry, can't talk now. {p1} is going to {v1} me in a few minutes.",
-        "I never leave home without a(n) {a1} {n1} and my {n2}."
+        "I never leave home without a(n) {a1} {n1} and my {n2}.",
+        "{n1} seller, I need your finest {n1}. I need your strongest {n1} to be successful in the battle.",
+        "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}."
     ]
 }
