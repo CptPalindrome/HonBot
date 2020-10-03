@@ -394,18 +394,18 @@ function buildString() {
 
     let sentence = madlibComponents.sentences[Math.floor(Math.random() * madlibComponents.sentences.length)];
 
-    sentence = sentence.replaceAll('{n1}', madlibComponents.nouns[noun1]);
-    sentence = sentence.replaceAll('{n2}', madlibComponents.nouns[noun2]);
-    sentence = sentence.replaceAll('{v1}', madlibComponents.verbs[verb1]);
-    sentence = sentence.replaceAll('{v2}', madlibComponents.verbs[verb2]);
-    sentence = sentence.replaceAll('{a1}', madlibComponents.adjectives[adjective1]);
-    sentence = sentence.replaceAll('{a2}', madlibComponents.adjectives[adjective2]);
-    sentence = sentence.replaceAll('{adv1}', madlibComponents.adverbs[adverb1]);
-    sentence = sentence.replaceAll('{adv2}', madlibComponents.adverbs[adverb2]);
-    sentence = sentence.replaceAll('{iv1}', madlibComponents.verbsIntransitive[iverb1]);
-    sentence = sentence.replaceAll('{iv2}', madlibComponents.verbsIntransitive[iverb2]);
-    sentence = sentence.replaceAll('{p1}', madlibComponents.people[person1]);
-    sentence = sentence.replaceAll('{p2}', madlibComponents.people[person2]);
+    sentence = sentence.replace(/{n1}/g, madlibComponents.nouns[noun1])
+    .replace(/{n2}/g, madlibComponents.nouns[noun2])
+    .replace(/{v1}/g, madlibComponents.verbs[verb1])
+    .replace(/{v2}/g, madlibComponents.verbs[verb2])
+    .replace(/{a1}/g, madlibComponents.adjectives[adjective1])
+    .replace(/{a2}/g, madlibComponents.adjectives[adjective2])
+    .replace(/{adv1}/g, madlibComponents.adverbs[adverb1])
+    .replace(/{adv2}/g, madlibComponents.adverbs[adverb2])
+    .replace(/{iv1}/g, madlibComponents.verbsIntransitive[iverb1])
+    .replace(/{iv2}/g, madlibComponents.verbsIntransitive[iverb2])
+    .replace(/{p1}/g, madlibComponents.people[person1])
+    .replace(/{p2}/g, madlibComponents.people[person2]);
 
     return sentence;
 
