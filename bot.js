@@ -400,8 +400,8 @@ function buildString() {
     sentence = sentence.replace('{v2}', madlibComponents.verbs[verb2]);
     sentence = sentence.replace('{a1}', madlibComponents.adjectives[adjective1]);
     sentence = sentence.replace('{a2}', madlibComponents.adjectives[adjective2]);
-    sentence = sentence.replace('{advb1}', madlibComponents.adverbs[adverb1]);
-    sentence = sentence.replace('{advb2}', madlibComponents.adverbs[adverb2]);
+    sentence = sentence.replace('{adv1}', madlibComponents.adverbs[adverb1]);
+    sentence = sentence.replace('{adv2}', madlibComponents.adverbs[adverb2]);
     sentence = sentence.replace('{iv1}', madlibComponents.verbsIntransitive[iverb1]);
     sentence = sentence.replace('{iv2}', madlibComponents.verbsIntransitive[iverb2]);
     sentence = sentence.replace('{p1}', madlibComponents.people[person1]);
