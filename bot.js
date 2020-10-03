@@ -394,18 +394,18 @@ function buildString() {
 
     let sentence = madlibComponents.sentences[Math.floor(Math.random() * madlibComponents.sentences.length)];
 
-    sentence = sentence.replace('{n1}', madlibComponents.nouns[noun1]);
-    sentence = sentence.replace('{n2}', madlibComponents.nouns[noun2]);
-    sentence = sentence.replace('{v1}', madlibComponents.verbs[verb1]);
-    sentence = sentence.replace('{v2}', madlibComponents.verbs[verb2]);
-    sentence = sentence.replace('{a1}', madlibComponents.adjectives[adjective1]);
-    sentence = sentence.replace('{a2}', madlibComponents.adjectives[adjective2]);
-    sentence = sentence.replace('{adv1}', madlibComponents.adverbs[adverb1]);
-    sentence = sentence.replace('{adv2}', madlibComponents.adverbs[adverb2]);
-    sentence = sentence.replace('{iv1}', madlibComponents.verbsIntransitive[iverb1]);
-    sentence = sentence.replace('{iv2}', madlibComponents.verbsIntransitive[iverb2]);
-    sentence = sentence.replace('{p1}', madlibComponents.people[person1]);
-    sentence = sentence.replace('{p2}', madlibComponents.people[person2]);
+    sentence = sentence.replaceAll('{n1}', madlibComponents.nouns[noun1]);
+    sentence = sentence.replaceAll('{n2}', madlibComponents.nouns[noun2]);
+    sentence = sentence.replaceAll('{v1}', madlibComponents.verbs[verb1]);
+    sentence = sentence.replaceAll('{v2}', madlibComponents.verbs[verb2]);
+    sentence = sentence.replaceAll('{a1}', madlibComponents.adjectives[adjective1]);
+    sentence = sentence.replaceAll('{a2}', madlibComponents.adjectives[adjective2]);
+    sentence = sentence.replaceAll('{adv1}', madlibComponents.adverbs[adverb1]);
+    sentence = sentence.replaceAll('{adv2}', madlibComponents.adverbs[adverb2]);
+    sentence = sentence.replaceAll('{iv1}', madlibComponents.verbsIntransitive[iverb1]);
+    sentence = sentence.replaceAll('{iv2}', madlibComponents.verbsIntransitive[iverb2]);
+    sentence = sentence.replaceAll('{p1}', madlibComponents.people[person1]);
+    sentence = sentence.replaceAll('{p2}', madlibComponents.people[person2]);
 
     return sentence;
 
