@@ -361,7 +361,8 @@ function wyd(msg, name) {
 }
 
 function buildString() {
-    let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
+    // let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
+    let sentence = madComps.sentences[madComps.sentences.length-1];
     let parsedSentence = sentence.s;
 
     if(sentence.n > 0) {
@@ -416,6 +417,11 @@ function buildString() {
     if(sentence.adv > 0) {
         const adverbsCopy = [...madComps.adverbs];
         parsedSentence = parseSentence(parsedSentence, sentence.adv, adverbsCopy, 'adv', '');
+    }
+
+    if(sentence.prep > 0) {
+        const prepositionsCopy = [...madComps.prepositions];
+        parsedSentence = parseSentence(parsedSentence, sentence.prep, prepositionsCopy, 'prep', '');
     }
 
     parsedSentence = parsedSentence.charAt(0).toUpperCase() + parsedSentence.slice(1);

@@ -273,6 +273,11 @@
             "plural": "tunas"
         }
     ],
+    "abstractNouns": [
+        {
+
+        }
+    ],
     "people": [
         "Thanos",
         "Barack Obama",
@@ -951,6 +956,30 @@
         "vivaciously",
         "tenderly"
     ],
+    "prepositions": [
+        "above",
+        "across",
+        "against",
+        "among",
+        "around",
+        "behind",
+        "below",
+        "beneath",
+        "beside",
+        "between",
+        "by",
+        "in",
+        "in front of",
+        "inside",
+        "near",
+        "next to",
+        "on",
+        "outside",
+        "over",
+        "through",
+        "under",
+        "underneath"
+    ],
     "sentences": [
         {
             "s": "I've gotta {adv1} {v1} the {a1e} {n1}.",
@@ -1139,6 +1168,17 @@
         {
             "s": "{n1pl}, {n2pl}, {n3pl}, you want it? It's yours my friend. As long as you have enough {n4pl}.",
             "npl": 4
+        },
+        {
+            "s": "Could you help me put this {n1} {prep1} my {n2}? It would really help me out.",
+            "n": 2,
+            "prep": 1
+        },
+        {
+            "s": "Put that {n1} {prep1} {p1}'s {n2}.",
+            "n": 2,
+            "p": 1,
+            "prep": 1
         }
     ]
 }
