@@ -960,10 +960,6 @@
             "n": 1
         },
         {
-            "s": "{n1pl}, {n2pl}, {n3pl}, you want it? It's yours my friend.",
-            "npl": 3
-        },
-        {
             "s": "I just {v1p} the president of {a1} {n1pl}.",
             "vp": 1,
             "a": 1,
