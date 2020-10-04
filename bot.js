@@ -4,12 +4,12 @@ const auth = require('./auth.json');
 const winston = require('winston');
 const moment = require('moment');
 
-let prefix = 'h.';
-let bannedWords = require('./bannedWords.json');
-let quotes = require('./gandhiQuotes.json');
-let chrisQuotes = require('./chrisQuotes.json');
-let fortunes = require('./magic8ball.json');
-let madlibComponents = require('./madlibComponents.json');
+const prefix = 'h.';
+const bannedWords = require('./bannedWords.json');
+const quotes = require('./gandhiQuotes.json');
+const chrisQuotes = require('./chrisQuotes.json');
+const fortunes = require('./magic8ball.json');
+const madComps = require('./madlibComponents.json');
 
 const logger = winston.createLogger({
     format: winston.format.simple(),
@@ -361,59 +361,89 @@ function wyd(msg, name) {
 }
 
 function buildString() {
-    let noun1 = Math.floor(Math.random() * madlibComponents.nouns.length);
-    let noun2 = Math.floor(Math.random() * madlibComponents.nouns.length);
-    while (noun1 == noun2) {
-        noun2 = Math.floor(Math.random() * madlibComponents.nouns.length);
+    let sentence = madComps.sentences[1];
+    let parsedSentence = sentence.s;
+
+    if(sentence.n > 0) {
+        const nounsCopy = [...madComps.nouns];
+        parsedSentence = parseSentence(parsedSentence, sentence.n, nounsCopy, 'n', '', 'singular');
     }
 
-    let person1 = Math.floor(Math.random() * madlibComponents.people.length);
-    let person2 = Math.floor(Math.random() * madlibComponents.people.length);
-    while (person1 == person2) {
-        person2 = Math.floor(Math.random() * madlibComponents.people.length);
+    if(sentence.an > 0) {
+        //TODO: add abstract nouns. eventually. 
+    }
+    
+    if(sentence.npl > 0) {
+        const nounsCopy = [...madComps.nouns];
+        parsedSentence = parseSentence(parsedSentence, sentence.npl, nounsCopy, 'n', 'pl', 'plural');
     }
 
-    let verb1 = Math.floor(Math.random() * madlibComponents.verbs.length);
-    let verb2 = Math.floor(Math.random() * madlibComponents.verbs.length);
-    while (verb1 == verb2) {
-        verb2 = Math.floor(Math.random() * madlibComponents.verbs.length);
+    if(sentence.p > 0) {
+        const peopleCopy = [...madComps.people];
+        parsedSentence = parseSentence(parsedSentence, sentence.p, peopleCopy, 'p', '');
+    }
+    
+    if(sentence.v > 0) {
+        const verbsCopy = [...madComps.verbs];
+        parsedSentence = parseSentence(parsedSentence, sentence.v, verbsCopy, 'v', '', 'present');
+    }
+    
+    if(sentence.vp > 0) {
+        const verbsCopy = [...madComps.verbs];
+        parsedSentence = parseSentence(parsedSentence, sentence.vp, verbsCopy, 'v', 'p', 'past');
+    }
+    
+    if(sentence.ving > 0) {
+        const verbsCopy = [...madComps.verbs];
+        parsedSentence = parseSentence(parsedSentence, sentence.ving, verbsCopy, 'v', 'ing', 'ing');
     }
 
-    let iverb1 = Math.floor(Math.random() * madlibComponents.verbsIntransitive.length);
-    let iverb2 = Math.floor(Math.random() * madlibComponents.verbsIntransitive.length);
-    while (iverb1 == iverb2) {
-        iverb2 == Math.floor(Math.random() * madlibComponents.verbsIntransitive.length);
+    if(sentence.iv > 0) {
+        const iverbsCopy = [...madComps.verbsIntransitive];
+        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', '');
     }
 
-    let adjective1 = Math.floor(Math.random() * madlibComponents.adjectives.length);
-    let adjective2 = Math.floor(Math.random() * madlibComponents.adjectives.length);
-    while (adjective1 == adjective2) {
-        adjective2 = Math.floor(Math.random() * madlibComponents.adjectives.length);
+    if(sentence.a > 0) {
+        const adjectivesCopy = [...madComps.adjectives];
+        parsedSentence = parseSentence(parsedSentence, sentence.a, adjectivesCopy, 'a', '', 'regular');
     }
 
-    let adverb1 = Math.floor(Math.random() * madlibComponents.adverbs.length);
-    let adverb2 = Math.floor(Math.random() * madlibComponents.adverbs.length);
-    while (adverb1 == adverb2) {
-        adverb2 = Math.floor(Math.random() * madlibComponents.adverbs.length);
+    if(sentence.ae > 0) {
+        const adjectivesCopy = [...madComps.adjectives];
+        parsedSentence = parseSentence(parsedSentence, sentence.ae, adjectivesCopy, 'a', 'e', 'est');
     }
 
-    let sentence = madlibComponents.sentences[Math.floor(Math.random() * madlibComponents.sentences.length)];
+    if(sentence.adv > 0) {
+        const adverbsCopy = [...madComps.adverbs];
+        parsedSentence = parseSentence(parsedSentence, sentence.adv, adverbsCopy, 'adv', '');
+    }
 
-    sentence = sentence.replace(/{n1}/g, madlibComponents.nouns[noun1])
-    .replace(/{n2}/g, madlibComponents.nouns[noun2])
-    .replace(/{v1}/g, madlibComponents.verbs[verb1])
-    .replace(/{v2}/g, madlibComponents.verbs[verb2])
-    .replace(/{a1}/g, madlibComponents.adjectives[adjective1])
-    .replace(/{a2}/g, madlibComponents.adjectives[adjective2])
-    .replace(/{adv1}/g, madlibComponents.adverbs[adverb1])
-    .replace(/{adv2}/g, madlibComponents.adverbs[adverb2])
-    .replace(/{iv1}/g, madlibComponents.verbsIntransitive[iverb1])
-    .replace(/{iv2}/g, madlibComponents.verbsIntransitive[iverb2])
-    .replace(/{p1}/g, madlibComponents.people[person1])
-    .replace(/{p2}/g, madlibComponents.people[person2]);
+    parsedSentence = parsedSentence.charAt(0).toUpperCase() + parsedSentence.slice(1);
+    return parsedSentence;
+}
 
-    return sentence;
-
+/**
+ * 
+ * @param {string} sentenceToParse 
+ * @param {number} count 
+ * @param {any[]} category 
+ * @param {string} prefix 
+ * @param {string} suffix 
+ * @param {string} categorySubtype 
+ */
+function parseSentence(sentenceToParse, count, category, prefix, suffix, categorySubtype) {
+        for(let i = 0; i < count; i++) {
+            let categoryIndex = Math.floor(Math.random() * category.length);
+            const reg = new RegExp(`{${prefix}${i+1}${suffix}}`, 'g',);
+            if(categorySubtype) {
+                sentenceToParse = sentenceToParse.replace(reg, category[categoryIndex][categorySubtype]);
+            }
+            else {
+                sentenceToParse = sentenceToParse.replace(reg, category[categoryIndex]);
+            }
+            category.splice(categoryIndex, 1);
+        }
+    return sentenceToParse;
 }
 
 function fortune(msg, question) {

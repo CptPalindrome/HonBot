@@ -1,74 +1,277 @@
 {
     "nouns": [
-        "burger",
-        "car",
-        "chair",
-        "town",
-        "narwhal",
-        "bmx bike",
-        "concrete",
-        "vending machine",
-        "tent",
-        "pokedex",
-        "vape stick",
-        "casino",
-        "mommy milkers",
-        "rat",
-        "planet",
-        "door",
-        "hedgehog",
-        "energy sword",
-        "bag",
-        "castle",
-        "pocket watch",
-        "coffee mug",
-        "magazine",
-        "window",
-        "pee pee",
-        "sour cream",
-        "deuce",
-        "towlette",
-        "Game Boy Pocket™",
-        "bomb",
-        "Commodore 64",
-        "2003 Nissan Altima Passenger Rear Door",
-        "hammock",
-        "desk",
-        "drum of cottage cheese",
-        "pompadour",
-        "manticore",
-        "duel disk",
-        "Kaiba Corp dragon jet",
-        "gun",
-        "Millenium Eye",
-        "bionicle",
-        "lincoln log",
-        "diatribe",
-        "battery",
-        "razor scooter",
-        "beyblade",
-        "chicken tendy",
-        "fruit by the foot",
-        "hat",
-        "skeleton",
-        "trumpet",
-        "Trapper Keeper™",
-        "Lunchable™",
-        "security blanket",
-        "shoe",
-        "alarm clock",
-        "refrigerator",
-        "printer",
-        "lamp",
-        "subwoofer",
-        "bucket of dirt",
-        "idiot",
-        "action",
-        "consequence",
-        "chili dog",
-        "How I Met Your Mother Season 2 on DVD",
-        "world",
-        "strenergy"
+        {
+            "singular": "burger",
+            "plural": "burgers"
+        },
+        {
+            "singular": "car",
+            "plural": "cars"
+        },
+        {
+            "singular": "chair",
+            "plural": "chairs"
+        },
+        {
+            "singular": "town",
+            "plural": "towns"
+        },
+        {
+            "singular": "narwhal",
+            "plural": "narwhals"
+        },
+        {
+            "singular": "bmx bike",
+            "plural": "bmx bikes"
+        },
+        {
+            "singular": "concrete",
+            "plural": "concrete"
+        },
+        {
+            "singular": "vending machine",
+            "plural": "vending machines"
+        },
+        {
+            "singular": "tent",
+            "plural": "tents"
+        },
+        {
+            "singular": "vape stick",
+            "plural": "vape sticks"
+        },
+        {
+            "singular": "casino",
+            "plural": "casinos"
+        },
+        {
+            "singular": "mommy milkers",
+            "plural": "mommy milkers"
+        },
+        {
+            "singular": "rat",
+            "plural": "rats"
+        },
+        {
+            "singular": "planet",
+            "plural": "planets"
+        },
+        {
+            "singular": "door",
+            "plural": "doors"
+        },
+        {
+            "singular": "hedgehog",
+            "plural": "hedgehogs"
+        },
+        {
+            "singular": "energy sword",
+            "plural": "energy swords"
+        },
+        {
+            "singular": "bag",
+            "plural": "bags"
+        },
+        {
+            "singular": "castle",
+            "plural": "castles"
+        },
+        {
+            "singular": "coffee mug",
+            "plural": "coffee mugs"
+        },
+        {
+            "singular": "magazine",
+            "plural": "magazines"
+        },
+        {
+            "singular": "window",
+            "plural": "windows"
+        },
+        {
+            "singular": "pee pee",
+            "plural": "pee pees"
+        },
+        {
+            "singular": "sour cream",
+            "plural": "sour cream"
+        },
+        {
+            "singular": "deuce",
+            "plural": "deuces"
+        },
+        {
+            "singular": "towlette",
+            "plural": "towlettes"
+        },
+        {
+            "singular": "Game Boy Pocket™",
+            "plural": "Game Boy Pocket™s"
+        },
+        {
+            "singular": "bomb",
+            "plural": "bombs"
+        },
+        {
+            "singular": "Commodore 64",
+            "plural": "Commodore 64s"
+        },
+        {
+            "singular": "2003 Nissan Altima Passenger Rear Door",
+            "plural": "2003 Nissan Altima Passenger Rear Doors"
+        },
+        {
+            "singular": "hammock",
+            "plural": "hammocks"
+        },
+        {
+            "singular": "desk",
+            "plural": "desks"
+        },
+        {
+            "singular": "drum of cottage cheese",
+            "plural": "drums of cottage cheese"
+        },
+        {
+            "singular": "pompadour",
+            "plural": "pompadours"
+        },
+        {
+            "singular": "manticore",
+            "plural": "manticores"
+        },
+        {
+            "singular": "duel disk",
+            "plural": "duel disks"
+        },
+        {
+            "singular": "Kaiba Corp dragon jet",
+            "plural": "Kaiba Corp dragon jets"
+        },
+        {
+            "singular": "gun",
+            "plural": "guns"
+        },
+        {
+            "singular": "Millenium Eye",
+            "plural": "Millenium Eyes"
+        },
+        {
+            "singular": "bionicle",
+            "plural": "bionicles"
+        },
+        {
+            "singular": "lincoln log",
+            "plural": "lincoln logs"
+        },
+        {
+            "singular": "diatribe",
+            "plural": "diatribes"
+        },
+        {
+            "singular": "battery",
+            "plural": "batteries"
+        },
+        {
+            "singular": "razor scooter",
+            "plural": "razor scooters"
+        },
+        {
+            "singular": "beyblade",
+            "plural": "beyblades"
+        },
+        {
+            "singular": "chicken tendy",
+            "plural": "chicken tendies"
+        },
+        {
+            "singular": "fruit by the foot",
+            "plural": "fruits by the foot"
+        },
+        {
+            "singular": "hat",
+            "plural": "hats"
+        },
+        {
+            "singular": "skeleton",
+            "plural": "skeletons"
+        },
+        {
+            "singular": "trumpet",
+            "plural": "trumpets"
+        },
+        {
+            "singular": "Trapper Keeper™",
+            "plural": "Trapper Keeper™s"
+        },
+        {
+            "singular": "Lunchable™",
+            "plural": "Lunchables™"
+        },
+        {
+            "singular": "security blanket",
+            "plural": "security blankets"
+        },
+        {
+            "singular": "shoe",
+            "plural": "shoes"
+        },
+        {
+            "singular": "alarm clock",
+            "plural": "alarm clocks"
+        },
+        {
+            "singular": "refrigerator",
+            "plural": "refrigerators"
+        },
+        {
+            "singular": "printer",
+            "plural": "printers"
+        },
+        {
+            "singular": "lamp",
+            "plural": "lamps"
+        },
+        {
+            "singular": "subwoofer",
+            "plural": "subwoofers"
+        },
+        {
+            "singular": "bucket of dirt",
+            "plural": "buckets of dirt"
+        },
+        {
+            "singular": "idiot",
+            "plural": "idiots"
+        },
+        {
+            "singular": "action",
+            "plural": "actions"
+        },
+        {
+            "singular": "consequence",
+            "plural": "consequences"
+        },
+        {
+            "singular": "chili dog",
+            "plural": "chili dogs"
+        },
+        {
+            "singular": "How I Met Your Mother Season 2 on DVD",
+            "plural": "Copies of How I Met Your Mother Season 2 on DVD"
+        },
+        {
+            "singular": "world",
+            "plural": "worlds"
+        },
+        {
+            "singular": "strenergy",
+            "plural": "strenergies"
+        },
+        {
+            "singular": "tuna",
+            "plural": "tunas"
+        }
     ],
     "people": [
         "Thanos",
@@ -135,68 +338,321 @@
         "Scatman John"
     ],
     "verbs": [
-        "drive",
-        "win",
-        "sniff",
-        "fly",
-        "eat",
-        "observe",
-        "charge",
-        "kill",
-        "shoot",
-        "stab",
-        "build",
-        "slap",
-        "shrug",
-        "rest",
-        "pack",
-        "stuff",
-        "punch",
-        "blast",
-        "obliterate",
-        "masticate",
-        "excommunicate",
-        "vaporize",
-        "multiply",
-        "vanquish",
-        "birth",
-        "chuck",
-        "ignite",
-        "incinerate",
-        "pry",
-        "extinguish",
-        "erect",
-        "moisten",
-        "shear",
-        "strike",
-        "corrupt",
-        "play",
-        "tell",
-        "show",
-        "erase",
-        "erradicate",
-        "protect",
-        "banish",
-        "incarcerate",
-        "inscribe",
-        "teleport",
-        "consume",
-        "disenfranchise",
-        "overthrow",
-        "appease",
-        "dunk",
-        "worship",
-        "threaten",
-        "ban",
-        "disable",
-        "enable",
-        "create",
-        "delete",
-        "stop",
-        "defeat",
-        "suck",
-        "squeeze",
-        "hoist"
+        {
+            "present": "drive",
+            "past": "drove",
+            "ing": "driving"
+        },
+        {
+            "present": "win",
+            "past": "won",
+            "ing": "winning"
+        },
+        {
+            "present": "sniff",
+            "past": "sniffed",
+            "ing": "sniffing"
+        },
+        {
+            "present": "fly",
+            "past": "flew",
+            "ing": "flying"
+        },
+        {
+            "present": "eat",
+            "past": "ate",
+            "ing": "eating"
+        },
+        {
+            "present": "observe",
+            "past": "observed",
+            "ing": "observing"
+        },
+        {
+            "present": "charge",
+            "past": "charged",
+            "ing": "charging"
+        },
+        {
+            "present": "kill",
+            "past": "killed",
+            "ing": "killing"
+        },
+        {
+            "present": "shoot",
+            "past": "shot",
+            "ing": "shooting"
+        },
+        {
+            "present": "stab",
+            "past": "stabbed",
+            "ing": "stabbing"
+        },
+        {
+            "present": "build",
+            "past": "built",
+            "ing": "building"
+        },
+        {
+            "present": "slap",
+            "past": "slapped",
+            "ing": "slapping"
+        },
+        {
+            "present": "shrug",
+            "past": "shrugged",
+            "ing": "shrugging"
+        },
+        {
+            "present": "rest",
+            "past": "rested",
+            "ing": "resting"
+        },
+        {
+            "present": "pack",
+            "past": "packed",
+            "ing": "packing"
+        },
+        {
+            "present": "stuff",
+            "past": "stuffed",
+            "ing": "stuffing"
+        },
+        {
+            "present": "punch",
+            "past": "punched",
+            "ing": "punching"
+        },
+        {
+            "present": "blast",
+            "past": "blasted",
+            "ing": "blasting"
+        },
+        {
+            "present": "obliterate",
+            "past": "obliterated",
+            "ing": "obliterating"
+        },
+        {
+            "present": "masticate",
+            "past": "masticated",
+            "ing": "matiscating"
+        },
+        {
+            "present": "excommunicate",
+            "past": "excommunicated",
+            "ing": "excommunicating"
+        },
+        {
+            "present": "vaporize",
+            "past": "vaporized",
+            "ing": "vaporizing"
+        },
+        {
+            "present": "multiply",
+            "past": "multiplied",
+            "ing": "multiplying"
+        },
+        {
+            "present": "vanquish",
+            "past": "vanquished",
+            "ing": "vanquishing"
+        },
+        {
+            "present": "birth",
+            "past": "birthed",
+            "ing": "birthing"
+        },
+        {
+            "present": "chuck",
+            "past": "chucked",
+            "ing": "chucking"
+        },
+        {
+            "present": "ignite",
+            "past": "ignited",
+            "ing": "igniting"
+        },
+        {
+            "present": "incinerate",
+            "past": "incinerated",
+            "ing": "incinerating"
+        },
+        {
+            "present": "pry",
+            "past": "pried",
+            "ing": "prying"
+        },
+        {
+            "present": "extinguish",
+            "past": "extinguished",
+            "ing": "extinguishing"
+        },
+        {
+            "present": "erect",
+            "past": "erected",
+            "ing": "erecting"
+        },
+        {
+            "present": "moisten",
+            "past": "moistened",
+            "ing": "moistening"
+        },
+        {
+            "present": "shear",
+            "past": "sheared",
+            "ing": "shearing"
+        },
+        {
+            "present": "strike",
+            "past": "struck",
+            "ing": "striking"
+        },
+        {
+            "present": "corrupt",
+            "past": "corrupted",
+            "ing": "corrupting"
+        },
+        {
+            "present": "play",
+            "past": "played",
+            "ing": "playing"
+        },
+        {
+            "present": "tell",
+            "past": "told",
+            "ing": "telling"
+        },
+        {
+            "present": "show",
+            "past": "showed",
+            "ing": "showing"
+        },
+        {
+            "present": "erase",
+            "past": "erased",
+            "ing": "erasing"
+        },
+        {
+            "present": "eradicate",
+            "past": "eradicated",
+            "ing": "eradicating"
+        },
+        {
+            "present": "protect",
+            "past": "protected",
+            "ing": "protecting"
+        },
+        {
+            "present": "banish",
+            "past": "banished",
+            "ing": "banishing"
+        },
+        {
+            "present": "incarcerate",
+            "past": "incarcerated",
+            "ing": "incarcerating"
+        },
+        {
+            "present": "inscribe",
+            "past": "inscribed",
+            "ing": "inscribing"
+        },
+        {
+            "present": "teleport",
+            "past": "teleported",
+            "ing": "teleporting"
+        },
+        {
+            "present": "consume",
+            "past": "consumed",
+            "ing": "consuming"
+        },
+        {
+            "present": "disenfranchise",
+            "past": "disenfranchised",
+            "ing": "disenfranchising"
+        },
+        {
+            "present": "overthrow",
+            "past": "overthrew",
+            "ing": "overthrowing"
+        },
+        {
+            "present": "appease",
+            "past": "appeased",
+            "ing": "appeasing"
+        },
+        {
+            "present": "dunk",
+            "past": "dunked",
+            "ing": "dunking"
+        },
+        {
+            "present": "worship",
+            "past": "worshipped",
+            "ing": "worshipping"
+        },
+        {
+            "present": "threaten",
+            "past": "threatened",
+            "ing": "threatening"
+        },
+        {
+            "present": "ban",
+            "past": "banned",
+            "ing": "banning"
+        },
+        {
+            "present": "disable",
+            "past": "disabled",
+            "ing": "disabling"
+        },
+        {
+            "present": "enable",
+            "past": "enabled",
+            "ing": "enabling"
+        },
+        {
+            "present": "create",
+            "past": "created",
+            "ing": "creating"
+        },
+        {
+            "present": "delete",
+            "past": "deleted",
+            "ing": "deleting"
+        },
+        {
+            "present": "stop",
+            "past": "stopped",
+            "ing": "stopping"
+        },
+        {
+            "present": "defeat",
+            "past": "defeated",
+            "ing": "defeating"
+        },
+        {
+            "present": "suck",
+            "past": "sucked",
+            "ing": "sucking"
+        },
+        {
+            "present": "squeeze",
+            "past": "squeezed",
+            "ing": "squeezing"
+        },
+        {
+            "present": "hoist",
+            "past": "hoisted",
+            "ing": "hoisting"
+        },
+        {
+            "present": "doot",
+            "past": "dooted",
+            "ing": "dooting"
+        }
     ],
     "verbsIntransitive": [
         "run",
@@ -227,65 +683,238 @@
         "chill"
     ],
     "adjectives": [
-        "big",
-        "huge",
-        "smelly",
-        "feral",
-        "terrible",
-        "disgusting",
-        "wretched",
-        "joyful",
-        "expensive",
-        "stupid",
-        "moronic",
-        "notorious",
-        "infantile",
-        "small",
-        "teeny-tiny",
-        "bald",
-        "shiny",
-        "funny",
-        "pathetic",
-        "insolent",
-        "warm",
-        "ridiculous",
-        "stylish",
-        "soggy",
-        "moist",
-        "dusty",
-        "sparkly",
-        "crusty",
-        "cheap",
-        "bright",
-        "rough",
-        "buff",
-        "loud",
-        "shifty",
-        "judgemental",
-        "slow",
-        "beady",
-        "glistening",
-        "bruised",
-        "grumpy",
-        "unhappy",
-        "leggy",
-        "bionic",
-        "biodegradable",
-        "radioactive",
-        "nuclear",
-        "explosive",
-        "saucy",
-        "jiggly",
-        "bulging",
-        "zesty",
-        "perfect",
-        "excrutiating",
-        "tall",
-        "short",
-        "bulbous",
-        "tubular",
-        "cool",
-        "cringy"
+        {
+            "regular": "big",
+            "est": "biggest"
+        },
+        {
+            "regular": "huge",
+            "est": "hugest"
+        },
+        {
+            "regular": "smelly",
+            "est": "smelliest"
+        },
+        {
+            "regular": "feral",
+            "est": "feralest"
+        },
+        {
+            "regular": "terrible",
+            "est": "most terrible"
+        },
+        {
+            "regular": "disgusting",
+            "est": "most disgusting"
+        },
+        {
+            "regular": "wretched",
+            "est": "most wretched"
+        },
+        {
+            "regular": "joyful",
+            "est": "most joyful"
+        },
+        {
+            "regular": "expensive",
+            "est": "most expensive"
+        },
+        {
+            "regular": "stupid",
+            "est": "stupidest"
+        },
+        {
+            "regular": "moronic",
+            "est": "most moronic"
+        },
+        {
+            "regular": "notorious",
+            "est": "most notorious"
+        },
+        {
+            "regular": "infantile",
+            "est": "most infantile"
+        },
+        {
+            "regular": "small",
+            "est": "smallest"
+        },
+        {
+            "regular": "teeny-tiny",
+            "est": "teeny-tiniest"
+        },
+        {
+            "regular": "bald",
+            "est": "baldest"
+        },
+        {
+            "regular": "shiny",
+            "est": "shiniest"
+        },
+        {
+            "regular": "funny",
+            "est": "funniest"
+        },
+        {
+            "regular": "pathetic",
+            "est": "most pathetic"
+        },
+        {
+            "regular": "insolent",
+            "est": "most insolent"
+        },
+        {
+            "regular": "warm",
+            "est": "warmest"
+        },
+        {
+            "regular": "ridiculous",
+            "est": "most ridiculous"
+        },
+        {
+            "regular": "stylish",
+            "est": "most stylish"
+        },
+        {
+            "regular": "soggy",
+            "est": "soggiest"
+        },
+        {
+            "regular": "moist",
+            "est": "moistest"
+        },
+        {
+            "regular": "dusty",
+            "est": "dustiest"
+        },
+        {
+            "regular": "sparkly",
+            "est": "sparkliest"
+        },
+        {
+            "regular": "crusty",
+            "est": "crustiest"
+        },
+        {
+            "regular": "cheap",
+            "est": "cheapest"
+        },
+        {
+            "regular": "bright",
+            "est": "brightest"
+        },
+        {
+            "regular": "rough",
+            "est": "roughest"
+        },
+        {
+            "regular": "buff",
+            "est": "buffest"
+        },
+        {
+            "regular": "loud",
+            "est": "loudest"
+        },
+        {
+            "regular": "shifty",
+            "est": "shiftiest"
+        },
+        {
+            "regular": "judgemental",
+            "est": "most judgemental"
+        },
+        {
+            "regular": "slow",
+            "est": "slowest"
+        },
+        {
+            "regular": "beady",
+            "est": "beadiest"
+        },
+        {
+            "regular": "glistening",
+            "est": "most glistening"
+        },
+        {
+            "regular": "bruised",
+            "est": "most bruised"
+        },
+        {
+            "regular": "grumpy",
+            "est": "grumpiest"
+        },
+        {
+            "regular": "leggy",
+            "est": "leggiest"
+        },
+        {
+            "regular": "bionic",
+            "est": "most bionic"
+        },
+        {
+            "regular": "biodegradable",
+            "est": "most biodegradable"
+        },
+        {
+            "regular": "radioactive",
+            "est": "most radioactive"
+        },
+        {
+            "regular": "nuclear",
+            "est": "most nuclear"
+        },
+        {
+            "regular": "explosive",
+            "est": "most explosive"
+        },
+        {
+            "regular": "saucy",
+            "est": "sauciest"
+        },
+        {
+            "regular": "jiggly",
+            "est": "jiggliest"
+        },
+        {
+            "regular": "bulging",
+            "est": "most bulging"
+        },
+        {
+            "regular": "zesty",
+            "est": "zestiest"
+        },
+        {
+            "regular": "perfect",
+            "est": "most perfect"
+        },
+        {
+            "regular": "excrutiating",
+            "est": "most excrutiating"
+        },
+        {
+            "regular": "tall",
+            "est": "tallest"
+        },
+        {
+            "regular": "short",
+            "est": "shortest"
+        },
+        {
+            "regular": "bulbous",
+            "est": "most bulbous"
+        },
+        {
+            "regular": "tubular",
+            "est": "most tubular"
+        },
+        {
+            "regular": "cool",
+            "est": "coolest"
+        },
+        {
+            "regular": "cringy",
+            "est": "cringiest"
+        }
     ],
     "adverbs": [
         "slowly",
@@ -323,37 +952,197 @@
         "tenderly"
     ],
     "sentences": [
-        "I've gotta {adv1} {v1} a(n) {a1} {n1}.",
-        "I'm about to {v1} my {a1} {a2} {n1} and {iv1}.",
-        "If you {v1} me, I might have to {v2} your {a1} {n1}.",
-        "If you thought that was {a1}, wait til you see my {a2} {n1}.",
-        "I'm busy {adv1} drawing a picture of a(n) {a1} {n1}.",
-        "Uhhhh, well I was about to {v1} a(n) {n1}, but now I'm going to {adv1} {v2} a(n) {a1} {a2} {n2}.",
-        "Well if you must know. I am going to {iv1} with my buddy.",
-        "I couldn't imagine a more {a1} world, than one where I {v1} with my homies.",
-        "If you're looking for a(n) {a1} {n1}, then look no further than my {n2}.",
-        "I didn't know my {n1} was going to {v1} until I felt my {a1} {n2}.",
-        "Sometimes when I {v1}, I can't help but wonder if {a1} {n1}s really {v2}.",
-        "By the look of it, I'm about to {v1} a(n) {n1}, and then maybe {iv1}.",
-        "I'll tell you what, if you can {v1} your {n1} for 15 minutes, I'll {adv1} {v2} you.",
-        "I'm about to karate {v1} you.",
-        "Give me an entire {n1}, or your {a1}, {a2} {n2} will be forfeit.",
-        "I'm robbing you. Give me your {a1} {n1} or I'll have no choice but to {v1} you until you {iv1}.",
-        "When will you {iv1}? That your {n1}s have {n2}s!?",
-        "Yeah, can I get uhhhh, {n1}, and you can you put {a1} {n2} on it?",
-        "The only way to {v1} {p1} is with a(n) {a1} {n1}.",
-        "Sorry fellas, I can't play Minecraft tonight, I'm going to {iv1} with {p1}.",
-        "If you ask me again, I'm just going to defer you to {p1}, my chief of security.",
-        "Help me traveler! I'm stuck in a(n) {a1} {n1} and can't get out!",
-        "Buying {n1}, selling {n2}. {v1} me for offers.",
-        "{v1} your teeth, bitch.",
-        "{v1} Mog.",
-        "Sorry, can't talk now. {p1} is going to {v1} me in a few minutes.",
-        "I never leave home without a(n) {a1} {n1} and my {n2}.",
-        "{n1} seller, I need your finest {n1}. I need your strongest {n1} to be successful in the battle.",
-        "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}.",
-        "That feeling you get when you {v1} a(n) {a1} {n1}.",
-        "My name is {p1}. You killed my {n1}. Prepare to {iv1}.",
-        "In a pinch, a {n1} can be used as a {n2}."
+        {
+            "s": "I've gotta {adv1} {v1} the {a1e} {n1}.",
+            "adv": 1,
+            "v": 1,
+            "ae": 1,
+            "n": 1
+        },
+        {
+            "s": "{n1pl}, {n2pl}, {n3pl}, you want it? It's yours my friend.",
+            "npl": 3
+        },
+        {
+            "s": "I just {v1p} the president of {a1} {n1pl}.",
+            "vp": 1,
+            "a": 1,
+            "npl": 1
+        },
+        {
+            "s": "I'm busy {v1ing} a(n) {a1} {n1}.",
+            "ving": 1,
+            "a": 1,
+            "n": 1
+        },
+        {
+            "s": "My name is {p1}. You killed my {n1}. Prepare to {iv1}.",
+            "p": 1,
+            "n": 1,
+            "iv": 1
+        },
+        {
+            "s": "I'm about to {v1} my {a1} {a2} {n1} and {iv1}.",
+            "n": 1,
+            "v": 1,
+            "iv": 1,
+            "a": 2
+        },
+        {
+            "s": "If you {v1} me, I might have to {v2} your {a1} {n1}.",
+            "n": 1,
+            "v": 2,
+            "a": 1
+        },
+        {
+            "s": "If you thought that was {a1}, wait til you see my {a2} {n1}.",
+            "n": 1,
+            "a": 2
+        },
+        {
+            "s": "I'm busy {adv1} drawing a picture of a(n) {a1} {n1}.",
+            "n": 1,
+            "a": 1,
+            "adv": 1
+        },
+        {
+            "s": "Uhhhh, well I was about to {v1} a(n) {n1}, but now I'm going to {adv1} {v2} a(n) {a1} {a2} {n2}.",
+            "n": 2,
+            "v": 2,
+            "a": 2,
+            "adv": 1
+        },
+        {
+            "s": "Well if you must know. I am going to {iv1} with my buddy.",
+            "iv": 1
+        },
+        {
+            "s": "I couldn't imagine a more {a1} world, than one where I {v1} with my homies.",
+            "v": 1,
+            "a": 1
+        },
+        {
+            "s": "If you're looking for a(n) {a1} {n1}, then look no further than my {n2}.",
+            "n": 2,
+            "a": 1
+        },
+        {
+            "s": "I didn't know my {n1} was going to {v1} until I felt my {a1} {n2}.",
+            "n": 2,
+            "v": 1,
+            "a": 1
+        },
+        {
+            "s": "Sometimes when I {v1}, I can't help but wonder if {a1} {n1pl} really {v2}.",
+            "n": 1,
+            "v": 2,
+            "a": 1
+        },
+        {
+            "s": "By the look of it, I'm about to {v1} a(n) {n1}, and then maybe {iv1}.",
+            "n": 1,
+            "v": 1,
+            "iv": 1
+        },
+        {
+            "s": "I'll tell you what, if you can {v1} your {n1} for 15 minutes, I'll {adv1} {v2} you.",
+            "n": 1,
+            "v": 2,
+            "adv": 1
+        },
+        {
+            "s": "I'm about to karate {v1} you.",
+            "v": 1
+        },
+        {
+            "s": "Give me an entire {n1}, or your {a1}, {a2} {n2} will be forfeit.",
+            "n": 2,
+            "a": 2
+        },
+        {
+            "s": "I'm robbing you. Give me your {a1} {n1} or I'll have no choice but to {v1} you until you {iv1}.",
+            "n": 1,
+            "v": 1,
+            "iv": 1,
+            "a": 1
+        },
+        {
+            "s": "When will you {iv1}? That your {n1pl} have {n2pl}!?",
+            "npl": 2,
+            "iv": 1
+        },
+        {
+            "s": "Yeah, can I get uhhhh, {n1}, and you can you put {a1} {n2} on it?",
+            "n": 2,
+            "a": 1
+        },
+        {
+            "s": "The only way to {v1} {p1} is with a(n) {a1} {n1}.",
+            "n": 1,
+            "p": 1,
+            "v": 1,
+            "a": 1
+        },
+        {
+            "s": "Sorry fellas, I can't play Minecraft tonight, I'm going to {iv1} with {p1}.",
+            "p": 1,
+            "iv": 1
+        },
+        {
+            "s": "If you ask me again, I'm just going to defer you to {p1}, my chief of security.",
+            "p": 1
+        },
+        {
+            "s": "Help me traveler! I'm stuck in a(n) {a1} {n1} and can't get out!",
+            "n": 1,
+            "a": 1
+        },
+        {
+            "s": "Buying {n1}, selling {n2}. {v1} me for offers.",
+            "n": 2,
+            "v": 1
+        },
+        {
+            "s": "{v1} your teeth, bitch.",
+            "v": 1
+        },
+        {
+            "s": "{v1} Mog.",
+            "v": 1
+        },
+        {
+            "s": "Sorry, can't talk now. {p1} is going to {v1} me in a few minutes.",
+            "p": 1,
+            "v": 1
+        },
+        {
+            "s": "I never leave home without a(n) {a1} {n1} and my {n2}.",
+            "n": 2,
+            "a": 1
+        },
+        {
+            "s": "{n1} seller, I need your finest {n1}. I need your strongest {n1} to be successful in the battle.",
+            "n": 1
+        },
+        {
+            "s": "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}.",
+            "n": 1,
+            "iv": 1,
+            "a": 1
+        },
+        {
+            "s": "That feeling you get when you {v1} a(n) {a1} {n1}.",
+            "n": 1,
+            "v": 1,
+            "a": 1
+        },
+        {
+            "s": "In a pinch, a {n1} can be used as a {n2}.",
+            "n": 2
+        },
+        {
+            "s": "{n1pl}, {n2pl}, {n3pl}, you want it? It's yours my friend. As long as you have enough {n4pl}.",
+            "npl": 4
+        }
     ]
 }
