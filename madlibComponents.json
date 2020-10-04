@@ -67,7 +67,8 @@
         "consequence",
         "chili dog",
         "How I Met Your Mother Season 2 on DVD",
-        "world"
+        "world",
+        "strenergy"
     ],
     "people": [
         "Thanos",
@@ -193,7 +194,9 @@
         "delete",
         "stop",
         "defeat",
-        "suck"
+        "suck",
+        "squeeze",
+        "hoist"
     ],
     "verbsIntransitive": [
         "run",
@@ -348,6 +351,9 @@
         "Sorry, can't talk now. {p1} is going to {v1} me in a few minutes.",
         "I never leave home without a(n) {a1} {n1} and my {n2}.",
         "{n1} seller, I need your finest {n1}. I need your strongest {n1} to be successful in the battle.",
-        "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}."
+        "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}.",
+        "That feeling you get when you {v1} a(n) {a1} {n1}.",
+        "My name is {p1}. You killed my {n1}. Prepare to {iv1}.",
+        "In a pinch, a {n1} can be used as a {n2}."
     ]
 }

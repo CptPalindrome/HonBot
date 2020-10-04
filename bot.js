@@ -183,13 +183,18 @@ client.on('message', msg => {
             if (str.startsWith('wyd')) {
                 //take an @ and use them if present, otherwise do "I"
                 let wydArgs = str.split(' ');
-                if(wydArgs.length == 1) {
-                    wyd(msg, '');
-                }
+                try {
+                    if(wydArgs.length == 1) {
+                        wyd(msg, '');
+                    }
 
-                else if(wyd.length > 1) {
-                    wydArgs.shift();
-                    wyd(msg, wydArgs.join(' '));
+                    else if(wyd.length > 1) {
+                        wydArgs.shift();
+                        wyd(msg, wydArgs.join(' '));
+                    }
+                }
+                catch(e) {
+                    logger.error(`${now()}: ${e}`);
                 }
 
             }
