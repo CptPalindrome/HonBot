@@ -361,8 +361,7 @@ function wyd(msg, name) {
 }
 
 function buildString() {
-    // let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
-    let sentence = madComps.sentences[madComps.sentences.length-1];
+    let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
     let parsedSentence = sentence.s;
 
     if(sentence.n > 0) {
