@@ -1060,6 +1060,7 @@
         {
             "s": "Sometimes when I {v1}, I can't help but wonder if {a1} {n1pl} really {v2}.",
             "n": 1,
+            "npl": 1,
             "v": 2,
             "a": 1
         },
