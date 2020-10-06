@@ -382,6 +382,11 @@ function buildString() {
         const peopleCopy = [...madComps.people];
         parsedSentence = parseSentence(parsedSentence, sentence.p, peopleCopy, 'p', '');
     }
+
+    if(sentence.l > 0) {
+        const locationsCopy = [...madComps.locations];
+        parsedSentence = parseSentence(parsedSentence, sentence.l, locationsCopy, 'l', '');
+    }
     
     if(sentence.v > 0) {
         const verbsCopy = [...madComps.verbs];

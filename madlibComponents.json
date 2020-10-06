@@ -45,7 +45,7 @@
             "plural": "casinos"
         },
         {
-            "singular": "mommy milkers",
+            "singular": "pair of mommy milkers",
             "plural": "mommy milkers"
         },
         {
@@ -271,6 +271,10 @@
         {
             "singular": "tuna",
             "plural": "tunas"
+        },
+        {
+            "singular": "man",
+            "plural": "men"
         }
     ],
     "abstractNouns": [
@@ -342,6 +346,34 @@
         "Your Eminence",
         "Scatman John"
     ],
+    "locations": [
+        "Brazil",
+        "The Shadow Realm",
+        "The United States",
+        "Uzbekistan",
+        "Guatamala",
+        "Hyrule",
+        "The Mushroom Kingdom",
+        "Old McDonald's farm",
+        "my swamp",
+        "Whiterun",
+        "Skyrim",
+        "Anor Londo",
+        "Skeleton Land",
+        "Space Colony ARK",
+        "Angel Island",
+        "Final Destination",
+        "Silent Hill",
+        "Ram Ranch",
+        "prison",
+        "McDonalds",
+        "Gotham City",
+        "The Grand Canyon",
+        "Disney World",
+        "Todd Howard's House",
+        "The Krusty Krab",
+        "Professor Oak's Lab"
+    ],
     "verbs": [
         {
             "present": "drive",
@@ -412,11 +444,6 @@
             "present": "rest",
             "past": "rested",
             "ing": "resting"
-        },
-        {
-            "present": "pack",
-            "past": "packed",
-            "ing": "packing"
         },
         {
             "present": "stuff",
@@ -657,6 +684,11 @@
             "present": "doot",
             "past": "dooted",
             "ing": "dooting"
+        },
+        {
+            "present": "summon",
+            "past": "summoned",
+            "ing": "summoning"
         }
     ],
     "verbsIntransitive": [
@@ -685,7 +717,37 @@
         "collapse",
         "live",
         "learn",
-        "chill"
+        "chill",
+        "inquire",
+        "agree",
+        "laugh",
+        "look",
+        "clap",
+        "disappear",
+        "grow",
+        "jump",
+        "exist",
+        "leap",
+        "panic",
+        "party",
+        "pose",
+        "lie",
+        "pout",
+        "read",
+        "revolt",
+        "sail",
+        "shake",
+        "shout",
+        "sigh",
+        "slide",
+        "sprint",
+        "stagger",
+        "stand",
+        "stay",
+        "swim",
+        "wander",
+        "wave",
+        "wiggle"
     ],
     "adjectives": [
         {
@@ -919,6 +981,18 @@
         {
             "regular": "cringy",
             "est": "cringiest"
+        },
+        {
+            "regular": "ugly",
+            "est": "ugliest"
+        },
+        {
+            "regular": "horny",
+            "est": "horniest"
+        },
+        {
+            "regular": "hungry",
+            "est": "hungriest"
         }
     ],
     "adverbs": [
@@ -1007,7 +1081,7 @@
             "iv": 1
         },
         {
-            "s": "I'm about to {v1} my {a1} {a2} {n1} and {iv1}.",
+            "s": "I'm about to {v1} my {a1}, {a2} {n1} and {iv1}.",
             "n": 1,
             "v": 1,
             "iv": 1,
@@ -1031,7 +1105,7 @@
             "adv": 1
         },
         {
-            "s": "Uhhhh, well I was about to {v1} a(n) {n1}, but now I'm going to {adv1} {v2} a(n) {a1} {a2} {n2}.",
+            "s": "Uhhhh, well I was about to {v1} a(n) {n1}, but now I'm going to {adv1} {v2} a(n) {a1}, {a2} {n2}.",
             "n": 2,
             "v": 2,
             "a": 2,
@@ -1042,8 +1116,8 @@
             "iv": 1
         },
         {
-            "s": "I couldn't imagine a more {a1} world, than one where I {v1} with my homies.",
-            "v": 1,
+            "s": "I couldn't imagine a more {a1} world, than one where I {iv1} with my homies.",
+            "iv": 1,
             "a": 1
         },
         {
@@ -1052,16 +1126,17 @@
             "a": 1
         },
         {
-            "s": "I didn't know my {n1} was going to {v1} until I felt my {a1} {n2}.",
+            "s": "I didn't know my {n1} was going to {iv1} until I felt my {a1} {n2}.",
             "n": 2,
-            "v": 1,
+            "iv": 1,
             "a": 1
         },
         {
-            "s": "Sometimes when I {v1}, I can't help but wonder if {a1} {n1pl} really {v2}.",
+            "s": "Sometimes when I {iv1}, I can't help but wonder if {a1} {n1pl} really {v1}.",
             "n": 1,
             "npl": 1,
-            "v": 2,
+            "v": 1,
+            "iv": 1,
             "a": 1
         },
         {
@@ -1110,9 +1185,10 @@
             "a": 1
         },
         {
-            "s": "Sorry fellas, I can't play Minecraft tonight, I'm going to {iv1} with {p1}.",
+            "s": "Sorry fellas, I can't play Minecraft tonight, I'm going to {iv1} with {p1} at {l1}.",
             "p": 1,
-            "iv": 1
+            "iv": 1,
+            "l": 1
         },
         {
             "s": "If you ask me again, I'm just going to defer you to {p1}, my chief of security.",
@@ -1163,7 +1239,7 @@
             "a": 1
         },
         {
-            "s": "In a pinch, a {n1} can be used as a {n2}.",
+            "s": "In a pinch, a(n) {n1} can be used as a(n) {n2}.",
             "n": 2
         },
         {
@@ -1180,6 +1256,46 @@
             "n": 2,
             "p": 1,
             "prep": 1
+        },
+        {
+            "s": "I am the bane of the {a1} people.",
+            "a": 1
+        },
+        {
+            "s": "It's just a {a1} ass {a2} ass {n1}.",
+            "a": 2,
+            "n": 1
+        },
+        {
+            "s": "Oh boy! I'm so {a1}, I could {v1} a(n) {n1}!",
+            "a": 1,
+            "v": 1,
+            "n": 1
+        },
+        {
+            "s": "I {adv1}, {adv2}, opened a(n) {n1}, and {prep1} it was the {a1e} {n2} I had ever seen.",
+            "ae": 1,
+            "n": 2,
+            "adv": 2
+        },
+        {
+            "s": "My boy, this {n1} is what all {a1} {n1pl} strive for.",
+            "n": 1,
+            "a": 1,
+            "npl": 1
+        },
+        {
+            "s": "I just wonder what {p1} is up to.",
+            "p": 1
+        },
+        {
+            "s": "Gee, sure is {a1} around here.",
+            "a": 1
+        },
+        {
+            "s": "Your Majesty, {p1} and his minions have seized the island of {l1}.",
+            "p": 1,
+            "l": 1
         }
     ]
 }
