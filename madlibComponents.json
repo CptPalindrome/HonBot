@@ -275,6 +275,14 @@
         {
             "singular": "man",
             "plural": "men"
+        },
+        {
+            "singular": "chauffeur",
+            "plural": "chauffeurs"
+        },
+        {
+            "singular": "mop",
+            "plural": "mops"
         }
     ],
     "abstractNouns": [
@@ -344,7 +352,17 @@
         "Jesus",
         "Moses",
         "Your Eminence",
-        "Scatman John"
+        "Scatman John",
+        "Adrian Monk",
+        "Inspector Gadget",
+        "Gaston",
+        "Thor",
+        "The Hulk",
+        "Pikachu",
+        "Space Dandy",
+        "Spike Spiegel",
+        "Colonel Sanders",
+        "Batman"
     ],
     "locations": [
         "Brazil",
@@ -372,7 +390,15 @@
         "Disney World",
         "Todd Howard's House",
         "The Krusty Krab",
-        "Professor Oak's Lab"
+        "Professor Oak's Lab",
+        "Viridian City",
+        "Yellowstone National Park",
+        "The Milky Way Galaxy",
+        "the dentist's office",
+        "Stonehenge",
+        "Springfield",
+        "Bikini Bottom",
+        "Boobies"
     ],
     "verbs": [
         {
@@ -689,6 +715,11 @@
             "present": "summon",
             "past": "summoned",
             "ing": "summoning"
+        },
+        {
+            "present": "mop",
+            "past": "mopped",
+            "ing": "mopping"
         }
     ],
     "verbsIntransitive": [
@@ -1034,13 +1065,10 @@
         "above",
         "across",
         "against",
-        "among",
         "around",
         "behind",
-        "below",
         "beneath",
         "beside",
-        "between",
         "by",
         "in",
         "in front of",
@@ -1296,6 +1324,36 @@
             "s": "Your Majesty, {p1} and his minions have seized the island of {l1}.",
             "p": 1,
             "l": 1
+        },
+        {
+            "s": "I just saw a whole flock of {n1pl} go {prep1} {l1}.",
+            "npl": 1,
+            "prep": 1,
+            "l": 1
+        },
+        {
+            "s": "I'm going on vaction to {l1} with {p1}.",
+            "l": 1,
+            "p": 1
+        },
+        {
+            "s": "I saw {p1} {v1ing} when {p2} showed up and {v1p} their {n1pl}.",
+            "p": 2,
+            "vp": 1,
+            "npl": 1
+        },
+        {
+            "s": "My job as a(n) {n1} is relocating me to {l1} because I {v1p} too many {n1pl}.",
+            "n": 1,
+            "l": 1,
+            "vp": 1,
+            "npl": 1
+        },
+        {
+            "s": "I traveled by {n1} to {l1} to {iv1}.",
+            "n": 1,
+            "l": 1,
+            "iv": 1
         }
     ]
 }
