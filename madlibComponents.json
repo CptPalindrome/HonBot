@@ -1340,7 +1340,8 @@
             "s": "I saw {p1} {v1ing} when {p2} showed up and {v1p} their {n1pl}.",
             "p": 2,
             "vp": 1,
-            "npl": 1
+            "npl": 1,
+            "ving": 1
         },
         {
             "s": "My job as a(n) {n1} is relocating me to {l1} because I {v1p} too many {n1pl}.",
