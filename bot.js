@@ -368,10 +368,6 @@ function buildString() {
         const nounsCopy = [...madComps.nouns];
         parsedSentence = parseSentence(parsedSentence, sentence.n, nounsCopy, 'n', '', 'singular');
     }
-
-    if(sentence.an > 0) {
-        //TODO: add abstract nouns. eventually. 
-    }
     
     if(sentence.npl > 0) {
         const nounsCopy = [...madComps.nouns];

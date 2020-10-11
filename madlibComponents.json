@@ -283,11 +283,14 @@
         {
             "singular": "mop",
             "plural": "mops"
-        }
-    ],
-    "abstractNouns": [
+        },
         {
-
+            "singular": "hula hoop",
+            "plural": "hula hoops"
+        },
+        {
+            "singular": "pizza roll",
+            "plural": "pizza rolls"
         }
     ],
     "people": [
@@ -1290,7 +1293,7 @@
             "a": 1
         },
         {
-            "s": "It's just a {a1} ass {a2} ass {n1}.",
+            "s": "It's just a(n) {a1} ass {a2} ass {n1}.",
             "a": 2,
             "n": 1
         },
@@ -1363,6 +1366,12 @@
             "prep": 2,
             "a": 2,
             "v": 1
+        },
+        {
+            "s": "There's a boy outside with a {n1}. He doesn't see me, but I {v1} his {n1pl}. I see his {n2pl}. He's not what he seems.",
+            "n": 1,
+            "v": 1,
+            "npl": 2
         }
     ]
 }
