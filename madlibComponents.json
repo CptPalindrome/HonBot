@@ -1304,7 +1304,8 @@
             "s": "I {adv1}, {adv2}, opened a(n) {n1}, and {prep1} it was the {a1e} {n2} I had ever seen.",
             "ae": 1,
             "n": 2,
-            "adv": 2
+            "adv": 2,
+            "prep": 1
         },
         {
             "s": "My boy, this {n1} is what all {a1} {n1pl} strive for.",
