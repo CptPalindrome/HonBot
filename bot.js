@@ -401,7 +401,7 @@ function buildString() {
 
     if(sentence.iv > 0) {
         const iverbsCopy = [...madComps.verbsIntransitive];
-        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', '');
+        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', '', 'present');
     }
 
     if(sentence.ived > 0) {
@@ -421,7 +421,7 @@ function buildString() {
 
     if(sentence.aer > 0) {
         const adjectivesCopy = [...madComps.adjectives];
-        parsedSentence = parseSentence(parsedSentence, sentence.a, adjectivesCopy, 'a', 'er', 'er');
+        parsedSentence = parseSentence(parsedSentence, sentence.aer, adjectivesCopy, 'a', 'er', 'er');
     }
 
     if(sentence.ae > 0) {
