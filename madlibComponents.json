@@ -365,14 +365,15 @@
         "Space Dandy",
         "Spike Spiegel",
         "Colonel Sanders",
-        "Batman"
+        "Batman",
+        "Hermes"
     ],
     "locations": [
         "Brazil",
         "The Shadow Realm",
         "The United States",
         "Uzbekistan",
-        "Guatamala",
+        "Guatemala",
         "Hyrule",
         "The Mushroom Kingdom",
         "Old McDonald's farm",
@@ -1368,7 +1369,7 @@
             "v": 1
         },
         {
-            "s": "There's a boy outside with a {n1}. He doesn't see me, but I {v1} his {n1pl}. I see his {n2pl}. He's not what he seems.",
+            "s": "There's a boy outside with a(n) {n1}. He doesn't see me, but I {v1} his {n1pl}. I see his {n2pl}. He's not what he seems.",
             "n": 1,
             "v": 1,
             "npl": 2
