@@ -404,9 +404,24 @@ function buildString() {
         parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', '');
     }
 
+    if(sentence.ived > 0) {
+        const iverbsCopy = [...madComps.verbsIntransitive];
+        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', 'ed', 'past');
+    }
+
+    if(sentence.iving > 0) {
+        const iverbsCopy = [...madComps.verbsIntransitive];
+        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', 'ing', 'ing');
+    }
+
     if(sentence.a > 0) {
         const adjectivesCopy = [...madComps.adjectives];
         parsedSentence = parseSentence(parsedSentence, sentence.a, adjectivesCopy, 'a', '', 'regular');
+    }
+
+    if(sentence.aer > 0) {
+        const adjectivesCopy = [...madComps.adjectives];
+        parsedSentence = parseSentence(parsedSentence, sentence.a, adjectivesCopy, 'a', 'er', 'er');
     }
 
     if(sentence.ae > 0) {

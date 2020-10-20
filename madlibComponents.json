@@ -291,6 +291,22 @@
         {
             "singular": "pizza roll",
             "plural": "pizza rolls"
+        },
+        {
+            "singular": "bee",
+            "plural": "bees"
+        },
+        {
+            "singular": "spear",
+            "plural": "spears"
+        },
+        {
+            "singular": "pokeball",
+            "plural": "pokeballs"
+        },
+        {
+            "singular": "2nd place trophy",
+            "plural": "2nd place trophies"
         }
     ],
     "people": [
@@ -366,7 +382,8 @@
         "Spike Spiegel",
         "Colonel Sanders",
         "Batman",
-        "Hermes"
+        "Hermes",
+        "Fred Durst"
     ],
     "locations": [
         "Brazil",
@@ -724,309 +741,604 @@
             "present": "mop",
             "past": "mopped",
             "ing": "mopping"
+        },
+        {
+            "present": "goad",
+            "past": "goaded",
+            "ing": "goading"
+        },
+        {
+            "present": "clobber",
+            "past": "clobbered",
+            "ing": "clobbering"
         }
     ],
     "verbsIntransitive": [
-        "run",
-        "go",
-        "glide",
-        "sleep",
-        "scream",
-        "jump",
-        "skip",
-        "pee",
-        "cry",
-        "yodel",
-        "die",
-        "think",
-        "sit",
-        "poop",
-        "eat",
-        "explode",
-        "vanish",
-        "sneeze",
-        "mourn",
-        "hiccup",
-        "leave",
-        "wave",
-        "collapse",
-        "live",
-        "learn",
-        "chill",
-        "inquire",
-        "agree",
-        "laugh",
-        "look",
-        "clap",
-        "disappear",
-        "grow",
-        "jump",
-        "exist",
-        "leap",
-        "panic",
-        "party",
-        "pose",
-        "lie",
-        "pout",
-        "read",
-        "revolt",
-        "sail",
-        "shake",
-        "shout",
-        "sigh",
-        "slide",
-        "sprint",
-        "stagger",
-        "stand",
-        "stay",
-        "swim",
-        "wander",
-        "wave",
-        "wiggle"
+        {
+            "present": "run",
+            "past": "ran",
+            "ing": "running"
+        },
+        {
+            "present": "go",
+            "past": "goed",
+            "ing": "going"
+        },
+        {
+            "present": "glide",
+            "past": "glided",
+            "ing": "gliding"
+        },
+        {
+            "present": "sleep",
+            "past": "slept",
+            "ing": "sleeping"
+        },
+        {
+            "present": "scream",
+            "past": "screamed",
+            "ing": "screaming"
+        },
+        {
+            "present": "jump",
+            "past": "jumped",
+            "ing": "jumping"
+        },
+        {
+            "present": "skip",
+            "past": "skipped",
+            "ing": "skipping"
+        },
+        {
+            "present": "pee",
+            "past": "peed",
+            "ing": "peeing"
+        },
+        {
+            "present": "cry",
+            "past": "cried",
+            "ing": "crying"
+        },
+        {
+            "present": "yodel",
+            "past": "yodeled",
+            "ing": "yodeling"
+        },
+        {
+            "present": "die",
+            "past": "died",
+            "ing": "dying"
+        },
+        {
+            "present": "think",
+            "past": "thunk",
+            "ing": "thinking"
+        },
+        {
+            "present": "sit",
+            "past": "sat",
+            "ing": "sitting"
+        },
+        {
+            "present": "poop",
+            "past": "pooped",
+            "ing": "pooping"
+        },
+        {
+            "present": "eat",
+            "past": "ate",
+            "ing": "eating"
+        },
+        {
+            "present": "explode",
+            "past": "exploded",
+            "ing": "exploding"
+        },
+        {
+            "present": "vanish",
+            "past": "vanished",
+            "ing": "vanishing"
+        },
+        {
+            "present": "sneeze",
+            "past": "sneezed",
+            "ing": "sneezing"
+        },
+        {
+            "present": "mourn",
+            "past": "mourned",
+            "ing": "mourning"
+        },
+        {
+            "present": "hiccup",
+            "past": "hiccuped",
+            "ing": "hiccuping"
+        },
+        {
+            "present": "leave",
+            "past": "left",
+            "ing": "leaving"
+        },
+        {
+            "present": "wave",
+            "past": "waved",
+            "ing": "waving"
+        },
+        {
+            "present": "collapse",
+            "past": "collapsed",
+            "ing": "collapsing"
+        },
+        {
+            "present": "live",
+            "past": "lived",
+            "ing": "living"
+        },
+        {
+            "present": "learn",
+            "past": "learned",
+            "ing": "learning"
+        },
+        {
+            "present": "chill",
+            "past": "chilled",
+            "ing": "chilling"
+        },
+        {
+            "present": "inquire",
+            "past": "inquired",
+            "ing": "inquiring"
+        },
+        {
+            "present": "agree",
+            "past": "agreed",
+            "ing": "agreeing"
+        },
+        {
+            "present": "laugh",
+            "past": "laughed",
+            "ing": "laughing"
+        },
+        {
+            "present": "look",
+            "past": "looked",
+            "ing": "looking"
+        },
+        {
+            "present": "clap",
+            "past": "clapped",
+            "ing": "clapping"
+        },
+        {
+            "present": "disappear",
+            "past": "disappeared",
+            "ing": "disappearing"
+        },
+        {
+            "present": "grow",
+            "past": "grew",
+            "ing": "growing"
+        },
+        {
+            "present": "exist",
+            "past": "existed",
+            "ing": "existing"
+        },
+        {
+            "present": "leap",
+            "past": "leapt",
+            "ing": "leaping"
+        },
+        {
+            "present": "panic",
+            "past": "panicked",
+            "ing": "panicking"
+        },
+        {
+            "present": "party",
+            "past": "partied",
+            "ing": "partying"
+        },
+        {
+            "present": "pose",
+            "past": "posed",
+            "ing": "posing"
+        },
+        {
+            "present": "lie",
+            "past": "lied",
+            "ing": "lying"
+        },
+        {
+            "present": "pout",
+            "past": "pouted",
+            "ing": "pouting"
+        },
+        {
+            "present": "read",
+            "past": "read",
+            "ing": "reading"
+        },
+        {
+            "present": "revolt",
+            "past": "revolted",
+            "ing": "revolting"
+        },
+        {
+            "present": "sail",
+            "past": "sailed",
+            "ing": "sailing"
+        },
+        {
+            "present": "shake",
+            "past": "shook",
+            "ing": "shaking"
+        },
+        {
+            "present": "shout",
+            "past": "shouted",
+            "ing": "shouting"
+        },
+        {
+            "present": "sigh",
+            "past": "sighed",
+            "ing": "sighing"
+        },
+        {
+            "present": "slide",
+            "past": "slid",
+            "ing": "sliding"
+        },
+        {
+            "present": "sprint",
+            "past": "sprinted",
+            "ing": "sprinting"
+        },
+        {
+            "present": "stagger",
+            "past": "staggered",
+            "ing": "staggering"
+        },
+        {
+            "present": "stand",
+            "past": "stood",
+            "ing": "standing"
+        },
+        {
+            "present": "stay",
+            "past": "stayed",
+            "ing": "staying"
+        },
+        {
+            "present": "swim",
+            "past": "swam",
+            "ing": "swimming"
+        },
+        {
+            "present": "wander",
+            "past": "wandered",
+            "ing": "wandering"
+        },
+        {
+            "present": "wiggle",
+            "past": "wiggled",
+            "ing": "wiggling"
+        },
+        {
+            "present": "cheer",
+            "past": "cheered",
+            "ing": "cheering"
+        },
+        {
+            "present": "breathe",
+            "past": "breathed",
+            "ing": "breathing"
+        }
     ],
     "adjectives": [
         {
             "regular": "big",
+            "er": "bigger",
             "est": "biggest"
         },
         {
             "regular": "huge",
+            "er": "huger",
             "est": "hugest"
         },
         {
             "regular": "smelly",
+            "er": "smellier",
             "est": "smelliest"
         },
         {
             "regular": "feral",
+            "er": "more feral",
             "est": "feralest"
         },
         {
             "regular": "terrible",
+            "er": "more terrible",
             "est": "most terrible"
         },
         {
             "regular": "disgusting",
+            "er": "more disgusting",
             "est": "most disgusting"
         },
         {
             "regular": "wretched",
+            "er": "more wretched",
             "est": "most wretched"
         },
         {
             "regular": "joyful",
+            "er": "more joyful",
             "est": "most joyful"
         },
         {
             "regular": "expensive",
+            "er": "more expensive",
             "est": "most expensive"
         },
         {
             "regular": "stupid",
+            "er": "stupider",
             "est": "stupidest"
         },
         {
             "regular": "moronic",
+            "er": "more moronic",
             "est": "most moronic"
         },
         {
             "regular": "notorious",
+            "er": "more notorious",
             "est": "most notorious"
         },
         {
             "regular": "infantile",
+            "er": "more infantile",
             "est": "most infantile"
         },
         {
             "regular": "small",
+            "er": "smaller",
             "est": "smallest"
         },
         {
             "regular": "teeny-tiny",
+            "er": "teeny-tinier",
             "est": "teeny-tiniest"
         },
         {
             "regular": "bald",
+            "er": "balder",
             "est": "baldest"
         },
         {
             "regular": "shiny",
+            "er": "shinier",
             "est": "shiniest"
         },
         {
             "regular": "funny",
+            "er": "funnier",
             "est": "funniest"
         },
         {
             "regular": "pathetic",
+            "er": "more pathetic",
             "est": "most pathetic"
         },
         {
             "regular": "insolent",
+            "er": "more insolent",
             "est": "most insolent"
         },
         {
             "regular": "warm",
+            "er": "warmer",
             "est": "warmest"
         },
         {
             "regular": "ridiculous",
+            "er": "more ridiculous",
             "est": "most ridiculous"
         },
         {
             "regular": "stylish",
+            "er": "more stylish",
             "est": "most stylish"
         },
         {
             "regular": "soggy",
+            "er": "soggier",
             "est": "soggiest"
         },
         {
             "regular": "moist",
+            "er": "moister",
             "est": "moistest"
         },
         {
             "regular": "dusty",
+            "er": "dustier",
             "est": "dustiest"
         },
         {
             "regular": "sparkly",
+            "er": "sparklier",
             "est": "sparkliest"
         },
         {
             "regular": "crusty",
+            "er": "crustier",
             "est": "crustiest"
         },
         {
             "regular": "cheap",
+            "er": "cheaper",
             "est": "cheapest"
         },
         {
             "regular": "bright",
+            "er": "brighter",
             "est": "brightest"
         },
         {
             "regular": "rough",
+            "er": "rougher",
             "est": "roughest"
         },
         {
             "regular": "buff",
+            "er": "buffer",
             "est": "buffest"
         },
         {
             "regular": "loud",
+            "er": "louder",
             "est": "loudest"
         },
         {
             "regular": "shifty",
+            "er": "shiftier",
             "est": "shiftiest"
         },
         {
             "regular": "judgemental",
+            "er": "more judgemental",
             "est": "most judgemental"
         },
         {
             "regular": "slow",
+            "er": "slower",
             "est": "slowest"
         },
         {
             "regular": "beady",
+            "er": "beadier",
             "est": "beadiest"
         },
         {
             "regular": "glistening",
+            "er": "more glistening",
             "est": "most glistening"
         },
         {
             "regular": "bruised",
+            "er": "more bruised",
             "est": "most bruised"
         },
         {
             "regular": "grumpy",
+            "er": "grumpier",
             "est": "grumpiest"
         },
         {
             "regular": "leggy",
+            "er": "leggier",
             "est": "leggiest"
         },
         {
             "regular": "bionic",
+            "er": "more bionic",
             "est": "most bionic"
         },
         {
             "regular": "biodegradable",
+            "er": "more biodegradable",
             "est": "most biodegradable"
         },
         {
             "regular": "radioactive",
+            "er": "more radioactive",
             "est": "most radioactive"
         },
         {
             "regular": "nuclear",
+            "er": "more nuclear",
             "est": "most nuclear"
         },
         {
             "regular": "explosive",
+            "er": "more explosive",
             "est": "most explosive"
         },
         {
             "regular": "saucy",
+            "er": "saucier",
             "est": "sauciest"
         },
         {
             "regular": "jiggly",
+            "er": "jigglier",
             "est": "jiggliest"
         },
         {
             "regular": "bulging",
+            "er": "more bulging",
             "est": "most bulging"
         },
         {
             "regular": "zesty",
+            "er": "zestier",
             "est": "zestiest"
         },
         {
             "regular": "perfect",
+            "er": "more perfect",
             "est": "most perfect"
         },
         {
             "regular": "excrutiating",
+            "er": "more excrutiating",
             "est": "most excrutiating"
         },
         {
             "regular": "tall",
+            "er": "taller",
             "est": "tallest"
         },
         {
             "regular": "short",
+            "er": "shorter",
             "est": "shortest"
         },
         {
             "regular": "bulbous",
+            "er": "bulbous",
             "est": "most bulbous"
         },
         {
             "regular": "tubular",
+            "er": "tubular",
             "est": "most tubular"
         },
         {
             "regular": "cool",
+            "er": "cooler",
             "est": "coolest"
         },
         {
             "regular": "cringy",
+            "er": "cringier",
             "est": "cringiest"
         },
         {
             "regular": "ugly",
+            "er": "uglier",
             "est": "ugliest"
         },
         {
             "regular": "horny",
+            "er": "hornier",
             "est": "horniest"
         },
         {
             "regular": "hungry",
+            "er": "hungrier",
             "est": "hungriest"
         }
     ],
@@ -1373,6 +1685,72 @@
             "n": 1,
             "v": 1,
             "npl": 2
+        },
+        {
+            "s": "I'm {adv1} working on creating my {p1} x {p2} fic.",
+            "adv": 1,
+            "p": 2
+        },
+        {
+            "s": "I'm thinking about spicing up my office meetings. What do you think about bringing {n1pl}?",
+            "npl": 1
+        },
+        {
+            "s": "There once was a man from {l1}, who {iv1ed} of {v1ing} his {n1}.",
+            "l": 1,
+            "ived": 1,
+            "ving": 1,
+            "n": 1
+        },
+        {
+            "s": "I was trying to see if I could {iv1} without {iv1ing}.",
+            "iv": 1,
+            "iving": 1
+        },
+        {
+            "s": "He {iv1ed} as he {iv2ed}, {iv1ing}.",
+            "ived": 2,
+            "iving": 1
+        },
+        {
+            "s": "{iv1}, {iv1} with your {a1} {n1pl}.",
+            "iv": 1,
+            "a": 1,
+            "npl": 1
+        },
+        {
+            "s": "Don't forget {v1} the homies goodnight.",
+            "v": 1
+        },
+        {
+            "s": "Don't {v1} me I'm {a1}.",
+            "a": 1,
+            "v": 1
+        },
+        {
+            "s": "I'm {a1er} than you or {p1} could ever hope to be.",
+            "aer": 1,
+            "p": 1
+        },
+        {
+            "s": "I have the power of {p1} AND {n1} on my side.",
+            "p": 1,
+            "n": 1
+        },
+        {
+            "s": "Bop it, twist it, pull it, {v1} it!",
+            "v": 1
+        },
+        {
+            "s": "My {n1} is {a1er} than your {n2}.",
+            "n": 2,
+            "aer": 1
+        },
+        {
+            "s": "I've never seen someone {a1er} than {p1} when they were at {l1} with {p2}.",
+            "aer": 1,
+            "p": 2,
+            "l": 1
         }
     ]
 }
