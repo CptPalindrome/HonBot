@@ -307,6 +307,10 @@
         {
             "singular": "2nd place trophy",
             "plural": "2nd place trophies"
+        },
+        {
+            "singular": "aircraft",
+            "plural": "aircraft"
         }
     ],
     "people": [
@@ -383,7 +387,8 @@
         "Colonel Sanders",
         "Batman",
         "Hermes",
-        "Fred Durst"
+        "Fred Durst",
+        "Grenjamin Cumberly"
     ],
     "locations": [
         "Brazil",
@@ -1340,6 +1345,11 @@
             "regular": "hungry",
             "er": "hungrier",
             "est": "hungriest"
+        },
+        {
+            "regular": "diminutive",
+            "er": "more diminutive",
+            "est": "most diminutive"
         }
     ],
     "adverbs": [
@@ -1751,6 +1761,27 @@
             "aer": 1,
             "p": 2,
             "l": 1
+        },
+        {
+            "s": "Open up, this is the {a1} police.",
+            "a": 1
+        },
+        {
+            "s": "Open up, this is the {n1} police.",
+            "n": 1
+        },
+        {
+            "s": "Why is a(n) {n1} called a {n1} when it's more like a(n) {n2}.",
+            "n": 2
+        },
+        {
+            "s": "Take this! My {n1} attack!",
+            "n": 1
+        },
+        {
+            "s": "Hi, I'm {p1}. Would you like to land a(n) {n1} on my forehead?",
+            "p": 1,
+            "n": 1
         }
     ]
 }
