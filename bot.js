@@ -357,11 +357,12 @@ function wyd(msg, name) {
     if(msg.mentions.users.size > 0) {
         name = msg.mentions.users.first().username;
     }
-    msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
+    msg.channel.send(`TEST:\n\`\`\`${outString} \n\n--${name}\`\`\``);
 }
 
 function buildString() {
-    let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
+    // let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
+    let sentence = madComps.sentences[madComps.sentences.length - 14];
     let parsedSentence = sentence.s;
 
     if(sentence.n > 0) {
@@ -406,12 +407,12 @@ function buildString() {
 
     if(sentence.ived > 0) {
         const iverbsCopy = [...madComps.verbsIntransitive];
-        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', 'ed', 'past');
+        parsedSentence = parseSentence(parsedSentence, sentence.ived, iverbsCopy, 'iv', 'ed', 'past');
     }
 
     if(sentence.iving > 0) {
         const iverbsCopy = [...madComps.verbsIntransitive];
-        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', 'ing', 'ing');
+        parsedSentence = parseSentence(parsedSentence, sentence.iving, iverbsCopy, 'iv', 'ing', 'ing');
     }
 
     if(sentence.a > 0) {
