@@ -357,12 +357,11 @@ function wyd(msg, name) {
     if(msg.mentions.users.size > 0) {
         name = msg.mentions.users.first().username;
     }
-    msg.channel.send(`TEST:\n\`\`\`${outString} \n\n--${name}\`\`\``);
+    msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
 }
 
 function buildString() {
-    // let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
-    let sentence = madComps.sentences[madComps.sentences.length - 14];
+    let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
     let parsedSentence = sentence.s;
 
     if(sentence.n > 0) {
