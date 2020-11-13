@@ -1782,6 +1782,10 @@
             "s": "Hi, I'm {p1}. Would you like to land a(n) {n1} on my forehead?",
             "p": 1,
             "n": 1
+        },
+        {
+            "s": "Does it look like I know what a {n1} is? I just want a picture of a got dang {n2}.",
+            "n": 2
         }
     ]
 }
