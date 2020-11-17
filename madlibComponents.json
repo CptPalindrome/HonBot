@@ -1786,6 +1786,12 @@
         {
             "s": "Does it look like I know what a {n1} is? I just want a picture of a got dang {n2}.",
             "n": 2
+        },
+        {
+            "s": "I'm about to watch a title fight between {p1} and {p2} in {l1}. It's gonna be {a1}!",
+            "p": 2,
+            "l": 1,
+            "a": 1
         }
     ]
 }
