@@ -215,6 +215,9 @@ client.on('message', msg => {
                             default:
                                 if(reg.test(wydArgs[1])) {
                                     number = wydArgs[1].substr(1, wydArgs[1].length - 2) - 1;
+                                    if (number > madComps.sentences.length - 1) {
+                                        number = Math.floor(Math.random() * madComps.sentences.length);
+                                    }
                                     wydArgs.shift();
                                 }
                                 else {
