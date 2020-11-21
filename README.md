@@ -66,6 +66,8 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - If no name is provided, it will give you Honbar's inner thoughts.
 
+- You may enter a number or secret phrase to select specific sentence templates. Example: h.wyd {#} Name of Person
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
