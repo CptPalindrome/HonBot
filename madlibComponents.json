@@ -1350,6 +1350,11 @@
             "regular": "diminutive",
             "er": "more diminutive",
             "est": "most diminutive"
+        },
+        {
+            "regular": "vocoded",
+            "er": "more vocoded",
+            "est": "most vocoded"
         }
     ],
     "adverbs": [

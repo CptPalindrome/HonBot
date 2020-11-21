@@ -183,14 +183,43 @@ client.on('message', msg => {
             if (str.startsWith('wyd')) {
                 //take an @ and use them if present, otherwise do "I"
                 let wydArgs = str.split(' ');
+                let number = -1;
+                const reg = new RegExp(`{[0-9]+}`);
+                // const reg2 = new RegExp(`[0-9]+`);
                 try {
                     if(wydArgs.length == 1) {
-                        wyd(msg, '');
+                        wyd(msg, number, '');
                     }
 
                     else if(wyd.length > 1) {
+                        if(wydArgs.length == 2) {
+                            
+                        }
+                        switch(wydArgs[1]) {
+                            case '{navy}':
+                                number = 72;
+                                wydArgs.shift();
+                                break;
+                            case '{lagg}':
+                                number = 73;
+                                wydArgs.shift();
+                                break;
+                            case '{shrek}':
+                                number = 78;
+                                wydArgs.shift();
+                                break;
+                            default:
+                                if(reg.test(wydArgs[1])) {
+                                    number = wydArgs[1].substr(1, wydArgs[1].length - 2) - 1;
+                                    wydArgs.shift();
+                                }
+                                else {
+                                    number = Math.floor(Math.random() * madComps.sentences.length);
+                                }
+                                break;
+                        }
                         wydArgs.shift();
-                        wyd(msg, wydArgs.join(' '));
+                        wyd(msg, number, wydArgs.join(' '));
                     }
                 }
                 catch(e) {
@@ -348,8 +377,8 @@ function chrisQuote(msg) {
     }
 }
 
-function wyd(msg, name) {
-    let outString = buildString();
+function wyd(msg, number, name) {
+    let outString = buildString(number);
     if(name == '') {
         name = 'Honbar';
     }
@@ -357,11 +386,12 @@ function wyd(msg, name) {
     if(msg.mentions.users.size > 0) {
         name = msg.mentions.users.first().username;
     }
+
     msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
 }
 
-function buildString() {
-    let sentence = madComps.sentences[Math.floor(Math.random() * madComps.sentences.length)];
+function buildString(number) {
+    let sentence = madComps.sentences[number];
     let parsedSentence = sentence.s;
 
     if(sentence.n > 0) {
