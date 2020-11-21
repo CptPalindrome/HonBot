@@ -54,6 +54,10 @@ client.on('message', msg => {
                     msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. You can add a number afterwards to select a specific quote. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
                     break;
 
+                case 'help wyd':
+                    msg.channel.send(`You can use numbers or *super secret phrases* to select specific sentence templates. Format as {#}`);
+                    break;
+
                 case 'cf':
                     let coin = Math.floor(Math.random() * 2);
                     if(coin) {
