@@ -192,13 +192,11 @@ client.on('message', msg => {
                 // const reg2 = new RegExp(`[0-9]+`);
                 try {
                     if(wydArgs.length == 1) {
+                        number = Math.floor(Math.random() * madComps.sentences.length);
                         wyd(msg, number, '');
                     }
 
                     else if(wyd.length > 1) {
-                        if(wydArgs.length == 2) {
-                            
-                        }
                         switch(wydArgs[1]) {
                             case '{navy}':
                                 number = 72;
