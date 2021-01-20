@@ -270,15 +270,15 @@ client.on('message', msg => {
                 if(str.substr(8)) {
                     options = str.substr(8).split(',');
                 }
+                if(options.length === 0) {
+                    msg.channel.send(`To use the roulette, enter 2 or more items separated by commas. Ex. 'h.roulette ham, turkey, the goofy goober theme song'`);
+                }
                 if(options.length == 1) {
                     msg.channel.send(`You must submit more than 1 item, or it's not a roulette you big stupid **DOOF**`);
                 }
                 if(options.length > 1) {
                     let num = Math.floor(Math.random() * options.length - 1);
-                    msg.channel.send(options[num])
-                    .then(message => {
-                        roulette(message, options);
-                    });
+                    msg.channel.send(`**__${options[num].trim()}__** has been selected.`);
                 }
             }
 
@@ -514,31 +514,6 @@ function fortune(msg, question) {
 
 function randomNumberWithinQuoteCount() {
     return Math.floor(Math.random() * quotes.quotes.length);
-}
-
-function roulette(botMsg, options) {
-    options = options.map(item => item.trim());
-    let curOption = options.indexOf(botMsg.content);
-    let interval = 1375;
-    let numberOfSpins = 0;
-    let maxSpins = Math.floor(Math.random() * 20) + (2 * options.length);
-    timer = function() {
-        if(curOption < options.length - 1) {
-            curOption++;
-        }
-        else {
-            curOption = 0;
-        }
-        botMsg.edit(options[curOption])
-        if (numberOfSpins < maxSpins) {
-            numberOfSpins++;
-            setTimeout(timer, interval);
-        }
-        else {
-            botMsg.edit(`**__${options[curOption]}__** is the winner!`);
-        }
-    }
-    timer();
 }
 
 client.login(auth.token);

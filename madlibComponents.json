@@ -388,7 +388,12 @@
         "Batman",
         "Hermes",
         "Fred Durst",
-        "Grenjamin Cumberly"
+        "Grenjamin Cumberly",
+        "General Kenobi",
+        "Michael the Archangel",
+        "Mang0",
+        "Deep Leffen",
+        "Hungrybox"
     ],
     "locations": [
         "Brazil",
@@ -424,7 +429,8 @@
         "Stonehenge",
         "Springfield",
         "Bikini Bottom",
-        "Boobies"
+        "Boobies",
+        "Hallownest"
     ],
     "verbs": [
         {
@@ -1854,6 +1860,12 @@
             "l": 3,
             "iving": 1,
             "iv": 1
+        },
+        {
+            "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own rules, seeking only their own approval, but then later decides that they cares about what other people think because that's how society works.",
+            "p": 1,
+            "a": 1,
+            "adv": 1
         }
     ]
 }
