@@ -189,7 +189,6 @@ client.on('message', msg => {
                 let wydArgs = str.split(' ');
                 let number = -1;
                 const reg = new RegExp(`{[0-9]+}`);
-                // const reg2 = new RegExp(`[0-9]+`);
                 try {
                     if(wydArgs.length == 1) {
                         number = Math.floor(Math.random() * madComps.sentences.length);
@@ -208,6 +207,10 @@ client.on('message', msg => {
                                 break;
                             case '{shrek}':
                                 number = 78;
+                                wydArgs.shift();
+                                break;
+                            case '{eggman}':
+                                number = 80;
                                 wydArgs.shift();
                                 break;
                             default:
@@ -240,29 +243,6 @@ client.on('message', msg => {
             if (str.startsWith('8ball')) {
                 str = str.substr(6);
                 fortune(msg, str);
-            }
-            
-            if(str.startsWith('say')) {
-                let appendTts = false;
-                str = str.substr(4);
-                if(str.startsWith('/tts')) {
-                    str = str.substr(5);
-                    appendTts = true;
-                }
-                tagUser = false;
-                    bannedWords.bannedWords.forEach(word => {
-                        if(str.indexOf(word) != -1) {
-                            tagUser = true;
-                        }
-                    });
-                    if(tagUser) {
-                        msg.channel.send(`<${msg.author.username}> ${str}`, {tts: appendTts});
-                    }
-                    else {
-                        msg.channel.send(str, {tts: appendTts});
-                    }
-                    logger.info(`${now()}<${msg.author.username}> used say command: ${str}`);
-                    msg.delete().catch(console.error);
             }
 
             if(str.startsWith("roulette")) {
