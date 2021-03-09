@@ -67,99 +67,6 @@ client.on('message', msg => {
                         msg.channel.send(`Tails 🚫`);
                     }
                     break;
-                
-                case 'start':
-                    if(gameIsStarted()) {
-                        msg.channel.send(`A game is already in progress!`);
-                    }
-                    else {
-                        setTimeout(() => play(), 10000);
-                        msg.channel.send(`Game starts in 60 seconds. Use h.join to join the game!`);
-                        game = new gameClass;
-                        gameStarted = true;
-                        currentGameChannel = msg.channel;
-                    }
-                    break;
-
-                case 'join':
-                    if (gameIsStarted() && !isHandInProgress()) {
-                        game.addPlayer(msg.author.id, msg.author.username);
-                        msg.channel.send(`${msg.author.username} has joined the game.`);
-                        //say a message confirming the username who joined and their money total
-                    }
-                    else if (gameIsStarted() && isHandInProgress()) {
-                        msg.channel.send(`${msg.author} a hand in progress, please wait until after.`);
-                    }
-                    else {
-                        msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
-                    }
-                    break;                      
-
-                case 'leave':
-                    if (!gameIsStarted()) {
-                        msg.channel.send(`You can't leave a game that hasn't started, doofus!`);
-                    }
-                    else if (!isHandInProgress()) {
-                        let playerRemoved = game.tryRemovePlayer(msg.author.id);
-                        if (playerRemoved) {
-                            msg.channel.send(`Okay, bye ${msg.author.username}`);
-                        }
-                    }
-                    break;
-            }
-
-            if (str.startsWith('join')) {
-                if (gameIsStarted() && !isHandInProgress()) {
-                    game.addPlayer(msg.author.id, msg.author.username);
-                    msg.channel.send(`${msg.author.username} has joined the game.`);
-                    //say a message confirming the username who joined and their money total
-                }
-                else if (gameIsStarted() && isHandInProgress()) {
-                    msg.channel.send(`${msg.author} a hand in progress, please wait until after.`);
-                }
-                else {
-                    msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
-                }
-                if(!gameIsStarted()) {
-                    msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
-                    return;
-                }
-                if (isHandInProgress()) {
-                    msg.channel.send(`Wait for the next round.`);
-                }
-                let betArgs = str.split(' ');
-                if (betArgs.length > 1) {
-                    let bet = parseInt(betArgs[1]);
-                    if (isNaN(bet)) {
-                        msg.channel.send(`Invalid bet amount. Example "h.join 100".`);
-                        return;
-                    }
-                    if (game.players.find(player => player.userId === msg.author.id)) {
-                        game.players.forEach((player, index) => {
-                            if (player.userId === msg.author.id) {
-                                player.bet = bet;
-                            }
-                        });
-                    }
-                    else {
-                        msg.channel.send(`Dweeb! You are not in the game! Dweeb!`);
-                    }
-                }
-                return;
-            }
-
-            if (str.startsWith('stop')) {
-                //TODO: remove this later. This is just for testing purposes
-                if(gameIsStarted()) {
-                    msg.channel.send(`Game has stopped`);
-                    gameStarted = false;
-                    handInProgress = false;
-                    
-                }
-                else {
-                    msg.channel.send(`Game is not started yet`);
-                }
-                return;
             }
 
             if (str.startsWith('gandhi')) {
@@ -303,39 +210,6 @@ client.on('ready', () => {
         }
     });
 });
-
-function play() {
-    console.log(`Now playing!`);
-    if (game.players.length === 0) {
-        currentGameChannel.send(`Wait, nobody's here.`);
-        return;
-    }
-    else if (game.players.length === 1) {
-        currentGameChannel.send(`Now beginning game. ${game.players[0].username} is in.`);
-    }
-    else {
-        currentGameChannel.send(`Now beginning game.`);
-    }
-    handInProgress = true;
-    game.players.forEach(player => {
-        game.hit(player);
-        game.hit(player);
-        currentGameChannel.send(`\`\`\`${player.username}: ${player.handToString().trim()}. Total: ${player.handTotal()}\`\`\``);
-    });
-
-    return;
-}
-
-function gameIsStarted() {
-    if(!gameStarted) {
-        return false;
-    }
-    return true;
-}
-
-function isHandInProgress() {
-    return handInProgress;
-}
 
 function now() {
     return moment().format('lll');
