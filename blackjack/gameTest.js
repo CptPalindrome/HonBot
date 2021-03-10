@@ -19,17 +19,18 @@ class Game {
         };
         this.players = [];
         this.deck = [];
-        this.cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace'];
+        this.cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace'];
         this.suit = ['Spades', 'Clubs', 'Hearts', 'Diamonds']
     }
 
     buildDeck(numberOfDecks) {
+        this.deck = [];
         for (let i = 0; i < numberOfDecks; i++) {
-            for (let j = 0; j < cards.length; j++) {
-                deck.push(new Card(cards[j], suit[0]));
-                deck.push(new Card(cards[j], suit[1]));
-                deck.push(new Card(cards[j], suit[2]));
-                deck.push(new Card(cards[j], suit[3]));
+            for (let j = 0; j < this.cards.length; j++) {
+                this.deck.push(new Card(this.cards[j], this.suit[0]));
+                this.deck.push(new Card(this.cards[j], this.suit[1]));
+                this.deck.push(new Card(this.cards[j], this.suit[2]));
+                this.deck.push(new Card(this.cards[j], this.suit[3]));
             }
         }
     }
@@ -53,25 +54,43 @@ class Game {
     removePlayer(id) {
         let foundAtIndex = -1;
         this.players.forEach((player, index) => {
-            if (player.id === id) {
+            if (player.userId === id) {
                 foundAtIndex = index;
-                break;
             }
         });
         if (foundAtIndex !== -1) {
-            players.splice(foundAtIndex, 1);
+            this.players.splice(foundAtIndex, 1);
         }
     }
 
+    removePlayers(ids) {
+        for (let i = 0; i < ids.length; i++) {
+            let foundAtIndex = -1;
+            this.players.forEach((player, index) => {
+                if (player.userId === ids[i]) {
+                    foundAtIndex = index;
+                }
+            });
+            if (foundAtIndex !== -1) {
+                this.players.splice(foundAtIndex, 1);
+            }
+        }
+    }
+    
+    resetPlayers() {
+        this.players.splice(0, this.players.length);
+    }
+
     drawRandomCard() {
-        cardOfDeck = deck[Math.floor(Math.random() * deck.length)];
-        deck.splice(deck.indexOf(cardOfDeck), 1);
+        let cardOfDeck = this.deck[Math.floor(Math.random() * this.deck.length)];
+        this.deck.splice(this.deck.indexOf(cardOfDeck), 1);
         return cardOfDeck;
     }
 
     hit(player) {
-        newCard = drawRandomCard();
+        let newCard = this.drawRandomCard();
         player.addCard(newCard);
+        player.checkBust();
     }
 }
 

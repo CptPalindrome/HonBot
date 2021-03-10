@@ -70,4 +70,9 @@ function hit(player) {
     player.addCard(newCard);
 }
 
-buildDeck(2);
+// addPlayer('123', 'Todd');
+// addPlayer('124', 'Greg');
+// buildDeck(2);
+// hit(players[0]);
+// hit(players[0]);
+// console.log(`${players[0].handTotal()}, ${players[0].currentCards()}`)

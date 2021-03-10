@@ -11,6 +11,10 @@ class Card {
     getSuit() {
         return this.suit;
     }
+
+    getText() {
+        return `${this.number} of ${this.suit}`
+    }
 }
 
 module.exports = Card

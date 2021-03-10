@@ -61,65 +61,148 @@ client.on('message', msg => {
                         msg.channel.send(`A game is already in progress!`);
                     }
                     else {
-                        setTimeout(() => play(), 10000);
-                        msg.channel.send(`Game starts in 60 seconds. Use h.join to join the game!`);
+                        setTimeout(() => play(), 15000);
+                        msg.channel.send(`Game starts in 15 seconds. Use h.join to join the game!`);
                         gameStarted = true;
                         currentGameChannel = msg.channel;
                     }
                     break;
 
                 case 'join':
-                    if (gameIsStarted()) {
+                    let joinPos = isPlayerInGame(game.players, msg.author.id);
+                    if (gameIsStarted() && !isHandInProgress() && joinPos === -1) {
                         game.addPlayer(msg.author.id, msg.author.username);
+                        joinPos = isPlayerInGame(game.players, msg.author.id);
                         msg.channel.send(`${msg.author.username} has joined the game.`);
+                        // msg.channel.send(`${msg.author.username} has joined the game. They have ${game.players[joinPos].getMoney()} HonBucks`);
                         //say a message confirming the username who joined and their money total
+                        //TODO: Get score saving to work!!!!
+                    }
+                    else if (joinPos != -1) {
+                        msg.channel.send(`***${msg.author.username}***, you're already in the game.`);
                     }
                     else {
-                        msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
+                        msg.channel.send(`Either a game has not been started or a hand is in progress.`);
                     }
                     break;
 
                 case 'leave':
                     if (!gameIsStarted()) {
-                        msg.channel.send(`You can't leave a game that hasn't started, doofus!`);
+                        msg.channel.send(`You can't leave a game that hasn't started!`);
+                    }
+                    else if (!isPlayerInGame() || isPlayerInGame() === -1) {
+                        msg.channel.send(`You have not joined the game.`);
                     }
                     else if (!isHandInProgress()) {
                         game.removePlayer(msg.author.id);
                         msg.channel.send(`Okay, bye ${msg.author.username}`);
                     }
                     break;
-            }
 
-            if (str.startsWith('bet')) {
-                if(!gameIsStarted()) {
-                    msg.channel.send(`A game has not been started yet! Type h.blackjack to start a game!`);
-                    return;
-                }
-                let betArgs = str.split(' ');
-                if (betArgs.length > 1) {
-                    let bet = parseInt(betArgs[1]);
-                    if (isNaN(bet)) {
-                        msg.channel.send(`Invalid bet amount. Example "h.bet 100".`);
-                        return;
+                case 'hit':
+                    if (!gameIsStarted()) {
+                        msg.channel.send(`A game has not been started yet!`);
+                        break;
                     }
-                    if (game.players.includes(msg.author.id)) {
-                        game.players[game.players.indexOf(msg.author.id)].bet = bet;
+                    
+                    let pos = isPlayerInGame(game.players, msg.author.id);
+                    if (isHandInProgress() && pos !== -1) {
+                        if (game.players[pos].status == 'not done') {
+                            game.hit(game.players[pos]);
+                            currentGameChannel.send(`***${game.players[pos].username}*** hits. They now have **${game.players[pos].currentHand()}** *(${game.players[pos].handTotal()})*`)
+                            if (game.players[pos].status == 'busted') {
+                                currentGameChannel.send(`***${game.players[pos].username}*** has busted.`);
+                            }
+                            if (checkPlayers(game)) {
+                                cardsDrawnByDealer = resolveDealer(game);
+                                resolveHand(game);
+                            }
+                        }
+                    }
+
+                    else {
+                        msg.channel.send(`You're either not in the game, or there is not an active hand.`);
+                    }
+                    break;
+                
+                case 'stand':
+                    if (!gameIsStarted()) {
+                        msg.channel.send(`A game has not been started yet!`);
+                        break;
+                    }
+                    
+                    let standPos = isPlayerInGame(game.players, msg.author.id);
+                    if (isHandInProgress() && standPos !== -1) {
+                        if (game.players[standPos].status == 'not done') {
+                            game.players[standPos].status = 'done';
+                            if (checkPlayers(game)) {
+                                cardsDrawnByDealer = resolveDealer(game);
+                                resolveHand(game);
+                            }
+                        }
                     }
                     else {
-                        msg.channel.send(`Dweeb! You are not in the game! Dweeb!`);
+                        msg.channel.send(`You're either not in the game, or there is not an active hand.`);
                     }
-                }
-                return;
+                    break;
+
+                case 'nh':
+                    if (gameIsStarted() && !isHandInProgress()) {
+                        currentGameChannel.send(`Starting a new hand! You have 10 seconds to leave with h.leave`);
+                        setTimeout(() => play(), 10000);
+                    }
+                    else if (!gameIsStarted() || isHandInProgress()) {
+                        currentGameChannel.send(`Either a game isn't started or you're in a hand already.`);
+                    }
+                    break;
+                    
+                case 'end':
+                    if (gameIsStarted() && isHandInProgress()) {
+                        currentGameChannel.send(`Resolving AFK Players in 15 seconds.`);
+                        
+                        setTimeout(() => resolveAFK(), 15000);
+                    }
+                    else {
+                        currentGameChannel.send(`Either a game or a hand have not started.`);
+                    }
+                    break;
             }
 
+            // if (str.startsWith('bet')) {
+            //     if(!gameIsStarted()) {
+            //         msg.channel.send(`A game has not been started yet! Type h.start to start a game!`);
+            //         return;
+            //     }
+            //     let betArgs = str.split(' ');
+            //     if (betArgs.length > 1) {
+            //         let bet = parseInt(betArgs[1]);
+            //         let foundAtIndex = -1;
+            //         foundAtIndex = isPlayerInGame(game.players, msg.author.id);
+            //         if (isNaN(bet)) {
+            //             msg.channel.send(`Invalid bet amount. Example "h.bet 100".`);
+            //             return;
+            //         }
+                    
+            //         if (foundAtIndex !== -1) {
+            //             msg.channel.send(`${msg.author.username} places a bet of ${bet}.`)
+            //             game.players[foundAtIndex].bet = bet;
+            //         }
+            //         else {
+            //             msg.channel.send(`You are not in the game!`);
+            //         }
+            //     }
+            //     return;
+            // }
+
             if (str.startsWith('stop')) {
-                //TODO: remove this later. This is just for testing purposes
-                if(gameIsStarted()) {
-                    msg.channel.send(`Game has stopped`);
+                if(gameIsStarted() && !isHandInProgress()) {
+                    msg.channel.send(`Game has stopped.`);
                     gameStarted = false;
+                    handInProgress = false;
+                    game.resetPlayers();
                 }
                 else {
-                    msg.channel.send(`Game is not started yet`);
+                    msg.channel.send(`Game is not started yet, or a hand is in progress.`);
                 }
                 return;
             }
@@ -166,25 +249,7 @@ client.on('message', msg => {
                 return;
             }
         }
-
-        const hdt = 'honbar, delete this';
-        const hdt2 = 'honbar delete this';
-        if(msg.author.id != '266744954922074112') {
-            if(str.toLowerCase().indexOf(hdt) != -1 || str.toLowerCase().indexOf(hdt2) != -1) {
-                console.log(str.indexOf('delete this') != -1);
-                msg.channel.send(`As you wish, ${msg.author.username}.`);
-                logger.info(`${now()}: Deleted message '${msg} from ${msg.author.username}, as they desired.`);
-                msg.delete(2000)
-                    .then(msg => console.log(`Deleted message '${msg} from ${msg.author.username}, as they desired.`))
-                    .catch(console.error);
-            }
-        }
     }
-            
-});
-
-client.on('channelCreate', channel => {
-    channel.send(`Honbar notices your new channel :eyes: and steals the first message :sunglasses:`);
 });
 
 client.on('ready', () => {
@@ -197,10 +262,67 @@ client.on('ready', () => {
     });
 });
 
+let cardsDrawnByDealer = 0;
 function play() {
+    if (game.players.length == 0) {
+            currentGameChannel.send(`No one has joined! Ending game.`);
+            gameStarted = false;
+            handInProgress = false;
+            return;
+        }
     console.log(`Now playing!`);
-    currentGameChannel.send(`Now beginning game. ${game.players[0].username} are in.`);
+    currentGameChannel.send(`Now beginning game. Players: ${generatePlayerList(game)}.`);
+    game.addPlayer('dealer', 'Dealer');
+    game.buildDeck(2);
+    game.players.forEach(player => {
+        player.reset();
+        game.hit(player);
+        game.hit(player);
+        if (player.handTotal() == 21) {
+            player.status = 'bj';
+        }
+        if(player.userId !== 'dealer') {
+            currentGameChannel.send(`***${player.username}*** has **${player.currentHand()}** *(${player.handTotal()})*`);
+        }
+        else {
+            currentGameChannel.send(`***__${player.username}__*** showing **${player.getFirst()}**`);
+            if (player.status != 'bj') {
+                player.status = 'unflipped';
+            }
+        }
+    });
+    handInProgress = true;
     return;
+}
+
+function resolveAFK() {
+    let inactivePlayerNames = [];
+    let nameList = '';
+    game.players.forEach(player => {
+        if (player.status == 'not done') {
+            player.status = 'afk';
+            inactivePlayerNames.push(player.username);
+        }
+    });
+    nameList = inactivePlayerNames.join(', ');
+    currentGameChannel.send(`Resolved Inactive Players: ***${nameList}***.`);
+    if (checkPlayers(game)) {
+        cardsDrawnByDealer = resolveDealer(game);
+        resolveHand(game);
+    }
+}
+
+function generatePlayerList(game) {
+    let playerList = '';
+    let index = 1;
+    if (game.players.length > 0) {
+        playerList += game.players[0].username;
+    }
+    while (index <= game.players.length - 1) {
+        playerList += `, ${game.players[index].username}`;
+        index++;
+    }
+    return playerList;
 }
 
 function gameIsStarted() {
@@ -208,6 +330,103 @@ function gameIsStarted() {
         return false;
     }
     return true;
+}
+
+function checkPlayers(game) {
+    let doneStatus = true;
+    game.players.forEach(player => {
+        if (player.status == 'not done') {
+            doneStatus = false;
+        }
+    })
+    return doneStatus; //oh no it's 5:30 am
+}
+
+function resolveDealer(game) {
+    let cardsDrawnByDealer = 0;
+    game.players.forEach(player => {
+        if (player.userId == 'dealer') {
+            while (player.handTotal() < 17) {
+                game.hit(player);
+                cardsDrawnByDealer++;
+            }
+            player.status = 'done';
+        }
+    });
+    return cardsDrawnByDealer;
+}
+
+function resolveHand(game) {
+    let dealerPos = isPlayerInGame(game.players, 'dealer');
+    let dealerTotal = game.players[dealerPos].handTotal();
+    currentGameChannel.send(`***__Dealer__*** drew ${cardsDrawnByDealer} card(s) and has **${game.players[dealerPos].currentHand()}** *(${game.players[dealerPos].handTotal()})*`)
+    if (dealerTotal > 21) {
+        currentGameChannel.send(`***__Dealer__*** has busted!`);
+    }
+
+    game.players.forEach(player => {
+        if (player.userId !== 'dealer') {
+            if (player.status == 'done' || player.status == 'double') {
+                if (dealerTotal <= 21) {
+                    if (player.handTotal() < dealerTotal) {
+                        currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you lose.`);
+                        player.resolveBet('lose');
+                    }
+                    if (player.handTotal() == dealerTotal) {
+                        currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you push.`);
+                        player.resolveBet('push');
+                    }
+                    if (player.handTotal() > dealerTotal) {
+                        currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you win!`);
+                        player.resolveBet('win');
+                    }
+                }
+                
+                if (dealerTotal > 21) {
+                    currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you win!`);
+                    player.resolveBet('win');
+                }
+            }
+            else if (player.status == 'bj') {
+                if (game.players[dealerPos].status == 'bj') {
+                    currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you push.`);
+                    player.resolveBet('push');
+                }
+                else {
+                    currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you win!`);
+                    player.resolveBet('bj');
+                }
+            }
+
+            else if (player.status == 'busted') {
+                currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you lose.`);
+                player.resolveBet('lose');
+            }
+        }
+    });
+    handInProgress = false;
+    game.removePlayer('dealer');
+    let afkIds = [];
+    game.players.forEach(player => {
+        if (player.status == 'afk') {
+            afkIds.push(player.userId);
+        }
+    });
+    game.removePlayers(afkIds);
+}
+
+function isPlayerInGame(players, id) {
+    //if player is not found, will return -1, otherwise will return their position in player order
+    if (!players) {
+        return -1;
+    }
+    let pos = -1;
+    players.forEach((player, index) => {
+        if (player.userId === id) {
+            pos = index;
+        }
+    });
+    return pos;
 }
 
 function isHandInProgress() {
