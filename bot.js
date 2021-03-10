@@ -97,7 +97,7 @@ client.on('message', msg => {
                     if (!gameIsStarted()) {
                         msg.channel.send(`You can't leave a game that hasn't started!`);
                     }
-                    else if (!isPlayerInGame() || isPlayerInGame() === -1) {
+                    else if (isPlayerInGame(game.players, msg.author.id) === -1) {
                         msg.channel.send(`You have not joined the game.`);
                     }
                     else if (!isHandInProgress()) {
@@ -173,7 +173,18 @@ client.on('message', msg => {
                         currentGameChannel.send(`Either a game or a hand have not started.`);
                     }
                     break;
-            
+
+                case 'stop':
+                        if(gameIsStarted() && !isHandInProgress()) {
+                            msg.channel.send(`Game has stopped.`);
+                            gameStarted = false;
+                            handInProgress = false;
+                            game.resetPlayers();
+                        }
+                        else {
+                            msg.channel.send(`Game is not started yet, or a hand is in progress.`);
+                        }
+                        break;
 
             // if (str.startsWith('bet')) {
             //     if(!gameIsStarted()) {
@@ -200,18 +211,6 @@ client.on('message', msg => {
             //     }
             //     return;
             // }
-
-                case 'stop':
-                    if(gameIsStarted() && !isHandInProgress()) {
-                        msg.channel.send(`Game has stopped.`);
-                        gameStarted = false;
-                        handInProgress = false;
-                        game.resetPlayers();
-                    }
-                    else {
-                        msg.channel.send(`Game is not started yet, or a hand is in progress.`);
-                    }
-                    break;
 
                 case 'help wyd':
                     msg.channel.send(`You can use numbers or *super secret phrases* to select specific sentence templates. Format as {#}`);
