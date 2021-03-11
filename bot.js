@@ -319,11 +319,11 @@ client.on('message', msg => {
                 if(options.length === 0) {
                     msg.channel.send(`To use the roulette, enter 2 or more items separated by commas. Ex. 'h.roulette ham, turkey, the goofy goober theme song'`);
                 }
-                if(options.length == 1) {
+                else if(options.length == 1) {
                     msg.channel.send(`You must submit more than 1 item, or it's not a roulette you big stupid **DOOF**`);
                 }
-                if(options.length > 1) {
-                    let num = Math.floor(Math.random() * options.length - 1);
+                else if(options.length > 1) {
+                    let num = Math.floor(Math.random() * options.length);
                     msg.channel.send(`**__${options[num].trim()}__** has been selected.`);
                 }
             }
