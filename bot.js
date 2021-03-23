@@ -263,6 +263,10 @@ client.on('message', msg => {
 
                     else if(wyd.length > 1) {
                         switch(wydArgs[1]) {
+                            case '{oven}':
+                                number = 50;
+                                wydArgs.shift();
+                                break;
                             case '{navy}':
                                 number = 72;
                                 wydArgs.shift();
