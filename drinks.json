@@ -47,6 +47,10 @@
         {
             "name": "Kool-Aid Jammer",
             "namePlural": "Kool-Aid Jammers"
+        },
+        {
+            "name": "White Claw",
+            "namePlural": "White Claws"
         }
     ],
     "containers": [
@@ -103,7 +107,7 @@
         "water",
         "vodka",
         "rum",
-        "tequilla",
+        "tequila",
         "whisky",
         "bourbon",
         "gin",
@@ -156,8 +160,8 @@
         "To your death!",
         "To idiotic ideals and poor decision making!",
         "Hope you like it!",
-        "Try to keep it *inside* your body.",
+        "Try to keep it __inside__ your body.",
         "What goes down need not come up.",
-        "Let's not get a replay of *last* time."
+        "Let's not get a replay of __last__ time."
     ]
 }
