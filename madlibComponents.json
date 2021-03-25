@@ -1538,7 +1538,7 @@
             "iv": 1
         },
         {
-            "s": "Yeah, can I get uhhhh, {n1}, and you can you put {a1} {n2} on it?",
+            "s": "Yeah, can I get uhhhh, {n1}, and can you put {a1} {n1pl} on it?",
             "n": 2,
             "a": 1
         },

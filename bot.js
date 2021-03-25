@@ -3,11 +3,11 @@ const auth = require('./auth.json');
 const winston = require('winston');
 const moment = require('moment');
 const gameClass = require('./blackjack/gameTest.js');
-const bannedWords = require('./bannedWords.json');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
 const madComps = require('./madlibComponents.json');
+const drinks = require('./drinks.json');
 const client = new Client();
 const prefix = 'h.';
 
@@ -332,6 +332,68 @@ client.on('message', msg => {
                 }
             }
 
+            if(str.startsWith("drink")) {
+                let options = ""
+                if (str.substr(5)) {
+                    options = str.substr(5);
+                }
+                let drinkStr = "";
+                if (options) {
+                    if (options.includes("mystery")) {
+                        if (options.includes("group") || options.includes("round")) {
+                            drinkStr = serveDrink(true, true);
+                        }
+                        else {
+                            drinkStr = serveDrink(true, false);
+                        }
+                    }
+                    else {
+                        if (options.includes("group") || options.includes("round")) {
+                            drinkStr = serveDrink(false, true);
+                        }
+                        else {
+                            drinkStr = serveDrink(false, false);
+                        }
+                    }
+                }
+                else {
+                    drinkStr = serveDrink(false, false);
+                }
+                msg.channel.send(drinkStr);
+            }
+
+            /*
+            if(str.startsWith("food")) {
+                let options = ""
+                if (str.substr(4)) {
+                    options = str.substr(4);
+                }
+                let foodStr = "";
+                if (options) {
+                    if (options.includes("mystery")) {
+                        if (options.includes("group") || options.includes("round")) {
+                            foodStr = serveFood(true, true);
+                        }
+                        else {
+                            foodStr = serveFood(true, false);
+                        }
+                    }
+                    else {
+                        if (options.includes("group") || options.includes("round")) {
+                            foodStr = serveFood(false, true);
+                        }
+                        else {
+                            foodStr = serveFood(false, false);
+                        }
+                    }
+                }
+                else {
+                    foodStr = serveFood(false, false);
+                }
+                msg.channel.send(foodStr);
+            }
+            */
+
             if(str.startsWith('cfsim')) {
                 let coinSimArgs = str.split(' ');
                 let simulationCount;
@@ -585,79 +647,72 @@ function wyd(msg, number, name) {
 function buildString(number) {
     let sentence = madComps.sentences[number];
     let parsedSentence = sentence.s;
+    const nounsCopy = [...madComps.nouns];
+    const peopleCopy = [...madComps.people];
+    const locationsCopy = [...madComps.locations];
+    const verbsCopy = [...madComps.verbs];
+    const iverbsCopy = [...madComps.verbsIntransitive];
+    const adjectivesCopy = [...madComps.adjectives];
+    const adverbsCopy = [...madComps.adverbs];
+    const prepositionsCopy = [...madComps.prepositions];
 
     if(sentence.n > 0) {
-        const nounsCopy = [...madComps.nouns];
         parsedSentence = parseSentence(parsedSentence, sentence.n, nounsCopy, 'n', '', 'singular');
     }
     
     if(sentence.npl > 0) {
-        const nounsCopy = [...madComps.nouns];
         parsedSentence = parseSentence(parsedSentence, sentence.npl, nounsCopy, 'n', 'pl', 'plural');
     }
 
     if(sentence.p > 0) {
-        const peopleCopy = [...madComps.people];
         parsedSentence = parseSentence(parsedSentence, sentence.p, peopleCopy, 'p', '');
     }
 
     if(sentence.l > 0) {
-        const locationsCopy = [...madComps.locations];
         parsedSentence = parseSentence(parsedSentence, sentence.l, locationsCopy, 'l', '');
     }
     
     if(sentence.v > 0) {
-        const verbsCopy = [...madComps.verbs];
         parsedSentence = parseSentence(parsedSentence, sentence.v, verbsCopy, 'v', '', 'present');
     }
     
     if(sentence.vp > 0) {
-        const verbsCopy = [...madComps.verbs];
         parsedSentence = parseSentence(parsedSentence, sentence.vp, verbsCopy, 'v', 'p', 'past');
     }
     
     if(sentence.ving > 0) {
-        const verbsCopy = [...madComps.verbs];
         parsedSentence = parseSentence(parsedSentence, sentence.ving, verbsCopy, 'v', 'ing', 'ing');
     }
 
     if(sentence.iv > 0) {
-        const iverbsCopy = [...madComps.verbsIntransitive];
         parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', '', 'present');
     }
 
     if(sentence.ived > 0) {
-        const iverbsCopy = [...madComps.verbsIntransitive];
         parsedSentence = parseSentence(parsedSentence, sentence.ived, iverbsCopy, 'iv', 'ed', 'past');
     }
 
     if(sentence.iving > 0) {
-        const iverbsCopy = [...madComps.verbsIntransitive];
         parsedSentence = parseSentence(parsedSentence, sentence.iving, iverbsCopy, 'iv', 'ing', 'ing');
     }
 
     if(sentence.a > 0) {
-        const adjectivesCopy = [...madComps.adjectives];
         parsedSentence = parseSentence(parsedSentence, sentence.a, adjectivesCopy, 'a', '', 'regular');
     }
 
     if(sentence.aer > 0) {
-        const adjectivesCopy = [...madComps.adjectives];
         parsedSentence = parseSentence(parsedSentence, sentence.aer, adjectivesCopy, 'a', 'er', 'er');
     }
 
     if(sentence.ae > 0) {
-        const adjectivesCopy = [...madComps.adjectives];
         parsedSentence = parseSentence(parsedSentence, sentence.ae, adjectivesCopy, 'a', 'e', 'est');
     }
 
     if(sentence.adv > 0) {
-        const adverbsCopy = [...madComps.adverbs];
         parsedSentence = parseSentence(parsedSentence, sentence.adv, adverbsCopy, 'adv', '');
     }
 
     if(sentence.prep > 0) {
-        const prepositionsCopy = [...madComps.prepositions];
         parsedSentence = parseSentence(parsedSentence, sentence.prep, prepositionsCopy, 'prep', '');
     }
 
@@ -701,6 +756,84 @@ function fortune(msg, question) {
 
 function randomNumberWithinQuoteCount() {
     return Math.floor(Math.random() * quotes.quotes.length);
+}
+
+function serveDrink(isMystery, isGroupOrder) {
+    const containerName = drinks.containers[Math.floor(Math.random() * drinks.containers.length)];
+    const honbarMessage = drinks.serviceMessages[Math.floor(Math.random() * drinks.serviceMessages.length)];
+    let drinkName = "";
+    let outString = "Honbar serves you ";
+    if (isMystery) {
+        const mysteriesCopy = [...drinks.mysteryIngredients];
+        let ingredients = [];
+        let ingredientNum = 0;
+        const ingredientCount = 3 + Math.floor(Math.random() * 4);
+        for (let i = 0; i < ingredientCount; i++) {
+            ingredientNum = Math.floor(Math.random() * mysteriesCopy.length)
+            ingredients.push(mysteriesCopy[ingredientNum]);
+            mysteriesCopy.splice(ingredientNum, 1);
+        }
+        if (isGroupOrder) {
+            const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+        }
+        else {
+            outString += (`__${containerName.singular}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+        }
+    }
+
+    else {
+        const drinkNum = Math.floor(Math.random() * drinks.drinks.length);
+        if (!isGroupOrder) {
+            drinkName = drinks.drinks[drinkNum].name;
+            outString += (`__${containerName.singular}__ ***${drinkName}***. "*${honbarMessage}*"`);
+        }
+        else {
+            const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
+            drinkName = drinks.drinks[drinkNum].namePlural;
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. "*${honbarMessage}*"`);
+        }   
+    }
+    return outString;
+}
+
+function serveFood(isMystery, isGroupOrder) {
+    const containerName = food.containers[Math.floor(Math.random() * food.containers.length)];
+    const honbarMessage = food.serviceMessages[Math.floor(Math.random() * food.serviceMessages.length)];
+    let drinkName = "";
+    let outString = "Honbar serves you ";
+    if (isMystery) {
+        const mysteriesCopy = [...food.mysteryIngredients];
+        let ingredients = [];
+        let ingredientNum = 0;
+        const ingredientCount = 3 + Math.floor(Math.random() * 4);
+        for (let i = 0; i < ingredientCount; i++) {
+            ingredientNum = Math.floor(Math.random() * mysteriesCopy.length)
+            ingredients.push(mysteriesCopy[ingredientNum]);
+            mysteriesCopy.splice(ingredientNum, 1);
+        }
+        if (isGroupOrder) {
+            const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+        }
+        else {
+            outString += (`__${containerName.singular}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+        }
+    }
+
+    else {
+        const drinkNum = Math.floor(Math.random() * drinks.drinks.length);
+        if (!isGroupOrder) {
+            drinkName = drinks.drinks[drinkNum].name;
+            outString += (`__${containerName.singular}__ ***${drinkName}***. "*${honbarMessage}*"`);
+        }
+        else {
+            const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
+            drinkName = drinks.drinks[drinkNum].namePlural;
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. "*${honbarMessage}*"`);
+        }
+    }
+    return outString;
 }
 
 client.login(auth.token);

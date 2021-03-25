@@ -1,0 +1,163 @@
+{
+    "drinks": [
+        {
+            "name": "orange juice",
+            "namePlural": "orange juice"
+        },
+        {
+            "name": "Capri Sun",
+            "namePlural": "Capri Suns"
+        },
+        {
+            "name": "screwdriver",
+            "namePlural": "screwdrivers"
+        },
+        {
+            "name": "long island iced tea",
+            "namePlural": "long island iced teas"
+        },
+        {
+            "name": "virgin water",
+            "namePlural": "virgin water"
+        },
+        {
+            "name": "Blue Moon",
+            "namePlural": "Blue Moon"
+        },
+        {
+            "name": "PBR",
+            "namePlural": "PBR"
+        },
+        {
+            "name": "cock-sucking cowboy",
+            "namePlural": "cock-sucking cowboys"
+        },
+        {
+            "name": "slippery nipple",
+            "namePlural": "slippery nipples"
+        },
+        {
+            "name": "Phillips head screwdrivers",
+            "namePlural": "Phillips head screwdrivers"
+        },
+        {
+            "name": "crab legs",
+            "namePlural": "crab legs"
+        },
+        {
+            "name": "Kool-Aid Jammer",
+            "namePlural": "Kool-Aid Jammers"
+        }
+    ],
+    "containers": [
+        {
+            "singular": "a bucket of",
+            "plural": "buckets of"
+        },
+        {
+            "singular": "a glass of",
+            "plural": "glasses of"
+        },
+        {
+            "singular": "a pitcher of",
+            "plural": "pitchers of"
+        },
+        {
+            "singular": "an entire keg of",
+            "plural": "entire kegs of"
+        },
+        {
+            "singular": "a shot of",
+            "plural": "shots of"
+        },
+        {
+            "singular": "a thimble of",
+            "plural": "thimbles of"
+        },
+        {
+            "singular": "a pouch of",
+            "plural": "pouches of"
+        },
+        {
+            "singular": "a flask of",
+            "plural": "flasks of"
+        }
+    ],
+    "groupQuantities": [
+        "some",
+        "a bunch of",
+        "a few",
+        "a ridiculous number of",
+        "way too many",
+        "forty five",
+        "an entire horse's worth of",
+        "a cornucopia of",
+        "an abundance of",
+        "three and a half",
+        "several",
+        "a heaping pile of",
+        "a disturbing amount of"
+    ],
+    "mysteryIngredients": [
+        "soy sauce",
+        "water",
+        "vodka",
+        "rum",
+        "tequilla",
+        "whisky",
+        "bourbon",
+        "gin",
+        "rye",
+        "Dr. Pepper",
+        "Mr. Pepper (Dr. Pepper's husband)",
+        "pop tart icing",
+        "Kool-Aid",
+        "ice cubes",
+        "Ice Cube",
+        "Coke",
+        "Pepsi",
+        "lemonade",
+        "strawberry lemonade",
+        "beer",
+        "non-alcoholic beer",
+        "salt water",
+        "mineral water",
+        "rain water",
+        "Mitch's DNA",
+        "milk",
+        "raw eggs",
+        "flour",
+        "sprinkles",
+        "salt",
+        "sugar",
+        "absinthe",
+        "4 Loco",
+        "tonic water",
+        "soda water",
+        "malt liquor"
+    ],
+    "serviceMessages": [
+        "Enjoy.",
+        "On the house!",
+        "On the house! ...just kidding, pay at the counter later.",
+        "Soup's on!",
+        "Drink it while it's hot!",
+        "Drink it while it's cold!",
+        "Drink up!",
+        "Bottoms Up!",
+        "This is for my homies!",
+        "Ready or not, it's drinkin time!",
+        "Try not to choke.",
+        "Don't make a mess.",
+        "The door's over there.",
+        "Keep to yourselves please.",
+        "Are you going to be okay after this?",
+        "To your health!",
+        "To your death!",
+        "To idiotic ideals and poor decision making!",
+        "Hope you like it!",
+        "Try to keep it *inside* your body.",
+        "What goes down need not come up.",
+        "Let's not get a replay of *last* time."
+    ]
+}
