@@ -68,6 +68,12 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - You may enter a number or secret phrase to select specific sentence templates. Example: h.wyd {#} Name of Person
 
+### food/drink
+
+- Honbar will serve you a delicious meal or beverage (depending on which you call).
+
+- Put "mystery" and/or "group" (alt. "round") after the call to get some wilder results!
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
@@ -83,3 +89,7 @@ Feel free to fork this repo and modify it to your heart's content.
 ### help blackjack
 
 - Displays all the blackjack associated functions. I'm not listing them all here.
+
+### help food/drink
+
+- Tells you a little extra about the food and drink commands. Not much though.

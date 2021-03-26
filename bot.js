@@ -8,6 +8,7 @@ const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
 const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
+const food = require('./food.json');
 const client = new Client();
 const prefix = 'h.';
 
@@ -52,7 +53,7 @@ client.on('message', msg => {
                     break;
 
                 case 'help':
-                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, say, dr, roulette, cf, cfsim, chris, 8ball, wyd, gandhi, and ngandhi. More info on the readme on github.`);
+                    msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, dr, roulette, cf, cfsim, chris, 8ball, wyd, food, drink, bljk, gandhi, and ngandhi. More info on the readme on github.`);
                     break;
 
                 case 'help gandhi':
@@ -61,6 +62,18 @@ client.on('message', msg => {
 
                 case 'help blackjack':
                     msg.channel.send(`\`\`\`Blackjack Commands: \n h.bljk -- starts a new game\n h.join -- join a game in progress\n h.leave -- leave a game you've joined\n h.hit/h.stand -- gameplay functions\n h.afk -- will end a round if people are afk and remove them\n h.stop -- stops a game in progress\n h.nh -- starts a new hand with the same players\`\`\``);
+                    break;
+
+                case 'help bljk':
+                    msg.channel.send(`\`\`\`Blackjack Commands: \n h.bljk -- starts a new game\n h.join -- join a game in progress\n h.leave -- leave a game you've joined\n h.hit/h.stand -- gameplay functions\n h.afk -- will end a round if people are afk and remove them\n h.stop -- stops a game in progress\n h.nh -- starts a new hand with the same players\`\`\``);
+                    break;
+
+                case 'help food':
+                    msg.channel.send(`You can use h.food to get a random food order that will be 100% super tasty. You can put "mystery" and/or "group"/"round" after to get some other results!`);
+                    break;
+
+                case 'help drink':
+                    msg.channel.send(`You can use h.drink to get a delicious drink that will satiate your thirst guaranteed. You can put "mystery" and/or "group"/"round" after to get some other results!`);
                     break;
                 
                 case 'bljk':
@@ -362,7 +375,6 @@ client.on('message', msg => {
                 msg.channel.send(drinkStr);
             }
 
-            /*
             if(str.startsWith("food")) {
                 let options = ""
                 if (str.substr(4)) {
@@ -392,7 +404,6 @@ client.on('message', msg => {
                 }
                 msg.channel.send(foodStr);
             }
-            */
 
             if(str.startsWith('cfsim')) {
                 let coinSimArgs = str.split(' ');
@@ -775,10 +786,10 @@ function serveDrink(isMystery, isGroupOrder) {
         }
         if (isGroupOrder) {
             const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
-            outString += (`__${quantityName}__ __${containerName.plural}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${ingredients.join(", ")}***. *"${honbarMessage}"*`);
         }
         else {
-            outString += (`__${containerName.singular}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+            outString += (`__${containerName.singular}__ ***${ingredients.join(", ")}***. *"${honbarMessage}"*`);
         }
     }
 
@@ -786,12 +797,12 @@ function serveDrink(isMystery, isGroupOrder) {
         const drinkNum = Math.floor(Math.random() * drinks.drinks.length);
         if (!isGroupOrder) {
             drinkName = drinks.drinks[drinkNum].name;
-            outString += (`__${containerName.singular}__ ***${drinkName}***. "*${honbarMessage}*"`);
+            outString += (`__${containerName.singular}__ ***${drinkName}***. *"${honbarMessage}"*`);
         }
         else {
             const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
             drinkName = drinks.drinks[drinkNum].namePlural;
-            outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. "*${honbarMessage}*"`);
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. *"${honbarMessage}"*`);
         }   
     }
     return outString;
@@ -800,37 +811,48 @@ function serveDrink(isMystery, isGroupOrder) {
 function serveFood(isMystery, isGroupOrder) {
     const containerName = food.containers[Math.floor(Math.random() * food.containers.length)];
     const honbarMessage = food.serviceMessages[Math.floor(Math.random() * food.serviceMessages.length)];
-    let drinkName = "";
+    let foodName = "";
     let outString = "Honbar serves you ";
     if (isMystery) {
         const mysteriesCopy = [...food.mysteryIngredients];
         let ingredients = [];
         let ingredientNum = 0;
         const ingredientCount = 3 + Math.floor(Math.random() * 4);
+        const foodNum = Math.floor(Math.random() * drinks.drinks.length);
+        if (!isGroupOrder) {
+            
+        }
+        else {
+            
+        }
         for (let i = 0; i < ingredientCount; i++) {
             ingredientNum = Math.floor(Math.random() * mysteriesCopy.length)
             ingredients.push(mysteriesCopy[ingredientNum]);
             mysteriesCopy.splice(ingredientNum, 1);
         }
         if (isGroupOrder) {
-            const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
-            outString += (`__${quantityName}__ __${containerName.plural}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+            const quantityName = food.groupQuantities[Math.floor(Math.random() * food.groupQuantities.length)];
+            foodName = food.food[foodNum].plural;
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${foodName}***`);
+            outString += (`with ***${ingredients.join(", ")}***. *"${honbarMessage}"*`);
         }
         else {
-            outString += (`__${containerName.singular}__ ***${ingredients.join(", ")}***. "*${honbarMessage}*"`);
+            foodName = food.food[foodNum].singular;
+            outString += (`__${containerName.singular}__ ***${foodName}*** `);
+            outString += (`with ***${ingredients.join(", ")}***. *"${honbarMessage}"*`);
         }
     }
 
     else {
-        const drinkNum = Math.floor(Math.random() * drinks.drinks.length);
+        const foodNum = Math.floor(Math.random() * drinks.drinks.length);
         if (!isGroupOrder) {
-            drinkName = drinks.drinks[drinkNum].name;
-            outString += (`__${containerName.singular}__ ***${drinkName}***. "*${honbarMessage}*"`);
+            drinkName = food.food[foodNum].singular;
+            outString += (`__${containerName.singular}__ ***${drinkName}***. *"${honbarMessage}"*`);
         }
         else {
             const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
-            drinkName = drinks.drinks[drinkNum].namePlural;
-            outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. "*${honbarMessage}*"`);
+            drinkName = food.food[foodNum].plural;
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. *"${honbarMessage}"*`);
         }
     }
     return outString;

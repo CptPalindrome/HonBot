@@ -1,0 +1,213 @@
+{
+    "food": [
+        {
+            "singular": "hot wings",
+            "plural": "hot wings"
+        },
+        {
+            "singular": "soft pretzels with cheese",
+            "plural": "soft pretzels with cheese"
+        },
+        {
+            "singular": "bacon cheeseburger",
+            "plural": "bacon cheeseburgers"
+        },
+        {
+            "singular": "french fries",
+            "plural": "french fries"
+        },
+        {
+            "singular": "nachos and cheese",
+            "plural": "nachos and cheese"
+        },
+        {
+            "singular": "mozzarella sticks",
+            "plural": "mozzarella sticks"
+        },
+        {
+            "singular": "pizza",
+            "plural": "pizzas"
+        },
+        {
+            "singular": "onion rings",
+            "plural": "onion rings"
+        },
+        {
+            "singular": "popcorn shrimp",
+            "plural": "popcorn shrimp"
+        },
+        {
+            "singular": "potato skins",
+            "plural": "potato skins"
+        },
+        {
+            "singular": "brick",
+            "plural": "bricks"
+        },
+        {
+            "singular": "caviar",
+            "plural": "caviar"
+        },
+        {
+            "singular": "taco",
+            "plural": "tacos"
+        },
+        {
+            "singular": "hot dog",
+            "plural": "hot dogs"
+        },
+        {
+            "singular": "sandwich",
+            "plural": "sandwiches"
+        },
+        {
+            "singular": "salad",
+            "plural": "salads"
+        },
+        {
+            "singular": "burrito",
+            "plural": "burritos"
+        },
+        {
+            "singular": "ice cream sandwich",
+            "plural": "ice cream sandwiches"
+        },
+        {
+            "singular": "chicken nuggets",
+            "plural": "chicken nuggets"
+        },
+        {
+            "singular": "fish filet",
+            "plural": "fish filets"
+        },
+        {
+            "singular": "pound cake",
+            "plural": "pound cakes"
+        },
+        {
+            "singular": "corn dog",
+            "plural": "corn dogs"
+        },
+        {
+            "singular": "omelette",
+            "plural": "omelettes"
+        },
+        {
+            "singular": "lasagna",
+            "plural": "lasagna"
+        }
+    ],
+    "containers": [
+        {
+            "singular": "a plate of",
+            "plural": "plates of"
+        },
+        {
+            "singular": "a tray of",
+            "plural": "trays of"
+        },
+        {
+            "singular": "a cart of",
+            "plural": "carts of"
+        },
+        {
+            "singular": "a handful of",
+            "plural": "handfuls of"
+        },
+        {
+            "singular": "a bucket of",
+            "plural": "buckets of"
+        },
+        {
+            "singular": "a dump truck of",
+            "plural": "dump trucks of"
+        },
+        {
+            "singular": "a cargo container of",
+            "plural": "cargo containers of"
+        },
+        {
+            "singular": "a mountain of",
+            "plural": "mountains of"
+        }
+    ],
+    "groupQuantities": [
+        "some",
+        "a bunch of",
+        "a few",
+        "a ridiculous number of",
+        "way too many",
+        "forty five",
+        "five trillion",
+        "three and a a quarter",
+        "several",
+        "a heaping pile of",
+        "a disturbing amount of",
+        "an inconspicuous amount of"
+    ],
+    "mysteryIngredients": [
+        "bricks",
+        "tube socks",
+        "mustard",
+        "lettuce",
+        "tomato",
+        "bacon",
+        "grease",
+        "jalapeno",
+        "Jolly Ranchers",
+        "cheese",
+        "burger",
+        "whole grain",
+        "lip balm",
+        "batteries",
+        "spinach",
+        "PokeBrocks",
+        "5 Gum",
+        "tabasco sauce",
+        "A1 sauce",
+        "dirt",
+        "lump of coal",
+        "ketchup",
+        "onion",
+        "toaster strudel",
+        "jelly beans",
+        "Travis Scott",
+        "Fortnite",
+        "nuclear waste",
+        "snow",
+        "sand",
+        "snad",
+        "a 2003 Nissan Altima's passenger rear door",
+        "cough drops",
+        "cinnamon",
+        "Etch-a-Sketch",
+        "hellfire missiles"
+    ],
+    "serviceMessages": [
+        "Eat up!",
+        "Eat it while it's hot!",
+        "Eat it while it's cold!",
+        "Eat.",
+        "Here you go! I made it myself.",
+        "This is a local specialty.",
+        "I learned this one from a friend.",
+        "Hope you've got cash!",
+        "This may be your final meal, so make it last!",
+        "Don't say I didn't give you what you asked for!",
+        "Don't let the door hit you on the way out!",
+        "Pay up or put em up.",
+        "Watch out! This __might__ be edible!",
+        "Clear the runway everyone!",
+        "Don't get in my way again.",
+        "The trick is not to look at it too hard.",
+        "Savor the pain, it is good!",
+        "Careful, or it'll all go to your thighs.",
+        "I hope you'll be okay after this, I gotta get paid!",
+        "Don't worry, I'll call the ambulance.",
+        "Sometimes life gives you lemons, sometimes it's charcoal briquettes.",
+        "Oh, you said you wanted __food__. My mistake.",
+        "This is my mother's recipe.",
+        "Yo...Can I have some of that?",
+        "God I wish that were me."
+    ]
+}

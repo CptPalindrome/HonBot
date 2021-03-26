@@ -51,6 +51,34 @@
         {
             "name": "White Claw",
             "namePlural": "White Claws"
+        },
+        {
+            "name": "Caprese Martini",
+            "namePlural": "Caprese Martinis"
+        },
+        {
+            "name": "Sunny D (Tangy Original)",
+            "namePlural": "Sunny D (Tangy Original)"
+        },
+        {
+            "name": "moonshine",
+            "namePlural": "moonshine"
+        },
+        {
+            "name": "Glyphid Slammer",
+            "namePlural": "Glyphid Slammers"
+        },
+        {
+            "name": "refined petrolium",
+            "namePlural": "refined petrolium"
+        },
+        {
+            "name": "Fireball",
+            "namePlural": "Fireball"
+        },
+        {
+            "name": "coffee",
+            "namePlural": "coffees"
         }
     ],
     "containers": [
@@ -85,6 +113,18 @@
         {
             "singular": "a flask of",
             "plural": "flasks of"
+        },
+        {
+            "singular": "an aquarium of",
+            "plural": "aquariums of"
+        },
+        {
+            "singular": "a solo cup of",
+            "plural": "solo cups of"
+        },
+        {
+            "singular": "a flagon of",
+            "plural": "flagons of"
         }
     ],
     "groupQuantities": [
@@ -94,13 +134,12 @@
         "a ridiculous number of",
         "way too many",
         "forty five",
-        "an entire horse's worth of",
-        "a cornucopia of",
-        "an abundance of",
+        "six trillion",
         "three and a half",
         "several",
         "a heaping pile of",
-        "a disturbing amount of"
+        "a disturbing amount of",
+        "an inconspicuous amount of"
     ],
     "mysteryIngredients": [
         "soy sauce",
@@ -138,7 +177,18 @@
         "4 Loco",
         "tonic water",
         "soda water",
-        "malt liquor"
+        "malt liquor",
+        "piss",
+        "8% milk",
+        "battery acid",
+        "tears",
+        "holy water",
+        "sodium chloride",
+        "mayonnaise",
+        "horseradish",
+        "crude oil",
+        "cherries",
+        "napalm"
     ],
     "serviceMessages": [
         "Enjoy.",
@@ -162,6 +212,8 @@
         "Hope you like it!",
         "Try to keep it __inside__ your body.",
         "What goes down need not come up.",
-        "Let's not get a replay of __last__ time."
+        "Let's not get a replay of __last__ time.",
+        "You're my #1 customer!",
+        "Okay you asked for it, buddy."
     ]
 }
