@@ -69,7 +69,7 @@ client.on('message', msg => {
                     break;
 
                 case 'help food':
-                    msg.channel.send(`You can use h.food to get a random food order that will be 100% super tasty. You can put "mystery" and/or "group"/"round" after to get some other results!`);
+                    msg.channel.send(`You can use h.food to get a random food order that will be 100% super tasty. You can put "plain" and/or "group"/"round" after to get some other results!`);
                     break;
 
                 case 'help drink':

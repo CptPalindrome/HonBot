@@ -74,6 +74,8 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Put "mystery" and/or "group" (alt. "round") after the call to get some wilder results!
 
+- For the food command, replace "mystery" with "plain" to remove sides and whatnot.
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
