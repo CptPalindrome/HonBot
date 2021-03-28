@@ -382,7 +382,7 @@ client.on('message', msg => {
                 }
                 let foodStr = "";
                 if (options) {
-                    if (options.includes("mystery")) {
+                    if (options.includes("plain")) {
                         if (options.includes("group") || options.includes("round")) {
                             foodStr = serveFood(true, true);
                         }
@@ -813,7 +813,7 @@ function serveFood(isMystery, isGroupOrder) {
     const honbarMessage = food.serviceMessages[Math.floor(Math.random() * food.serviceMessages.length)];
     let foodName = "";
     let outString = "Honbar serves you ";
-    if (isMystery) {
+    if (!isMystery) {
         const mysteriesCopy = [...food.mysteryIngredients];
         let ingredients = [];
         let ingredientNum = 0;
@@ -833,7 +833,7 @@ function serveFood(isMystery, isGroupOrder) {
         if (isGroupOrder) {
             const quantityName = food.groupQuantities[Math.floor(Math.random() * food.groupQuantities.length)];
             foodName = food.food[foodNum].plural;
-            outString += (`__${quantityName}__ __${containerName.plural}__ ***${foodName}***`);
+            outString += (`__${quantityName}__ __${containerName.plural}__ ***${foodName}*** `);
             outString += (`with ***${ingredients.join(", ")}***. *"${honbarMessage}"*`);
         }
         else {
