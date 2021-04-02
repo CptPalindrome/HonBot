@@ -95,6 +95,22 @@
         {
             "singular": "lasagna",
             "plural": "lasagna"
+        },
+        {
+            "singular": "monkey brains",
+            "plural": "monkey brains"
+        },
+        {
+            "singular": "asparagus",
+            "plural": "asparagus"
+        },
+        {
+            "singular": "sauerkraut",
+            "plural": "sauerkraut"
+        },
+        {
+            "singular": "sardines",
+            "plural": "sardines"
         }
     ],
     "containers": [
@@ -129,6 +145,14 @@
         {
             "singular": "a mountain of",
             "plural": "mountains of"
+        },
+        {
+            "singular": "a trough of",
+            "plural": "troughs of"
+        },
+        {
+            "singular": "a wheelbarrow of",
+            "plural": "wheelbarrows of"
         }
     ],
     "groupQuantities": [
@@ -181,7 +205,9 @@
         "cough drops",
         "cinnamon",
         "Etch-a-Sketch",
-        "hellfire missiles"
+        "hellfire missiles",
+        "pickled eggs",
+        "toothpaste"
     ],
     "serviceMessages": [
         "Eat up!",
@@ -208,6 +234,8 @@
         "Oh, you said you wanted __food__. My mistake.",
         "This is my mother's recipe.",
         "Yo...Can I have some of that?",
-        "God I wish that were me."
+        "God I wish that were me.",
+        "Sorry half of it is missing, it looked really good.",
+        "Trust me, this'll hurt worse coming out than going in."
     ]
 }

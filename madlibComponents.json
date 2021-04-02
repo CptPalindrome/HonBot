@@ -1044,6 +1044,11 @@
             "present": "breathe",
             "past": "breathed",
             "ing": "breathing"
+        },
+        {
+            "present": "bang tunes left",
+            "past": "banged tunes left",
+            "ing": "bangin tunes left"
         }
     ],
     "adjectives": [

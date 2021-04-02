@@ -784,6 +784,9 @@ function serveDrink(isMystery, isGroupOrder) {
             ingredients.push(mysteriesCopy[ingredientNum]);
             mysteriesCopy.splice(ingredientNum, 1);
         }
+
+        ingredients[ingredients.length - 1] = 'and ' + ingredients[ingredients.length - 1];
+
         if (isGroupOrder) {
             const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
             outString += (`__${quantityName}__ __${containerName.plural}__ ***${ingredients.join(", ")}***. *"${honbarMessage}"*`);
@@ -819,17 +822,14 @@ function serveFood(isMystery, isGroupOrder) {
         let ingredientNum = 0;
         const ingredientCount = 3 + Math.floor(Math.random() * 4);
         const foodNum = Math.floor(Math.random() * drinks.drinks.length);
-        if (!isGroupOrder) {
-            
-        }
-        else {
-            
-        }
         for (let i = 0; i < ingredientCount; i++) {
             ingredientNum = Math.floor(Math.random() * mysteriesCopy.length)
             ingredients.push(mysteriesCopy[ingredientNum]);
             mysteriesCopy.splice(ingredientNum, 1);
         }
+        
+        ingredients[ingredients.length - 1] = 'and ' + ingredients[ingredients.length - 1];
+
         if (isGroupOrder) {
             const quantityName = food.groupQuantities[Math.floor(Math.random() * food.groupQuantities.length)];
             foodName = food.food[foodNum].plural;
