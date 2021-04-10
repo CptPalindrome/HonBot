@@ -1544,8 +1544,9 @@
         },
         {
             "s": "Yeah, can I get uhhhh, {n1}, and can you put {a1} {n1pl} on it?",
-            "n": 2,
-            "a": 1
+            "n": 1,
+            "a": 1,
+            "npl": 1
         },
         {
             "s": "The only way to {v1} {p1} is with a(n) {a1} {n1}.",
