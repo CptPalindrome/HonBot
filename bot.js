@@ -1,4 +1,4 @@
-const { Client } = require('discord.js');
+const { Client, MessageAttachment } = require('discord.js');
 const auth = require('./auth.json');
 const winston = require('winston');
 const moment = require('moment');
@@ -46,6 +46,11 @@ client.on('message', msg => {
 
                 case 'dr':
                     msg.channel.send(`<:dontread:675498364040642576> __DON'T__ https://youtu.be/DtAiDUymlBk __READ__ <:dontread:675498364040642576>`);
+                    break;
+
+                case 'h':
+                    const attachment = new MessageAttachment('./media/h.gif');
+                    msg.channel.send(attachment);
                     break;
                 
                 case 'git':
