@@ -1,4 +1,4 @@
-const { Client, Attachment } = require('discord.js');
+const { Client } = require('discord.js');
 const auth = require('./auth.json');
 const winston = require('winston');
 const moment = require('moment');
@@ -50,11 +50,6 @@ client.on('message', msg => {
                 
                 case 'git':
                     msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
-                    break;
-
-                case 'h':
-                    const attachment = new Attachment('./media/h.gif');
-                    msg.channel.send(attachment);
                     break;
 
                 case 'help':
