@@ -1774,7 +1774,7 @@
             "aer": 1
         },
         {
-            "s": "I've never seen someone {a1er} than {p1} when they were at {l1} with {p2}.",
+            "s": "I've never seen someone more {a1er} than {p1} when they were at {l1} with {p2}.",
             "aer": 1,
             "p": 2,
             "l": 1
