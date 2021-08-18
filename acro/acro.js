@@ -163,7 +163,7 @@ class Acro {
             else if (player.votes == highScore) {
                 winners.push(player);
             }
-            outString += `${index + 1}. ${player.acro} -${player.username} (${player.votes} vote(s))\n`
+            outString += `${index + 1}. ${player.acro} -${player.username} (${player.votes})\n`
         });
         if (winners.length === 1) {
             winner = winners[0];
