@@ -157,6 +157,7 @@ class Acro {
         this.players.forEach((player, index) => {
             if (player.votes > highScore) {
                 highScore = player.votes;
+                winners = [];
                 winners.push(player);
             }
             else if (player.votes == highScore) {
@@ -169,12 +170,12 @@ class Acro {
         }
         else if (winners.length > 1) {
             let names = '';
-            winners.forEach((player, index) => {
-                names += `${winners[index].username}, `;
+            winners.forEach((player) => {
+                names += `${player.username}, `;
             })
-            winner = {username: `${names.substr(0,names.length - 1)}`, votes: `${winners[0].votes}`};
+            winner = {username: `${names.substr(0,names.length - 1)}`, votes: `${highScore}`};
         }
-        outString = `\`\`\`The winner(s): ${winner.username} with ${winner.votes} vote(s)! \n\n${outString}\`\`\``
+        outString = `\`\`\`The winner(s): ${winner.username} with ${highScore} vote(s)! \n\n${outString}\`\`\``
         this.gameChannel.send(outString);
         this.reset();
         return;
