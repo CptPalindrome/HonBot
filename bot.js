@@ -85,6 +85,10 @@ client.on('message', msg => {
                     case 'help drink':
                         msg.channel.send(`You can use h.drink to get a delicious drink that will satiate your thirst guaranteed. You can put "mystery" and/or "group"/"round" after to get some other results!`);
                         break;
+
+                    case 'help acro':
+                        msg.channel.send(`Enter a message that has the same number of words that start with the letters provided. Make sure not to use too many spaces! It'll not work!`);
+                        break;
                     
                     case 'bljk':
                         if(gameIsStarted()) {

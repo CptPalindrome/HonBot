@@ -128,17 +128,17 @@ class Acro {
 
     voting(voteTime) {
         this.gameState = 'voting';
-        this.players = this.shufflePlayers(this.players);
-        let outString = '';
-        this.players.forEach((player, index) => {
-            outString += `${index + 1}. ${player.acro}\n`
-        });
-        this.gameChannel.send(`\`\`\`Vote now! (${voteTime} seconds)\n${outString}\`\`\``);
         if (this.players.length === 0) {
             this.gameChannel.send(`\`No submissions found. Ending game.\``);
             this.reset();
             return;
         }
+        this.players = this.shufflePlayers(this.players);
+        let outString = '';
+        this.players.forEach((player, index) => {
+            outString += `${index + 1}. ${player.acro}\n`
+        });
+        this.gameChannel.send(`\`\`\`Vote now! (${voteTime} seconds)\n${outString}\`\`\``)
         setTimeout(() => {
             this.putResults();
         }, voteTime * 1000);

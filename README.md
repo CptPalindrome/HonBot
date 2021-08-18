@@ -76,6 +76,12 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - For the food command, replace "mystery" with "plain" to remove sides and whatnot.
 
+### acro
+
+- Honbar will provide a series of letters ranging from 3-5 letters long.
+
+- You enter words that match the pattern (as if an acronym) and then vote once the submission period is over. Who will win!?
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
@@ -95,3 +101,7 @@ Feel free to fork this repo and modify it to your heart's content.
 ### help food/drink
 
 - Tells you a little extra about the food and drink commands. Not much though.
+
+### help acro
+
+- Tells you about the acro command.
