@@ -2,3 +2,5 @@
 auth.json
 /HonLogs/*
 node_modules/
+/.vscode
+envVars.json
