@@ -1,4 +1,5 @@
 let Player = require('./player.js');
+let bannedWords = require('./bannedwords.json');
 
 /** GAMEFLOW: 
  * Send a message that contains words that start with the provided letters in order.
@@ -154,6 +155,7 @@ class Acro {
         let highScore = 0;
         let winners = [];
         let winner = null;
+        this.sortPlayers();
         this.players.forEach((player, index) => {
             if (player.votes > highScore) {
                 highScore = player.votes;
@@ -182,11 +184,21 @@ class Acro {
     }
 
     generateAcronym() {
-        const acroLength = 3 + Math.floor(Math.random() * 3);
+        let acroUnsafe = false;
         let acronym = '';
-        for (let i = 0; i < acroLength; i++) {
-            acronym += this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
-        }
+        do {
+            const acroLength = 3 + Math.floor(Math.random() * 3);
+            for (let i = 0; i < acroLength; i++) {
+                acronym += this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
+            }
+            acroUnsafe = false;
+            bannedWords.bannedWords.forEach(word => {
+                if (word === acronym) {
+                    acroUnsafe = true;
+                }
+            });
+        } while(acroUnsafe);
+        
         this.acro = acronym;
     }
 
@@ -199,6 +211,23 @@ class Acro {
         }
         return array;
     };
+
+    sortPlayers() {
+        this.players.sort(( a, b ) => {
+            let num1 = a.votes;
+            let num2 = b.votes;
+      
+            if (num1 > num2) {
+                return -1;
+            }
+      
+            if (num1 < num2) {
+                return 1;
+            }
+      
+            return 0;
+            });
+    }
 
     reset() {
         this.gameState = 'none';
