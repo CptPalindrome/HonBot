@@ -17,6 +17,7 @@ class Acro {
         this.gameState = 'none';
         this.acro = '';
         this.alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        this.weights = [9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1];
     }
     
     acroStart(channel, writeTime, voteTime) {
@@ -186,10 +187,11 @@ class Acro {
     generateAcronym() {
         let acroUnsafe = false;
         let acronym = '';
+        let weighted = this.weightedAlphabet();
         do {
             const acroLength = 3 + Math.floor(Math.random() * 3);
             for (let i = 0; i < acroLength; i++) {
-                acronym += this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
+                acronym += weighted[Math.floor(Math.random() * weighted.length)];
             }
             acroUnsafe = false;
             bannedWords.bannedWords.forEach(word => {
@@ -200,6 +202,16 @@ class Acro {
         } while(acroUnsafe);
         
         this.acro = acronym;
+    }
+
+    weightedAlphabet() {
+        let weightedLetters = [];
+        this.alphabet.forEach((letter, index) => {
+            for (let i = 0; i < this.weights[index]; i++) {
+                weightedLetters.push(letter);
+            }
+        });
+        return weightedLetters;
     }
 
     shufflePlayers(array) {
