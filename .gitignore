@@ -4,3 +4,4 @@ auth.json
 node_modules/
 /.vscode
 envVars.json
+test.js

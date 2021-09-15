@@ -1,4 +1,4 @@
-const { Client, MessageAttachment } = require('discord.js');
+const { Client, MessageAttachment, Message } = require('discord.js');
 const envVars = require('./envVars.json');
 const auth = require('./auth.json');
 const winston = require('winston');
@@ -20,6 +20,7 @@ let acro = new Acro;
 let handInProgress = false;
 let gameStarted = false;
 let currentGameChannel;
+let fifteen = false;
 
 const logger = winston.createLogger({
     format: winston.format.simple(),
@@ -30,9 +31,9 @@ const logger = winston.createLogger({
 });
 
 client.on('message', msg => {
+    let str = msg.content;
     if(!envVars.TEST_MODE) {
         if(msg.author.id != '266744954922074112') {
-            let str = msg.content;
             if(str.startsWith(prefix)) {
                 str = str.substr(prefix.length);
                 switch(str) {
@@ -56,6 +57,12 @@ client.on('message', msg => {
                     case 'h':
                         const attachment = new MessageAttachment('./media/h.gif');
                         msg.channel.send(attachment);
+                        break;
+
+                    case '15':
+                        if (fifteen) {
+                            msg.channel.send(new MessageAttachment('./media/15.png'));
+                        }
                         break;
                     
                     case 'git':
@@ -904,5 +911,15 @@ function serveFood(isMystery, isGroupOrder) {
     }
     return outString;
 }
+
+client.on('ready', () => {
+    if(moment().format('D') === '15') {
+        fifteen = true;
+        client.channels.cache.find(x => x.id == '452011709859627019').send(new MessageAttachment('./media/15.png')).then(msg => {
+            msg.react('1️⃣');
+            msg.react('5️⃣');
+        });
+    }
+});
 
 client.login(auth.token);
