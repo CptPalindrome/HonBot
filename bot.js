@@ -917,8 +917,7 @@ client.on('ready', () => {
     let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
     if(moment().format('D') === '15' && !fifteenSent) {
         fifteen = true;
-        //test channel, remove
-        client.channels.cache.find(x => x.id == '654431441371004938').send('15.png').then(msg => {
+        client.channels.cache.find(x => x.id == '452011709859627019').send(new MessageAttachment('./media/15.png')).then(msg => {
             msg.react('1️⃣');
             msg.react('5️⃣');
         });
