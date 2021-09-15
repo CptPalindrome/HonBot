@@ -5,6 +5,7 @@ const winston = require('winston');
 const gameClass = require('./blackjack/gameTest.js');
 const Acro = require('./acro/acro');
 const moment = require('moment');
+const fs = require('fs');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
@@ -913,12 +914,26 @@ function serveFood(isMystery, isGroupOrder) {
 }
 
 client.on('ready', () => {
-    if(moment().format('D') === '15') {
+    let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
+    if(moment().format('D') === '15' && !fifteenSent) {
         fifteen = true;
-        client.channels.cache.find(x => x.id == '452011709859627019').send(new MessageAttachment('./media/15.png')).then(msg => {
+        //test channel, remove
+        client.channels.cache.find(x => x.id == '654431441371004938').send('15.png').then(msg => {
             msg.react('1️⃣');
             msg.react('5️⃣');
         });
+        try {
+            fs.writeFileSync('./fifteenSentStatus.json', '{ "sent": true }');
+        } catch(e) {
+            console.log(e);
+        }
+    }
+    else if(moment().format('D') !== '15') {
+        try {
+            fs.writeFileSync('./fifteenSentStatus.json', '{ "sent": false }');
+        } catch(e) {
+            console.log(e);
+        }
     }
 });
 
