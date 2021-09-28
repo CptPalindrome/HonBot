@@ -36,12 +36,6 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Shorthand for "coin flip," this command is for whenever you can't decide on a binary choice, like whether McDonalds should be called McDoogles or MacDonlads.
 
-### cfsim
-
-- Similarly, this is "coin flip simulation". This will run a bunch of coin flip trials (up to 10,000).
-
-- If no parameter is entered after the command (i.e. h.cfsim 3000), it will simply default to 100 trials. Don't use commas in your numbers. It won't work.
-
 ### gandhi (#)
 
 - Honbar spouts a *totally real* Gandhi quote.

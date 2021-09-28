@@ -29,7 +29,7 @@ class Madlibs {
         this.gameState = 'joining';
         this.story = this.getStory();
         this.gameChannel = channel;
-        this.gameChannel.send('10s to join madlibs. Join with h.j!');
+        this.gameChannel.send('10s to join madlibs. Join with \`h.j\`!');
         setTimeout(() => this.shuffleStart(), 10000);
     }
 
@@ -81,7 +81,6 @@ class Madlibs {
             startIndex = storyText.indexOf('{', randomStartIndex);
             endIndex = storyText.indexOf('}', startIndex);
             if (startIndex === -1 || startIndex >= storyText.length) {
-                console.log('resetting the index to start, awooga');
                 startIndex = storyText.indexOf('{') + 1;
                 endIndex = storyText.indexOf('}');
             }
@@ -89,7 +88,6 @@ class Madlibs {
                 startIndex++;
             }
             this.currentWordType = storyText.substr(startIndex, endIndex - startIndex);
-            console.log(`Current Word Type: ${this.currentWordType} @ ${startIndex}`);
             if(/\d/.test(this.currentWordType)) {
                 this.gameChannel.send(`${this.players[this.playerIndex].username}: \`${this.currentWordType.substr(0, this.currentWordType.length - 1)}\``);
             }

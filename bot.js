@@ -76,7 +76,7 @@ client.on('message', msg => {
                         break;
 
                     case 'help':
-                        msg.channel.send(`Honbar would be happy to assist. The prefix is "h.". My commands are face, git, dr, roulette, cf, cfsim, chris, 8ball, wyd, food, drink, bljk, gandhi, and ngandhi. More info on the readme on github.`);
+                        msg.channel.send(`Honbar would be happy to assist. The prefix is \`h.\`. My commands are \`face\`, \`git\`, \`dr\`, \`roulette\`, \`cf\`, \`chris\`, \`8ball\`, \`wyd\`, \`food\`, \`drink\`, \`bljk\`, \`gandhi\`, \`ngandhi\`, \`acro\`, and \`mad\`/\`madlibs\`. More info on the readme on github or by typing \`h.help {command name}\` for applicable commands.`);
                         break;
 
                     case 'help gandhi':
@@ -92,11 +92,11 @@ client.on('message', msg => {
                         break;
 
                     case 'help food':
-                        msg.channel.send(`You can use h.food to get a random food order that will be 100% super tasty. You can put "plain" and/or "group"/"round" after to get some other results!`);
+                        msg.channel.send(`You can use \`h.food\` to get a random food order that will be 100% super tasty. You can put \`"plain"\` and/or \`"group"\`/\`"round"\` after to get some other results!`);
                         break;
 
                     case 'help drink':
-                        msg.channel.send(`You can use h.drink to get a delicious drink that will satiate your thirst guaranteed. You can put "mystery" and/or "group"/"round" after to get some other results!`);
+                        msg.channel.send(`You can use \`h.drink\` to get a delicious drink that will satiate your thirst guaranteed. You can put \`"mystery"\` and/or \`"group"\`/\`"round"\` after to get some other results!`);
                         break;
 
                     case 'help acro':
@@ -116,7 +116,7 @@ client.on('message', msg => {
                         break;
 
                     case 'help words':
-                        msg.channel.send(`There are several commands for the word example functions. \`h.noun\` for example will output a few nouns from the \`h.wyd\` noun pool. The other commands are as follows:\n \`\`\`h.noun, h.verb, h.iverb, h.adjective, h.adverb, h.people, h.location, and h.preposition\`\`\``);
+                        msg.channel.send(`There are several commands for the word example functions. \`h.noun\` for example will output a few nouns from the \`h.wyd\` noun pool. The other commands are as follows:\n \`h.noun\`, \`h.verb\`, \`h.iverb\`, \`h.adjective\`, \`h.adverb\`, \`h.people\`, \`h.location\`, and \`h.preposition\``);
                         break;
                     
                     case 'bljk':
@@ -125,7 +125,7 @@ client.on('message', msg => {
                         }
                         else {
                             setTimeout(() => play(), 15000);
-                            msg.channel.send(`Game starts in 15 seconds. Use h.join to join the game!`);
+                            msg.channel.send(`Game starts in 15 seconds. Use \`h.join\` to join the game!`);
                             gameStarted = true;
                             currentGameChannel = msg.channel;
                         }
@@ -317,7 +317,7 @@ client.on('message', msg => {
                         break;
 
                     case 'stopmad':
-                        if(madlibs.getState() !== 'none') {
+                        if(madlibs.getState() !== 'none' && madlibs.getState() !== 'joining') {
                             if(!cancelConfirm) {
                                 msg.channel.send(`Are you sure you want to stop? \`h.stopmad\` again to confirm.`);
                                 cancelConfirm = true;
@@ -332,6 +332,7 @@ client.on('message', msg => {
                                 madlibs.reset();
                             }
                         }
+                        break;
     
                     case 'j': 
                         if(madlibs.getState() === 'joining') {
@@ -358,6 +359,10 @@ client.on('message', msg => {
                         break;
     
                     case 'people':
+                        msg.channel.send(`Example people: \`${getWord('people')}\``);
+                        break;
+                    
+                    case 'person':
                         msg.channel.send(`Example people: \`${getWord('people')}\``);
                         break;
                     
@@ -552,33 +557,6 @@ client.on('message', msg => {
                     msg.channel.send(foodStr);
                 }
 
-                if(str.startsWith('cfsim')) {
-                    let coinSimArgs = str.split(' ');
-                    let simulationCount;
-                    if(coinSimArgs.length == 1) {
-                        simulationCount = 100;
-                    }
-
-                    else if(coinSimArgs.length > 1) {
-                        simulationCount = coinSimArgs[1];
-                        if(simulationCount > 10000) {
-                            simulationCount = 10000;
-                        }
-                    }
-                    let coinSim;
-                    let headsCount = 0;
-                    let tailsCount = 0;
-                    for (i = 0; i < simulationCount; i++) {
-                        coinSim = Math.floor(Math.random() * 2);
-                        if(coinSim) {
-                            headsCount++;
-                        }
-                        else {
-                            tailsCount++;
-                        }
-                    }
-                    msg.channel.send(`In **${simulationCount}** trials, it was heads **${headsCount}** times and tails **${tailsCount}** times.`);
-                }
             }
             if (acro.getState() === 'writing') {
                 if (acro.playerCanJoin(msg.author.id, str)) {

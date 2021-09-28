@@ -6,3 +6,8 @@ node_modules/
 envVars.json
 test.js
 eventuality.json
+transcriptIn.txt
+transcriptOut.txt
+fifteenSentStatus.json
+auth.json
+package-lock.json
