@@ -395,7 +395,8 @@
         "Deep Leffen",
         "Hungrybox",
         "Known Terrorist Tom",
-        "Steve Gorman"
+        "Steve Gorman",
+        "all 23 rascals"
     ],
     "locations": [
         "Brazil",
@@ -1750,7 +1751,7 @@
             "npl": 1
         },
         {
-            "s": "Don't forget {v1} the homies goodnight.",
+            "s": "Don't forget to {v1} the homies goodnight.",
             "v": 1
         },
         {

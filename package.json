@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.17.3",
     "discord.js": "^12.5.3",
     "moment": "^2.29.1",
+    "npm": "^7.23.0",
     "winston": "^3.3.3"
   }
 }

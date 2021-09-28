@@ -4,6 +4,7 @@ const auth = require('./auth.json');
 const winston = require('winston');
 const gameClass = require('./blackjack/gameTest.js');
 const Acro = require('./acro/acro');
+const Madlibs = require('./madlibs/madlibs');
 const moment = require('moment');
 const fs = require('fs');
 const quotes = require('./gandhiQuotes.json');
@@ -18,6 +19,8 @@ const prefix = 'h.';
 
 let game = new gameClass;
 let acro = new Acro;
+let madlibs = new Madlibs;
+let isMad = false;
 let handInProgress = false;
 let gameStarted = false;
 let currentGameChannel;
@@ -480,14 +483,109 @@ client.on('message', msg => {
     }
     //TESTING CODE ZONE
     else {
+        if(msg.author.id != '266744954922074112') {
+
+        let hasPrefix;
         if(str.startsWith(prefix)) {
+            hasPrefix = true;
             str = str.substr(prefix.length);
             switch(str) {
+                case 'mad':
+                    if(madlibs.getState() === 'none') {
+                        if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
+                            msg.channel.send(`Yeah, I'm mad`);
+                            madlibs.setMad(true);
+                        }
+
+                        else if(madlibs.isMad) {
+                            let rand = Math.floor(Math.random() * 10);
+                            if(rand === 1 || rand === 3) {
+                                msg.channel.send(`Still mad`);
+                            }
+                            else if(rand === 2) {
+                                msg.channel.send(`Less mad, but try again.`);
+                                madlibs.setMad(false);
+                            }
+                            else {
+                                madlibs.madlibsStart(msg.channel);
+                                madlibs.setMad(false);    
+                            }
+                        }
+                        
+                        else {
+                            madlibs.madlibsStart(msg.channel);
+                            madlibs.setMad(false);
+                        }
+                    }
+                    break;
+
+                case 'j': 
+                    if(madlibs.getState() === 'joining') {
+                        if (madlibs.playerCanJoin(msg.author.id)) {
+                            madlibs.addPlayer(msg.author.id, msg.author.username);
+                            msg.channel.send(`${msg.author.username} has joined.`);
+                        }
+                    }
+                    break;
+
+                case 'votekick':
+                    if(madlibs.getState() === 'waitingForWord' && !madlibs.playerCanJoin(msg.author.id))
+                    madlibs.voteKick();
+                    break;
+
+                case 'pass':
+                    if(madlibs.getState() === 'waitingForWord' && madlibs.verifyInput(msg.author.id)) {
+                        madlibs.pass();
+                    }
+                    break;
+
+                case 'noun':
+                    msg.channel.send(`Example nouns: \`${getWord('noun')}\``);
+                    break;
+
+                case 'people':
+                    msg.channel.send(`Example people: \`${getWord('people')}\``);
+                    break;
+                
+                case 'location':
+                    msg.channel.send(`Example locations: \`${getWord('location')}\``);
+                    break;
+                
+                case 'verb':
+                    msg.channel.send(`Example verbs: \`${getWord('verb')}\``);
+                    break;
+                
+                case 'iverb':
+                    msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive')}\``);
+                    break;
+                
+                case 'adjective':
+                    msg.channel.send(`Example adjectives: \`${getWord('adjective')}\``);
+                    break;
+
+                case 'adverb':
+                    msg.channel.send(`Example adverbs: \`${getWord('adverb')}\``);
+                    break;
+
+                case 'preposition':
+                    msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
+                    break;
+
                 case 'test':
                     msg.reply(`yeahhh we testin`);
                     break;
             }
         }
+        if(madlibs.getState() === 'waitingForWord' && !hasPrefix) {
+            if(!str.includes('{') && !str.includes('}')) {
+                madlibs.fillBlank(msg.author.id, str);
+            }
+            else {
+                if (madlibs.verifyInput(msg.author.id))
+                msg.reply(`Do not put curly braces ( '{' or '}' ) in your input!`);
+            }
+        }
+    }
     }
 });
 
@@ -913,13 +1011,95 @@ function serveFood(isMystery, isGroupOrder) {
     return outString;
 }
 
+function getWord(type) {
+    const nounsCopy = [...madComps.nouns];
+    const peopleCopy = [...madComps.people];
+    const locationsCopy = [...madComps.locations];
+    const verbsCopy = [...madComps.verbs];
+    const iverbsCopy = [...madComps.verbsIntransitive];
+    const adjectivesCopy = [...madComps.adjectives];
+    const adverbsCopy = [...madComps.adverbs];
+    const prepositionsCopy = [...madComps.prepositions];
+    let wordsArr = [];
+    let randomNum;
+    let numOfWords = 5;
+
+    switch(type) {
+        case 'noun':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * nounsCopy.length);
+                wordsArr.push(nounsCopy[randomNum].singular);
+                nounsCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'people':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * peopleCopy.length);
+                wordsArr.push(peopleCopy[randomNum]);
+                peopleCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'location':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * locationsCopy.length);
+                wordsArr.push(locationsCopy[randomNum]);
+                locationsCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'verb':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * verbsCopy.length);
+                wordsArr.push(verbsCopy[randomNum].present);
+                verbsCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'intransitive':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * iverbsCopy.length);
+                wordsArr.push(iverbsCopy[randomNum].present);
+                iverbsCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'adjective':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * adjectivesCopy.length);
+                wordsArr.push(adjectivesCopy[randomNum].regular);
+                adjectivesCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'adverb':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * adverbsCopy.length);
+                wordsArr.push(adverbsCopy[randomNum]);
+                adverbsCopy.splice(randomNum, 1);
+            }
+            break;
+
+        case 'preposition':
+            for(let i = 0; i < numOfWords; i++) {
+                randomNum = Math.floor(Math.random() * prepositionsCopy.length);
+                wordsArr.push(prepositionsCopy[randomNum]);
+                prepositionsCopy.splice(randomNum, 1);
+            }
+            break;
+    } 
+    return wordsArr.join(', ');
+}
+
 client.on('ready', () => {
     let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
     if(moment().format('D') === '15' && !fifteenSent) {
         fifteen = true;
         client.channels.cache.find(x => x.id == '452011709859627019').send(new MessageAttachment('./media/15.png')).then(msg => {
-            msg.react('1️⃣');
-            msg.react('5️⃣');
+            msg.react('1️⃣')
+                .then(() => msg.react('5️⃣'))
+                .catch(error => console.error('Reaction FAILURE. No emotions now', error));
         });
         try {
             fs.writeFileSync('./fifteenSentStatus.json', '{ "sent": true }');
