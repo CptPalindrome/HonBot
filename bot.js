@@ -20,7 +20,7 @@ const prefix = 'h.';
 let game = new gameClass;
 let acro = new Acro;
 let madlibs = new Madlibs;
-let isMad = false;
+let cancelConfirm = false;
 let handInProgress = false;
 let gameStarted = false;
 let currentGameChannel;
@@ -315,6 +315,23 @@ client.on('message', msg => {
                             }
                         }
                         break;
+
+                    case 'stopmad':
+                        if(madlibs.getState() !== 'none') {
+                            if(!cancelConfirm) {
+                                msg.channel.send(`Are you sure you want to stop? \`h.stopmad\` again to confirm.`);
+                                cancelConfirm = true;
+                                setTimeout(() => 
+                                {
+                                    cancelConfirm = false;
+                                }, 30000);
+                            }
+                            else { 
+                                msg.channel.send(`Madlibs has been reset.`);
+                                cancelConfirm = false;
+                                madlibs.reset();
+                            }
+                        }
     
                     case 'j': 
                         if(madlibs.getState() === 'joining') {
@@ -582,6 +599,7 @@ client.on('message', msg => {
             if(madlibs.getState() === 'waitingForWord' && !hasPrefix) {
                 if(!str.includes('{') && !str.includes('}')) {
                     madlibs.fillBlank(msg.author.id, str);
+                    cancelConfirm = false;
                 }
                 else {
                     if (madlibs.verifyInput(msg.author.id))
