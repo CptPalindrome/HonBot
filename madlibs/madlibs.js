@@ -3,7 +3,6 @@ const fs = require('fs');
 const corejs = require('core-js');
 let stories = require('./stories.json');
 const { channel } = require('diagnostics_channel');
-const { start } = require('repl');
 
 /** GAMEFLOW: 
  * Collect players who will join until time limit or command? Decide which >:(
@@ -30,8 +29,8 @@ class Madlibs {
         this.gameState = 'joining';
         this.story = this.getStory();
         this.gameChannel = channel;
-        this.gameChannel.send('10s to join madlibs');
-        setTimeout(() => this.shuffleStart(), 1000);
+        this.gameChannel.send('10s to join madlibs. Join with h.j!');
+        setTimeout(() => this.shuffleStart(), 10000);
     }
 
     shuffleStart() {
@@ -41,9 +40,9 @@ class Madlibs {
 
     voteKick() {
         if(this.players.length >= 2) {
-            this.gameChannel.send(`You have 5s to send your answer. Or *perish*.`)
+            this.gameChannel.send(`You have 20s to send your answer. Or *perish*.`)
             this.kickinEm = true;
-            setTimeout(() => this.clutchOrKick(), 5000);
+            setTimeout(() => this.clutchOrKick(), 20000);
         }
     }
 

@@ -102,6 +102,22 @@ client.on('message', msg => {
                     case 'help acro':
                         msg.channel.send(`Enter a message that has the same number of words that start with the letters provided. Make sure not to use too many spaces! It'll not work!`);
                         break;
+
+                    case 'help madlibs':
+                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. Use \`h.help madlibs+\` for extra info and commands.`)
+                        break;
+
+                    case 'help mad':
+                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. Use \`h.help madlibs+\` for extra info and commands.`)
+                        break;
+
+                    case 'help madlibs+':
+                        msg.channel.send(`Calling other honbot commands will not *be* your turn, so feel free to use the new example word commands during your turn (\`h.help words\` for more info). \`h.pass\` if you want to skip your turn, giving the next player a new random prompt from the story. \`h.votekick\` gives the current player 20s to submit or be kicked.`);
+                        break;
+
+                    case 'help words':
+                        msg.channel.send(`There are several commands for the word example functions. \`h.noun\` for example will output a few nouns from the \`h.wyd\` noun pool. The other commands are as follows:\n \`\`\`h.noun, h.verb, h.iverb, h.adjective, h.adverb, h.people, h.location, and h.preposition\`\`\``);
+                        break;
                     
                     case 'bljk':
                         if(gameIsStarted()) {
