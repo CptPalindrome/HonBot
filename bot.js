@@ -35,10 +35,12 @@ const logger = winston.createLogger({
 });
 
 client.on('message', msg => {
+    let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
         if(msg.author.id != '266744954922074112') {
             if(str.startsWith(prefix)) {
+                hasPrefix = true;
                 str = str.substr(prefix.length);
                 switch(str) {
 
@@ -268,6 +270,88 @@ client.on('message', msg => {
                             acro.acroStart(msg.channel);
                         }
                         break;
+
+                    case 'mad':
+                        if(madlibs.getState() === 'none') {
+                            if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
+                                msg.channel.send(`Yeah, I'm mad`);
+                                madlibs.setMad(true);
+                            }
+    
+                            else if(madlibs.isMad) {
+                                let rand = Math.floor(Math.random() * 10);
+                                if(rand === 1 || rand === 3) {
+                                    msg.channel.send(`Still mad`);
+                                }
+                                else if(rand === 2) {
+                                    msg.channel.send(`Less mad, but try again.`);
+                                    madlibs.setMad(false);
+                                }
+                                else {
+                                    madlibs.madlibsStart(msg.channel);
+                                    madlibs.setMad(false);    
+                                }
+                            }
+                            
+                            else {
+                                madlibs.madlibsStart(msg.channel);
+                                madlibs.setMad(false);
+                            }
+                        }
+                        break;
+    
+                    case 'j': 
+                        if(madlibs.getState() === 'joining') {
+                            if (madlibs.playerCanJoin(msg.author.id)) {
+                                madlibs.addPlayer(msg.author.id, msg.author.username);
+                                msg.channel.send(`${msg.author.username} has joined.`);
+                            }
+                        }
+                        break;
+    
+                    case 'votekick':
+                        if(madlibs.getState() === 'waitingForWord' && !madlibs.playerCanJoin(msg.author.id))
+                        madlibs.voteKick();
+                        break;
+    
+                    case 'pass':
+                        if(madlibs.getState() === 'waitingForWord' && madlibs.verifyInput(msg.author.id)) {
+                            madlibs.pass();
+                        }
+                        break;
+    
+                    case 'noun':
+                        msg.channel.send(`Example nouns: \`${getWord('noun')}\``);
+                        break;
+    
+                    case 'people':
+                        msg.channel.send(`Example people: \`${getWord('people')}\``);
+                        break;
+                    
+                    case 'location':
+                        msg.channel.send(`Example locations: \`${getWord('location')}\``);
+                        break;
+                    
+                    case 'verb':
+                        msg.channel.send(`Example verbs: \`${getWord('verb')}\``);
+                        break;
+                    
+                    case 'iverb':
+                        msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive')}\``);
+                        break;
+                    
+                    case 'adjective':
+                        msg.channel.send(`Example adjectives: \`${getWord('adjective')}\``);
+                        break;
+    
+                    case 'adverb':
+                        msg.channel.send(`Example adverbs: \`${getWord('adverb')}\``);
+                        break;
+    
+                    case 'preposition':
+                        msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
+                        break;
+        
                 }
 
                 if (str.startsWith('gandhi')) {
@@ -479,6 +563,15 @@ client.on('message', msg => {
                         .catch(console.error);
                 }
             }
+            if(madlibs.getState() === 'waitingForWord' && !hasPrefix) {
+                if(!str.includes('{') && !str.includes('}')) {
+                    madlibs.fillBlank(msg.author.id, str);
+                }
+                else {
+                    if (madlibs.verifyInput(msg.author.id))
+                    msg.reply(`Do not put curly braces ( '{' or '}' ) in your input!`);
+                }
+            }
         }
     }
     //TESTING CODE ZONE
@@ -490,99 +583,9 @@ client.on('message', msg => {
             hasPrefix = true;
             str = str.substr(prefix.length);
             switch(str) {
-                case 'mad':
-                    if(madlibs.getState() === 'none') {
-                        if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
-                            msg.channel.send(`Yeah, I'm mad`);
-                            madlibs.setMad(true);
-                        }
-
-                        else if(madlibs.isMad) {
-                            let rand = Math.floor(Math.random() * 10);
-                            if(rand === 1 || rand === 3) {
-                                msg.channel.send(`Still mad`);
-                            }
-                            else if(rand === 2) {
-                                msg.channel.send(`Less mad, but try again.`);
-                                madlibs.setMad(false);
-                            }
-                            else {
-                                madlibs.madlibsStart(msg.channel);
-                                madlibs.setMad(false);    
-                            }
-                        }
-                        
-                        else {
-                            madlibs.madlibsStart(msg.channel);
-                            madlibs.setMad(false);
-                        }
-                    }
-                    break;
-
-                case 'j': 
-                    if(madlibs.getState() === 'joining') {
-                        if (madlibs.playerCanJoin(msg.author.id)) {
-                            madlibs.addPlayer(msg.author.id, msg.author.username);
-                            msg.channel.send(`${msg.author.username} has joined.`);
-                        }
-                    }
-                    break;
-
-                case 'votekick':
-                    if(madlibs.getState() === 'waitingForWord' && !madlibs.playerCanJoin(msg.author.id))
-                    madlibs.voteKick();
-                    break;
-
-                case 'pass':
-                    if(madlibs.getState() === 'waitingForWord' && madlibs.verifyInput(msg.author.id)) {
-                        madlibs.pass();
-                    }
-                    break;
-
-                case 'noun':
-                    msg.channel.send(`Example nouns: \`${getWord('noun')}\``);
-                    break;
-
-                case 'people':
-                    msg.channel.send(`Example people: \`${getWord('people')}\``);
-                    break;
-                
-                case 'location':
-                    msg.channel.send(`Example locations: \`${getWord('location')}\``);
-                    break;
-                
-                case 'verb':
-                    msg.channel.send(`Example verbs: \`${getWord('verb')}\``);
-                    break;
-                
-                case 'iverb':
-                    msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive')}\``);
-                    break;
-                
-                case 'adjective':
-                    msg.channel.send(`Example adjectives: \`${getWord('adjective')}\``);
-                    break;
-
-                case 'adverb':
-                    msg.channel.send(`Example adverbs: \`${getWord('adverb')}\``);
-                    break;
-
-                case 'preposition':
-                    msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
-                    break;
-
                 case 'test':
                     msg.reply(`yeahhh we testin`);
                     break;
-            }
-        }
-        if(madlibs.getState() === 'waitingForWord' && !hasPrefix) {
-            if(!str.includes('{') && !str.includes('}')) {
-                madlibs.fillBlank(msg.author.id, str);
-            }
-            else {
-                if (madlibs.verifyInput(msg.author.id))
-                msg.reply(`Do not put curly braces ( '{' or '}' ) in your input!`);
             }
         }
     }
