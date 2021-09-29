@@ -29,8 +29,8 @@ class Madlibs {
         this.gameState = 'joining';
         this.story = this.getStory();
         this.gameChannel = channel;
-        this.gameChannel.send('10s to join madlibs. Join with \`h.j\`!');
-        setTimeout(() => this.shuffleStart(), 10000);
+        this.gameChannel.send('15s to join madlibs. Join with \`h.j\`!');
+        setTimeout(() => this.shuffleStart(), 15000);
     }
 
     shuffleStart() {
