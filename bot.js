@@ -112,7 +112,7 @@ client.on('message', msg => {
                         break;
 
                     case 'help madlibs+':
-                        msg.channel.send(`Calling other honbot commands will not *be* your turn, so feel free to use the new example word commands during your turn (\`h.help words\` for more info). \`h.pass\` if you want to skip your turn, giving the next player a new random prompt from the story. \`h.votekick\` gives the current player 20s to submit or be kicked.`);
+                        msg.channel.send(`Calling other honbot commands will not *be* your turn, so feel free to use the new example word commands during your turn (\`h.help words\` for more info). \`h.pass\` if you want to skip your turn, giving the next player a new random prompt from the story. \`h.votekick\` gives the current player 20s to submit or be kicked. \`h.stopmad\` will stop the current game and reset so that it isn't locked out.`);
                         break;
 
                     case 'help words':
