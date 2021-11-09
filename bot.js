@@ -78,7 +78,7 @@ client.on('message', msg => {
                         break;
 
                     case 'help':
-                        msg.channel.send(`Honbar would be happy to assist. The prefix is \`h.\`. My commands are \`face\`, \`git\`, \`dr\`, \`roulette\`, \`cf\`, \`chris\`, \`8ball\`, \`wyd\`, \`food\`, \`drink\`, \`bljk\`, \`gandhi\`, \`ngandhi\`, \`acro\`, and \`mad\`/\`madlibs\`. More info on the readme on github or by typing \`h.help {command name}\` for applicable commands.`);
+                        msg.channel.send(`Honbar would be happy to assist. The prefix is \`h.\`. My commands are \`face\`, \`git\`, \`dr\`, \`roulette\`, \`cf\`, \`chris\`, \`8ball\`, \`wyd\`, \`food\`, \`drink\`, \`bljk\`, \`gandhi\`, \`ngandhi\`, \`acro\`, \`mad\`/\`madlibs\`, and \`sugg\`. More info on the readme on github or by typing \`h.help {command name}\` for applicable commands.`);
                         break;
 
                     case 'help gandhi':
@@ -119,6 +119,14 @@ client.on('message', msg => {
 
                     case 'help words':
                         msg.channel.send(`There are several commands for the word example functions. \`h.noun\` for example will output a few nouns from the \`h.wyd\` noun pool. The other commands are as follows:\n \`h.noun\`, \`h.verb\`, \`h.iverb\`, \`h.adjective\`, \`h.adverb\`, \`h.people\`, \`h.location\`, and \`h.preposition\``);
+                        break;
+
+                    case 'help sugg':
+                        msg.channel.send(`Type in a suggestion afterwards, in the format of TITLE | SUGGESTION TEXT. The title is optional, but recommended for clarity. (the | character separates title/suggestion)`);
+                        break;
+
+                    case 'help banish': 
+                        msg.channel.send(`(ADMIN) Just as the name implies, this command allows you to ban(ish) users from Honbot commands. Undo with unbanish. This exists for a reason. You know who you are.`);
                         break;
                     
                     case 'bljk':
@@ -559,9 +567,8 @@ client.on('message', msg => {
                     msg.channel.send(foodStr);
                 }
 
-                if(str.startsWith('banish') && msg.member.hasPermission('ADMINISTRATOR')) {
+                if(str.startsWith('banish') && checkAdmin(msg)) {
                     str = str.split(' ').slice(1).join(' ');
-                    console.log(str);
                     try {
                         if (str) {
                             addToBlacklist(msg);
@@ -1154,6 +1161,10 @@ function userInBlacklist(id) {
         }
     });
     return flag;
+}
+
+function checkAdmin(msg) {
+    return msg.member.hasPermission('ADMINISTRATOR');
 }
 
 function getWord(type) {

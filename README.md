@@ -80,13 +80,25 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - There's a few functions to print some example words from the madlibscomponents file, see the help command for this below to learn how to find all the functions.
 
+### sugg
+
+- Short for suggestion, this command allows you to enter a suggestion for whatever it may be, a command, a wyd template, a madlibs story, gandhi quote, you name it. Format your submission as TITLE | SUGGESTION and then send it in to get it added. The title is optional but recommended.
+
+### banish
+
+- Follow this command with an @ of a user or multiple users and it will add them to a list to have honbot ignore their commands. This is stored in memory and thus resets on device/honbot reboot. Unbanish command is the same but other way.
+
+### unbanish
+
+- Same as before but backwards.
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
 
 ### help
 
-- Lists all of these useful commands
+- Lists all of these useful commands. Also just type help then a command name for a lot of different ones, I'm tired of adding individual ones here for no reason other than completeness. That said I'm also not removing the ones I've already done here.
 
 ### help gandhi
 
