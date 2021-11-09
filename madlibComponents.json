@@ -435,7 +435,8 @@
         "Boobies",
         "Hallownest",
         "Gooch Terminal",
-        "Musubi's"
+        "Musubi's",
+        "Vapecon 2016"
     ],
     "verbs": [
         {
@@ -1891,6 +1892,11 @@
             "iving": 1,
             "l": 4,
             "p": 3
+        },
+        {
+            "s": "Having {a1} {npl1} is a virtue",
+            "npl": 1,
+            "a": 1
         }
     ]
 }

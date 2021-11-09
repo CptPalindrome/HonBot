@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bot.js",
+    "switch": "node Scripts/switch.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.17.3",
     "discord.js": "^12.5.3",
+    "emailjs-com": "^3.2.0",
     "moment": "^2.29.1",
     "npm": "^7.23.0",
     "winston": "^3.3.3"

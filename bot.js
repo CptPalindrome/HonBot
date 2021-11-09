@@ -1,6 +1,7 @@
 const { Client, MessageAttachment, Message } = require('discord.js');
 const envVars = require('./envVars.json');
 const auth = require('./auth.json');
+const axios = require('axios');
 const winston = require('winston');
 const gameClass = require('./blackjack/gameTest.js');
 const Acro = require('./acro/acro');
@@ -25,6 +26,7 @@ let handInProgress = false;
 let gameStarted = false;
 let currentGameChannel;
 let fifteen = false;
+let blacklistUsers = [];
 
 const logger = winston.createLogger({
     format: winston.format.simple(),
@@ -38,7 +40,7 @@ client.on('message', msg => {
     let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
-        if(msg.author.id != '266744954922074112') {
+        if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id)) {
             if(str.startsWith(prefix)) {
                 hasPrefix = true;
                 str = str.substr(prefix.length);
@@ -557,7 +559,35 @@ client.on('message', msg => {
                     msg.channel.send(foodStr);
                 }
 
+                if(str.startsWith('banish') && msg.member.hasPermission('ADMINISTRATOR')) {
+                    str = str.split(' ').slice(1).join(' ');
+                    console.log(str);
+                    try {
+                        if (str) {
+                            addToBlacklist(msg);
+                            logger.info(`Ban command used: ${str}`);
+                        }
+                    }
+                    catch(e) {
+                        logger.error(e)
+                        msg.react('❌');
+                    }
+                }
+
+                if(str.startsWith('unbanish')) {
+                    str = str.split(' ').slice(1).join(' ');
+                    try {
+                        if (str) {
+                            removeFromBlacklist(msg);
+                        }
+                    }
+                    catch(e) {
+                        logger.error(e)
+                        msg.react('❌');
+                    }
+                }
             }
+            
             if (acro.getState() === 'writing') {
                 if (acro.playerCanJoin(msg.author.id, str)) {
                     acro.addPlayer(msg.author.id, msg.author.username, str);
@@ -566,6 +596,7 @@ client.on('message', msg => {
                         .catch(console.error);
                 }
             }
+
             if (acro.getState() === 'voting') {
                 if (acro.playerCanVote(msg.author.id, str)) {
                     acro.addVoter(msg.author.id, msg.author.username, str);
@@ -574,6 +605,7 @@ client.on('message', msg => {
                         .catch(console.error);
                 }
             }
+
             if(madlibs.getState() === 'waitingForWord' && !hasPrefix) {
                 if(!str.includes('{') && !str.includes('}')) {
                     madlibs.fillBlank(msg.author.id, str);
@@ -598,6 +630,24 @@ client.on('message', msg => {
                 case 'test':
                     msg.reply(`yeahhh we testin`);
                     break;
+            }
+
+            //h.suggestion (user suggested content of any form, be it quotes, stories, etc. Use | as a separator for title vs content)
+            if(str.startsWith('sugg')) {
+                str = str.split(' ').slice(1).join(' ');
+                try {
+                    if (str) {
+                        addSuggestion(str)
+                        msg.react('✅');
+                    }
+                    else {
+                        msg.channel.send(`Type a title (optional) and then put a vertical bar (|) to split the title from the suggestion.`)
+                    }
+                }
+                catch(e) {
+                    logger.error(e)
+                    msg.react('❌');
+                }
             }
         }
     }
@@ -1026,6 +1076,86 @@ function serveFood(isMystery, isGroupOrder) {
     return outString;
 }
 
+function addSuggestion(msg) {
+    let [title, ...content] = msg.split('|');
+    content = content.map(part => part.trim()).join(' ');
+    if (!content) {
+        content = title;
+        title = '';
+    }
+
+    let temp = JSON.parse(fs.readFileSync('./suggestions.json'));
+    temp.suggestions.push({title: title.trim(), content: content});
+    fs.writeFileSync('./suggestions.json', JSON.stringify(temp,null,2));
+}
+
+function emailSuggestions() {
+    let suggestionsList = JSON.parse(fs.readFileSync('./suggestions.json'));
+    let date = moment().format('MM-DD-YYYY');
+    suggestionsList = suggestionsList.suggestions;
+    suggestionsList.forEach((suggestion, index) => {
+        let params = suggestion;
+        params.date = date;
+        params.sugnum = index + 1;
+        axios.post('https://api.emailjs.com/api/v1.0/email/send', {service_id: envVars.serviceid, template_id: envVars.templateid, template_params: params, user_id: envVars.userid})
+        .then(res => {
+            logger.info(`Email ${index} status: ${res.data}`);
+            resetSugg();
+        })
+        .catch(e => {
+            logger.error(`Email ${index} status: ${e.data}`);
+        });
+    })
+}
+
+function resetSugg() {
+    fs.writeFileSync('./suggestions.json', JSON.stringify({
+        suggestions: []
+    }, null, 2));
+}
+
+function suggestionsReady() {
+    let suggestionsList = JSON.parse(fs.readFileSync('./suggestions.json'));
+    if (suggestionsList.suggestions.length > 0) {
+        return true;
+    }
+    return false;
+}
+
+async function addToBlacklist(msg) {
+    if(msg.mentions?.users?.size > 0) {
+        msg?.mentions?.users.forEach(user => {
+            if (user?.id != msg.author?.id) {
+                blacklistUsers.push(user?.id);
+                msg.react('✅');
+            }
+        });
+    }
+}
+
+function removeFromBlacklist(msg) {
+    if(msg.mentions.users.size > 0) {
+        msg.mentions.users.forEach(user => {
+            blacklistUsers.forEach((blstUser, index) => {
+                if (user.id === blstUser) {
+                    blacklistUsers.splice(index, 1);
+                    msg.react('✅');
+                }
+            })
+        });
+    }
+}
+
+function userInBlacklist(id) {
+    let flag = false;
+    blacklistUsers.forEach(userid => {
+        if(userid === id) {
+            flag = true;
+        }
+    });
+    return flag;
+}
+
 function getWord(type) {
     const nounsCopy = [...madComps.nouns];
     const peopleCopy = [...madComps.people];
@@ -1108,6 +1238,9 @@ function getWord(type) {
 }
 
 client.on('ready', () => {
+    if(suggestionsReady()) {
+        emailSuggestions()
+    }
     let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
     if(moment().format('D') === '15' && !fifteenSent) {
         fifteen = true;
