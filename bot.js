@@ -593,6 +593,23 @@ client.on('message', msg => {
                         msg.react('❌');
                     }
                 }
+
+                if(str.startsWith('sugg')) {
+                    str = str.split(' ').slice(1).join(' ');
+                    try {
+                        if (str) {
+                            addSuggestion(str)
+                            msg.react('✅');
+                        }
+                        else {
+                            msg.channel.send(`Type a title (optional) and then put a vertical bar (|) to split the title from the suggestion.`)
+                        }
+                    }
+                    catch(e) {
+                        logger.error(e)
+                        msg.react('❌');
+                    }
+                }
             }
             
             if (acro.getState() === 'writing') {
@@ -637,25 +654,9 @@ client.on('message', msg => {
                 case 'test':
                     msg.reply(`yeahhh we testin`);
                     break;
-            }
+                }
 
             //h.suggestion (user suggested content of any form, be it quotes, stories, etc. Use | as a separator for title vs content)
-            if(str.startsWith('sugg')) {
-                str = str.split(' ').slice(1).join(' ');
-                try {
-                    if (str) {
-                        addSuggestion(str)
-                        msg.react('✅');
-                    }
-                    else {
-                        msg.channel.send(`Type a title (optional) and then put a vertical bar (|) to split the title from the suggestion.`)
-                    }
-                }
-                catch(e) {
-                    logger.error(e)
-                    msg.react('❌');
-                }
-            }
         }
     }
     }
