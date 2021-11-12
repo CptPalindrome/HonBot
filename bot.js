@@ -573,7 +573,7 @@ client.on('message', msg => {
                     try {
                         if (str) {
                             addToBlacklist(msg);
-                            logger.info(`${now()} Ban command used: ${str}`);
+                            logger.info(`${now()} Ban command used: ${msg.mentions?.members.map(member => member.displayName)}`);
                         }
                     }
                     catch(e) {
@@ -586,7 +586,7 @@ client.on('message', msg => {
                     str = str.split(' ').slice(1).join(' ');
                     try {
                         if (str) {
-                            removeFromBlacklist(msg);
+                            removeFromBlacklist(msg, str);
                         }
                     }
                     catch(e) {
@@ -874,7 +874,7 @@ function wyd(msg, number, name) {
     }
 
     if(msg.mentions.users.size > 0) {
-        name = msg.mentions.users.first().username;
+        name = msg.mentions.members.first().displayName;
     }
 
     msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
@@ -1141,7 +1141,7 @@ async function addToBlacklist(msg) {
     }
 }
 
-function removeFromBlacklist(msg) {
+function removeFromBlacklist(msg, str) {
     if(msg.mentions.users.size > 0) {
         msg.mentions.users.forEach(user => {
             blacklistUsers.forEach((blstUser, index) => {
@@ -1151,6 +1151,10 @@ function removeFromBlacklist(msg) {
                 }
             })
         });
+    }
+    else if(str.toUpperCase() === 'ALL') {
+        blacklistUsers = [];
+        msg.react('✅');
     }
 }
 
