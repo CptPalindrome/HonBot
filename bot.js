@@ -31,8 +31,9 @@ let blacklistUsers = [];
 const logger = winston.createLogger({
     format: winston.format.simple(),
     transports: [
-        new winston.transports.File({ filename: './HonLogs/error.log', level: 'error' }),
-        new winston.transports.File({ filename: './HonLogs/combined.log' })
+        new winston.transports.File({ format: winston.format.colorize(), filename: './HonLogs/error.log', level: 'error' }),
+        new winston.transports.File({ format: winston.format.colorize(), filename: './HonLogs/combined.log' }),
+        new winston.transports.Console({ format: winston.format.combine(winston.format.colorize(), winston.format.simple())})
     ]
 });
 
@@ -572,11 +573,11 @@ client.on('message', msg => {
                     try {
                         if (str) {
                             addToBlacklist(msg);
-                            logger.info(`Ban command used: ${str}`);
+                            logger.info(`${now()} Ban command used: ${str}`);
                         }
                     }
                     catch(e) {
-                        logger.error(e)
+                        logger.error(`${now()} ${e}`)
                         msg.react('❌');
                     }
                 }
@@ -589,7 +590,7 @@ client.on('message', msg => {
                         }
                     }
                     catch(e) {
-                        logger.error(e)
+                        logger.error(`${now()} ${e}`)
                         msg.react('❌');
                     }
                 }
@@ -598,7 +599,7 @@ client.on('message', msg => {
                     str = str.split(' ').slice(1).join(' ');
                     try {
                         if (str) {
-                            addSuggestion(str)
+                            addSuggestion(str, msg.author.username)
                             msg.react('✅');
                         }
                         else {
@@ -606,7 +607,7 @@ client.on('message', msg => {
                         }
                     }
                     catch(e) {
-                        logger.error(e)
+                        logger.error(`${now()} ${e}`)
                         msg.react('❌');
                     }
                 }
@@ -646,19 +647,17 @@ client.on('message', msg => {
     else {
         if(msg.author.id != '266744954922074112') {
 
-        let hasPrefix;
-        if(str.startsWith(prefix)) {
-            hasPrefix = true;
-            str = str.substr(prefix.length);
-            switch(str) {
-                case 'test':
-                    msg.reply(`yeahhh we testin`);
-                    break;
+            let hasPrefix;
+            if(str.startsWith(prefix)) {
+                hasPrefix = true;
+                str = str.substr(prefix.length);
+                switch(str) {
+                    case 'test':
+                        msg.reply(`yeahhh we testin`);
+                        break;
                 }
-
-            //h.suggestion (user suggested content of any form, be it quotes, stories, etc. Use | as a separator for title vs content)
+            }
         }
-    }
     }
 });
 
@@ -1084,7 +1083,7 @@ function serveFood(isMystery, isGroupOrder) {
     return outString;
 }
 
-function addSuggestion(msg) {
+function addSuggestion(msg, user) {
     let [title, ...content] = msg.split('|');
     content = content.map(part => part.trim()).join(' ');
     if (!content) {
@@ -1093,7 +1092,8 @@ function addSuggestion(msg) {
     }
 
     let temp = JSON.parse(fs.readFileSync('./suggestions.json'));
-    temp.suggestions.push({title: title.trim(), content: content});
+    temp.suggestions.push({title: title.trim(), content: content, suggester: user});
+    logger.info(`${user} @ ${moment().format('MMM D YYYY, h:mm a')} -- ${title} | ${content}`);
     fs.writeFileSync('./suggestions.json', JSON.stringify(temp,null,2));
 }
 
@@ -1107,11 +1107,11 @@ function emailSuggestions() {
         params.sugnum = index + 1;
         axios.post('https://api.emailjs.com/api/v1.0/email/send', {service_id: envVars.serviceid, template_id: envVars.templateid, template_params: params, user_id: envVars.userid})
         .then(res => {
-            logger.info(`Email ${index} status: ${res.data}`);
+            logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')} Email ${index + 1} status: ${res.data}`);
             resetSugg();
         })
         .catch(e => {
-            logger.error(`Email ${index} status: ${e.data}`);
+            logger.error(`${moment().format('MMM D YYYY, h:mm:ss a')} Email ${index + 1} status: ${e.data}`);
         });
     })
 }
