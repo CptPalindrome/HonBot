@@ -3,6 +3,8 @@ let Card = require('./card.js');
 let saveData = require('./playerSaveData.json');
 const fs = require('fs');
 
+//THIS FILE IS DEFUNCT WHY IS IT STILL HERE
+
 /** RULES: 
  * Standard Win: 1:1 (Get your bet back & same amount from house. Don't double it if you don't subtract their current bet. If you don't subtract their current bet, just add their bet to their total)
  * Dealt Blackjack 3:2 (1.5x winnings. Same other rules as regular win)

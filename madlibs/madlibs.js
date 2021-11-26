@@ -89,10 +89,10 @@ class Madlibs {
             }
             this.currentWordType = storyText.substr(startIndex, endIndex - startIndex);
             if(/\d/.test(this.currentWordType)) {
-                this.gameChannel.send(`${this.players[this.playerIndex].username}: \`${this.currentWordType.substr(0, this.currentWordType.length - 1)}\``);
+                this.gameChannel.send(`${this.players[this.playerIndex].userObj}: \`${this.currentWordType.substr(0, this.currentWordType.length - 1)}\``);
             }
             else {
-                this.gameChannel.send(`${this.players[this.playerIndex].username}: \`${this.currentWordType}\``);
+                this.gameChannel.send(`${this.players[this.playerIndex].userObj}: \`${this.currentWordType}\``);
             }
             this.gameState = 'waitingForWord';
             clearTimeout(this.inTheClutch);
@@ -153,7 +153,11 @@ class Madlibs {
         return this.gameState;
     }
 
-    addPlayer(id, username) {
+    getChannel() {
+        return this.gameChannel;
+    }
+
+    addPlayer(id, username, userObj) {
         let foundAtIndex = -1;
         this.players.forEach((player, index) => {
             if (player.id === id) {
@@ -161,7 +165,7 @@ class Madlibs {
             }
         });
         if (foundAtIndex == -1) {
-            this.players.push(new Player(id, username));
+            this.players.push(new Player(id, username, userObj));
         }
     }
 
@@ -204,7 +208,7 @@ class Madlibs {
         this.story = null;
         if(stories.stories.length === 0) {
             stories = JSON.parse(fs.readFileSync('./madlibs/stories.json'));
-            channel.send(`\`Story list has been exhausted and will now be reset.\``);
+            this.gameChannel.send(`\`Story list has been exhausted and will now be reset.\``);
         }
     }
 }

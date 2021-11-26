@@ -3,7 +3,7 @@ const envVars = require('./envVars.json');
 const auth = require('./auth.json');
 const axios = require('axios');
 const winston = require('winston');
-const gameClass = require('./blackjack/gameTest.js');
+const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const moment = require('moment');
@@ -14,6 +14,7 @@ const fortunes = require('./magic8ball.json');
 const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
+const { start } = require('repl');
 const client = new Client();
 const prefix = 'h.';
 
@@ -41,7 +42,7 @@ client.on('message', msg => {
     let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
-        if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id)) {
+        if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === '167138850995437568') {
             if(str.startsWith(prefix)) {
                 hasPrefix = true;
                 str = str.substr(prefix.length);
@@ -60,7 +61,7 @@ client.on('message', msg => {
                         break;
 
                     case 'dr':
-                        msg.channel.send(`<:dontread:675498364040642576> __DON'T__ https://youtu.be/DtAiDUymlBk __READ__ <:dontread:675498364040642576>`);
+                        msg.channel.send(`<:dontread:675498364040642576> __DON'T__ https://youtu.be/sHJ5HqG_JvI __READ__ <:dontread:675498364040642576>`);
                         break;
 
                     case 'h':
@@ -126,6 +127,10 @@ client.on('message', msg => {
                         msg.channel.send(`Type in a suggestion afterwards, in the format of TITLE | SUGGESTION TEXT. The title is optional, but recommended for clarity. (the | character separates title/suggestion)`);
                         break;
 
+                    case 'help suggest':
+                        msg.channel.send(`Type in a suggestion afterwards, in the format of TITLE | SUGGESTION TEXT. The title is optional, but recommended for clarity. (the | character separates title/suggestion)`);
+                        break;
+
                     case 'help banish': 
                         msg.channel.send(`(ADMIN) Just as the name implies, this command allows you to ban(ish) users from Honbot commands. Undo with unbanish. This exists for a reason. You know who you are.`);
                         break;
@@ -147,10 +152,7 @@ client.on('message', msg => {
                         if (gameIsStarted() && !isHandInProgress() && joinPos === -1) {
                             game.addPlayer(msg.author.id, msg.author.username);
                             joinPos = isPlayerInGame(game.players, msg.author.id);
-                            msg.channel.send(`${msg.author.username} has joined the game.`);
-                            // msg.channel.send(`${msg.author.username} has joined the game. They have ${game.players[joinPos].getMoney()} HonBucks`);
-                            //say a message confirming the username who joined and their money total
-                            //TODO: Get score saving to work!!!!
+                            msg.react(`✅`);
                         }
                         else if (joinPos != -1) {
                             msg.channel.send(`***${msg.author.username}***, you're already in the game.`);
@@ -208,6 +210,7 @@ client.on('message', msg => {
                         let standPos = isPlayerInGame(game.players, msg.author.id);
                         if (isHandInProgress() && standPos !== -1) {
                             if (game.players[standPos].status == 'not done') {
+                                msg.react(`✅`);
                                 game.players[standPos].status = 'done';
                                 if (checkPlayers(game)) {
                                     cardsDrawnByDealer = resolveDealer(game);
@@ -252,32 +255,6 @@ client.on('message', msg => {
                                 msg.channel.send(`Game is not started yet, or a hand is in progress.`);
                             }
                             break;
-
-                // if (str.startsWith('bet')) {
-                //     if(!gameIsStarted()) {
-                //         msg.channel.send(`A game has not been started yet! Type h.start to start a game!`);
-                //         return;
-                //     }
-                //     let betArgs = str.split(' ');
-                //     if (betArgs.length > 1) {
-                //         let bet = parseInt(betArgs[1]);
-                //         let foundAtIndex = -1;
-                //         foundAtIndex = isPlayerInGame(game.players, msg.author.id);
-                //         if (isNaN(bet)) {
-                //             msg.channel.send(`Invalid bet amount. Example "h.bet 100".`);
-                //             return;
-                //         }
-                        
-                //         if (foundAtIndex !== -1) {
-                //             msg.channel.send(`${msg.author.username} places a bet of ${bet}.`)
-                //             game.players[foundAtIndex].bet = bet;
-                //         }
-                //         else {
-                //             msg.channel.send(`You are not in the game!`);
-                //         }
-                //     }
-                //     return;
-                // }
 
                     case 'help wyd':
                         msg.channel.send(`You can use numbers or *super secret phrases* to select specific sentence templates. Format as {#}`);
@@ -348,7 +325,7 @@ client.on('message', msg => {
                     case 'j': 
                         if(madlibs.getState() === 'joining') {
                             if (madlibs.playerCanJoin(msg.author.id)) {
-                                madlibs.addPlayer(msg.author.id, msg.author.username);
+                                madlibs.addPlayer(msg.author.id, msg.author.username, msg.author);
                                 msg.channel.send(`${msg.author.username} has joined.`);
                             }
                         }
@@ -451,7 +428,7 @@ client.on('message', msg => {
                                     number = 73;
                                     wydArgs.shift();
                                     break;
-                                case '{shrek}':
+                                case '{nft}':
                                     number = 78;
                                     wydArgs.shift();
                                     break;
@@ -631,7 +608,7 @@ client.on('message', msg => {
                 }
             }
 
-            if(madlibs.getState() === 'waitingForWord' && !hasPrefix) {
+            if(madlibs.getState() === 'waitingForWord' && !hasPrefix && msg.channel === madlibs.getChannel()) {
                 if(!str.includes('{') && !str.includes('}')) {
                     madlibs.fillBlank(msg.author.id, str);
                     cancelConfirm = false;
@@ -683,6 +660,7 @@ function play() {
     currentGameChannel.send(`Now beginning game. Players: ${generatePlayerList(game)}.`);
     game.addPlayer('dealer', 'Dealer');
     game.buildDeck(2);
+    let startMessage = '';
     game.players.forEach(player => {
         player.reset();
         game.hit(player);
@@ -691,15 +669,17 @@ function play() {
             player.status = 'bj';
         }
         if(player.userId !== 'dealer') {
-            currentGameChannel.send(`***${player.username}*** has **${player.currentHand()}** *(${player.handTotal()})*`);
+            startMessage += `***${player.username}*** has **${player.currentHand()}** *(${player.handTotal()})*\n`;
         }
         else {
-            currentGameChannel.send(`***__${player.username}__*** showing **${player.getFirst()}**`);
+            startMessage += `***__${player.username}__*** showing **${player.getFirst()}** \n`;
             if (player.status != 'bj') {
                 player.status = 'unflipped';
             }
         }
     });
+    currentGameChannel.send(startMessage);
+    
     handInProgress = true;
     return;
 }
@@ -767,10 +747,11 @@ function resolveDealer(game) {
 
 function resolveHand(game) {
     let dealerPos = isPlayerInGame(game.players, 'dealer');
+    let endMessage = '';
     let dealerTotal = game.players[dealerPos].handTotal();
-    currentGameChannel.send(`***__Dealer__*** drew ${cardsDrawnByDealer} card(s) and has **${game.players[dealerPos].currentHand()}** *(${game.players[dealerPos].handTotal()})*`)
+    endMessage += `***__Dealer__*** drew ${cardsDrawnByDealer} card(s) and has **${game.players[dealerPos].currentHand()}** *(${game.players[dealerPos].handTotal()})*\n`
     if (dealerTotal > 21) {
-        currentGameChannel.send(`***__Dealer__*** has busted!`);
+        endMessage += `***__Dealer__*** has busted!\n`;
     }
 
     game.players.forEach(player => {
@@ -778,41 +759,42 @@ function resolveHand(game) {
             if (player.status == 'done' || player.status == 'double') {
                 if (dealerTotal <= 21) {
                     if (player.handTotal() < dealerTotal) {
-                        currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you lose.`);
+                        endMessage += `***${player.username}*** *(${player.handTotal()})*, you lose.\n`;
                         player.resolveBet('lose');
                     }
                     if (player.handTotal() == dealerTotal) {
-                        currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you push.`);
+                        endMessage += `***${player.username}*** *(${player.handTotal()})*, you push.\n`;
                         player.resolveBet('push');
                     }
                     if (player.handTotal() > dealerTotal) {
-                        currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you win!`);
+                        endMessage += `***${player.username}*** *(${player.handTotal()})*, you win!\n`;
                         player.resolveBet('win');
                     }
                 }
                 
                 if (dealerTotal > 21) {
-                    currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you win!`);
+                    endMessage += `***${player.username}*** *(${player.handTotal()})*, you win!\n`;
                     player.resolveBet('win');
                 }
             }
             else if (player.status == 'bj') {
                 if (game.players[dealerPos].status == 'bj') {
-                    currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you push.`);
+                    endMessage += `***${player.username}*** *(${player.handTotal()})*, you push.\n`;
                     player.resolveBet('push');
                 }
                 else {
-                    currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you win!`);
+                    endMessage += `***${player.username}*** *(${player.handTotal()})*, you win!\n`;
                     player.resolveBet('bj');
                 }
             }
 
             else if (player.status == 'busted') {
-                currentGameChannel.send(`***${player.username}*** *(${player.handTotal()})*, you lose.`);
+                endMessage += `***${player.username}*** *(${player.handTotal()})*, you lose.\n`;
                 player.resolveBet('lose');
             }
         }
     });
+    currentGameChannel.send(endMessage);
     handInProgress = false;
     game.removePlayer('dealer');
     let afkIds = [];

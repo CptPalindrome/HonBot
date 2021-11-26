@@ -40,7 +40,7 @@ class Game {
             {
                 saveData.players = [];
             }
-        if (!saveData.players.find(player => player.id === id)) {
+        if (!saveData.players.some(player => player.id === id)) {
             saveData.players.push({
                 id: id,
                 username: username,

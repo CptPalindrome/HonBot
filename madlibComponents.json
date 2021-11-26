@@ -396,7 +396,8 @@
         "Hungrybox",
         "Known Terrorist Tom",
         "Steve Gorman",
-        "all 23 rascals"
+        "all 23 rascals",
+        "Guy LeDouche"
     ],
     "locations": [
         "Brazil",
@@ -1862,19 +1863,15 @@
             "a": 1
         },
         {
-            "s": "I was only nine years old. I loved {p1} so much, I had all the {n1} and {n1pl}. I'd {v1} to {p1} every night before I go to {l1}, {iv1ing} for the {n2} I've been given. \"{p1} is love\", I would say, \"{p1} is life\". {p2} hears me and calls me a {n3}. I knew they were just jealous for my devotion of {p1}. I called them {p3}. They slap me and send me to go to {l2}. I'm {v1ing} now and my {n4} hurts. I lay in {l1} and it's really {a1}. A(n) {n5} is moving towards me. I feel something {v2} me. It's {p1}. I'm so happy. They whisper in my ear, \"This is {l3}\". They grab me with their {a2} ogre hands, and puts me on my hands and knees. I spread my ass-cheeks for {p1}. They penetrate my butthole. It hurts so much, but I do it for {p1}. I can feel my butt {v2ing} as my eyes start to {iv1}. I push against their force. I want to {v3} {p1}. They roar a {a3} roar, as they fill my butt with their {n6}. {p2} walks in. {p1} looks them straight in the eye, and says, \"It's all ogre now\". {p1} leaves through my {n7}. {p1} is love. {p1} is life.",
-            "n": 7,
-            "npl": 1,
-            "p": 3,
-            "v": 3,
-            "ving": 2,
+            "s": "You think it’s funny to take screenshots of people’s {n1pl}, huh? You must be a very {a1} person to steal someone’s {n3} that they PAID for. Yeah, I said it. You’re the kind of person who thinks that {n3} theft (a seriously {a3} offence) is a {n4}. I don’t even know why you took that screenshot, because you didn’t pay 1000 dollars for it. I did. The {n1} doesn’t lie. Even if you try to {v1} it, it’s my {n3}. You’re just angry that you couldn’t afford this {a2} {n2}. Even if you could, your {n2pl} couldn’t even {v2} fast enough to get one of the 10000 {n1pl} sold. You’re just mad you don’t {v3} what I {v3}. So, delete that screenshot, or I swear, you’ll be hearing from {p1}.",
+            "npl": 2,
+            "n": 4,
             "a": 3,
-            "l": 3,
-            "iving": 1,
-            "iv": 1
+            "v": 3,
+            "p": 1
         },
         {
-            "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own rules, seeking only their own approval, but then later decides that they cares about what other people think because that's how society works.",
+            "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own rules, seeking only their own approval, but then later decides that they care about what other people think because that's how society works.",
             "p": 1,
             "a": 1,
             "adv": 1
