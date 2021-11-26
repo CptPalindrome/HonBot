@@ -1894,6 +1894,10 @@
             "s": "Having {a1} {n1pl} is a virtue",
             "npl": 1,
             "a": 1
+        },
+        {
+            "s": "I'm gonna lick a(n) {n1}",
+            "n": 1
         }
     ]
 }
