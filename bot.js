@@ -1171,9 +1171,14 @@ function resetSugg() {
 }
 
 function suggestionsReady() {
-    let suggestionsList = JSON.parse(fs.readFileSync('./suggestions.json'));
-    if (suggestionsList.suggestions.length > 0) {
-        return true;
+    if (fs.existsSync('./suggestions.json')) {
+        let suggestionsList = JSON.parse(fs.readFileSync('./suggestions.json'));
+        if (suggestionsList.suggestions.length > 0) {
+            return true;
+        }
+    }
+    else {
+        fs.writeFileSync('./suggestions.json', '');
     }
     return false;
 }
