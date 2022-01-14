@@ -11,3 +11,5 @@ transcriptOut.txt
 fifteenSentStatus.json
 auth.json
 package-lock.json
+suggestions.json
+playerSaveData.json

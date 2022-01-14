@@ -108,15 +108,19 @@ client.on('message', msg => {
                         break;
 
                     case 'help madlibs':
-                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. Use \`h.help madlibs+\` for extra info and commands.`)
+                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. \nYou can enter the name of a story after \`h.mad\` to do a specific template. \nUse \`h.help madlibs+\` and \`h.help madlibs++\` for extra info and commands.`)
                         break;
 
                     case 'help mad':
-                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. Use \`h.help madlibs+\` for extra info and commands.`)
+                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. \nYou can enter the name of a story after \`h.mad\` to do a specific template. \nUse \`h.help madlibs+\` and \`h.help madlibs++\` for extra info and commands.`)
                         break;
 
                     case 'help madlibs+':
-                        msg.channel.send(`Calling other honbot commands will not *be* your turn, so feel free to use the new example word commands during your turn (\`h.help words\` for more info). \`h.pass\` if you want to skip your turn, giving the next player a new random prompt from the story. \`h.votekick\` gives the current player 20s to submit or be kicked. \`h.stopmad\` will stop the current game and reset so that it isn't locked out.`);
+                        msg.channel.send(`Calling other honbot commands will not *be* your turn, so feel free to use the new example word commands during your turn (\`h.help words\` for more info). \`h.pass\` if you want to skip your turn, giving the next player a new random prompt from the story. \`h.votekick\` gives the current player 20s to submit or be kicked. \`h.stopmad\` will stop the current game and reset so that it isn't locked out. \`h.help madlibs++\` for a few more.`);
+                        break;
+
+                    case 'help madlibs++':
+                        msg.channel.send(`The stories are chosen without replacement, meaning as you play more, the stories will be removed from the pool of possible stories. Use \`h.remaining\` to view which stories are left, and also to get the names of them. To reset them, either play until all are used or use the \`h.resetstories\` command.`)
                         break;
 
                     case 'help words':
@@ -275,31 +279,25 @@ client.on('message', msg => {
                         }
                         break;
 
-                    case 'mad':
-                        if(madlibs.getState() === 'none') {
-                            if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
-                                msg.channel.send(`Yeah, I'm mad`);
-                                madlibs.setMad(true);
+                    case 'remaining': 
+                        if(madlibs.getState() === 'none')
+                            msg.channel.send(`\`\`\`${madlibs.getRemainingStories()}\`\`\``);
+                        break;
+
+                    case 'resetstories':
+                        if(madlibs.getState() !== 'none' && madlibs.getState() !== 'joining') {
+                            if(!cancelConfirm) {
+                                msg.channel.send(`Are you sure you want to reset? \`h.resetstories\` again to confirm.`);
+                                cancelConfirm = true;
+                                setTimeout(() => 
+                                {
+                                    cancelConfirm = false;
+                                }, 30000);
                             }
-    
-                            else if(madlibs.isMad) {
-                                let rand = Math.floor(Math.random() * 10);
-                                if(rand === 1 || rand === 3) {
-                                    msg.channel.send(`Still mad`);
-                                }
-                                else if(rand === 2) {
-                                    msg.channel.send(`Less mad, but try again.`);
-                                    madlibs.setMad(false);
-                                }
-                                else {
-                                    madlibs.madlibsStart(msg.channel);
-                                    madlibs.setMad(false);    
-                                }
-                            }
-                            
-                            else {
-                                madlibs.madlibsStart(msg.channel);
-                                madlibs.setMad(false);
+                            else { 
+                                msg.channel.send(`Madlibs stories have been reset.`);
+                                cancelConfirm = false;
+                                madlibs.resetStories();
                             }
                         }
                         break;
@@ -341,43 +339,6 @@ client.on('message', msg => {
                             madlibs.pass();
                         }
                         break;
-    
-                    case 'noun':
-                        msg.channel.send(`Example nouns: \`${getWord('noun')}\``);
-                        break;
-    
-                    case 'people':
-                        msg.channel.send(`Example people: \`${getWord('people')}\``);
-                        break;
-                    
-                    case 'person':
-                        msg.channel.send(`Example people: \`${getWord('people')}\``);
-                        break;
-                    
-                    case 'location':
-                        msg.channel.send(`Example locations: \`${getWord('location')}\``);
-                        break;
-                    
-                    case 'verb':
-                        msg.channel.send(`Example verbs: \`${getWord('verb')}\``);
-                        break;
-                    
-                    case 'iverb':
-                        msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive')}\``);
-                        break;
-                    
-                    case 'adjective':
-                        msg.channel.send(`Example adjectives: \`${getWord('adjective')}\``);
-                        break;
-    
-                    case 'adverb':
-                        msg.channel.send(`Example adverbs: \`${getWord('adverb')}\``);
-                        break;
-    
-                    case 'preposition':
-                        msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
-                        break;
-        
                 }
 
                 if (str.startsWith('gandhi')) {
@@ -588,7 +549,112 @@ client.on('message', msg => {
                         msg.react('❌');
                     }
                 }
-            }
+
+                if(str.startsWith('mad')) {
+                    str = str.split(' ').slice(1).join(' ');
+            
+                    if(madlibs.getState() === 'none') {
+                        if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
+                            msg.channel.send(`Yeah, I'm mad`);
+                            madlibs.setMad(true);
+                        }
+
+                        else if(madlibs.isMad) {
+                            let rand = Math.floor(Math.random() * 10);
+                            if(rand === 1 || rand === 3) {
+                                msg.channel.send(`Still mad`);
+                            }
+                            else if(rand === 2) {
+                                msg.channel.send(`Less mad, but try again.`);
+                                madlibs.setMad(false);
+                            }
+                            else {
+                                if(str) madlibs.madlibsStart(msg.channel, str);
+                                else madlibs.madlibsStart(msg.channel);
+                                madlibs.setMad(false);    
+                            }
+                        }
+                        
+                        else {
+                            if(str) madlibs.madlibsStart(msg.channel, str);
+                            else madlibs.madlibsStart(msg.channel);
+                            madlibs.setMad(false);
+                        }
+                    }
+                }
+
+                if(str.startsWith('noun')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example noun: \`${getWord('noun', numWords)}\``);
+                    else
+                        msg.channel.send(`Example nouns: \`${getWord('noun')}\``);
+                }
+
+                if(str.startsWith('people')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example people: \`${getWord('people', numWords)}\``);
+                    else
+                        msg.channel.send(`Example people: \`${getWord('people')}\``);
+                }
+                
+                if(str.startsWith('person')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example people: \`${getWord('people', numWords)}\``);
+                    else
+                        msg.channel.send(`Example people: \`${getWord('people')}\``);
+                }
+                
+                if(str.startsWith('location')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example locations: \`${getWord('location', numWords)}\``);
+                    else
+                        msg.channel.send(`Example locations: \`${getWord('location')}\``);
+                }
+                    
+                if(str.startsWith('verb')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords)                             
+                        msg.channel.send(`Example verbs: \`${getWord('verb', numWords)}\``);
+                    else
+                        msg.channel.send(`Example verbs: \`${getWord('verb')}\``);
+                }
+                
+                if(str.startsWith('iverb')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive', numWords)}\``);
+                    else
+                        msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive')}\``);
+                }
+                
+                if(str.startsWith('adjective')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example adjectives: \`${getWord('adjective', numWords)}\``);
+                    else
+                        msg.channel.send(`Example adjectives: \`${getWord('adjective')}\``);
+                }
+                    
+                if(str.startsWith('adverb')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example adverbs: \`${getWord('adverb', numWords)}\``);
+                    else
+                        msg.channel.send(`Example adverbs: \`${getWord('adverb')}\``);
+                }
+
+                if(str.startsWith('preposition')) {
+                    let numWords = str.split(' ')[1];
+                    if(numWords) 
+                        msg.channel.send(`Example prepositions: \`${getWord('preposition', numWords)}\``);    
+                    else
+                        msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
+                }
+            }//end of h. requirements
             
             if (acro.getState() === 'writing') {
                 if (acro.playerCanJoin(msg.author.id, str)) {
@@ -1154,7 +1220,7 @@ function checkAdmin(msg) {
     return msg.member.hasPermission('ADMINISTRATOR');
 }
 
-function getWord(type) {
+function getWord(type, numWords = 5) {
     const nounsCopy = [...madComps.nouns];
     const peopleCopy = [...madComps.people];
     const locationsCopy = [...madComps.locations];
@@ -1165,7 +1231,10 @@ function getWord(type) {
     const prepositionsCopy = [...madComps.prepositions];
     let wordsArr = [];
     let randomNum;
-    let numOfWords = 5;
+    let numOfWords = numWords;
+    console.log(numOfWords);
+    if(numOfWords === '0') numOfWords = 5;
+
 
     switch(type) {
         case 'noun':

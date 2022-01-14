@@ -25,9 +25,9 @@ class Madlibs {
     }
     
     
-    madlibsStart(channel) {
+    madlibsStart(channel, storyTitle) {
         this.gameState = 'joining';
-        this.story = this.getStory();
+        this.story = this.getStory(storyTitle);
         this.gameChannel = channel;
         this.gameChannel.send('15s to join madlibs. Join with \`h.j\`!');
         setTimeout(() => this.shuffleStart(), 15000);
@@ -141,8 +141,16 @@ class Madlibs {
         this.getBlank();
     }
 
-    getStory() {
+    getStory(storyTitle) {
         let storyNum = Math.floor(Math.random() * stories.stories.length)
+        if(storyTitle) {
+            stories.stories.some((aStory, index) => {
+                if(aStory.title.toLowerCase() === storyTitle.toLowerCase()) {
+                    storyNum = index;
+                    return true;
+                }
+            })
+        }
         // let storyNum = stories.stories.length - 2;
         let story = stories.stories[storyNum];
         stories.stories.splice(storyNum, 1);
@@ -196,6 +204,14 @@ class Madlibs {
         this.isMad = bool;
     }
 
+    getRemainingStories() {
+        let outString = '';
+        outString = stories.stories.map((aStory, index) => {
+            return `${index + 1}. ${aStory.title}`
+        }).join('\n');
+        return outString;
+    }
+
     endStory() {
         this.gameChannel.send(`\`${this.story.title}:\`\n\`\`\`${this.story.story}\`\`\``);
         this.reset();
@@ -210,6 +226,11 @@ class Madlibs {
             stories = JSON.parse(fs.readFileSync('./madlibs/stories.json'));
             this.gameChannel.send(`\`Story list has been exhausted and will now be reset.\``);
         }
+    }
+
+    resetStories() {
+        stories = JSON.parse(fs.readFileSync('./madlibs/stories.json'));
+        this.gameChannel.send(`\`Story list has been reset.\``);
     }
 }
 
