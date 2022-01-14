@@ -1237,75 +1237,79 @@ function getWord(type, numWords = 5) {
     let wordsArr = [];
     let randomNum;
     let numOfWords = numWords;
-    console.log(numOfWords);
     if(numOfWords === '0') numOfWords = 5;
+    else if (numOfWords > 25) numOfWords = 25;
 
+    try {
+        switch(type) {
+            case 'noun':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * nounsCopy.length);
+                    wordsArr.push(nounsCopy[randomNum].singular);
+                    nounsCopy.splice(randomNum, 1);
+                }
+                break;
 
-    switch(type) {
-        case 'noun':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * nounsCopy.length);
-                wordsArr.push(nounsCopy[randomNum].singular);
-                nounsCopy.splice(randomNum, 1);
-            }
-            break;
+            case 'people':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * peopleCopy.length);
+                    wordsArr.push(peopleCopy[randomNum]);
+                    peopleCopy.splice(randomNum, 1);
+                }
+                break;
 
-        case 'people':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * peopleCopy.length);
-                wordsArr.push(peopleCopy[randomNum]);
-                peopleCopy.splice(randomNum, 1);
-            }
-            break;
+            case 'location':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * locationsCopy.length);
+                    wordsArr.push(locationsCopy[randomNum]);
+                    locationsCopy.splice(randomNum, 1);
+                }
+                break;
 
-        case 'location':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * locationsCopy.length);
-                wordsArr.push(locationsCopy[randomNum]);
-                locationsCopy.splice(randomNum, 1);
-            }
-            break;
+            case 'verb':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * verbsCopy.length);
+                    wordsArr.push(verbsCopy[randomNum].present);
+                    verbsCopy.splice(randomNum, 1);
+                }
+                break;
 
-        case 'verb':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * verbsCopy.length);
-                wordsArr.push(verbsCopy[randomNum].present);
-                verbsCopy.splice(randomNum, 1);
-            }
-            break;
+            case 'intransitive':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * iverbsCopy.length);
+                    wordsArr.push(iverbsCopy[randomNum].present);
+                    iverbsCopy.splice(randomNum, 1);
+                }
+                break;
 
-        case 'intransitive':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * iverbsCopy.length);
-                wordsArr.push(iverbsCopy[randomNum].present);
-                iverbsCopy.splice(randomNum, 1);
-            }
-            break;
+            case 'adjective':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * adjectivesCopy.length);
+                    wordsArr.push(adjectivesCopy[randomNum].regular);
+                    adjectivesCopy.splice(randomNum, 1);
+                }
+                break;
 
-        case 'adjective':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * adjectivesCopy.length);
-                wordsArr.push(adjectivesCopy[randomNum].regular);
-                adjectivesCopy.splice(randomNum, 1);
-            }
-            break;
+            case 'adverb':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * adverbsCopy.length);
+                    wordsArr.push(adverbsCopy[randomNum]);
+                    adverbsCopy.splice(randomNum, 1);
+                }
+                break;
 
-        case 'adverb':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * adverbsCopy.length);
-                wordsArr.push(adverbsCopy[randomNum]);
-                adverbsCopy.splice(randomNum, 1);
-            }
-            break;
-
-        case 'preposition':
-            for(let i = 0; i < numOfWords; i++) {
-                randomNum = Math.floor(Math.random() * prepositionsCopy.length);
-                wordsArr.push(prepositionsCopy[randomNum]);
-                prepositionsCopy.splice(randomNum, 1);
-            }
-            break;
-    } 
+            case 'preposition':
+                for(let i = 0; i < numOfWords; i++) {
+                    randomNum = Math.floor(Math.random() * prepositionsCopy.length);
+                    wordsArr.push(prepositionsCopy[randomNum]);
+                    prepositionsCopy.splice(randomNum, 1);
+                }
+                break;
+        } 
+    }
+    catch (e) {
+        logger.error(`Words error. Type: ${type}. Number: ${numOfWords}. >> ${e}`)
+    }
     return wordsArr.join(', ');
 }
 
