@@ -87,9 +87,9 @@ class Madlibs {
             else {
                 startIndex++;
             }
-            this.currentWordType = storyText.substr(startIndex, endIndex - startIndex);
+            this.currentWordType = storyText.substring(startIndex, endIndex - startIndex);
             if(/\d/.test(this.currentWordType)) {
-                this.gameChannel.send(`${this.players[this.playerIndex].userObj}: \`${this.currentWordType.substr(0, this.currentWordType.length - 1)}\``);
+                this.gameChannel.send(`${this.players[this.playerIndex].userObj}: \`${this.currentWordType.substring(0, this.currentWordType.length - 1)}\``);
             }
             else {
                 this.gameChannel.send(`${this.players[this.playerIndex].userObj}: \`${this.currentWordType}\``);

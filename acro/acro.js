@@ -20,7 +20,7 @@ class Acro {
         this.weights = [9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1];
     }
     
-    acroStart(channel, writeTime, voteTime) {
+    acroStart(channel, writeTime = 30, voteTime = 20) {
         if (!writeTime) {
             writeTime = 30;
         }
@@ -36,6 +36,8 @@ class Acro {
         this.gameState = 'writing';
         this.gameChannel = channel;
         this.generateAcronym();
+        if(this.acro.length === 4) writeTime += 10;
+        else if(this.acro.length === 5) writeTime += 15;
         channel.send(`\`${this.acro}\` (${writeTime} seconds)`);
         setTimeout(() => this.voting(voteTime), writeTime * 1000);
         setTimeout(() => this.writeWarning(), (writeTime - 5) * 1000);
@@ -140,6 +142,8 @@ class Acro {
         this.players.forEach((player, index) => {
             outString += `${index + 1}. ${player.acro}\n`
         });
+        if(this.players.length === 4 || this.players.length === 5) voteTime += 5;
+        else if(this.players.length >= 6) voteTime += 10;
         this.gameChannel.send(`\`\`\`Vote now! (${voteTime} seconds)\n${outString}\`\`\``)
         setTimeout(() => {
             this.putResults();
@@ -176,7 +180,7 @@ class Acro {
             winners.forEach((player) => {
                 names += `${player.username}, `;
             })
-            winner = {username: `${names.substr(0,names.length - 1)}`, votes: `${highScore}`};
+            winner = {username: `${names.substring(0,names.length - 1)}`, votes: `${highScore}`};
         }
         outString = `\`\`\`The winner(s): ${winner.username} with ${highScore} vote(s)! \n\n${outString}\`\`\``
         this.gameChannel.send(outString);

@@ -14,6 +14,7 @@ const fortunes = require('./magic8ball.json');
 const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
+const commands = require('./commands.json');
 const { start } = require('repl');
 const client = new Client();
 const prefix = 'h.';
@@ -45,8 +46,12 @@ client.on('message', msg => {
         if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === '167138850995437568') {
             if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
-                str = str.substr(prefix.length);
+                str = str.substring(prefix.length);
                 switch(str) {
+                    
+                    case 'patchnotes':
+                        msg.channel.send(`\`Updated Acro to have adaptive writing/vote times based on number of letters & player count. Added a "commands" command to list all commands. Fixed minor bugs with some parameterized functions. Also added this function.\``)
+                        break;
 
                     case 'face':
                         msg.channel.send(`:eyes:`);
@@ -78,9 +83,13 @@ client.on('message', msg => {
                     case 'git':
                         msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
                         break;
+                    
+                    case 'commands':
+                        msg.channel.send(`\`\`\`${getCommands()}\n\nDo help <command name> for more info on individual commands.\`\`\``)
+                        break;
 
                     case 'help':
-                        msg.channel.send(`Honbar would be happy to assist. The prefix is \`h.\`. My commands are \`face\`, \`git\`, \`dr\`, \`roulette\`, \`cf\`, \`chris\`, \`8ball\`, \`wyd\`, \`food\`, \`drink\`, \`bljk\`, \`gandhi\`, \`ngandhi\`, \`acro\`, \`mad\`/\`madlibs\`, and \`sugg\`. More info on the readme on github or by typing \`h.help {command name}\` for applicable commands.`);
+                        msg.channel.send(`Honbar would be happy to assist. The prefix is \`h.\`. My commands are \`face\`, \`git\`, \`dr\`, \`roulette\`, \`cf\`, \`chris\`, \`8ball\`, \`wyd\`, \`food\`, \`drink\`, \`bljk\`, \`gandhi\`, \`ngandhi\`, \`acro\`, \`mad\`/\`madlibs\`, \`sugg\` \`commands\`, and \`patchnotes\`. More info on the readme on github or by typing \`h.help {command name}\` for applicable commands.`);
                         break;
 
                     case 'help gandhi':
@@ -399,7 +408,7 @@ client.on('message', msg => {
                                     break;
                                 default:
                                     if(reg.test(wydArgs[1])) {
-                                        number = wydArgs[1].substr(1, wydArgs[1].length - 2) - 1;
+                                        number = wydArgs[1].substring(1, wydArgs[1].length - 2) - 1;
                                         if (number > madComps.sentences.length - 1) {
                                             number = Math.floor(Math.random() * madComps.sentences.length);
                                         }
@@ -425,14 +434,14 @@ client.on('message', msg => {
                 }
 
                 if (str.startsWith('8ball')) {
-                    str = str.substr(6);
-                    fortune(msg, str);
+                    let question = str.substring(6);
+                    fortune(msg, question);
                 }
 
                 if(str.startsWith("roulette")) {
                     let options = []
-                    if(str.substr(8)) {
-                        options = str.substr(8).split(',');
+                    if(str.substring(8)) {
+                        options = str.substring(8).split(',');
                     }
                     if(options.length === 0) {
                         msg.channel.send(`To use the roulette, enter 2 or more items separated by commas. Ex. 'h.roulette ham, turkey, the goofy goober theme song'`);
@@ -448,8 +457,8 @@ client.on('message', msg => {
 
                 if(str.startsWith("drink")) {
                     let options = ""
-                    if (str.substr(5)) {
-                        options = str.substr(5);
+                    if (str.substring(5)) {
+                        options = str.substring(5);
                     }
                     let drinkStr = "";
                     if (options) {
@@ -478,8 +487,8 @@ client.on('message', msg => {
 
                 if(str.startsWith("food")) {
                     let options = ""
-                    if (str.substr(4)) {
-                        options = str.substr(4);
+                    if (str.substring(4)) {
+                        options = str.substring(4);
                     }
                     let foodStr = "";
                     if (options) {
@@ -507,9 +516,9 @@ client.on('message', msg => {
                 }
 
                 if(str.startsWith('banish') && checkAdmin(msg)) {
-                    str = str.split(' ').slice(1).join(' ');
+                    let banishOpts = str.split(' ').slice(1).join(' ');
                     try {
-                        if (str) {
+                        if (banishOpts) {
                             addToBlacklist(msg);
                             logger.info(`${now()} Ban command used: ${msg.mentions?.members.map(member => member.displayName)}`);
                         }
@@ -521,10 +530,10 @@ client.on('message', msg => {
                 }
 
                 if(str.startsWith('unbanish')) {
-                    str = str.split(' ').slice(1).join(' ');
+                    let unbanishOpts = str.split(' ').slice(1).join(' ');
                     try {
-                        if (str) {
-                            removeFromBlacklist(msg, str);
+                        if (unbanishOpts) {
+                            removeFromBlacklist(msg, unbanishOpts);
                         }
                     }
                     catch(e) {
@@ -534,10 +543,10 @@ client.on('message', msg => {
                 }
 
                 if(str.startsWith('sugg')) {
-                    str = str.split(' ').slice(1).join(' ');
+                    let suggOptions = str.split(' ').slice(1).join(' ');
                     try {
-                        if (str) {
-                            addSuggestion(str, msg.author.username)
+                        if (suggOptions) {
+                            addSuggestion(suggOptions, msg.author.username)
                             msg.react('✅');
                         }
                         else {
@@ -551,7 +560,7 @@ client.on('message', msg => {
                 }
 
                 if(str.startsWith('mad')) {
-                    str = str.split(' ').slice(1).join(' ');
+                    let madOptions = str.split(' ').slice(1).join(' ');
             
                     if(madlibs.getState() === 'none') {
                         if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
@@ -569,14 +578,14 @@ client.on('message', msg => {
                                 madlibs.setMad(false);
                             }
                             else {
-                                if(str) madlibs.madlibsStart(msg.channel, str);
+                                if(madOptions) madlibs.madlibsStart(msg.channel, madOptions);
                                 else madlibs.madlibsStart(msg.channel);
                                 madlibs.setMad(false);    
                             }
                         }
                         
                         else {
-                            if(str) madlibs.madlibsStart(msg.channel, str);
+                            if(madOptions) madlibs.madlibsStart(msg.channel, madOptions);
                             else madlibs.madlibsStart(msg.channel);
                             madlibs.setMad(false);
                         }
@@ -654,34 +663,35 @@ client.on('message', msg => {
                     else
                         msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
                 }
-            }//end of h. requirements
-            
-            if (acro.getState() === 'writing') {
-                if (acro.playerCanJoin(msg.author.id, str)) {
-                    acro.addPlayer(msg.author.id, msg.author.username, str);
-                    msg.delete()
-                        .then()
-                        .catch(console.error);
+            } //end of h. requirements
+            else {
+                if (acro.getState() === 'writing') {
+                    if (acro.playerCanJoin(msg.author.id, str)) {
+                        acro.addPlayer(msg.author.id, msg.author.username, str);
+                        msg.delete()
+                            .then()
+                            .catch(console.error);
+                    }
                 }
-            }
-
-            if (acro.getState() === 'voting') {
-                if (acro.playerCanVote(msg.author.id, str)) {
-                    acro.addVoter(msg.author.id, msg.author.username, str);
-                    msg.delete()
-                        .then()
-                        .catch(console.error);
+    
+                if (acro.getState() === 'voting') {
+                    if (acro.playerCanVote(msg.author.id, str)) {
+                        acro.addVoter(msg.author.id, msg.author.username, str);
+                        msg.delete()
+                            .then()
+                            .catch(console.error);
+                    }
                 }
-            }
-
-            if(madlibs.getState() === 'waitingForWord' && !hasPrefix && msg.channel === madlibs.getChannel()) {
-                if(!str.includes('{') && !str.includes('}')) {
-                    madlibs.fillBlank(msg.author.id, str);
-                    cancelConfirm = false;
-                }
-                else {
-                    if (madlibs.verifyInput(msg.author.id))
-                    msg.reply(`Do not put curly braces ( '{' or '}' ) in your input!`);
+    
+                if(madlibs.getState() === 'waitingForWord' && !hasPrefix && msg.channel === madlibs.getChannel()) {
+                    if(!str.includes('{') && !str.includes('}')) {
+                        madlibs.fillBlank(msg.author.id, str);
+                        cancelConfirm = false;
+                    }
+                    else {
+                        if (madlibs.verifyInput(msg.author.id))
+                        msg.reply(`Do not put curly braces ( '{' or '}' ) in your input!`);
+                    }
                 }
             }
         }
@@ -693,7 +703,7 @@ client.on('message', msg => {
             let hasPrefix;
             if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
-                str = str.substr(prefix.length);
+                str = str.substring(prefix.length);
                 switch(str) {
                     case 'test':
                         msg.reply(`yeahhh we testin`);
@@ -1311,6 +1321,10 @@ function getWord(type, numWords = 5) {
         logger.error(`Words error. Type: ${type}. Number: ${numOfWords}. >> ${e}`)
     }
     return wordsArr.join(', ');
+}
+
+function getCommands() {
+    return commands.commandlist.join('\n');
 }
 
 client.on('ready', () => {

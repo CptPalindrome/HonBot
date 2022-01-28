@@ -1,0 +1,25 @@
+{
+    "commandlist": [
+        "help <command>",
+        "face",
+        "git",
+        "dr",
+        "roulette",
+        "cf",
+        "h",
+        "chris",
+        "8ball",
+        "wyd",
+        "food",
+        "drink",
+        "bljk > (-join, -leave, -hit, -stand, -nh, -afk, -stop)",
+        "gandhi/ngandhi",
+        "banish (admin) > unbanish (admin)",
+        "acro",
+        "mad/madlibs > (-j, -stopmad, -votekick, -pass, -remaining)",
+        "words",
+        "suggest",
+        "commands",
+        "patchnotes"
+    ]
+}
