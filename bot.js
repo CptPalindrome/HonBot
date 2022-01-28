@@ -43,7 +43,7 @@ client.on('message', msg => {
     let str = msg.content;
     if(!envVars.TEST_MODE) {
         if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === '167138850995437568') {
-            if(str.startsWith(prefix)) {
+            if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
                 str = str.substr(prefix.length);
                 switch(str) {
@@ -691,7 +691,7 @@ client.on('message', msg => {
         if(msg.author.id != '266744954922074112') {
 
             let hasPrefix;
-            if(str.startsWith(prefix)) {
+            if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
                 str = str.substr(prefix.length);
                 switch(str) {
