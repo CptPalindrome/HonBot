@@ -50,7 +50,7 @@ client.on('message', msg => {
                 switch(str) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`Updated Acro to have adaptive writing/vote times based on number of letters & player count. Added a "commands" command to list all commands. Fixed minor bugs with some parameterized functions. Also added this function.\``)
+                        msg.channel.send(`\`Madlibs stories can now be joined mid session! Rejoice, for missing the start is no longer the end.\``);
                         break;
 
                     case 'face':
@@ -329,7 +329,7 @@ client.on('message', msg => {
                         break;
     
                     case 'j': 
-                        if(madlibs.getState() === 'joining') {
+                        if(madlibs.getState() !== 'none') {
                             if (madlibs.playerCanJoin(msg.author.id)) {
                                 madlibs.addPlayer(msg.author.id, msg.author.username, msg.author);
                                 msg.channel.send(`${msg.author.username} has joined.`);
@@ -693,6 +693,9 @@ client.on('message', msg => {
                         msg.reply(`Do not put curly braces ( '{' or '}' ) in your input!`);
                     }
                 }
+
+                if(msg.embeds.some(element => element.provider.name === 'Humble Bundle') && Math.floor(Math.random() * 10) <= 2)
+                    msg.reply(`do you get paid for these links?`);
             }
         }
     }
