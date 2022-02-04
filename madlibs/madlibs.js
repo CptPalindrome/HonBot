@@ -87,7 +87,7 @@ class Madlibs {
             else {
                 startIndex++;
             }
-            this.currentWordType = storyText.substring(startIndex, endIndex - startIndex);
+            this.currentWordType = storyText.substring(startIndex, endIndex);
             if(/\d/.test(this.currentWordType)) {
                 this.gameChannel.send(`${this.players[this.playerIndex].userObj}: \`${this.currentWordType.substring(0, this.currentWordType.length - 1)}\``);
             }
@@ -228,9 +228,9 @@ class Madlibs {
         }
     }
 
-    resetStories() {
+    resetStories(channel = this.gameChannel) {
         stories = JSON.parse(fs.readFileSync('./madlibs/stories.json'));
-        this.gameChannel.send(`\`Story list has been reset.\``);
+        channel.send(`\`Story list has been reset.\``);
     }
 }
 

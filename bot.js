@@ -294,7 +294,7 @@ client.on('message', msg => {
                         break;
 
                     case 'resetstories':
-                        if(madlibs.getState() !== 'none' && madlibs.getState() !== 'joining') {
+                        if(madlibs.getState() === 'none') {
                             if(!cancelConfirm) {
                                 msg.channel.send(`Are you sure you want to reset? \`h.resetstories\` again to confirm.`);
                                 cancelConfirm = true;
@@ -304,9 +304,8 @@ client.on('message', msg => {
                                 }, 30000);
                             }
                             else { 
-                                msg.channel.send(`Madlibs stories have been reset.`);
                                 cancelConfirm = false;
-                                madlibs.resetStories();
+                                madlibs.resetStories(msg.channel);
                             }
                         }
                         break;
@@ -408,8 +407,9 @@ client.on('message', msg => {
                                     break;
                                 default:
                                     if(reg.test(wydArgs[1])) {
-                                        number = wydArgs[1].substring(1, wydArgs[1].length - 2) - 1;
-                                        if (number > madComps.sentences.length - 1) {
+                                        number = wydArgs[1].substring(1, wydArgs[1].length - 1) - 1;
+                                        console.log(number)
+                                        if (number > madComps.sentences.length - 1 || number < 0) {
                                             number = Math.floor(Math.random() * madComps.sentences.length);
                                         }
                                         wydArgs.shift();
