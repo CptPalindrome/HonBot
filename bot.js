@@ -694,7 +694,7 @@ client.on('message', msg => {
                     }
                 }
 
-                if(msg.embeds.some(element => element.provider.name === 'Humble Bundle') && Math.floor(Math.random() * 10) <= 2)
+                if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle') && Math.floor(Math.random() * 10) <= 2)
                     msg.reply(`do you get paid for these links?`);
             }
         }
