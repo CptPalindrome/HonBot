@@ -669,7 +669,7 @@ client.on('message', msg => {
                     let temp = str.split(' ')[1];
                     if(temp) {
                         let temp2 = c2f(temp)
-                        msg.channel.send(`${temp}C is ${temp2}F`)
+                        msg.channel.send(`**${temp}C** is **${temp2}F**`)
                     }
                 }
 
@@ -677,7 +677,7 @@ client.on('message', msg => {
                     let temp = str.split(' ')[1];
                     if(temp) {
                         let temp2 = f2c(temp)
-                        msg.channel.send(`${temp}F is ${temp2}C`)
+                        msg.channel.send(`**${temp}F** is **${temp2}C**`)
                     }
                 }
             } //end of h. requirements
