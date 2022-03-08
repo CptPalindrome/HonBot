@@ -52,7 +52,7 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`You can convert to and from freedom units! Type h.help conversion to find out more.\``);
+                        msg.channel.send(`\`You can convert to and from freedom units! Type h.help conversion to find out more. Also, commands are no longer case sensitive! Rejoice, mobile users!\``);
                         break;
 
                     case 'face':
