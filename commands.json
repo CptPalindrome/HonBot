@@ -20,6 +20,7 @@
         "words",
         "suggest",
         "commands",
-        "patchnotes"
+        "patchnotes",
+        "conversion > (-c2f, -f2c, -cad2usd, -usd2cad, -km2mi, -mi2km, -kg2lb, -lb2kg)"
     ]
 }

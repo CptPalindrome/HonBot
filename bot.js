@@ -6,7 +6,8 @@ const winston = require('winston');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
-const { c2f, f2c } = require('./temperatureConversion/converter.js');
+const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg } = require('./utils/converter.js');
+const { help } = require('./utils/help.js');
 const moment = require('moment');
 const fs = require('fs');
 const quotes = require('./gandhiQuotes.json');
@@ -48,10 +49,10 @@ client.on('message', msg => {
             if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
                 str = str.substring(prefix.length);
-                switch(str) {
+                switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`Madlibs stories can now be joined mid session! Rejoice, for missing the start is no longer the end.\``);
+                        msg.channel.send(`\`You can convert to and from freedom units! Type h.help conversion to find out more.\``);
                         break;
 
                     case 'face':
@@ -87,66 +88,6 @@ client.on('message', msg => {
                     
                     case 'commands':
                         msg.channel.send(`\`\`\`${getCommands()}\n\nDo help <command name> for more info on individual commands.\`\`\``)
-                        break;
-
-                    case 'help':
-                        msg.channel.send(`Honbar would be happy to assist. The prefix is \`h.\`. My commands are \`face\`, \`git\`, \`dr\`, \`roulette\`, \`cf\`, \`chris\`, \`8ball\`, \`wyd\`, \`food\`, \`drink\`, \`bljk\`, \`gandhi\`, \`ngandhi\`, \`acro\`, \`mad\`/\`madlibs\`, \`sugg\` \`commands\`, and \`patchnotes\`. More info on the readme on github or by typing \`h.help {command name}\` for applicable commands.`);
-                        break;
-
-                    case 'help gandhi':
-                        msg.channel.send(`Using 'h.gandhi' will dispense one of Gandhi's glorious and enlightened quotes. You can add a number afterwards to select a specific quote. Using 'h.ngandhi' will send from the newest 40% of quotes added. Quote count always rising!* \n\n*Quote count not actually always rising`);
-                        break;
-
-                    case 'help blackjack':
-                        msg.channel.send(`\`\`\`Blackjack Commands: \n h.bljk -- starts a new game\n h.join -- join a game in progress\n h.leave -- leave a game you've joined\n h.hit/h.stand -- gameplay functions\n h.afk -- will end a round if people are afk and remove them\n h.stop -- stops a game in progress\n h.nh -- starts a new hand with the same players\`\`\``);
-                        break;
-
-                    case 'help bljk':
-                        msg.channel.send(`\`\`\`Blackjack Commands: \n h.bljk -- starts a new game\n h.join -- join a game in progress\n h.leave -- leave a game you've joined\n h.hit/h.stand -- gameplay functions\n h.afk -- will end a round if people are afk and remove them\n h.stop -- stops a game in progress\n h.nh -- starts a new hand with the same players\`\`\``);
-                        break;
-
-                    case 'help food':
-                        msg.channel.send(`You can use \`h.food\` to get a random food order that will be 100% super tasty. You can put \`"plain"\` and/or \`"group"\`/\`"round"\` after to get some other results!`);
-                        break;
-
-                    case 'help drink':
-                        msg.channel.send(`You can use \`h.drink\` to get a delicious drink that will satiate your thirst guaranteed. You can put \`"mystery"\` and/or \`"group"\`/\`"round"\` after to get some other results!`);
-                        break;
-
-                    case 'help acro':
-                        msg.channel.send(`Enter a message that has the same number of words that start with the letters provided. Make sure not to use too many spaces! It'll not work!`);
-                        break;
-
-                    case 'help madlibs':
-                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. \nYou can enter the name of a story after \`h.mad\` to do a specific template. \nUse \`h.help madlibs+\` and \`h.help madlibs++\` for extra info and commands.`)
-                        break;
-
-                    case 'help mad':
-                        msg.channel.send(`Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. \nYou can enter the name of a story after \`h.mad\` to do a specific template. \nUse \`h.help madlibs+\` and \`h.help madlibs++\` for extra info and commands.`)
-                        break;
-
-                    case 'help madlibs+':
-                        msg.channel.send(`Calling other honbot commands will not *be* your turn, so feel free to use the new example word commands during your turn (\`h.help words\` for more info). \`h.pass\` if you want to skip your turn, giving the next player a new random prompt from the story. \`h.votekick\` gives the current player 20s to submit or be kicked. \`h.stopmad\` will stop the current game and reset so that it isn't locked out. \`h.help madlibs++\` for a few more.`);
-                        break;
-
-                    case 'help madlibs++':
-                        msg.channel.send(`The stories are chosen without replacement, meaning as you play more, the stories will be removed from the pool of possible stories. Use \`h.remaining\` to view which stories are left, and also to get the names of them. To reset them, either play until all are used or use the \`h.resetstories\` command.`)
-                        break;
-
-                    case 'help words':
-                        msg.channel.send(`There are several commands for the word example functions. \`h.noun\` for example will output a few nouns from the \`h.wyd\` noun pool. The other commands are as follows:\n \`h.noun\`, \`h.verb\`, \`h.iverb\`, \`h.adjective\`, \`h.adverb\`, \`h.people\`, \`h.location\`, and \`h.preposition\``);
-                        break;
-
-                    case 'help sugg':
-                        msg.channel.send(`Type in a suggestion afterwards, in the format of TITLE | SUGGESTION TEXT. The title is optional, but recommended for clarity. (the | character separates title/suggestion)`);
-                        break;
-
-                    case 'help suggest':
-                        msg.channel.send(`Type in a suggestion afterwards, in the format of TITLE | SUGGESTION TEXT. The title is optional, but recommended for clarity. (the | character separates title/suggestion)`);
-                        break;
-
-                    case 'help banish': 
-                        msg.channel.send(`(ADMIN) Just as the name implies, this command allows you to ban(ish) users from Honbot commands. Undo with unbanish. This exists for a reason. You know who you are.`);
                         break;
                     
                     case 'bljk':
@@ -270,10 +211,6 @@ client.on('message', msg => {
                             }
                             break;
 
-                    case 'help wyd':
-                        msg.channel.send(`You can use numbers or *super secret phrases* to select specific sentence templates. Format as {#}`);
-                        break;
-
                     case 'cf':
                         let coin = Math.floor(Math.random() * 2);
                         if(coin) {
@@ -350,7 +287,7 @@ client.on('message', msg => {
                         break;
                 }
 
-                if (str.startsWith('gandhi')) {
+                if (str.toLowerCase().startsWith('gandhi')) {
                     let gandhiArgs = str.split(' ');
                     let gandhiDeafened = Math.floor(Math.random() * 100);
                     if (gandhiDeafened === 69) {
@@ -373,7 +310,7 @@ client.on('message', msg => {
                     return;
                 }
 
-                if (str.startsWith('wyd')) {
+                if (str.toLowerCase().startsWith('wyd')) {
                     //take an @ and use them if present, otherwise do "I"
                     let wydArgs = str.split(' ');
                     let number = -1;
@@ -430,16 +367,16 @@ client.on('message', msg => {
 
                 }
 
-                if (str.startsWith('chris')) {
+                if (str.toLowerCase().startsWith('chris')) {
                     chrisQuote(msg);
                 }
 
-                if (str.startsWith('8ball')) {
+                if (str.toLowerCase().startsWith('8ball')) {
                     let question = str.substring(6);
                     fortune(msg, question);
                 }
 
-                if(str.startsWith("roulette")) {
+                if(str.toLowerCase().startsWith("roulette")) {
                     let options = []
                     if(str.substring(8)) {
                         options = str.substring(8).split(',');
@@ -456,7 +393,7 @@ client.on('message', msg => {
                     }
                 }
 
-                if(str.startsWith("drink")) {
+                if(str.toLowerCase().startsWith("drink")) {
                     let options = ""
                     if (str.substring(5)) {
                         options = str.substring(5);
@@ -486,7 +423,7 @@ client.on('message', msg => {
                     msg.channel.send(drinkStr);
                 }
 
-                if(str.startsWith("food")) {
+                if(str.toLowerCase().startsWith("food")) {
                     let options = ""
                     if (str.substring(4)) {
                         options = str.substring(4);
@@ -516,7 +453,7 @@ client.on('message', msg => {
                     msg.channel.send(foodStr);
                 }
 
-                if(str.startsWith('banish') && checkAdmin(msg)) {
+                if(str.toLowerCase().startsWith('banish') && checkAdmin(msg)) {
                     let banishOpts = str.split(' ').slice(1).join(' ');
                     try {
                         if (banishOpts) {
@@ -530,7 +467,7 @@ client.on('message', msg => {
                     }
                 }
 
-                if(str.startsWith('unbanish')) {
+                if(str.toLowerCase().startsWith('unbanish')) {
                     let unbanishOpts = str.split(' ').slice(1).join(' ');
                     try {
                         if (unbanishOpts) {
@@ -543,7 +480,7 @@ client.on('message', msg => {
                     }
                 }
 
-                if(str.startsWith('sugg')) {
+                if(str.toLowerCase().startsWith('sugg')) {
                     let suggOptions = str.split(' ').slice(1).join(' ');
                     try {
                         if (suggOptions) {
@@ -560,7 +497,7 @@ client.on('message', msg => {
                     }
                 }
 
-                if(str.startsWith('mad')) {
+                if(str.toLowerCase().startsWith('mad')) {
                     let madOptions = str.split(' ').slice(1).join(' ');
             
                     if(madlibs.getState() === 'none') {
@@ -593,7 +530,7 @@ client.on('message', msg => {
                     }
                 }
 
-                if(str.startsWith('noun')) {
+                if(str.toLowerCase().startsWith('noun')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example noun: \`${getWord('noun', numWords)}\``);
@@ -601,7 +538,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example nouns: \`${getWord('noun')}\``);
                 }
 
-                if(str.startsWith('people')) {
+                if(str.toLowerCase().startsWith('people')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example people: \`${getWord('people', numWords)}\``);
@@ -609,7 +546,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example people: \`${getWord('people')}\``);
                 }
                 
-                if(str.startsWith('person')) {
+                if(str.toLowerCase().startsWith('person')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example people: \`${getWord('people', numWords)}\``);
@@ -617,7 +554,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example people: \`${getWord('people')}\``);
                 }
                 
-                if(str.startsWith('location')) {
+                if(str.toLowerCase().startsWith('location')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example locations: \`${getWord('location', numWords)}\``);
@@ -625,7 +562,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example locations: \`${getWord('location')}\``);
                 }
                     
-                if(str.startsWith('verb')) {
+                if(str.toLowerCase().startsWith('verb')) {
                     let numWords = str.split(' ')[1];
                     if(numWords)                             
                         msg.channel.send(`Example verbs: \`${getWord('verb', numWords)}\``);
@@ -633,7 +570,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example verbs: \`${getWord('verb')}\``);
                 }
                 
-                if(str.startsWith('iverb')) {
+                if(str.toLowerCase().startsWith('iverb')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive', numWords)}\``);
@@ -641,7 +578,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example intransitive verbs: \`${getWord('intransitive')}\``);
                 }
                 
-                if(str.startsWith('adjective')) {
+                if(str.toLowerCase().startsWith('adjective')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example adjectives: \`${getWord('adjective', numWords)}\``);
@@ -649,7 +586,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example adjectives: \`${getWord('adjective')}\``);
                 }
                     
-                if(str.startsWith('adverb')) {
+                if(str.toLowerCase().startsWith('adverb')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example adverbs: \`${getWord('adverb', numWords)}\``);
@@ -657,7 +594,7 @@ client.on('message', msg => {
                         msg.channel.send(`Example adverbs: \`${getWord('adverb')}\``);
                 }
 
-                if(str.startsWith('preposition')) {
+                if(str.toLowerCase().startsWith('preposition')) {
                     let numWords = str.split(' ')[1];
                     if(numWords) 
                         msg.channel.send(`Example prepositions: \`${getWord('preposition', numWords)}\``);    
@@ -665,20 +602,73 @@ client.on('message', msg => {
                         msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
                 }
 
-                if(str.startsWith('c2f')) {
+                if(str.toLowerCase().startsWith('c2f')) {
                     let temp = str.split(' ')[1];
-                    if(temp) {
-                        let temp2 = c2f(temp)
-                        msg.channel.send(`**${temp}C** is **${temp2}F**`)
+                    if(temp && !isNaN(temp)) {
+                        let temp2 = c2f(temp);
+                        msg.channel.send(`**${Math.round(temp)}C** is **~${temp2}F**`);
                     }
                 }
 
-                if(str.startsWith('f2c')) {
+                if(str.toLowerCase().startsWith('f2c')) {
                     let temp = str.split(' ')[1];
-                    if(temp) {
-                        let temp2 = f2c(temp)
-                        msg.channel.send(`**${temp}F** is **${temp2}C**`)
+                    if(temp && !isNaN(temp)) {
+                        let temp2 = f2c(temp);
+                        msg.channel.send(`**${Math.round(temp)}F** is **~${temp2}C**`);
                     }
+                }
+
+                if(str.toLowerCase().startsWith('cad2usd')) {
+                    let amnt = str.split(' ')[1];
+                    if(amnt && !isNaN(amnt)) {
+                        let amnt2 = cad2usd(amnt);
+                        msg.channel.send(`**$${amnt} CAD** is **~$${amnt2} USD**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('usd2cad')) {
+                    let amnt = str.split(' ')[1];
+                    if(amnt && !isNaN(amnt)) {
+                        let amnt2 = usd2cad(amnt);
+                        msg.channel.send(`**$${amnt} USD** is **~$${amnt2} CAD**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('km2mi')) {
+                    let dist = str.split(' ')[1];
+                    if(dist && !isNaN(dist)) {
+                        let dist2 = km2mi(dist);
+                        msg.channel.send(`**${Math.round(dist)}km** is **~${dist2}mi**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('mi2km')) {
+                    let dist = str.split(' ')[1];
+                    if(dist && !isNaN(dist)) {
+                        let dist2 = mi2km(dist);
+                        msg.channel.send(`**${Math.round(dist)}mi** is **~${dist2}km**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('kg2lb')) {
+                    let weight = str.split(' ')[1];
+                    if(weight && !isNaN(weight)) {
+                        let weight2 = kg2lb(weight);
+                        msg.channel.send(`**${Math.round(weight)}kg** is **~${weight2}lbs**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('lb2kg')) {
+                    let weight = str.split(' ')[1];
+                    if(weight && !isNaN(weight)) {
+                        let weight2 = lb2kg(weight);
+                        msg.channel.send(`**${Math.round(weight)}lbs** is **~${weight2}kg**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('help')) {
+                    let cmnd = str.split(' ')[1];
+                    msg.channel.send(help(cmnd));
                 }
             } //end of h. requirements
             else {

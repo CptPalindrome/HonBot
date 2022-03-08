@@ -92,6 +92,10 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Same as before but backwards.
 
+### conversion
+
+- Some simple unit conversions. Do 'help conversion' to see more or 'h.commands' for the full list of conversions supported.
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
@@ -123,3 +127,7 @@ Feel free to fork this repo and modify it to your heart's content.
 ### help words
 
 - Tells you the commands for the word example functions. Call this if you wanna know the list.
+
+### help conversion
+
+- Tells you more details for the different unit conversions. h.commands to get the full list.
