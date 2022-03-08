@@ -6,6 +6,7 @@ const winston = require('winston');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
+const { c2f, f2c } = require('./temperatureConversion/converter.js');
 const moment = require('moment');
 const fs = require('fs');
 const quotes = require('./gandhiQuotes.json');
@@ -662,6 +663,22 @@ client.on('message', msg => {
                         msg.channel.send(`Example prepositions: \`${getWord('preposition', numWords)}\``);    
                     else
                         msg.channel.send(`Example prepositions: \`${getWord('preposition')}\``);
+                }
+
+                if(str.startsWith('c2f')) {
+                    let temp = str.split(' ')[1];
+                    if(temp) {
+                        let temp2 = c2f(temp)
+                        msg.channel.send(`${temp}C is ${temp2}F`)
+                    }
+                }
+
+                if(str.startsWith('f2c')) {
+                    let temp = str.split(' ')[1];
+                    if(temp) {
+                        let temp2 = f2c(temp)
+                        msg.channel.send(`${temp}F is ${temp2}C`)
+                    }
                 }
             } //end of h. requirements
             else {
