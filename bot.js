@@ -52,7 +52,10 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`You can convert to and from freedom units! Type h.help conversion to find out more. Also, commands are no longer case sensitive! Rejoice, mobile users!\``);
+                        if(process.env.npm_package_version)
+                            msg.channel.send(`\`v${process.env.npm_package_version}\nOn the ifunny watermark??\``);
+                        else //in case app not started with npm start
+                            msg.channel.send(`\`\nOn the ifunny watermark??\``);
                         break;
 
                     case 'face':
@@ -284,6 +287,10 @@ client.on('message', msg => {
                         if(madlibs.getState() === 'waitingForWord' && madlibs.verifyInput(msg.author.id)) {
                             madlibs.pass();
                         }
+                        break;
+
+                    case 'ifunny':
+                        msg.channel.send(new MessageAttachment('./media/ifunny.jpg'));
                         break;
                 }
 
