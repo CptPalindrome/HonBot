@@ -73,7 +73,7 @@ client.on('message', msg => {
                     case 'dr':
                         msg.channel.send(`<:dontread:675498364040642576> __DON'T__ https://youtu.be/sHJ5HqG_JvI __READ__ <:dontread:675498364040642576>`);
                         break;
-
+                        /home/pi/.nvm/versions/node/v16.13.0/bin/node /home/pi/HonBot/bot.js > a.out & disown
                     case 'h':
                         const attachment = new MessageAttachment('./media/h.gif');
                         msg.channel.send(attachment);
