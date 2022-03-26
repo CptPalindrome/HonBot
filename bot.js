@@ -52,9 +52,9 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        // if(process.env.npm_package_version)
-                        //     msg.channel.send(`\`v${process.env.npm_package_version}\nOn the ifunny watermark??\``);
-                        // else //in case app not started with npm start
+                        if(process.env.npm_package_version)
+                            msg.channel.send(`\`v${process.env.npm_package_version}\nOn the ifunny watermark??\``);
+                        else //in case app not started with npm start
                         msg.channel.send(`\`\nOn the ifunny watermark??\``);
                         break;
 
@@ -73,7 +73,7 @@ client.on('message', msg => {
                     case 'dr':
                         msg.channel.send(`<:dontread:675498364040642576> __DON'T__ https://youtu.be/sHJ5HqG_JvI __READ__ <:dontread:675498364040642576>`);
                         break;
-                        /home/pi/.nvm/versions/node/v16.13.0/bin/node /home/pi/HonBot/bot.js > a.out & disown
+
                     case 'h':
                         const attachment = new MessageAttachment('./media/h.gif');
                         msg.channel.send(attachment);
