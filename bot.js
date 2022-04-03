@@ -52,9 +52,6 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        if(process.env.npm_package_version)
-                            msg.channel.send(`\`v${process.env.npm_package_version}\nOn the ifunny watermark??\``);
-                        else //in case app not started with npm start
                         msg.channel.send(`\`\nOn the ifunny watermark??\``);
                         break;
 
