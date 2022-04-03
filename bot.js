@@ -52,7 +52,7 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`\nOn the ifunny watermark??\``);
+                        msg.channel.send(`\`On the ifunny watermark??\``);
                         break;
 
                     case 'face':
