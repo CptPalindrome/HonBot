@@ -52,13 +52,11 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`On the ifunny watermark??\``);
+                        msg.channel.send(`\`April 2nd, 2022\nOn the ifunny watermark??\``);
                         break;
 
                     case 'face':
-                        msg.channel.send(`:eyes:`);
-                        msg.channel.send(`:nose:`);
-                        msg.channel.send(`:lips:`);
+                        msg.channel.send(`:eyes:\n:nose:\n:lips:`);
                         break;
 
                     case 'ngandhi':
@@ -610,7 +608,7 @@ client.on('message', msg => {
                     let temp = str.split(' ')[1];
                     if(temp && !isNaN(temp)) {
                         let temp2 = c2f(temp);
-                        msg.channel.send(`**${Math.round(temp)}C** is **~${temp2}F**`);
+                        msg.channel.send(`**${Math.round(temp)}C** is about **${temp2}F**`);
                     }
                 }
 
@@ -618,7 +616,7 @@ client.on('message', msg => {
                     let temp = str.split(' ')[1];
                     if(temp && !isNaN(temp)) {
                         let temp2 = f2c(temp);
-                        msg.channel.send(`**${Math.round(temp)}F** is **~${temp2}C**`);
+                        msg.channel.send(`**${Math.round(temp)}F** is about **${temp2}C**`);
                     }
                 }
 
@@ -626,7 +624,7 @@ client.on('message', msg => {
                     let amnt = str.split(' ')[1];
                     if(amnt && !isNaN(amnt)) {
                         let amnt2 = cad2usd(amnt);
-                        msg.channel.send(`**$${amnt} CAD** is **~$${amnt2} USD**`);
+                        msg.channel.send(`**$${amnt} CAD** is about **$${amnt2} USD**`);
                     }
                 }
 
@@ -634,7 +632,7 @@ client.on('message', msg => {
                     let amnt = str.split(' ')[1];
                     if(amnt && !isNaN(amnt)) {
                         let amnt2 = usd2cad(amnt);
-                        msg.channel.send(`**$${amnt} USD** is **~$${amnt2} CAD**`);
+                        msg.channel.send(`**$${amnt} USD** is about **$${amnt2} CAD**`);
                     }
                 }
 
@@ -642,7 +640,7 @@ client.on('message', msg => {
                     let dist = str.split(' ')[1];
                     if(dist && !isNaN(dist)) {
                         let dist2 = km2mi(dist);
-                        msg.channel.send(`**${Math.round(dist)}km** is **~${dist2}mi**`);
+                        msg.channel.send(`**${Math.round(dist)}km** is about **${dist2}mi**`);
                     }
                 }
 
@@ -650,7 +648,7 @@ client.on('message', msg => {
                     let dist = str.split(' ')[1];
                     if(dist && !isNaN(dist)) {
                         let dist2 = mi2km(dist);
-                        msg.channel.send(`**${Math.round(dist)}mi** is **~${dist2}km**`);
+                        msg.channel.send(`**${Math.round(dist)}mi** is about **${dist2}km**`);
                     }
                 }
 
@@ -658,7 +656,7 @@ client.on('message', msg => {
                     let weight = str.split(' ')[1];
                     if(weight && !isNaN(weight)) {
                         let weight2 = kg2lb(weight);
-                        msg.channel.send(`**${Math.round(weight)}kg** is **~${weight2}lbs**`);
+                        msg.channel.send(`**${Math.round(weight)}kg** is about **${weight2}lbs**`);
                     }
                 }
 
@@ -666,7 +664,7 @@ client.on('message', msg => {
                     let weight = str.split(' ')[1];
                     if(weight && !isNaN(weight)) {
                         let weight2 = lb2kg(weight);
-                        msg.channel.send(`**${Math.round(weight)}lbs** is **~${weight2}kg**`);
+                        msg.channel.send(`**${Math.round(weight)}lbs** is about **${weight2}kg**`);
                     }
                 }
 

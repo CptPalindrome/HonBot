@@ -770,6 +770,11 @@
             "present": "clobber",
             "past": "clobbered",
             "ing": "clobbering"
+        },
+        {
+            "present": "crook",
+            "past": "crooked",
+            "ing": "crooking"
         }
     ],
     "verbsIntransitive": [
