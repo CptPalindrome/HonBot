@@ -6,6 +6,7 @@ const winston = require('winston');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
+const HonbuxHandler = require('./honbuxHandler.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const moment = require('moment');
@@ -25,6 +26,7 @@ const prefix = 'h.';
 let game = new gameClass;
 let acro = new Acro;
 let madlibs = new Madlibs;
+let honbuxHandler = new HonbuxHandler;
 let cancelConfirm = false;
 let handInProgress = false;
 let gameStarted = false;
@@ -136,8 +138,9 @@ client.on('message', msg => {
                         
                         let pos = isPlayerInGame(game.players, msg.author.id);
                         if (isHandInProgress() && pos !== -1) {
-                            if (game.players[pos].status == 'not done') {
+                            if (game.players[pos].status == 'not done' || game.players[pos].status == 'hit') {
                                 game.hit(game.players[pos]);
+                                game.players[pos].status = 'hit';
                                 currentGameChannel.send(`***${game.players[pos].username}*** hits. They now have **${game.players[pos].currentHand()}** *(${game.players[pos].handTotal()})*`)
                                 if (game.players[pos].status == 'busted') {
                                     currentGameChannel.send(`***${game.players[pos].username}*** has busted.`);
@@ -671,6 +674,53 @@ client.on('message', msg => {
                 if(str.toLowerCase().startsWith('help')) {
                     let cmnd = str.split(' ')[1];
                     msg.channel.send(help(cmnd));
+                }
+
+                if(str.toLowerCase().startsWith('join')) {
+                    let args = str.split(' ');
+                    let bet;
+                    if(!isNaN(args[1]) && args[1] > 0) {
+                        bet = args[1];
+                    }
+                    let joinPos = isPlayerInGame(game.players, msg.author.id);
+                    if (gameIsStarted() && !isHandInProgress() && joinPos === -1) {
+                        game.addPlayer(msg.author.id, msg.author.username);
+                        joinPos = isPlayerInGame(game.players, msg.author.id);
+                        msg.react(`✅`);
+                    }
+                    else if (joinPos != -1) {
+                        msg.channel.send(`***${msg.author.username}***, you're already in the game.`);
+                    }
+                    else {
+                        msg.channel.send(`Either a game has not been started or a hand is in progress.`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('bet')) {
+                    let bet = str.split(' ')[1];
+                    if(!isNaN(bet)) {
+                        if(gameIsStarted() && !isHandInProgress()) {
+                            let pos = isPlayerInGame(game.players, msg.author.id);
+                            game.players[pos].status === 'not done'
+
+                        }
+                    }
+                }
+
+                if(msg.author.id === '167138850995437568' && (str.toLowerCase().startsWith('givebux') || str.toLowerCase().startsWith('gb'))) {
+                    let args = str.split(' ');
+                    let recipient;
+                    if(msg.mentions.users.size > 0) {
+                        recipient = msg.mentions.users.first();
+                    } else return;
+                    let amnt = args[args.length - 1];
+                    if(amnt && !isNaN(amnt) && recipient) {
+                        msg.channel.send(honbuxHandler.giveBux(recipient, Number(amnt)));
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('mb') || str.toLowerCase().startsWith('mybux')) {
+                    msg.channel.send(honbuxHandler.getUserData(msg.author));
                 }
             } //end of h. requirements
             else {
