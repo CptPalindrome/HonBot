@@ -52,7 +52,7 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`April 2nd, 2022\nOn the ifunny watermark??\``);
+                        msg.channel.send(`\`April 25th, 2022\nRepost **THIS**\``);
                         break;
 
                     case 'face':
@@ -286,6 +286,10 @@ client.on('message', msg => {
 
                     case 'ifunny':
                         msg.channel.send(new MessageAttachment('./media/ifunny.jpg'));
+                        break;
+
+                    case 'repost':
+                        msg.channel.send(new MessageAttachment('./media/repost.png'));
                         break;
                 }
 
