@@ -84,6 +84,14 @@ client.on('message', msg => {
                         msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
                         break;
                     
+                    case 'mike':
+                        const ripboyz = ['265065191731888130', '186268546106523648', '450763119149449226',
+                            '167138850995437568', '265567107280797696', '182325251927965697']
+                        if(ripboyz.includes(msg.author.id)) {
+                            msg.channel.send('🙏');
+                        }
+                        break;
+                    
                     case 'commands':
                         msg.channel.send(`\`\`\`${getCommands()}\n\nDo help <command name> for more info on individual commands.\`\`\``)
                         break;
