@@ -23,19 +23,8 @@ async function obliterate(imageUrl, channel, dimensions) {
         return;
     }
     const imagePath = await getImage(imageUrl);
-    await sharp(imagePath).resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
-    await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
-    await sharp('./image-manip/tempoutfile.jpg').resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
-    await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
-    await sharp('./image-manip/tempoutfile.jpg').resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
-    await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
-    await sharp('./image-manip/tempoutfile.jpg').resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
-    await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
-    await sharp('./image-manip/tempoutfile.jpg').resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
-    await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
-    await sharp('./image-manip/tempoutfile.jpg').resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
-    await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
-    await sharp('./image-manip/tempoutfile.jpg').resize({ width: 10000 }).toFile('./image-manip/outfile.jpg');
+    await sharp(imagePath).resize({ width: 50 }).toFile('./image-manip/outfile.jpg');
+    await sharp('./image-manip/outfile.jpg').resize({ width: 2000 }).toFile('./image-manip/tempoutfile.jpg');
     await sharp('./image-manip/outfile.jpg').resize({ width: 50 }).toFile('./image-manip/tempoutfile.jpg');
     await sharp('./image-manip/tempoutfile.jpg').resize({ width: dimensions.width }).toFile('./image-manip/outfile.jpg');
     const attachment = new MessageAttachment('./image-manip/outfile.jpg');
