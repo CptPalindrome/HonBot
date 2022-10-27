@@ -17,10 +17,9 @@ const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
 const commands = require('./commands.json');
-const { start } = require('repl');
+const imageManipulator = require('./image-manip');
 const client = new Client();
 const prefix = 'h.';
-
 
 let game = new gameClass;
 let acro = new Acro;
@@ -52,7 +51,7 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`April 25th, 2022\nRepost **THIS**\``);
+                        msg.channel.send(`\`Oct. 27th, 2022\nImages can be eaten too\``);
                         break;
 
                     case 'face':
@@ -683,6 +682,17 @@ client.on('message', msg => {
                 if(str.toLowerCase().startsWith('help')) {
                     let cmnd = str.split(' ')[1];
                     msg.channel.send(help(cmnd));
+                }
+
+                if(str.toLowerCase().startsWith('obliterate') || str.toLowerCase().startsWith('obl')) {
+                    const files = [...msg.attachments.values()];
+                    if(files[0]?.name) imageManipulator.obliterate(files[0].url, msg.channel, { width: files[0].width, height: files[0].height });
+                    else msg.channel.send('No attachment sent.');
+                }
+                if(str.toLowerCase().startsWith('zoomandmaintaincurrenthance') || str.toLowerCase().startsWith('zamch')) {
+                    const files = [...msg.attachments.values()];
+                    if(files[0]?.name) imageManipulator.zoomCurrentHance(files[0].url, msg.channel, { width: files[0].width, height: files[0].height });
+                    else msg.channel.send('No attachment sent.');
                 }
             } //end of h. requirements
             else {

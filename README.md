@@ -96,13 +96,17 @@ Feel free to fork this repo and modify it to your heart's content.
 
 - Some simple unit conversions. Do 'help conversion' to see more or 'h.commands' for the full list of conversions supported.
 
+### obliterate / zamch
+
+- Two new fun-ctions to use with images sent as attachments. I'll let you use the help function to figure it out. Or literally just use it.
+
 ### git
 
 - Posts the link to the git repo for HonBot's amazing source code & well formulated readme notes. AKA this!
 
 ### help
 
-- Lists all of these useful commands. Also just type help then a command name for a lot of different ones, I'm tired of adding individual ones here for no reason other than completeness. That said I'm also not removing the ones I've already done here.
+- Lists all of these useful commands. Also just type help then a command name for a lot of different ones, I'm tired of adding individual ones here for no reason other than completeness. That said I'm also not removing the ones I've already done here. I said this then added things anyways. I'm so good.
 
 ### help gandhi
 

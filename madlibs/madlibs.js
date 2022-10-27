@@ -2,7 +2,6 @@ const Player = require('./player.js');
 const fs = require('fs');
 const corejs = require('core-js');
 let stories = require('./stories.json');
-const { channel } = require('diagnostics_channel');
 
 /** GAMEFLOW: 
  * Collect players who will join until time limit or command? Decide which >:(
