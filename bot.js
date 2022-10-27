@@ -17,7 +17,7 @@ const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
 const commands = require('./commands.json');
-const imageManipulator = require('./image-manip');
+const ImageManipulator = require('./image-manip');
 const client = new Client();
 const prefix = 'h.';
 
@@ -31,6 +31,7 @@ let currentGameChannel;
 let fifteen = false;
 let blacklistUsers = [];
 
+const imgManip = new ImageManipulator();
 const logger = winston.createLogger({
     format: winston.format.simple(),
     transports: [
@@ -686,12 +687,12 @@ client.on('message', msg => {
 
                 if(str.toLowerCase().startsWith('obliterate') || str.toLowerCase().startsWith('obl')) {
                     const files = [...msg.attachments.values()];
-                    if(files[0]?.name) imageManipulator.obliterate(files[0].url, msg.channel, { width: files[0].width, height: files[0].height });
+                    if(files[0]?.name) imgManip.obliterate(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
                     else msg.channel.send('No attachment sent.');
                 }
                 if(str.toLowerCase().startsWith('zoomandmaintaincurrenthance') || str.toLowerCase().startsWith('zamch')) {
                     const files = [...msg.attachments.values()];
-                    if(files[0]?.name) imageManipulator.zoomCurrentHance(files[0].url, msg.channel, { width: files[0].width, height: files[0].height });
+                    if(files[0]?.name) imgManip.zoomCurrentHance(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
                     else msg.channel.send('No attachment sent.');
                 }
             } //end of h. requirements
