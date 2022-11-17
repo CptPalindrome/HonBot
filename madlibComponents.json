@@ -311,6 +311,10 @@
         {
             "singular": "aircraft",
             "plural": "aircraft"
+        },
+        {
+            "singular": "buffalo",
+            "plural": "buffalos"
         }
     ],
     "people": [

@@ -1076,10 +1076,10 @@ function parseSentence(sentenceToParse, count, category, prefix, suffix, categor
 function fortune(msg, question) {
     let fortuneNum = Math.floor(Math.random() * fortunes.fortunes.length);
     if(question != null && question != '') {
-        msg.channel.send(`> ${question}\n\`\`\`${fortunes.fortunes[fortuneNum]}\`\`\``);
+        msg.channel.send(`> ${question}\n\`\`\`🎱 ${fortunes.fortunes[fortuneNum]}\`\`\``);
     }
     else {
-        msg.channel.send(`\`\`\`${fortunes.fortunes[fortuneNum]}\`\`\``);
+        msg.channel.send(`\`\`\`🎱 ${fortunes.fortunes[fortuneNum]}\`\`\``);
     }
 }
 
