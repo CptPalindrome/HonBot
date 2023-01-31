@@ -1908,6 +1908,14 @@
         {
             "s": "I'm gonna lick a(n) {n1}",
             "n": 1
+        },
+        {
+            "s": "I don't claim to be the best {n1} in {l1}, {p1}'s got that honor. Their {n2} is {a1}. All I ask is a {a2} {n3}.",
+            "n": 3,
+            "a": 2,
+            "l": 1,
+            "p": 1,
+            "tag": "eorlund"
         }
     ]
 }
