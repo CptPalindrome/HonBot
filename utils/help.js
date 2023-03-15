@@ -50,6 +50,16 @@ function help(command) {
         case 'conversion':
             return `There are conversions for metric units to freedom units. Currently supported: Celcius, Km, Kg and CAD to their American counterparts. Functions are noted by (abbreviated unit)2(abbreviated unit). -Ex: f2c or km2mi.`
 
+        case 'obl':
+            return `Absolutely destroy the quality of any png/jpg image send as an attachment. (Might take a second to process)`
+        case 'obliterate':
+            return `Absolutely destroy the quality of any png/jpg image send as an attachment. (Might take a second to process)`
+
+        case 'zamch':
+            return `Zoom in and maintain the current hance.`
+        case 'zoomandmaintaincurrenthance':
+            return `Zoom in and maintain the current hance.`
+
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;
     }

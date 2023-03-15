@@ -1,16 +1,17 @@
 const { Client, MessageAttachment, Message } = require('discord.js');
-const envVars = require('./envVars.json');
-const auth = require('./auth.json');
 const axios = require('axios');
 const winston = require('winston');
+const ImageManipulator = require('./image-manip');
+const fs = require('fs');
+const moment = require('moment');
+const envVars = require('./envVars.json');
+const auth = require('./auth.json');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const HonbuxHandler = require('./honbuxHandler.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
-const moment = require('moment');
-const fs = require('fs');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
@@ -18,10 +19,9 @@ const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
 const commands = require('./commands.json');
-const { start } = require('repl');
+
 const client = new Client();
 const prefix = 'h.';
-
 
 let game = new gameClass;
 let acro = new Acro;
@@ -34,6 +34,7 @@ let currentGameChannel;
 let fifteen = false;
 let blacklistUsers = [];
 
+const imgManip = new ImageManipulator();
 const logger = winston.createLogger({
     format: winston.format.simple(),
     transports: [
@@ -54,7 +55,7 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`April 2nd, 2022\nOn the ifunny watermark??\``);
+                        msg.channel.send(`\`Oct. 27th, 2022\nImages can be eaten too\``);
                         break;
 
                     case 'face':
@@ -84,6 +85,14 @@ client.on('message', msg => {
                     
                     case 'git':
                         msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
+                        break;
+                    
+                    case 'mike':
+                        const ripboyz = ['265065191731888130', '186268546106523648', '450763119149449226',
+                            '167138850995437568', '265567107280797696', '182325251927965697']
+                        if(ripboyz.includes(msg.author.id)) {
+                            msg.channel.send('🙏');
+                        }
                         break;
                     
                     case 'commands':
@@ -289,6 +298,10 @@ client.on('message', msg => {
 
                     case 'ifunny':
                         msg.channel.send(new MessageAttachment('./media/ifunny.jpg'));
+                        break;
+
+                    case 'repost':
+                        msg.channel.send(new MessageAttachment('./media/repost.png'));
                         break;
                 }
 
@@ -721,6 +734,15 @@ client.on('message', msg => {
 
                 if(str.toLowerCase().startsWith('mb') || str.toLowerCase().startsWith('mybux')) {
                     msg.channel.send(honbuxHandler.getUserData(msg.author));
+                if(str.toLowerCase().startsWith('obliterate') || str.toLowerCase().startsWith('obl')) {
+                    const files = [...msg.attachments.values()];
+                    if(files[0]?.name) imgManip.obliterate(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
+                    else msg.channel.send('No attachment sent.');
+                }
+                if(str.toLowerCase().startsWith('zoomandmaintaincurrenthance') || str.toLowerCase().startsWith('zamch')) {
+                    const files = [...msg.attachments.values()];
+                    if(files[0]?.name) imgManip.zoomCurrentHance(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
+                    else msg.channel.send('No attachment sent.');
                 }
             } //end of h. requirements
             else {
@@ -1103,10 +1125,10 @@ function parseSentence(sentenceToParse, count, category, prefix, suffix, categor
 function fortune(msg, question) {
     let fortuneNum = Math.floor(Math.random() * fortunes.fortunes.length);
     if(question != null && question != '') {
-        msg.channel.send(`> ${question}\n\`\`\`${fortunes.fortunes[fortuneNum]}\`\`\``);
+        msg.channel.send(`> ${question}\n\`\`\`🎱 ${fortunes.fortunes[fortuneNum]}\`\`\``);
     }
     else {
-        msg.channel.send(`\`\`\`${fortunes.fortunes[fortuneNum]}\`\`\``);
+        msg.channel.send(`\`\`\`🎱 ${fortunes.fortunes[fortuneNum]}\`\`\``);
     }
 }
 

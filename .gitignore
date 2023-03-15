@@ -3,6 +3,7 @@ auth.json
 /HonLogs/*
 node_modules/
 /.vscode
+/image-manip/image.jpg
 envVars.json
 test.js
 eventuality.json
@@ -10,6 +11,5 @@ transcriptIn.txt
 transcriptOut.txt
 fifteenSentStatus.json
 auth.json
-package-lock.json
 suggestions.json
 playerSaveData.json
