@@ -1,15 +1,16 @@
 const { Client, MessageAttachment, Message } = require('discord.js');
-const envVars = require('./envVars.json');
-const auth = require('./auth.json');
 const axios = require('axios');
 const winston = require('winston');
+const ImageManipulator = require('./image-manip');
+const fs = require('fs');
+const moment = require('moment');
+const envVars = require('./envVars.json');
+const auth = require('./auth.json');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
-const moment = require('moment');
-const fs = require('fs');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
@@ -17,7 +18,7 @@ const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
 const commands = require('./commands.json');
-const ImageManipulator = require('./image-manip');
+
 const client = new Client();
 const prefix = 'h.';
 
