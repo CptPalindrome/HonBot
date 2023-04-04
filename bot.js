@@ -701,10 +701,13 @@ client.on('message', msg => {
                     let max = str.split(' ')?.[1] || Number.MAX_SAFE_INTEGER;
                     if (max > Number.MAX_SAFE_INTEGER) max = Number.MAX_SAFE_INTEGER;
                     let quant = str.split(' ')?.[2] || 1;
+                    if (quant > 20) quant = 20;
                     for(let i = 0; i < quant; i++) {
-                        aNumber += `${Math.floor(Math.random() * max)}\n`;
+                        aNumber += `${Math.floor(Math.random() * max)} `;
                     }
-                    msg.channel.send(aNumber);
+                    try {
+                        msg.channel.send(aNumber);
+                    } catch (e) { console.log('message too lawnnng'); }
                 }
             } //end of h. requirements
             else {
