@@ -48,7 +48,7 @@ function help(command) {
         
         case 'conversions':
         case 'conversion':
-            return `There are conversions for metric units to freedom units. Currently supported: Celcius, Km, Kg and CAD to their American counterparts. Functions are noted by (abbreviated unit)2(abbreviated unit). -Ex: f2c or km2mi.`
+            return `There are conversions for metric units to freedom units. Currently supported: Celcius, Km, Kg and CAD to their American counterparts. Functions are noted by (abbreviated unit)2(abbreviated unit). **Ex: f2c 90 or km2mi 45**`
 
         case 'obl':
             return `Absolutely destroy the quality of any png/jpg image send as an attachment. (Might take a second to process)`
@@ -59,6 +59,9 @@ function help(command) {
             return `Zoom in and maintain the current hance.`
         case 'zoomandmaintaincurrenthance':
             return `Zoom in and maintain the current hance.`
+
+        case 'number':
+            return `Get a random number generated between 0 and the max safe int (like 9 quadrillion). **Customize the maximum** by typing a number after the command. Type yet another number after that to specify how many you'd like to generate. **Ex: h.number 100 5** -Generates 5 numbers between 0 and 100`;
 
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;

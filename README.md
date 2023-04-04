@@ -12,9 +12,9 @@ You will need to have node.js, then run 'node bot.js' once you have changed out 
 
 Feel free to fork this repo and modify it to your heart's content.
 
-## Current Commands:
+## Current Commands
 
-### [These all are precluded with 'h.']
+### These all are precluded with 'h.' This section is also not being updated anymore
 
 ### face
 

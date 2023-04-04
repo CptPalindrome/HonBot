@@ -53,7 +53,7 @@ client.on('message', msg => {
                 switch(str.toLowerCase()) {
                     
                     case 'patchnotes':
-                        msg.channel.send(`\`Oct. 27th, 2022\nImages can be eaten too\``);
+                        msg.channel.send(`\`Apr. 3rd, 2023\nI don't know why it took so long, but you can now create a random number with a customizable max and quantity. h.help number\``);
                         break;
 
                     case 'face':
@@ -682,7 +682,7 @@ client.on('message', msg => {
                 }
 
                 if(str.toLowerCase().startsWith('help')) {
-                    let cmnd = str.split(' ')[1];
+                    let cmnd = str.split(' ')?.[1];
                     msg.channel.send(help(cmnd));
                 }
 
@@ -695,6 +695,16 @@ client.on('message', msg => {
                     const files = [...msg.attachments.values()];
                     if(files[0]?.name) imgManip.zoomCurrentHance(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
                     else msg.channel.send('No attachment sent.');
+                }
+                if(str.toLowerCase().startsWith('num')) {
+                    let aNumber = '';
+                    let max = str.split(' ')?.[1] || Number.MAX_SAFE_INTEGER;
+                    if (max > Number.MAX_SAFE_INTEGER) max = Number.MAX_SAFE_INTEGER;
+                    let quant = str.split(' ')?.[2] || 1;
+                    for(let i = 0; i < quant; i++) {
+                        aNumber += `${Math.floor(Math.random() * max)}\n`;
+                    }
+                    msg.channel.send(aNumber);
                 }
             } //end of h. requirements
             else {
