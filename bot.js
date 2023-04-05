@@ -699,9 +699,10 @@ client.on('message', msg => {
                 if(str.toLowerCase().startsWith('num')) {
                     let aNumber = '';
                     let max = str.split(' ')?.[1] || Number.MAX_SAFE_INTEGER;
-                    if (max > Number.MAX_SAFE_INTEGER) max = Number.MAX_SAFE_INTEGER;
+                    if (max > Number.MAX_SAFE_INTEGER || isNaN(max)) max = Number.MAX_SAFE_INTEGER;
                     let quant = str.split(' ')?.[2] || 1;
                     if (quant > 20) quant = 20;
+                    else if (isNaN(quant)) quant = 1;
                     for(let i = 0; i < quant; i++) {
                         aNumber += `${Math.floor(Math.random() * max)} `;
                     }
