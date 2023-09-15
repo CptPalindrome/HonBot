@@ -18,10 +18,12 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.17.3",
-    "discord.js": "^12.5.3",
+    "discord.js": "^14.13.0",
     "emailjs-com": "^3.2.0",
+    "eslint": "^8.49.0",
     "moment": "^2.29.1",
     "npm": "^8.19.2",
+    "save-dev": "^0.0.1-security",
     "sharp": "^0.31.1",
     "winston": "^3.3.3"
   }
