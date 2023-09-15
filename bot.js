@@ -2,12 +2,12 @@
 const { Client, Events, GatewayIntentBits, Collection, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 const winston = require('winston');
-const ImageManipulator = require('./image-manip');
 const fs = require('fs');
-const path = require('node:path');
 const moment = require('moment');
+
 const envVars = require('./envVars.json');
 const auth = require('./auth.json');
+const ImageManipulator = require('./image-manip');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
@@ -45,44 +45,6 @@ const logger = winston.createLogger({
     ]
 });
 
-//get commands
-client.commands = new Collection();
-const foldersPath = path.join(__dirname, 'commands');
-const commandFolders = fs.readdirSync(foldersPath);
-for (const folder of commandFolders) {
-    const commandPath = path.join(foldersPath, folder);
-    const commandFiles = fs.readdirSync(commandPath).filter(file => file.endsWith('.js'));
-    for (const file of commandFiles) {
-        const filePath = path.join(commandPath, file);
-        const command = require(filePath);
-        if ('data' in command && 'execute' in command) client.commands.set(command.data.name, command);
-        else {
-            console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`)
-        }
-    }
-}
-
-client.on(Events.InteractionCreate, async interaction => {
-    if (!interaction.isChatInputCommand()) return;
-    const command = interaction.client.commands.get(interaction.commandName);
-
-    if (!command) {
-        console.error(`No command matching ${interaction.commandName} was found.`);
-        return;
-    }
-    try {
-        await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
-	}
-    console.log(interaction);
-})
-
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
     let str = msg.content;
@@ -92,14 +54,8 @@ client.on(Events.MessageCreate, msg => {
                 hasPrefix = true;
                 str = str.substring(prefix.length);
                 switch(str.toLowerCase()) {
-                    
-                    case 'testy':
-                        msg.channel.send(`Messsage :D`);
-                        console.log('Mmmm it worked kinda');
-                        break;
-
                     case 'patchnotes':
-                        msg.channel.send(`\`Apr. 3rd, 2023\nI don't know why it took so long, but you can now create a random number with a customizable max and quantity. h.help number\``);
+                        msg.channel.send(`\`Sept. 15th, 2023\nFinally updated to discordjs v14. No slash commands because screw that. If a command breaks...uhhh let me know.\``);
                         break;
 
                     case 'face':
