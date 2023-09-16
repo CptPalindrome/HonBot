@@ -1,11 +1,13 @@
-const { Client, MessageAttachment, Message } = require('discord.js');
+/* eslint-disable no-case-declarations */
+const { Client, Events, GatewayIntentBits, Collection, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 const winston = require('winston');
-const ImageManipulator = require('./image-manip');
 const fs = require('fs');
 const moment = require('moment');
+
 const envVars = require('./envVars.json');
 const auth = require('./auth.json');
+const ImageManipulator = require('./image-manip');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
@@ -19,7 +21,8 @@ const drinks = require('./drinks.json');
 const food = require('./food.json');
 const commands = require('./commands.json');
 
-const client = new Client();
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessageReactions] });
 const prefix = 'h.';
 
 let game = new gameClass;
@@ -42,7 +45,7 @@ const logger = winston.createLogger({
     ]
 });
 
-client.on('message', msg => {
+client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
@@ -51,9 +54,8 @@ client.on('message', msg => {
                 hasPrefix = true;
                 str = str.substring(prefix.length);
                 switch(str.toLowerCase()) {
-                    
                     case 'patchnotes':
-                        msg.channel.send(`\`Apr. 3rd, 2023\nI don't know why it took so long, but you can now create a random number with a customizable max and quantity. h.help number\``);
+                        msg.channel.send(`\`Sept. 15th, 2023\nFinally updated to discordjs v14. No slash commands because screw that. If a command breaks...uhhh let me know.\``);
                         break;
 
                     case 'face':
@@ -71,13 +73,13 @@ client.on('message', msg => {
                         break;
 
                     case 'h':
-                        const attachment = new MessageAttachment('./media/h.gif');
-                        msg.channel.send(attachment);
+                        msg.channel.send({files: [new AttachmentBuilder('./media/h.gif')]});
                         break;
 
                     case '15':
                         if (fifteen) {
-                            msg.channel.send(new MessageAttachment('./media/15.png'));
+                            const attachment = new AttachmentBuilder('./media/15.png');
+                            msg.channel.send({files: [attachment]});
                         }
                         break;
                     
@@ -294,11 +296,11 @@ client.on('message', msg => {
                         break;
 
                     case 'ifunny':
-                        msg.channel.send(new MessageAttachment('./media/ifunny.jpg'));
+                        msg.channel.send({ files: [new AttachmentBuilder('./media/ifunny.jpg')] });
                         break;
 
                     case 'repost':
-                        msg.channel.send(new MessageAttachment('./media/repost.png'));
+                        msg.channel.send({ files: [new AttachmentBuilder('./media/repost.png')] });
                         break;
                 }
 
@@ -749,10 +751,7 @@ client.on('message', msg => {
     //TESTING CODE ZONE
     else {
         if(msg.author.id != '266744954922074112') {
-
-            let hasPrefix;
             if(str.toLowerCase().startsWith(prefix)) {
-                hasPrefix = true;
                 str = str.substring(prefix.length);
                 switch(str) {
                     case 'test':
@@ -762,16 +761,6 @@ client.on('message', msg => {
             }
         }
     }
-});
-
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setStatus('available');
-    client.user.setPresence({
-        game: {
-            name: 'Use h. as the default prefix! You can\'t change it!',
-        }
-    });
 });
 
 let cardsDrawnByDealer = 0;
@@ -1179,12 +1168,12 @@ function serveFood(isMystery, isGroupOrder) {
     else {
         const foodNum = Math.floor(Math.random() * drinks.drinks.length);
         if (!isGroupOrder) {
-            drinkName = food.food[foodNum].singular;
+            const drinkName = food.food[foodNum].singular;
             outString += (`__${containerName.singular}__ ***${drinkName}***. *"${honbarMessage}"*`);
         }
         else {
             const quantityName = drinks.groupQuantities[Math.floor(Math.random() * drinks.groupQuantities.length)];
-            drinkName = food.food[foodNum].plural;
+            const drinkName = food.food[foodNum].plural;
             outString += (`__${quantityName}__ __${containerName.plural}__ ***${drinkName}***. *"${honbarMessage}"*`);
         }
     }
@@ -1377,14 +1366,22 @@ function getCommands() {
     return commands.commandlist.join('\n');
 }
 
-client.on('ready', () => {
+client.once(Events.ClientReady, (c) => {
+    console.log(`Logged in as ${c.user.tag}!`);
+    client.user.setStatus('available');
+    client.user.setPresence({
+        game: {
+            name: 'Use h. as the default prefix! You can\'t change it!',
+        }
+    });
+
     if(suggestionsReady()) {
         emailSuggestions()
     }
     let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
     if(moment().format('D') === '15' && !fifteenSent) {
         fifteen = true;
-        client.channels.cache.find(x => x.id == '452011709859627019').send(new MessageAttachment('./media/15.png')).then(msg => {
+        client.channels.cache.find(x => x.id == '452011709859627019').send({ files: [new AttachmentBuilder('./media/15.png')] }).then(msg => {
             msg.react('1️⃣')
                 .then(() => msg.react('5️⃣'))
                 .catch(error => console.error('Reaction FAILURE. No emotions now', error));

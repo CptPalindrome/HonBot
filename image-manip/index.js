@@ -1,15 +1,15 @@
 const sharp = require('sharp');
 const fs = require('fs');
-const { MessageAttachment } = require('discord.js');
+const { AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
 class ImageManipluator {
     
-    constructor() {   
+    constructor() {
         sharp.cache(false);
     }
 
-    getImage = async (url) => {
+    async getImage (url) {
         let imagePath;
         const res = await axios({
             method: 'get',
@@ -23,7 +23,7 @@ class ImageManipluator {
         });
     }
         
-    obliterate = async (imageUrl, channel, dimensions) => {
+    async obliterate (imageUrl, channel, dimensions) {
         if(!this.legalAttachment(imageUrl)) {
             channel.send('Invalid file type');
             return;
@@ -34,8 +34,8 @@ class ImageManipluator {
         await sharp('./image-manip/tempoutfile.jpg').resize({ width: 50 }).toFile('./image-manip/outfile.jpg');
         await sharp('./image-manip/outfile.jpg').resize({ width: 2000 }).toFile('./image-manip/tempoutfile.jpg');
         await sharp('./image-manip/tempoutfile.jpg').resize({ width: dimensions.width }).toFile('./image-manip/outfile.jpg');
-        const attachment = new MessageAttachment('./image-manip/outfile.jpg');
-        await channel.send(attachment);
+        const attachment = new AttachmentBuilder('./image-manip/outfile.jpg');
+        await channel.send({ files: [attachment] });
         try {
             fs.unlinkSync('./image-manip/outfile.jpg');
             fs.unlinkSync('./image-manip/tempoutfile.jpg');
@@ -45,7 +45,7 @@ class ImageManipluator {
         }
     }
         
-    zoomCurrentHance = async (imageUrl, channel, dimensions) => {
+    async zoomCurrentHance (imageUrl, channel, dimensions) {
         if(!this.legalAttachment(imageUrl)) {
             channel.send('Invalid file type');
             return;
@@ -62,8 +62,8 @@ class ImageManipluator {
             console.log(e);
         }
     
-        const attachment = new MessageAttachment('./image-manip/outfile.jpg');
-        await channel.send(attachment);
+        const attachment = new AttachmentBuilder('./image-manip/outfile.jpg');
+        await channel.send({ files: [attachment] });
         try {
             fs.unlinkSync('./image-manip/outfile.jpg');
             fs.unlinkSync(imagePath);
