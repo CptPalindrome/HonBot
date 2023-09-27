@@ -63,6 +63,17 @@ function help(command) {
         case 'number':
             return `Get a random number generated between 0 and the max safe int (like 9 quadrillion). **Customize the maximum** by typing a number after the command. Type yet another number after that to specify how many you'd like to generate. **Ex: h.number 100 5** -Generates 5 numbers between 0 and 100`;
 
+        case 'maketeams':
+            return `Create two even teams from a list names separated by commas`
+        case 'mt':
+            return `Create two even teams from a list names separated by commas`
+
+        case 'gtn':
+            return `Generate a random team name made of a color and an animal.`
+        
+        case 'gtna':
+            return `Generate a random team name made of a color and an animal, but it will use alliteration (same letter starts both).`
+
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;
     }

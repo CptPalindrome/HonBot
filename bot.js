@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const { Client, Events, GatewayIntentBits, Collection, AttachmentBuilder } = require('discord.js');
+const { Client, Events, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 const winston = require('winston');
 const fs = require('fs');
@@ -11,6 +11,7 @@ const ImageManipulator = require('./image-manip');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
+const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const quotes = require('./gandhiQuotes.json');
@@ -235,6 +236,18 @@ client.on(Events.MessageCreate, msg => {
                         }
                         break;
 
+                    case 'gtn':
+                        msg.channel.send(generateTeamName());
+                        break;
+
+                    case 'generateteamname':
+                        msg.channel.send(generateTeamName());
+                        break;    
+                    
+                    case 'gtna':
+                        msg.channel.send(generateTeamNameAlliteration());
+                        break;
+
                     case 'remaining': 
                         if(madlibs.getState() === 'none')
                             msg.channel.send(`\`\`\`${madlibs.getRemainingStories()}\`\`\``);
@@ -331,7 +344,7 @@ client.on(Events.MessageCreate, msg => {
                     //take an @ and use them if present, otherwise do "I"
                     let wydArgs = str.split(' ');
                     let number = -1;
-                    const reg = new RegExp(`{[0-9]+}`);
+                    console.log(wydArgs[1]);
                     try {
                         if(wydArgs.length == 1) {
                             number = Math.floor(Math.random() * madComps.sentences.length);
@@ -339,41 +352,15 @@ client.on(Events.MessageCreate, msg => {
                         }
 
                         else if(wyd.length > 1) {
-                            switch(wydArgs[1]) {
-                                case '{oven}':
-                                    number = 50;
-                                    wydArgs.shift();
-                                    break;
-                                case '{navy}':
-                                    number = 72;
-                                    wydArgs.shift();
-                                    break;
-                                case '{lagg}':
-                                    number = 73;
-                                    wydArgs.shift();
-                                    break;
-                                case '{nft}':
-                                    number = 78;
-                                    wydArgs.shift();
-                                    break;
-                                case '{eggman}':
-                                    number = 80;
-                                    wydArgs.shift();
-                                    break;
-                                default:
-                                    if(reg.test(wydArgs[1])) {
-                                        number = wydArgs[1].substring(1, wydArgs[1].length - 1) - 1;
-                                        console.log(number)
-                                        if (number > madComps.sentences.length - 1 || number < 0) {
-                                            number = Math.floor(Math.random() * madComps.sentences.length);
-                                        }
-                                        wydArgs.shift();
+                            madComps.sentences.forEach((sentence, index) => {
+                                if(sentence.tag) {
+                                    if(sentence?.tag.toLowerCase() === wydArgs[1].substring(1, wydArgs[1].length - 1).toLowerCase()) {
+                                        number = index;
                                     }
-                                    else {
-                                        number = Math.floor(Math.random() * madComps.sentences.length);
-                                    }
-                                    break;
-                            }
+                                }
+                            });
+
+                            wydArgs.shift();
                             wydArgs.shift();
                             wyd(msg, number, wydArgs.join(' '));
                         }
@@ -711,6 +698,12 @@ client.on(Events.MessageCreate, msg => {
                     try {
                         msg.channel.send(aNumber);
                     } catch (e) { console.log('message too lawnnng'); }
+                }
+
+                if(str.toLowerCase().startsWith('maketeams') || str.toLowerCase().startsWith('mt')) {
+                    const names = str.split(' ').splice(1).join(' ').split(',');
+                    const [teamA, teamB] = createTeams(names);
+                    msg.channel.send(`Team A: \`${teamA}\`\nTeam B: \`${teamB}\``)
                 }
             } //end of h. requirements
             else {

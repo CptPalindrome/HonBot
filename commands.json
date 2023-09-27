@@ -23,6 +23,8 @@
         "patchnotes",
         "conversion > (-c2f, -f2c, -cad2usd, -usd2cad, -km2mi, -mi2km, -kg2lb, -lb2kg)",
         "obliterate - obl",
-        "zoomandmaintaincurrenthance - zamch"
+        "zoomandmaintaincurrenthance - zamch",
+        "makeTeams | mt",
+        "generateTeamName | gtn | gtna (alliteration)"
     ]
 }

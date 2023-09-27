@@ -1722,7 +1722,8 @@
             "n": 3,
             "prep": 2,
             "a": 2,
-            "v": 1
+            "v": 1,
+            "tag": "oven"
         },
         {
             "s": "There's a boy outside with a(n) {n1}. He doesn't see me, but I {v1} his {n1pl}. I see his {n2pl}. He's not what he seems.",
@@ -1836,7 +1837,8 @@
             "ving": 1,
             "p": 1,
             "l": 2,
-            "v": 2
+            "v": 2,
+            "tag": "navy"
         },
         {
             "s": "Getting sick of seeing {n1} in two places within consecutive minutes of each other. {p1} this made me {a1} enough to ruin my day, quit being suck a {a2} {a3} {n2}. You're not {a4}. Just incredibly {a5}. Fuck it, there's no reason to bother with you anymore. Privileged {a6} {a7} {n1pl} aren't going to {iv1} how {n2pl} work until you {v1} someone like me in real life and get a reality check real {adv1}. Underexposed flyover {n3}, starting to develop a real dislike of {l1}. Could you be any worse of a {a8} {n4}. {p2}. Last few {n3pl} have been more than sufficient to tell me it's a {n5} of {a9} {n4pl} and {a10} ones at that. At least here in {l2} {n5pl} are ready to deal with their {n6pl} and do it to people's {n7pl}. {p3}, fuck you so hard. I have to deal with your type and worse for another decade or until I {iv2}. Whichever {iv3}s first. Except this time with a(n) {n6}. This is so {a11} to me now. I hope the latter comes first.",
@@ -1847,7 +1849,8 @@
             "iv": 3,
             "p": 3,
             "l": 2,
-            "adv": 1
+            "adv": 1,
+            "tag": "lagg"
         },
         {
             "s": "Given the chance, I would absolutely {v1} a muppet.",
@@ -1878,7 +1881,8 @@
             "n": 4,
             "a": 3,
             "v": 3,
-            "p": 1
+            "p": 1,
+            "tag": "nft"
         },
         {
             "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own rules, seeking only their own approval, but then later decides that they care about what other people think because that's how society works.",
@@ -1898,7 +1902,8 @@
             "ived": 1,
             "iving": 1,
             "l": 4,
-            "p": 3
+            "p": 3,
+            "tag": "eggman"
         },
         {
             "s": "Having {a1} {n1pl} is a virtue",
@@ -1916,6 +1921,15 @@
             "l": 1,
             "p": 1,
             "tag": "eorlund"
+        },
+        {
+            "s": "I was never {n1} smart I'm {n2} smart‼ Makes me more {a1}‼ Call me Mr. Rock Festival, I got hella {n1pl}‼ Shawty {a2} and her {n3} too‼ Told her get a {n4}‼ She gon make me {v1} with my {n5} like I'm {p1}",
+            "n": 5,
+            "npl": 1,
+            "a": 2,
+            "v": 1,
+            "p": 1,
+            "tag": "megaman"
         }
     ]
 }
