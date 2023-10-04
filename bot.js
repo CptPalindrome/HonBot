@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const { Client, Events, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
+const { Client, Events, GatewayIntentBits, AttachmentBuilder, PermissionsBitField } = require('discord.js');
 const axios = require('axios');
 const winston = require('winston');
 const fs = require('fs');
@@ -1264,7 +1264,7 @@ function userInBlacklist(id) {
 }
 
 function checkAdmin(msg) {
-    return msg.member.hasPermission('ADMINISTRATOR');
+    return msg.member.permissions.has(PermissionsBitField.Flags.Administrator);
 }
 
 function getWord(type, numWords = 5) {
