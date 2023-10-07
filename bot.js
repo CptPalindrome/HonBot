@@ -56,7 +56,7 @@ client.on(Events.MessageCreate, msg => {
                 str = str.substring(prefix.length);
                 switch(str.toLowerCase()) {
                     case 'patchnotes':
-                        msg.channel.send(`\`Sept. 15th, 2023\nFinally updated to discordjs v14. No slash commands because screw that. If a command breaks...uhhh let me know.\``);
+                        msg.channel.send(`\`Oct. 6th, 2023\nMAJOR UPDATE: Newport Biden.\``);
                         break;
 
                     case 'face':
@@ -75,6 +75,15 @@ client.on(Events.MessageCreate, msg => {
 
                     case 'h':
                         msg.channel.send({files: [new AttachmentBuilder('./media/h.gif')]});
+                        break;
+
+                    case 'npb':
+                        msg.channel.send({files: [new AttachmentBuilder('./media/newportbiden.png')]});
+
+                        break;
+
+                    case 'newportbiden':
+                        msg.channel.send({files: [new AttachmentBuilder('./media/newportbiden.png')]});
                         break;
 
                     case '15':
