@@ -361,17 +361,19 @@ client.on(Events.MessageCreate, msg => {
                         }
 
                         else if(wyd.length > 1) {
-                            madComps.sentences.forEach((sentence, index) => {
-                                if(sentence.tag) {
-                                    if(sentence?.tag.toLowerCase() === wydArgs[1].substring(1, wydArgs[1].length - 1).toLowerCase()) {
-                                        number = index;
+                            if (wydArgs[1].includes('{') && wydArgs[1].includes('}')) {
+                                madComps.sentences.forEach((sentence, index) => {
+                                    if(sentence.tag) {
+                                        if(sentence?.tag.toLowerCase() === wydArgs[1].substring(1, wydArgs[1].length - 1).toLowerCase()) {
+                                            number = index;
+                                        }
                                     }
-                                }
-                            });
+                                });
+                                wydArgs.shift();
+                            } else number = Math.floor(Math.random() * madComps.sentences.length);
 
                             wydArgs.shift();
-                            wydArgs.shift();
-                            wyd(msg, number, wydArgs.join(' '));
+                            wyd(msg, number, wydArgs.join(' ').trim());
                         }
                     }
                     catch(e) {
