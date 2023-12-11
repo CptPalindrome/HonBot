@@ -315,6 +315,10 @@
         {
             "singular": "buffalo",
             "plural": "buffalos"
+        },
+        {
+            "singular": "sundial",
+            "plural": "sundials"
         }
     ],
     "people": [
@@ -402,7 +406,10 @@
         "Steve Gorman",
         "all 23 rascals",
         "Guy LeDouche",
-        "Tidus"
+        "Tidus",
+        "The Rizzler",
+        "Baby Gronk",
+        "The Drip King"
     ],
     "locations": [
         "Brazil",
@@ -413,7 +420,7 @@
         "Hyrule",
         "The Mushroom Kingdom",
         "Old McDonald's farm",
-        "swamp",
+        "the swamp",
         "Whiterun",
         "Skyrim",
         "Anor Londo",
@@ -423,7 +430,7 @@
         "Final Destination",
         "Silent Hill",
         "Ram Ranch",
-        "prison",
+        "the prison",
         "McDonalds",
         "Gotham City",
         "The Grand Canyon",
@@ -442,7 +449,11 @@
         "Hallownest",
         "Gooch Terminal",
         "Musubi's",
-        "Vapecon 2016"
+        "Vapecon 2016",
+        "Seedles' Slut Hut",
+        "the tavern",
+        "an abandoned steak n shake",
+        "Necromunda"
     ],
     "verbs": [
         {
@@ -779,6 +790,11 @@
             "present": "crook",
             "past": "crooked",
             "ing": "crooking"
+        },
+        {
+            "present": "rizz",
+            "past": "rizzed",
+            "ing": "rizzing"
         }
     ],
     "verbsIntransitive": [
@@ -1383,6 +1399,11 @@
             "regular": "vocoded",
             "er": "more vocoded",
             "est": "most vocoded"
+        },
+        {
+            "regular": "musty",
+            "er": "mustier",
+            "est": "mustiest"
         }
     ],
     "adverbs": [
@@ -1723,7 +1744,7 @@
             "prep": 2,
             "a": 2,
             "v": 1,
-            "tag": "oven"
+            "tags": ["oven"]
         },
         {
             "s": "There's a boy outside with a(n) {n1}. He doesn't see me, but I {v1} his {n1pl}. I see his {n2pl}. He's not what he seems.",
@@ -1838,7 +1859,7 @@
             "p": 1,
             "l": 2,
             "v": 2,
-            "tag": "navy"
+            "tags": ["navy"]
         },
         {
             "s": "Getting sick of seeing {n1} in two places within consecutive minutes of each other. {p1} this made me {a1} enough to ruin my day, quit being suck a {a2} {a3} {n2}. You're not {a4}. Just incredibly {a5}. Fuck it, there's no reason to bother with you anymore. Privileged {a6} {a7} {n1pl} aren't going to {iv1} how {n2pl} work until you {v1} someone like me in real life and get a reality check real {adv1}. Underexposed flyover {n3}, starting to develop a real dislike of {l1}. Could you be any worse of a {a8} {n4}. {p2}. Last few {n3pl} have been more than sufficient to tell me it's a {n5} of {a9} {n4pl} and {a10} ones at that. At least here in {l2} {n5pl} are ready to deal with their {n6pl} and do it to people's {n7pl}. {p3}, fuck you so hard. I have to deal with your type and worse for another decade or until I {iv2}. Whichever {iv3}s first. Except this time with a(n) {n6}. This is so {a11} to me now. I hope the latter comes first.",
@@ -1850,7 +1871,7 @@
             "p": 3,
             "l": 2,
             "adv": 1,
-            "tag": "lagg"
+            "tags": ["lagg"]
         },
         {
             "s": "Given the chance, I would absolutely {v1} a muppet.",
@@ -1882,7 +1903,7 @@
             "a": 3,
             "v": 3,
             "p": 1,
-            "tag": "nft"
+            "tags": ["nft"]
         },
         {
             "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own rules, seeking only their own approval, but then later decides that they care about what other people think because that's how society works.",
@@ -1903,7 +1924,7 @@
             "iving": 1,
             "l": 4,
             "p": 3,
-            "tag": "eggman"
+            "tags": ["eggman"]
         },
         {
             "s": "Having {a1} {n1pl} is a virtue",
@@ -1920,7 +1941,7 @@
             "a": 2,
             "l": 1,
             "p": 1,
-            "tag": "eorlund"
+            "tags": ["eorlund"]
         },
         {
             "s": "I was never {n1} smart I'm {n2} smart‼ Makes me more {a1}‼ Call me Mr. Rock Festival, I got hella {n1pl}‼ Shawty {a2} and her {n3} too‼ Told her get a {n4}‼ She gon make me {v1} with my {n5} like I'm {p1}",
@@ -1929,7 +1950,16 @@
             "a": 2,
             "v": 1,
             "p": 1,
-            "tag": "megaman"
+            "tags": ["megaman", "jayeazy", "eazy", "booksmart", "moneysmart"]
+        },
+        {
+            "s": "I've {v1p} more {n1} at varied {l1} this year than you have probably {v1p} in your entire life. I love {n1} more than life itself. I {v1} at least one every single day usually two or three. I could {v1} it for the rest of eternity and never get tired of it. I have tried every single {n1}{l1} in {l2}. Sure there is good bar {n1} but we are comparing {a1} {n2} places so obviously I am going to use another {a1} {n2} place to compare. Next time you want to try to {v2} a fight with someone do your homework you {a2} {n3}, you aren't even worthy to lick the {n4} dust off of the {p1} of my {n4}.",
+            "v": 2,
+            "n": 4,
+            "l": 2,
+            "p": 1,
+            "a": 2,
+            "tags": ["burger"]
         }
     ]
 }

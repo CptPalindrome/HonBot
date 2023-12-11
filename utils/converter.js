@@ -7,11 +7,11 @@ function f2c(temp) {
 }
 
 function cad2usd(amnt) {
-    return Math.round(((amnt * 0.78) * 100)) / 100
+    return Math.round(((amnt * 0.74) * 100)) / 100
 }
 
 function usd2cad(amnt) {
-    return Math.round(((amnt * 1.29) * 100)) / 100
+    return Math.round(((amnt * 1.36) * 100)) / 100
 }
 
 function km2mi(dist) {

@@ -46,6 +46,8 @@ const logger = winston.createLogger({
     ]
 });
 
+const patchnoteText = `\`\`\`Dec. 11th, 2023\nCatching up on old suggestions. h.wyd templates now support multiple tags that you can use in h.wyd {tag} form!\nTo make it easier to remember tags, h.tags or h.gettags has been added to get a list of tags that exist. Tags do still need to be unique per template, and also one word because of arbitrary design decisions, but that's what you got! If there's any templates you want to have tagged, hit the h.suggestion with any tags you may want.\`\`\``;
+
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
     let str = msg.content;
@@ -56,9 +58,13 @@ client.on(Events.MessageCreate, msg => {
                 str = str.substring(prefix.length);
                 switch(str.toLowerCase()) {
                     case 'patchnotes':
-                        msg.channel.send(`\`Oct. 6th, 2023\nMAJOR UPDATE: Newport Biden.\``);
+                        msg.channel.send(patchnoteText);
                         break;
 
+                    case 'pn':
+                        msg.channel.send(patchnoteText);
+                        break;
+                    
                     case 'face':
                         msg.channel.send(`:eyes:\n:nose:\n:lips:`);
                         break;
@@ -349,11 +355,23 @@ client.on(Events.MessageCreate, msg => {
                     return;
                 }
 
+                if (str.toLowerCase().startsWith('gettags') || str.toLowerCase().startsWith('tags')) {
+                    const tagList = [];
+                    madComps.sentences.forEach((sentence) => {
+                        if(sentence.tags) {
+                            sentence.tags.forEach(tag => tagList.push(tag));
+                            tagList.push('TAGBREAKER');
+                        }
+                    });
+
+                    const tags = tagList.join(' ').split('TAGBREAKER').map(item => item.trim()).join('\n');
+                    msg.channel.send(`These are all the tags for h.wyd templates:\n\`\`\`\n${tags}\`\`\``)
+                }
+
                 if (str.toLowerCase().startsWith('wyd')) {
                     //take an @ and use them if present, otherwise do "I"
                     let wydArgs = str.split(' ');
                     let number = -1;
-                    console.log(wydArgs[1]);
                     try {
                         if(wydArgs.length == 1) {
                             number = Math.floor(Math.random() * madComps.sentences.length);
@@ -363,8 +381,10 @@ client.on(Events.MessageCreate, msg => {
                         else if(wyd.length > 1) {
                             if (wydArgs[1].includes('{') && wydArgs[1].includes('}')) {
                                 madComps.sentences.forEach((sentence, index) => {
-                                    if(sentence.tag) {
-                                        if(sentence?.tag.toLowerCase() === wydArgs[1].substring(1, wydArgs[1].length - 1).toLowerCase()) {
+                                    if(sentence.tags) {
+                                        if (sentence.tags.some(tag => {
+                                            return tag.toLowerCase() === wydArgs[1].substring(1, wydArgs[1].length - 1).toLowerCase();
+                                        })) {
                                             number = index;
                                         }
                                     }
@@ -708,7 +728,7 @@ client.on(Events.MessageCreate, msg => {
                     }
                     try {
                         msg.channel.send(aNumber);
-                    } catch (e) { console.log('message too lawnnng'); }
+                    } catch (e) { logger.error('message too lawnnng'); }
                 }
 
                 if(str.toLowerCase().startsWith('maketeams') || str.toLowerCase().startsWith('mt')) {

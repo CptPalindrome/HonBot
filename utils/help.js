@@ -74,6 +74,9 @@ function help(command) {
         case 'gtna':
             return `Generate a random team name made of a color and an animal, but it will use alliteration (same letter starts both).`
 
+        case 'tags':
+            return `Get a list of all the h.wyd tags you can use for different templates (it won't tell you what it's for, just the tags themselves).`
+
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;
     }

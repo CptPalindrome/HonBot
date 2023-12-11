@@ -25,6 +25,7 @@
         "obliterate - obl",
         "zoomandmaintaincurrenthance - zamch",
         "makeTeams | mt",
-        "generateTeamName | gtn | gtna (alliteration)"
+        "generateTeamName | gtn | gtna (alliteration)",
+        "tags | gettags"
     ]
 }
