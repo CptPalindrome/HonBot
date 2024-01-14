@@ -12,7 +12,7 @@ const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
-const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg } = require('./utils/converter.js');
+const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
@@ -46,7 +46,7 @@ const logger = winston.createLogger({
     ]
 });
 
-const patchnoteText = `\`\`\`Dec. 11th, 2023\nCatching up on old suggestions. h.wyd templates now support multiple tags that you can use in h.wyd {tag} form!\nTo make it easier to remember tags, h.tags or h.gettags has been added to get a list of tags that exist. Tags do still need to be unique per template, and also one word because of arbitrary design decisions, but that's what you got! If there's any templates you want to have tagged, hit the h.suggestion with any tags you may want.\`\`\``;
+const patchnoteText = `\`\`\`Jan. 13th 2024\nAdded some in/cm and ft/m conversions. Also new gandhi quote :)\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -682,6 +682,38 @@ client.on(Events.MessageCreate, msg => {
                     if(dist && !isNaN(dist)) {
                         let dist2 = mi2km(dist);
                         msg.channel.send(`**${Math.round(dist)}mi** is about **${dist2}km**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('in2cm')) {
+                    let dist = str.split(' ')[1];
+                    if(dist && !isNaN(dist)) {
+                        let dist2 = in2cm(dist);
+                        msg.channel.send(`**${Math.round(dist)}in** is about **${dist2}cm**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('cm2in')) {
+                    let dist = str.split(' ')[1];
+                    if(dist && !isNaN(dist)) {
+                        let dist2 = cm2in(dist);
+                        msg.channel.send(`**${Math.round(dist)}cm** is about **${dist2}in**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('ft2m')) {
+                    let dist = str.split(' ')[1];
+                    if(dist && !isNaN(dist)) {
+                        let dist2 = ft2m(dist);
+                        msg.channel.send(`**${Math.round(dist)}ft** is about **${dist2}m**`);
+                    }
+                }
+
+                if(str.toLowerCase().startsWith('m2ft')) {
+                    let dist = str.split(' ')[1];
+                    if(dist && !isNaN(dist)) {
+                        let dist2 = m2ft(dist);
+                        msg.channel.send(`**${Math.round(dist)}m** is about **${dist2}ft**`);
                     }
                 }
 

@@ -21,7 +21,7 @@
         "suggest",
         "commands",
         "patchnotes",
-        "conversion > (-c2f, -f2c, -cad2usd, -usd2cad, -km2mi, -mi2km, -kg2lb, -lb2kg)",
+        "conversion > (-f2c, -cad2usd, -mi2km, -in2cm, -ft2m, -lb2kg)",
         "obliterate - obl",
         "zoomandmaintaincurrenthance - zamch",
         "makeTeams | mt",

@@ -22,6 +22,22 @@ function mi2km(dist) {
     return Math.round(((dist * 1.60934) * 10)) / 10
 }
 
+function in2cm(dist) {
+    return Math.round(((dist * 2.54) * 10)) / 10
+}
+
+function cm2in(dist) {
+    return Math.round(((dist / 2.54) * 10)) / 10
+}
+
+function ft2m(dist) {
+    return Math.round(((dist / 3.281) * 10)) / 10
+}
+
+function m2ft(dist) {
+    return Math.round(((dist * 3.281) * 10)) / 10
+}
+
 function kg2lb(weight) {
     return Math.round(((weight * 2.205) * 10)) / 10
 }
@@ -30,4 +46,4 @@ function lb2kg(weight) {
     return Math.round(((weight / 2.205) * 10)) / 10
 }
 
-module.exports = { c2f, f2c, usd2cad, cad2usd, km2mi, mi2km, kg2lb, lb2kg };
+module.exports = { c2f, f2c, usd2cad, cad2usd, km2mi, mi2km, kg2lb, lb2kg, in2cm, cm2in, ft2m, m2ft };
