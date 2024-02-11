@@ -98,6 +98,10 @@ client.on(Events.MessageCreate, msg => {
                             msg.channel.send({files: [attachment]});
                         }
                         break;
+
+                    case 'die':
+                        msg.channel.send(`${Math.floor(Math.random() * 6) + 1}`)
+                        break;
                     
                     case 'git':
                         msg.channel.send(`README & Source Code here: https://github.com/CptPalindrome/HonBot`);
