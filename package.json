@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node bot.js",
     "switch": "node Scripts/switch.js",
-    "ConvertTranscript": "node transcript_converter.js"
+    "ConvertTranscript": "node transcript_converter.js",
+    "txtFileCombiner": "node utils/fileCombiner.js"
   },
   "keywords": [],
   "author": "",
