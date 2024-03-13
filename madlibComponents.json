@@ -795,6 +795,16 @@
             "present": "rizz",
             "past": "rizzed",
             "ing": "rizzing"
+        },
+        {
+            "present": "dap up",
+            "past": "dapped up",
+            "ing": "dapping up"
+        },
+        {
+            "present": "scrounge",
+            "past": "scrounged",
+            "ing": "scrounging"
         }
     ],
     "verbsIntransitive": [
@@ -1404,6 +1414,11 @@
             "regular": "musty",
             "er": "mustier",
             "est": "mustiest"
+        },
+        {
+            "regular": "drippy",
+            "er": "drippier",
+            "est": "drippiest"
         }
     ],
     "adverbs": [
