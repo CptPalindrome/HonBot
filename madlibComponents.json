@@ -319,6 +319,10 @@
         {
             "singular": "sundial",
             "plural": "sundials"
+        },
+        {
+            "singular": "sponsored link",
+            "plural": "sponsored links"
         }
     ],
     "people": [
@@ -805,6 +809,11 @@
             "present": "scrounge",
             "past": "scrounged",
             "ing": "scrounging"
+        },
+        {
+            "present": "chacha slide",
+            "past": "chacha slid",
+            "ing": "chacha sliding"
         }
     ],
     "verbsIntransitive": [
