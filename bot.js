@@ -11,6 +11,7 @@ const ImageManipulator = require('./image-manip');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
+const HonbuxHelper = require('./honbuxHandler');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
@@ -29,6 +30,7 @@ const prefix = 'h.';
 let game = new gameClass;
 let acro = new Acro;
 let madlibs = new Madlibs;
+let honbuxHelper = new HonbuxHelper;
 let cancelConfirm = false;
 let handInProgress = false;
 let gameStarted = false;
@@ -46,7 +48,7 @@ const logger = winston.createLogger({
     ]
 });
 
-const patchnoteText = `\`\`\`Jan. 13th 2024\nAdded some in/cm and ft/m conversions. Also new gandhi quote :)\`\`\``;
+const patchnoteText = `\`\`\`Apr. 13th 2024\nThe Honbux Update is real at long last. Added some new functions for gaining/spending. More coming soon! h.help honbux for more info.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -772,6 +774,58 @@ client.on(Events.MessageCreate, msg => {
                     const [teamA, teamB] = createTeams(names);
                     msg.channel.send(`Team A: \`${teamA}\`\nTeam B: \`${teamB}\``)
                 }
+                
+                if(str.toLowerCase().startsWith('daily')) {
+                    msg.channel.send(honbuxHelper.daily(msg));
+                }
+
+                if(str.toLowerCase().startsWith('addbux')) {
+                    if (msg.author.id === '167138850995437568') {
+                        const recipients = msg.mentions.users;
+                        let amount = str.split(' ')[1];
+                        if(recipients.size > 0 && amount && !isNaN(amount)) {
+                            recipients.forEach((recipient) => {
+                                const balance = honbuxHelper.modifyBux(recipient, amount);
+                                msg.channel.send(`Gave \`${recipient.username}\` \`${amount}\` Honbux. Balance is now \`${balance}\``);
+                            });
+                        } else {
+                            msg.channel.send('Message needs to be formatted as follows: h.addbux `amount` @ user(s)');
+                        }
+                    }
+                }
+                
+                if(str.toLowerCase().startsWith('cfbux')) {
+                    const userbalance = Number(honbuxHelper.getBalance(msg.author));
+                    const bet = Number(str.split(' ')[1]);
+                    const choice = str.split(' ')[2];
+                    if (choice === 'heads' || choice === 'tails') {
+                        if (bet && !isNaN(bet) && userbalance >= bet) {
+                            let coin = Math.floor(Math.random() * 2);
+                            if(coin) {
+                                if (choice === 'heads') {
+                                    honbuxHelper.modifyBux(msg.author, bet);
+                                    msg.channel.send(`Heads! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance + bet}**`);
+                                } else {
+                                    honbuxHelper.modifyBux(msg.author, bet * -1);
+                                    msg.channel.send(`Heads...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance - bet}**`);
+                                }
+                            }
+                            else {
+                                if (choice === 'tails') {
+                                    honbuxHelper.modifyBux(msg.author, bet);
+                                    msg.channel.send(`Tails! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance + bet}**`);
+                                } else {
+                                    honbuxHelper.modifyBux(msg.author, bet * -1);
+                                    msg.channel.send(`Tails...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance - bet}**`);
+                                }
+                            }
+                        } else msg.channel.send('You either don\'t have enough Honbux, or you didn\'t enter a number.');
+                    } else msg.channel.send('Message should be formatted: h.cfbux `number` `<heads/tails>`');
+                }
+
+                if(str.toLowerCase().startsWith('honbalance')) {
+                    msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getBalance(msg.author)}**`);
+                }
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {
@@ -815,7 +869,7 @@ client.on(Events.MessageCreate, msg => {
                 str = str.substring(prefix.length);
                 switch(str) {
                     case 'test':
-                        msg.reply(`yeahhh we testin`);
+                        msg.reply(`ID: ${msg.author.id}\nUsername: ${msg.author.username}\n...author?: ${msg.author.toString()}`);
                         break;
                 }
             }

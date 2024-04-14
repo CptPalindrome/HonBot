@@ -1,0 +1,22 @@
+{ 
+    "successMessages": [
+        { "rarity": "common", "message": "You have earned <:honbux:966533492030730340>**{amount}**. Your new total is <:honbux:966533492030730340>**{balance}**" },
+        { "rarity": "common", "message": "You gained <:honbux:966533492030730340>**{amount}**! New total: <:honbux:966533492030730340>**{balance}**."},
+        { "rarity": "common", "message": "Alright. You got <:honbux:966533492030730340>**{amount}**. New total: <:honbux:966533492030730340>**{balance}**."},
+        { "rarity": "common", "message": "You remembered! You slurped up <:honbux:966533492030730340>**{amount}**. Now you've got <:honbux:966533492030730340>**{balance}**."},
+        { "rarity": "common", "message": "Hey there, thanks for using h.daily. You just got <:honbux:966533492030730340>**{amount}**. You're up to <:honbux:966533492030730340>**{balance}**."},
+        { "rarity": "scarce", "message": "Wow! You just got <:honbux:966533492030730340>**{amount}**! That's above average! Now you're at <:honbux:966533492030730340>**{balance}**!"},
+        { "rarity": "scarce", "message": "Yoooo, you just got <:honbux:966533492030730340>**{amount}**! How unusual! Your unusual self now has the unusual amount of <:honbux:966533492030730340>**{balance}**!"},
+        { "rarity": "scarce", "message": "Wow, <:honbux:966533492030730340>**{amount}**, I scarcely see that amount! Scarce like s(Cars)ce 2! What was I saying? Oh, yeah. With those new tires you're up to<:honbux:966533492030730340>**{balance}**!"},
+        { "rarity": "rare", "message": "Rarity? In *my* server? What do you mean it's not my server? I'm HonGOD!! You just got <:honbux:966533492030730340>**{amount}**! You've got<:honbux:966533492030730340>**{balance}**! Now get back to work!!!"},
+        { "rarity": "rare", "message": "MY SECRET STASH!!!!!!! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!! <:honbux:966533492030730340>**{amount}** | <:honbux:966533492030730340>**{balance}**"},
+        { "rarity": "rare", "message": "Woah, <:honbux:966533492030730340>**{amount}**!! Hey, maybe you'll be able to afford a Force Gurgs soon! You're at <:honbux:966533492030730340>**{balance}**"}
+    ],
+    "badMessages": [
+        { "message": "Are you paying attention? You're not paying attention. You've still got `{hours}:{minutes}` left." },
+        { "message": "Time is only as you perceive it. But maybe you should reconsider your perception. You have `{hours}:{minutes}` left." },
+        { "message": "*EXTREMELY LOUD INCORRECT BUZZER SOUND*. `{hours}:{minutes}` remaining." },
+        { "message": "You can't do that just yet. You've got another `{hours}:{minutes}` to go." },
+        { "message": "Stop right there! You won't double h.daily on *my* watch! You must wait at least another `{hours}:{minutes}`!" }
+    ]
+}
