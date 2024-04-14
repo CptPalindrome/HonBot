@@ -798,9 +798,9 @@ client.on(Events.MessageCreate, msg => {
                     const userbalance = Number(honbuxHelper.getBalance(msg.author));
                     let bet = Number(str.split(' ')[1]);
                     const choice = str.split(' ')[2];
+                    bet = Math.floor(bet);
                     if (choice === 'heads' || choice === 'tails') {
                         if (bet && !isNaN(bet) && userbalance >= bet && bet > 0) {
-                            bet = Math.floor(bet);
                             let coin = Math.floor(Math.random() * 2);
                             if(coin) {
                                 if (choice === 'heads') {
@@ -824,7 +824,7 @@ client.on(Events.MessageCreate, msg => {
                     } else msg.channel.send('Message should be formatted: h.cfbux `number` `<heads/tails>`');
                 }
 
-                if(str.toLowerCase().startsWith('honbalance')) {
+                if(str.toLowerCase().startsWith('honbalance') || str.toLowerCase().startsWith('honba')) {
                     msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getBalance(msg.author)}**`);
                 }
             } //end of h. requirements
