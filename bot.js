@@ -796,10 +796,11 @@ client.on(Events.MessageCreate, msg => {
                 
                 if(str.toLowerCase().startsWith('cfbux')) {
                     const userbalance = Number(honbuxHelper.getBalance(msg.author));
-                    const bet = Number(str.split(' ')[1]);
+                    let bet = Number(str.split(' ')[1]);
                     const choice = str.split(' ')[2];
                     if (choice === 'heads' || choice === 'tails') {
-                        if (bet && !isNaN(bet) && userbalance >= bet) {
+                        if (bet && !isNaN(bet) && userbalance >= bet && bet > 0) {
+                            bet = Math.floor(bet);
                             let coin = Math.floor(Math.random() * 2);
                             if(coin) {
                                 if (choice === 'heads') {
