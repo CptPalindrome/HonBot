@@ -832,7 +832,7 @@ client.on(Events.MessageCreate, msg => {
                     } else msg.channel.send('Message should be formatted: h.cfbux `number` `<heads/tails>`');
                 }
 
-                if(str.toLowerCase().startsWith('honnbalance') || str.toLowerCase().startsWith('honnba')) {
+                if(str.toLowerCase().startsWith('honbalance') || str.toLowerCase().startsWith('honba')) {
                     msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getUserData(msg.author).honbalance}**`);
                 }
             } //end of h. requirements
