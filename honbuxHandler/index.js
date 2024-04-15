@@ -48,6 +48,18 @@ class HonbuxHelper {
         return messageList[randomNum].message.replace('{hours}', timeDiffHours).replace('{minutes}', timeDiffMinutes);
     }
 
+    tagCfbuxTime(id) {
+        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        const endData = { honbuxData: honbuxData.map((userdata) => { 
+            if(userdata.id === id) {
+                userdata.lastCf = Date.now();
+            }
+            return userdata;
+        })};
+
+        fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+    }
+
     daily(msg) {
         const { id, username } = msg.author;
         const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
@@ -114,7 +126,7 @@ class HonbuxHelper {
         return balance;
     }
 
-    getBalance(author) {
+    getUserData(author) {
         const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
         const { id, username } = author;
         if (!honbuxData?.find((userdata) => userdata?.id === id || userdata?.username === username)) {
@@ -124,7 +136,7 @@ class HonbuxHelper {
                 honbalance: 0
             });
         }
-        return honbuxData?.find((userdata) => userdata?.id === id).honbalance;
+        return honbuxData?.find((userdata) => userdata?.id === id);
     }
 }
 

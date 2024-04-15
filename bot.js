@@ -53,7 +53,7 @@ const patchnoteText = `\`\`\`Apr. 13th 2024\nThe Honbux Update is real at long l
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
     let str = msg.content;
-    if(!envVars.TEST_MODE) {
+    if(!envVars.TEST_MODE && msg.author.id === '167138850995437568') {
         if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === '167138850995437568') {
             if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
@@ -795,37 +795,44 @@ client.on(Events.MessageCreate, msg => {
                 }
                 
                 if(str.toLowerCase().startsWith('cfbux')) {
-                    const userbalance = Number(honbuxHelper.getBalance(msg.author));
+                    const { honbalance, lastCf } = honbuxHelper.getUserData(msg.author);
+                    const minBet = 100;
+                    const maxBet = 1500;
                     let bet = Number(str.split(' ')[1]);
-                    const choice = str.split(' ')[2];
+                    const choice = str.split(' ')[2].toLowerCase();
                     bet = Math.floor(bet);
                     if (choice === 'heads' || choice === 'tails') {
-                        if (bet && !isNaN(bet) && userbalance >= bet && bet > 0) {
-                            let coin = Math.floor(Math.random() * 2);
-                            if(coin) {
-                                if (choice === 'heads') {
-                                    honbuxHelper.modifyBux(msg.author, bet);
-                                    msg.channel.send(`Heads! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance + bet}**`);
-                                } else {
-                                    honbuxHelper.modifyBux(msg.author, bet * -1);
-                                    msg.channel.send(`Heads...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance - bet}**`);
-                                }
-                            }
-                            else {
-                                if (choice === 'tails') {
-                                    honbuxHelper.modifyBux(msg.author, bet);
-                                    msg.channel.send(`Tails! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance + bet}**`);
-                                } else {
-                                    honbuxHelper.modifyBux(msg.author, bet * -1);
-                                    msg.channel.send(`Tails...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${userbalance - bet}**`);
-                                }
-                            }
-                        } else msg.channel.send('You either don\'t have enough Honbux, or you didn\'t enter a number.');
+                        if ((lastCf && Date.now() - lastCf > 1800000) || !lastCf) {
+                            if (bet && !isNaN(bet) && honbalance >= bet) {
+                                if (bet >= minBet && bet <= maxBet) {
+                                    let coin = Math.floor(Math.random() * 2);
+                                    if(coin) {
+                                        if (choice === 'heads') {
+                                            honbuxHelper.modifyBux(msg.author, bet);
+                                            msg.channel.send(`Heads! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance + bet}**`);
+                                        } else {
+                                            honbuxHelper.modifyBux(msg.author, bet * -1);
+                                            msg.channel.send(`Heads...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance - bet}**`);
+                                        }
+                                    }
+                                    else {
+                                        if (choice === 'tails') {
+                                            honbuxHelper.modifyBux(msg.author, bet);
+                                            msg.channel.send(`Tails! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance + bet}**`);
+                                        } else {
+                                            honbuxHelper.modifyBux(msg.author, bet * -1);
+                                            msg.channel.send(`Tails...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance - bet}**`);
+                                        }
+                                    }
+                                    honbuxHelper.tagCfbuxTime(msg.author.id);
+                                } else msg.channel.send(`You must bet between \`${minBet}\` and \`${maxBet}\``);
+                            } else msg.channel.send(`You either don't have enough Honbux, bet over the max bet \`${maxBet}\` or you didn't enter a number.`);
+                        } else msg.channel.send(`You must wait at least \`${Math.floor((1800000 - (Date.now() - lastCf)) / 60000)}\` minutes before you can flip again.`);
                     } else msg.channel.send('Message should be formatted: h.cfbux `number` `<heads/tails>`');
                 }
 
                 if(str.toLowerCase().startsWith('honbalance') || str.toLowerCase().startsWith('honba')) {
-                    msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getBalance(msg.author)}**`);
+                    msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getUserData(msg.author).honbalance}**`);
                 }
             } //end of h. requirements
             else {
