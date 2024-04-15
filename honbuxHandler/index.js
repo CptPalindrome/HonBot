@@ -1,7 +1,9 @@
 const fs = require('fs');
+const Utils = require('./utils');
 
 class HonbuxHelper {
     constructor() {
+        this.utils = new Utils();
         this.init();
     }
 
@@ -62,80 +64,54 @@ class HonbuxHelper {
 
     daily(msg) {
         const { id, username } = msg.author;
-        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
         const resetTimeInMilliseconds = 79200000;
         const { random, rarity } = this.generateDailyRandom();
+        const dataForModify = [
+            { propName: 'honbalance', propValue: random, propFunc: 'inc' }, 
+            { propName: 'lastDaily', propValue: Date.now(),  propFunc: 'set'}
+        ];
 
-        if (!honbuxData?.find((userdata) => userdata?.id === id || userdata?.username === username)) {
-            honbuxData.push({
-                id,
-                username,
-                honbalance: 0
-            });
+        honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
+        let wasDailyValid = false
+        const user = honbuxData?.find((userdata) => userdata?.id === id);
+        const dailyTimeDiff = Date.now() - user.lastDaily;
+        let endData;
+        if(user.lastDaily && dailyTimeDiff < resetTimeInMilliseconds) {
+            wasDailyValid = false;
+        } else {
+            endData = this.utils.modifyData(honbuxData, id, dataForModify );
+            fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+            wasDailyValid = true;
         }
 
-        let wasValid = false;
-        let timeDiff;
-        let endData = { honbuxData: honbuxData.map((userdata) => { 
-            if(userdata.id === id) {
-                timeDiff = Date.now() - userdata.lastDaily;
-                if(userdata.lastDaily && timeDiff < resetTimeInMilliseconds) {
-                    wasValid = false;
-                }
-                else {
-                    wasValid = true;
-                    userdata.honbalance += random;
-                    userdata.lastDaily = Date.now();
-                }
-            } 
-            return userdata;
-        })};
 
         const balance = endData?.honbuxData?.find((userdata) => userdata.id === id || userdata.username === username)?.honbalance;
-        const timeDiffHours = Math.floor((resetTimeInMilliseconds - timeDiff) / 3600000).toString().padStart(2, '0');
-        const timeDiffMinutes = Math.floor((resetTimeInMilliseconds - timeDiff) % 3600000 / 60000).toString().padStart(2, '0');
+        const timeDiffHours = Math.floor((resetTimeInMilliseconds - dailyTimeDiff) / 3600000).toString().padStart(2, '0');
+        const timeDiffMinutes = Math.floor((resetTimeInMilliseconds - dailyTimeDiff) % 3600000 / 60000).toString().padStart(2, '0');
         
-        fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
-        return wasValid ? this.getSuccessMessage(rarity, random, balance) : this.getBadMessage(timeDiffHours, timeDiffMinutes);
+        return wasDailyValid ? this.getSuccessMessage(rarity, random, balance) : this.getBadMessage(timeDiffHours, timeDiffMinutes);
     }
 
     modifyBux(recipient, amount) {
         // amount can be negative to remove bux from the user
         const { id, username } = recipient;
-        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
         let balance;
-
-        if (!honbuxData?.find((userdata) => userdata?.id === id || userdata?.username === username)) {
-            honbuxData.push({
-                id,
-                username,
-                honbalance: 0
-            });
-        }
-
-        const endData = { honbuxData: honbuxData.map((userdata) => { 
-            if(userdata.id === id) {
-                userdata.honbalance += Number(amount);
-                if (userdata.honbalance < 0) userdata.honbalance = 0;
-                balance = userdata.honbalance;
-            }
-            return userdata;
-        })};
+        honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
+        const dataForModify = [
+            { propName: 'honbalance', propValue: amount, propFunc: 'inc' }, 
+        ];
+        const endData = this.utils.modifyData(honbuxData, id, dataForModify);
 
         fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
         return balance;
     }
 
     getUserData(author) {
-        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
         const { id, username } = author;
-        if (!honbuxData?.find((userdata) => userdata?.id === id || userdata?.username === username)) {
-            honbuxData.push({
-                id,
-                username,
-                honbalance: 0
-            });
-        }
+        honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         return honbuxData?.find((userdata) => userdata?.id === id);
     }
 }

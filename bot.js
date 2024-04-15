@@ -797,12 +797,13 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('cfbux')) {
                     const { honbalance, lastCf } = honbuxHelper.getUserData(msg.author);
                     const minBet = 100;
-                    const maxBet = 1500;
+                    const maxBet = 1000;
+                    const cfbuxCooldown = 600000;
                     let bet = Number(str.split(' ')[1]);
                     const choice = str.split(' ')[2].toLowerCase();
                     bet = Math.floor(bet);
                     if (choice === 'heads' || choice === 'tails') {
-                        if ((lastCf && Date.now() - lastCf > 1800000) || !lastCf) {
+                        if ((lastCf && Date.now() - lastCf > cfbuxCooldown) || !lastCf) {
                             if (bet && !isNaN(bet) && honbalance >= bet) {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
@@ -826,12 +827,12 @@ client.on(Events.MessageCreate, msg => {
                                     }
                                     honbuxHelper.tagCfbuxTime(msg.author.id);
                                 } else msg.channel.send(`You must bet between \`${minBet}\` and \`${maxBet}\``);
-                            } else msg.channel.send(`You either don't have enough Honbux, bet over the max bet \`${maxBet}\` or you didn't enter a number.`);
-                        } else msg.channel.send(`You must wait at least \`${Math.floor((1800000 - (Date.now() - lastCf)) / 60000)}\` minutes before you can flip again.`);
+                            } else msg.channel.send(`You either don't have enough Honbux, or you didn't enter a number.`);
+                        } else msg.channel.send(`You must wait at least \`${Math.floor((cfbuxCooldown - (Date.now() - lastCf)) / 60000)}\` minutes before you can flip again.`);
                     } else msg.channel.send('Message should be formatted: h.cfbux `number` `<heads/tails>`');
                 }
 
-                if(str.toLowerCase().startsWith('honbalance') || str.toLowerCase().startsWith('honba')) {
+                if(str.toLowerCase().startsWith('honnbalance') || str.toLowerCase().startsWith('honnba')) {
                     msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getUserData(msg.author).honbalance}**`);
                 }
             } //end of h. requirements
