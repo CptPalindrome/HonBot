@@ -53,7 +53,7 @@ const patchnoteText = `\`\`\`Apr. 13th 2024\nThe Honbux Update is real at long l
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
     let str = msg.content;
-    if(!envVars.TEST_MODE && msg.author.id === '167138850995437568') {
+    if(!envVars.TEST_MODE) {
         if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === '167138850995437568') {
             if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
