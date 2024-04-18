@@ -780,7 +780,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('addbux')) {
-                    if (msg.author.id === '189125614358364160') {
+                    if (msg.author.id === '167138850995437568') {
                         const recipients = msg.mentions.users;
                         let amount = str.split(' ')[1];
                         if(recipients.size > 0 && amount && !isNaN(amount)) {
@@ -807,7 +807,7 @@ client.on(Events.MessageCreate, msg => {
                             if (bet && !isNaN(bet) && honbalance >= bet) {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
-                                    if (msg.author.id === '167138850995437568') {
+                                    if (msg.author.id === '189125614358364160') {
                                         if (Math.floor(Math.random() * 10) <= 7) {
                                             if (coin && choice === 'heads') {
                                                 logger.info('heads > tails');
