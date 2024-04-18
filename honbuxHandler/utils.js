@@ -19,6 +19,8 @@ class Utils {
                         userdata[param.propName] += param.propValue;
                     } else if (param.propFunc ==='set') {
                         userdata[param.propName] = param.propValue;
+                    } else if (param.propFunc === 'inc/set') {
+                        userdata[param.propName] ? userdata[param.propName] += param.propValue : userdata[param.propName] = param.propValue;
                     }
                 });
             }

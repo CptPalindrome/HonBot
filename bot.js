@@ -785,7 +785,7 @@ client.on(Events.MessageCreate, msg => {
                         let amount = str.split(' ')[1];
                         if(recipients.size > 0 && amount && !isNaN(amount)) {
                             recipients.forEach((recipient) => {
-                                const balance = honbuxHelper.modifyBux(recipient, amount);
+                                const balance = honbuxHelper.modifyBux(recipient, Number(amount), 'AddBux');
                                 msg.channel.send(`Gave \`${recipient.username}\` \`${amount}\` Honbux. Balance is now \`${balance}\``);
                             });
                         } else {
@@ -807,31 +807,33 @@ client.on(Events.MessageCreate, msg => {
                             if (bet && !isNaN(bet) && honbalance >= bet) {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
-                                    if (msg.author.id === '189125614358364160') {
+                                    if (msg.author.id === '167138850995437568') {
                                         if (Math.floor(Math.random() * 10) <= 7) {
                                             if (coin && choice === 'heads') {
+                                                logger.info('heads > tails');
                                                 coin = 0;
-                                            }
+                                            } else if (coin && choice === 'tails') logger.info('Automatic, heads');
                                             else if (!coin && choice === 'tails') {
+                                                logger.info('tails > heads');
                                                 coin = 1;
-                                            }
+                                            } else if (!coin && choice === 'heads') logger.info('Automatic, tails');
                                         }
                                     }
                                     if(coin) {
                                         if (choice === 'heads') {
-                                            honbuxHelper.modifyBux(msg.author, bet);
+                                            honbuxHelper.modifyBux(msg.author, bet, 'CfBux');
                                             msg.channel.send(`Heads! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance + bet}**`);
                                         } else {
-                                            honbuxHelper.modifyBux(msg.author, bet * -1);
+                                            honbuxHelper.modifyBux(msg.author, bet * -1, 'CfBux');
                                             msg.channel.send(`Heads...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance - bet}**`);
                                         }
                                     }
                                     else {
                                         if (choice === 'tails') {
-                                            honbuxHelper.modifyBux(msg.author, bet);
+                                            honbuxHelper.modifyBux(msg.author, bet, 'CfBux');
                                             msg.channel.send(`Tails! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance + bet}**`);
                                         } else {
-                                            honbuxHelper.modifyBux(msg.author, bet * -1);
+                                            honbuxHelper.modifyBux(msg.author, bet * -1, 'CfBux');
                                             msg.channel.send(`Tails...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance - bet}**`);
                                         }
                                     }

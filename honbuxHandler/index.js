@@ -93,7 +93,7 @@ class HonbuxHelper {
         return wasDailyValid ? this.getSuccessMessage(rarity, random, balance) : this.getBadMessage(timeDiffHours, timeDiffMinutes);
     }
 
-    modifyBux(recipient, amount) {
+    modifyBux(recipient, amount, source) {
         // amount can be negative to remove bux from the user
         const { id, username } = recipient;
         let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
@@ -101,10 +101,12 @@ class HonbuxHelper {
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         const dataForModify = [
             { propName: 'honbalance', propValue: amount, propFunc: 'inc' }, 
+            { propName: `${amount > 0 ? 'gained' : 'lost'}From${source}`, propValue: amount, propFunc: 'inc/set' }, 
         ];
         const endData = this.utils.modifyData(honbuxData, id, dataForModify);
 
         fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+        balance = endData?.honbuxData?.find((userdata) => userdata.id === id || userdata.username === username)?.honbalance;
         return balance;
     }
 
