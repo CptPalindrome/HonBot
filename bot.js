@@ -780,7 +780,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('addbux')) {
-                    if (msg.author.id === '167138850995437568') {
+                    if (msg.author.id === '189125614358364160') {
                         const recipients = msg.mentions.users;
                         let amount = str.split(' ')[1];
                         if(recipients.size > 0 && amount && !isNaN(amount)) {
