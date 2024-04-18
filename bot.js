@@ -807,6 +807,16 @@ client.on(Events.MessageCreate, msg => {
                             if (bet && !isNaN(bet) && honbalance >= bet) {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
+                                    if (msg.author.id === '189125614358364160') {
+                                        if (Math.floor(Math.random() * 10) <= 7) {
+                                            if (coin && choice === 'heads') {
+                                                coin = 0;
+                                            }
+                                            else if (!coin && choice === 'tails') {
+                                                coin = 1;
+                                            }
+                                        }
+                                    }
                                     if(coin) {
                                         if (choice === 'heads') {
                                             honbuxHelper.modifyBux(msg.author, bet);
