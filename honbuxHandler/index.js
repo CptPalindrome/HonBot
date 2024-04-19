@@ -68,7 +68,6 @@ class HonbuxHelper {
         const resetTimeInMilliseconds = 79200000;
         const { random, rarity } = this.generateDailyRandom();
         const dataForModify = [
-            { propName: 'honbalance', propValue: random, propFunc: 'inc' }, 
             { propName: 'lastDaily', propValue: Date.now(),  propFunc: 'set'}
         ];
 
@@ -77,16 +76,16 @@ class HonbuxHelper {
         const user = honbuxData?.find((userdata) => userdata?.id === id);
         const dailyTimeDiff = Date.now() - user.lastDaily;
         let endData;
+        let balance;
         if(user.lastDaily && dailyTimeDiff < resetTimeInMilliseconds) {
             wasDailyValid = false;
         } else {
             endData = this.utils.modifyData(honbuxData, id, dataForModify );
             fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+            balance = this.modifyBux(msg.author, Number(random), 'daily');
             wasDailyValid = true;
         }
 
-
-        const balance = endData?.honbuxData?.find((userdata) => userdata.id === id || userdata.username === username)?.honbalance;
         const timeDiffHours = Math.floor((resetTimeInMilliseconds - dailyTimeDiff) / 3600000).toString().padStart(2, '0');
         const timeDiffMinutes = Math.floor((resetTimeInMilliseconds - dailyTimeDiff) % 3600000 / 60000).toString().padStart(2, '0');
         
