@@ -808,7 +808,7 @@ client.on(Events.MessageCreate, msg => {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
                                     if (msg.author.id === '189125614358364160') {
-                                        if (Math.floor(Math.random() * 10) <= 3) {
+                                        if (Math.floor(Math.random() * 10) <= 2) {
                                             if (coin && choice === 'heads') {
                                                 logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: heads > tails`);
                                                 coin = 0;
