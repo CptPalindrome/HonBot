@@ -808,7 +808,7 @@ client.on(Events.MessageCreate, msg => {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
                                     if (msg.author.id === '189125614358364160') {
-                                        if (Math.floor(Math.random() * 10) <= 6) {
+                                        if (Math.floor(Math.random() * 10) <= 3) {
                                             if (coin && choice === 'heads') {
                                                 logger.info('heads > tails');
                                                 coin = 0;
