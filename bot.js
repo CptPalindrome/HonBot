@@ -810,13 +810,13 @@ client.on(Events.MessageCreate, msg => {
                                     if (msg.author.id === '189125614358364160') {
                                         if (Math.floor(Math.random() * 10) <= 3) {
                                             if (coin && choice === 'heads') {
-                                                logger.info('heads > tails');
+                                                logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: heads > tails`);
                                                 coin = 0;
-                                            } else if (coin && choice === 'tails') logger.info('Automatic, heads');
+                                            } else if (coin && choice === 'tails') logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: Automatic, heads`);
                                             else if (!coin && choice === 'tails') {
-                                                logger.info('tails > heads');
+                                                logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: tails > heads`);
                                                 coin = 1;
-                                            } else if (!coin && choice === 'heads') logger.info('Automatic, tails');
+                                            } else if (!coin && choice === 'heads') logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: Automatic, tails`);
                                         }
                                     }
                                     if(coin) {
