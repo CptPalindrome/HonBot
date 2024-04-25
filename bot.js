@@ -808,7 +808,7 @@ client.on(Events.MessageCreate, msg => {
                                 if (bet >= minBet && bet <= maxBet) {
                                     let coin = Math.floor(Math.random() * 2);
                                     if (msg.author.id === '189125614358364160') {
-                                        if (Math.floor(Math.random() * 10) <= 2) {
+                                        if (Math.floor(Math.random() * 10) <= 1) {
                                             if (coin && choice === 'heads') {
                                                 logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: heads > tails`);
                                                 coin = 0;
@@ -856,6 +856,11 @@ client.on(Events.MessageCreate, msg => {
                         const topGuy = honbuxHelper.getTopHonbux();
                         msg.channel.send(`The richest guy is **${topGuy.username}** with <:honbux:966533492030730340>**${topGuy.honbalance}**`);
                     }
+                }
+
+                if(str.toLowerCase().startsWith('ranking')) {
+                    const rankings = honbuxHelper.getRankings();
+                    msg.channel.send(`\`\`\`Honbux Rankings:\n\n${rankings}\`\`\``);
                 }
             } //end of h. requirements
             else {

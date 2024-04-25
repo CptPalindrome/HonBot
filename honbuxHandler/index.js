@@ -82,7 +82,7 @@ class HonbuxHelper {
         } else {
             endData = this.utils.modifyData(honbuxData, id, dataForModify );
             fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
-            balance = this.modifyBux(msg.author, Number(random), 'daily');
+            balance = this.modifyBux(msg.author, Number(random), 'Daily');
             wasDailyValid = true;
         }
 
@@ -101,6 +101,7 @@ class HonbuxHelper {
         const dataForModify = [
             { propName: 'honbalance', propValue: amount, propFunc: 'inc' }, 
             { propName: `${amount > 0 ? 'gained' : 'lost'}From${source}`, propValue: amount, propFunc: 'inc/set' }, 
+            { propName: `times${source}Used`, propValue: 1, propFunc: 'inc/set' },
         ];
         const endData = this.utils.modifyData(honbuxData, id, dataForModify);
 
@@ -119,6 +120,19 @@ class HonbuxHelper {
     getTopHonbux() {
         let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
         return honbuxData.reduce((prev, current) => (prev && prev.honbalance > current.honbalance) ? prev : current)
+    }
+
+    getRankings() {
+        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let orderedData = honbuxData.map((data) => {
+            const outdata = { username: data.username, honbalance: data.honbalance};
+            return outdata;
+        }).sort((a, b) => b.honbalance - a.honbalance).slice(0, 5);
+        let outString = '';
+        orderedData.forEach((data, index) => {
+            outString += `${index + 1}. ${data.username} -- $${data.honbalance} Honux\n`;
+        });
+        return outString;
     }
 }
 
