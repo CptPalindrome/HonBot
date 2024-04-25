@@ -140,11 +140,11 @@ class HonbuxHelper {
         const keys = Object.keys(userData);
         const values = Object.values(userData);
 
-        const filtered = keys.map((key, index) => {
+        const filtered = keys.reduce((acc, key, index) => {
             if (key.startsWith('gainedFrom') || key.startsWith('lostFrom') || key.startsWith('times')) {
-                return { key: key, value: values[index] }
-            } return;
-        }).filter((value) => value !== undefined);
+                acc.push({ key: key, value: values[index] })
+            } return acc;
+        }, []);
 
         let outString = '';
         filtered.forEach((data) => {
