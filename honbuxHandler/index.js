@@ -127,7 +127,7 @@ class HonbuxHelper {
         let orderedData = honbuxData.map((data) => {
             const outdata = { username: data.username, honbalance: data.honbalance};
             return outdata;
-        }).sort((a, b) => b.honbalance - a.honbalance).slice(0, 5);
+        }).sort((a, b) => b.honbalance - a.honbalance);
         let outString = '';
         orderedData.forEach((data, index) => {
             outString += `${index + 1}. ${data.username} -- $${data.honbalance} Honux\n`;
