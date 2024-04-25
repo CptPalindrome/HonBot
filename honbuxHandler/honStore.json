@@ -1,0 +1,25 @@
+{
+    "items": [
+        {
+            "name": "Spend 1 honbuck",
+            "description": "You buy this and then you have 1 less honbuck.",
+            "id": "s1h",
+            "cost": 1,
+            "type": "instant"
+        },
+        {
+            "name": "Gambling Token",
+            "description": "High risk gambling token; Allows you to bet above the usual limit, up to 5000 with a 1.25x payout if you win.",
+            "id": "g-token",
+            "cost": 800,
+            "type": "consumable"
+        },
+        {
+            "name": "Draw 4 Me",
+            "description": "Redeem this to have [me] draw something you specify or photoshop something. Quality not guaranteed but it will be handmade :)",
+            "id": "honbux",
+            "cost": 20000,
+            "type": "consumable"
+        }
+    ]
+}

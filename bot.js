@@ -847,6 +847,16 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('honbalance') || str.toLowerCase().startsWith('honba')) {
                     msg.channel.send(`You have <:honbux:966533492030730340>**${honbuxHelper.getUserData(msg.author).honbalance}**`);
                 }
+
+                if(str.toLowerCase().startsWith('top')) {
+                    const topRandom = Math.floor(Math.random() * 100);
+                    if (topRandom <= 5) {
+                        msg.channel.send({files: [new AttachmentBuilder('./media/top.gif')]});
+                    } else {
+                        const topGuy = honbuxHelper.getTopHonbux();
+                        msg.channel.send(`The richest guy is **${topGuy.username}** with <:honbux:966533492030730340>**${topGuy.honbalance}**`);
+                    }
+                }
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {

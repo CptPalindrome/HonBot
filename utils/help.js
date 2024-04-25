@@ -78,7 +78,7 @@ function help(command) {
             return `Get a list of all the h.wyd tags you can use for different templates (it won't tell you what it's for, just the tags themselves).`
 
         case 'honbux':
-            return `**h.daily** to daily Honbux | **h.cfbux** to bet honbux on a coin flip! Type a number to bet and then 'tails' or 'heads' to bet on the result. | **h.honbalance** to check your balance.`
+            return `**h.daily** to daily Honbux | **h.cfbux** to bet honbux on a coin flip! Type a number to bet and then 'tails' or 'heads' to bet on the result. | **h.honbalance** to check your balance. | **h.top** to see whose top dawg in the server.`
 
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;

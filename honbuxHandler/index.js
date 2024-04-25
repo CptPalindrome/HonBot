@@ -115,6 +115,11 @@ class HonbuxHelper {
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         return honbuxData?.find((userdata) => userdata?.id === id);
     }
+
+    getTopHonbux() {
+        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        return honbuxData.reduce((prev, current) => (prev && prev.honbalance > current.honbalance) ? prev : current)
+    }
 }
 
 module.exports = HonbuxHelper;
