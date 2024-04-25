@@ -862,6 +862,11 @@ client.on(Events.MessageCreate, msg => {
                     const rankings = honbuxHelper.getRankings();
                     msg.channel.send(`\`\`\`Honbux Rankings:\n\n${rankings}\`\`\``);
                 }
+
+                if(str.toLowerCase().startsWith('metrics')) {
+                    const metrics = honbuxHelper.getMetrics(msg.author);
+                    msg.channel.send(`\`\`\`${metrics}\`\`\``);
+                }
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {

@@ -124,13 +124,31 @@ class HonbuxHelper {
 
     getRankings() {
         let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
-        let orderedData = honbuxData.map((data) => {
+        const orderedData = honbuxData.map((data) => {
             const outdata = { username: data.username, honbalance: data.honbalance};
             return outdata;
         }).sort((a, b) => b.honbalance - a.honbalance);
         let outString = '';
         orderedData.forEach((data, index) => {
-            outString += `${index + 1}. ${data.username} -- $${data.honbalance} Honux\n`;
+            outString += `${index + 1}. ${data.username} -- $${data.honbalance} Honbux\n`;
+        });
+        return outString;
+    }
+
+    getMetrics(author) {
+        let userData = this.getUserData(author);
+        const keys = Object.keys(userData);
+        const values = Object.values(userData);
+
+        const filtered = keys.map((key, index) => {
+            if (key.startsWith('gainedFrom') || key.startsWith('lostFrom') || key.startsWith('times')) {
+                return { key: key, value: values[index] }
+            } return;
+        }).filter((value) => value !== undefined);
+
+        let outString = '';
+        filtered.forEach((data) => {
+            outString += `${data.key}: ${data.value}\n`;
         });
         return outString;
     }
