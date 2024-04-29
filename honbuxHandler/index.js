@@ -144,7 +144,11 @@ class HonbuxHelper {
             if (key.startsWith('gainedFrom') || key.startsWith('lostFrom') || key.startsWith('times')) {
                 acc.push({ key: key, value: values[index] })
             } return acc;
-        }, []);
+        }, []).sort((a, b) => {
+            if (a.key.toLowerCase() < b.key.toLowerCase()) return -1;
+            else if (a.key.toLowerCase() > b.key.toLowerCase()) return 1;
+            else return 0;
+        });
 
         let outString = '';
         filtered.forEach((data) => {
