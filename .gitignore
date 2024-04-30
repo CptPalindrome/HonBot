@@ -16,3 +16,4 @@ playerSaveData.json
 package-lock.json
 fileCombinerOut
 /honbuxHandler/honbuxData.json
+/honbuxHandler/gameMetrics.json

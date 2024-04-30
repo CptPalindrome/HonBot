@@ -27,6 +27,6 @@
         "makeTeams | mt",
         "generateTeamName | gtn | gtna (alliteration)",
         "tags | gettags",
-        "honbux > daily | honba(lance) | cfbux [search help honbux for info]"
+        "honbux > daily | honba(lance) | top | ranking | metrics | gameMetrics | cfbux | wheel"
     ]
 }

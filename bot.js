@@ -1,9 +1,9 @@
 /* eslint-disable no-case-declarations */
 const { Client, Events, GatewayIntentBits, AttachmentBuilder, PermissionsBitField } = require('discord.js');
 const axios = require('axios');
-const winston = require('winston');
 const fs = require('fs');
 const moment = require('moment');
+const logger = require('./logger.js');
 
 const envVars = require('./envVars.json');
 const auth = require('./auth.json');
@@ -39,14 +39,6 @@ let fifteen = false;
 let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
-const logger = winston.createLogger({
-    format: winston.format.simple(),
-    transports: [
-        new winston.transports.File({ format: winston.format.colorize(), filename: './HonLogs/error.log', level: 'error' }),
-        new winston.transports.File({ format: winston.format.colorize(), filename: './HonLogs/combined.log' }),
-        new winston.transports.Console({ format: winston.format.combine(winston.format.colorize(), winston.format.simple())})
-    ]
-});
 
 const patchnoteText = `\`\`\`Apr. 13th 2024\nThe Honbux Update is real at long last. Added some new functions for gaining/spending. More coming soon! h.help honbux for more info.\`\`\``;
 
@@ -778,7 +770,25 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('daily')) {
                     msg.channel.send(honbuxHelper.daily(msg));
                 }
-
+                
+                if(str.toLowerCase().startsWith('bail')) {
+                    if (msg.author.id === '167138850995437568') {
+                        const recipients = msg.mentions.users;
+                        if(recipients.size > 0) {
+                            recipients.forEach((recipient) => {
+                                const balance = honbuxHelper.getUserData(recipient).honbalance;
+                                if (balance < 100) {
+                                    honbuxHelper.bailOut(recipient);
+                                    msg.react('✅');
+                                }
+                                else msg.react('❌');
+                            });
+                        } else {
+                            msg.channel.send('Message needs to be formatted as follows: h.bailout @user(s)');
+                        }
+                    }
+                }
+                
                 if(str.toLowerCase().startsWith('addbux')) {
                     if (msg.author.id === '167138850995437568') {
                         const recipients = msg.mentions.users;
@@ -793,55 +803,19 @@ client.on(Events.MessageCreate, msg => {
                         }
                     }
                 }
+
+                if(str.toLowerCase().startsWith('wheel')) {
+                    let bet = Math.floor(Number(str.split(' ')[1]));
+                    const choice = str.split(' ')[2]?.toLowerCase();
+                    const wheelMessage = honbuxHelper.spinWheel(msg.author, bet, choice);
+                    msg.channel.send(wheelMessage);
+                }
                 
                 if(str.toLowerCase().startsWith('cfbux')) {
-                    const { honbalance, lastCf } = honbuxHelper.getUserData(msg.author);
-                    const minBet = 100;
-                    const maxBet = 1000;
-                    const cfbuxCooldown = 600000;
-                    let bet = Number(str.split(' ')[1]);
-                    const choice = str.split(' ')[2].toLowerCase();
-                    bet = Math.floor(bet);
-                    if (choice === 'heads' || choice === 'tails') {
-                        if ((lastCf && Date.now() - lastCf > cfbuxCooldown) || !lastCf) {
-                            if (bet && !isNaN(bet) && honbalance >= bet) {
-                                if (bet >= minBet && bet <= maxBet) {
-                                    let coin = Math.floor(Math.random() * 2);
-                                    if (msg.author.id === '189125614358364160') {
-                                        if (Math.floor(Math.random() * 10) <= 1) {
-                                            if (coin && choice === 'heads') {
-                                                logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: heads > tails`);
-                                                coin = 0;
-                                            } else if (coin && choice === 'tails') logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: Automatic, heads`);
-                                            else if (!coin && choice === 'tails') {
-                                                logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: tails > heads`);
-                                                coin = 1;
-                                            } else if (!coin && choice === 'heads') logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')}: Automatic, tails`);
-                                        }
-                                    }
-                                    if(coin) {
-                                        if (choice === 'heads') {
-                                            honbuxHelper.modifyBux(msg.author, bet, 'CfBux');
-                                            msg.channel.send(`Heads! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance + bet}**`);
-                                        } else {
-                                            honbuxHelper.modifyBux(msg.author, bet * -1, 'CfBux');
-                                            msg.channel.send(`Heads...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance - bet}**`);
-                                        }
-                                    }
-                                    else {
-                                        if (choice === 'tails') {
-                                            honbuxHelper.modifyBux(msg.author, bet, 'CfBux');
-                                            msg.channel.send(`Tails! You win <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance + bet}**`);
-                                        } else {
-                                            honbuxHelper.modifyBux(msg.author, bet * -1, 'CfBux');
-                                            msg.channel.send(`Tails...You lose <:honbux:966533492030730340>**${bet}**. New balance: <:honbux:966533492030730340>**${honbalance - bet}**`);
-                                        }
-                                    }
-                                    honbuxHelper.tagCfbuxTime(msg.author.id);
-                                } else msg.channel.send(`You must bet between \`${minBet}\` and \`${maxBet}\``);
-                            } else msg.channel.send(`You either don't have enough Honbux, or you didn't enter a number.`);
-                        } else msg.channel.send(`You must wait at least \`${Math.floor((cfbuxCooldown - (Date.now() - lastCf)) / 60000)}\` minutes before you can flip again.`);
-                    } else msg.channel.send('Message should be formatted: h.cfbux `number` `<heads/tails>`');
+                    const bet = Math.floor(Number(str.split(' ')[1]));
+                    const choice = str.split(' ')[2]?.toLowerCase();
+                    const cfbuxMessage = honbuxHelper.coinflip(msg.author, bet, choice);
+                    msg.channel.send(cfbuxMessage);
                 }
 
                 if(str.toLowerCase().startsWith('honbalance') || str.toLowerCase().startsWith('honba')) {
@@ -865,6 +839,11 @@ client.on(Events.MessageCreate, msg => {
 
                 if(str.toLowerCase().startsWith('metrics')) {
                     const metrics = honbuxHelper.getMetrics(msg.author);
+                    msg.channel.send(`\`\`\`${metrics}\`\`\``);
+                }
+
+                if(str.toLowerCase().startsWith('gmetrics') || str.toLowerCase().startsWith('gamemetrics')) {
+                    const metrics = honbuxHelper.getGameMetrics();
                     msg.channel.send(`\`\`\`${metrics}\`\`\``);
                 }
             } //end of h. requirements

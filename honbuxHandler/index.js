@@ -1,9 +1,13 @@
 const fs = require('fs');
 const Utils = require('./utils');
+const Coinflipper = require('./coinflipper');
+const WheelHelper = require('./wheelHelper');
 
 class HonbuxHelper {
     constructor() {
         this.utils = new Utils();
+        this.coinflipper = new Coinflipper();
+        this.wheelHelper = new WheelHelper();
         this.init();
     }
 
@@ -11,6 +15,9 @@ class HonbuxHelper {
         try {
             if(!fs.existsSync('./honbuxHandler/honbuxData.json')) {
                 fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify({honbuxData: []}, 0, 2));
+            }
+            if(!fs.existsSync('./honbuxHandler/gameMetrics.json')) {
+                fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify({metrics: {}}, 0, 2));
             }
             this.resultMessages = JSON.parse(fs.readFileSync('./honbuxHandler/resultMessages.json'));
         } catch (e) {
@@ -62,6 +69,24 @@ class HonbuxHelper {
         fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
     }
 
+    tagWheelTime(id) {
+        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        const endData = { honbuxData: honbuxData.map((userdata) => { 
+            if(userdata.id === id) {
+                userdata.lastWheelSpin = Date.now();
+            }
+            return userdata;
+        })};
+
+        fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+    }
+
+    verifyBet(userData, bet, minBet, maxBet) {
+        if (userData.honbalance > bet) {
+            if (bet >= minBet && bet <= maxBet) return true;
+        } return false;
+    }
+
     daily(msg) {
         const { id, username } = msg.author;
         let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
@@ -71,14 +96,18 @@ class HonbuxHelper {
             { propName: 'lastDaily', propValue: Date.now(),  propFunc: 'set'}
         ];
 
+        // currently not implemented, possible fixed reset time update for daily?
+        // const resetTime = Date.parse(new Date().setHours(2, 0, 0));
+
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         let wasDailyValid = false
         const user = honbuxData?.find((userdata) => userdata?.id === id);
         const dailyTimeDiff = Date.now() - user.lastDaily;
         let endData;
         let balance;
+        // if(user.lastDaily && (user.lastDaily > resetTime || Date.now() < resetTime)) {
         if(user.lastDaily && dailyTimeDiff < resetTimeInMilliseconds) {
-            wasDailyValid = false;
+                wasDailyValid = false;
         } else {
             endData = this.utils.modifyData(honbuxData, id, dataForModify );
             fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
@@ -100,8 +129,8 @@ class HonbuxHelper {
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         const dataForModify = [
             { propName: 'honbalance', propValue: amount, propFunc: 'inc' }, 
-            { propName: `${amount > 0 ? 'gained' : 'lost'}From${source}`, propValue: amount, propFunc: 'inc/set' }, 
-            { propName: `times${source}Used`, propValue: 1, propFunc: 'inc/set' },
+            { propName: `${amount > 0 ? 'gained' : 'lost'}From${source}`, propValue: amount, propFunc: 'inc' }, 
+            { propName: `times${source}Used`, propValue: 1, propFunc: 'inc' },
         ];
         const endData = this.utils.modifyData(honbuxData, id, dataForModify);
 
@@ -155,6 +184,79 @@ class HonbuxHelper {
             outString += `${data.key}: ${data.value}\n`;
         });
         return outString;
+    }
+
+    getGameMetricsData() {
+        return JSON.parse(fs.readFileSync('./honbuxHandler/gameMetrics.json')).metrics;
+    }
+
+    getGameMetrics() {
+        const metricsData = this.getGameMetricsData();
+        const keys = Object.keys(metricsData);
+        const values = Object.values(metricsData);
+
+        const filtered = keys.reduce((acc, key, index) => {
+            if (key.startsWith('amount') || key.startsWith('last') || key.startsWith('times')) {
+                acc.push({ key: key, value: values[index] })
+            } return acc;
+        }, []).sort((a, b) => {
+            if (a.key.toLowerCase() < b.key.toLowerCase()) return -1;
+            else if (a.key.toLowerCase() > b.key.toLowerCase()) return 1;
+            else return 0;
+        });
+
+        let outString = '';
+        filtered.forEach((data) => {
+            outString += `${data.key}: ${data.value}\n`;
+        });
+        return outString;
+    }
+
+    coinflip(author, bet, choice) {
+        const userData = this.getUserData(author);
+        const result = this.coinflipper.flip(userData, bet, choice);
+        const params = [
+            { propName: `times${result.result}`, propValue: 1, propFunc: 'inc' },
+            { propName: `amount${result.amount > 0 ? 'Gained' : 'Lost'}ByCfBux`, propValue: result.amount, propFunc: 'inc' },
+            { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' }
+        ]
+        if (result.valid) {
+            this.modifyBux(userData, result.amount, 'CfBux');
+            // you didn't forget to re-enable this did you
+            this.tagCfbuxTime(author.id);
+            const updatedMetrics = this.utils.gameMetrics(this.getGameMetrics(), params);
+            fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
+        }
+        return result.message;
+    }
+
+    spinWheel(author, bet, choice) {
+        const userData = this.getUserData(author);
+        const minBet = 500;
+        const maxBet = 5000;
+        const validBet = this.verifyBet(userData, bet, minBet, maxBet);
+        let outMessage = 'Input should be `h.wheel <bet number> <guess>`';
+        if (validBet) {
+            const result = this.wheelHelper.spinWheel(userData, bet, choice);
+            if (result.valid) {
+                const params = [
+                    { propName: `times${result.result}`, propValue: 1, propFunc: 'inc' },
+                    { propName: `amount${result.payout > 0 ? 'Gained' : 'Lost'}ByWheelSpin`, propValue: result.payout, propFunc: 'inc' },
+                    { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' }
+                ]
+                const balance = this.modifyBux(userData, Number(result.payout), 'WheelSpin');
+                const updatedMetrics = this.utils.gameMetrics(this.getGameMetrics(), params);
+                this.tagWheelTime(author.id);
+                fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
+                outMessage = result.message.replace('{balance}', balance);
+            } else outMessage = result.message;
+        }
+        return outMessage;
+    }
+
+    bailOut(user) {
+        const userdata = this.getUserData(user);
+        if (userdata.honbalance < 100) this.modifyBux(user, 100 - userdata.honbalance, 'BailOut');
     }
 }
 
