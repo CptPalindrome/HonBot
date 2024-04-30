@@ -224,7 +224,7 @@ class HonbuxHelper {
             this.modifyBux(userData, result.amount, 'CfBux');
             // you didn't forget to re-enable this did you
             this.tagCfbuxTime(author.id);
-            const updatedMetrics = this.utils.gameMetrics(this.getGameMetrics(), params);
+            const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
             fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
         }
         return result.message;
@@ -245,7 +245,7 @@ class HonbuxHelper {
                     { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' }
                 ]
                 const balance = this.modifyBux(userData, Number(result.payout), 'WheelSpin');
-                const updatedMetrics = this.utils.gameMetrics(this.getGameMetrics(), params);
+                const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
                 this.tagWheelTime(author.id);
                 fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
                 outMessage = result.message.replace('{balance}', balance);
