@@ -250,7 +250,7 @@ class HonbuxHelper {
                 fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
                 outMessage = result.message.replace('{balance}', balance);
             } else outMessage = result.message;
-        }
+        } else outMessage = 'Invalid bet.';
         return outMessage;
     }
 
