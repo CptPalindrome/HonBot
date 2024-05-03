@@ -82,9 +82,11 @@ class HonbuxHelper {
     }
 
     verifyBet(userData, bet, minBet, maxBet) {
-        if (userData.honbalance > bet) {
-            if (bet >= minBet && bet <= maxBet) return true;
-        } return false;
+        if (bet >= minBet && bet <= maxBet) {
+            if (userData.honbalance >= bet) return { valid: true }; 
+            else return { valid: false, message: 'You don\'t have enough Honbux.' }
+        }
+        else return { valid: false, message: `Bet must be between ${minBet} and ${maxBet}.`}
     }
 
     daily(msg) {
@@ -236,8 +238,8 @@ class HonbuxHelper {
         const maxBet = 5000;
         const validBet = this.verifyBet(userData, bet, minBet, maxBet);
         let outMessage = 'Input should be `h.wheel <bet number> <guess>`';
-        if (validBet) {
-            const result = this.wheelHelper.spinWheel(userData, bet, choice);
+        if (validBet.valid) {
+            const result = this.wheelHelper.spinWheel(userData, bet, choice, minBet, maxBet);
             if (result.valid) {
                 const params = [
                     { propName: `times${result.result}`, propValue: 1, propFunc: 'inc' },
@@ -246,11 +248,11 @@ class HonbuxHelper {
                 ]
                 const balance = this.modifyBux(userData, Number(result.payout), 'WheelSpin');
                 const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
-                this.tagWheelTime(author.id);
+                // this.tagWheelTime(author.id);
                 fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
                 outMessage = result.message.replace('{balance}', balance);
             } else outMessage = result.message;
-        } else outMessage = 'Invalid bet.';
+        } else outMessage = validBet.message;
         return outMessage;
     }
 
