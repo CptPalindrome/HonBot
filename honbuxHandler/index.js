@@ -58,7 +58,7 @@ class HonbuxHelper {
     }
 
     tagCfbuxTime(id) {
-        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        const honbuxData = this.getHonbuxData();
         const endData = { honbuxData: honbuxData.map((userdata) => { 
             if(userdata.id === id) {
                 userdata.lastCf = Date.now();
@@ -70,7 +70,7 @@ class HonbuxHelper {
     }
 
     tagWheelTime(id) {
-        const honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        const honbuxData = this.getHonbuxData();
         const endData = { honbuxData: honbuxData.map((userdata) => { 
             if(userdata.id === id) {
                 userdata.lastWheelSpin = Date.now();
@@ -91,7 +91,7 @@ class HonbuxHelper {
 
     daily(msg) {
         const { id, username } = msg.author;
-        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = this.getHonbuxData();
         const resetTimeInMilliseconds = 79200000;
         const { random, rarity } = this.generateDailyRandom();
         const dataForModify = [
@@ -126,7 +126,7 @@ class HonbuxHelper {
     modifyBux(recipient, amount, source) {
         // amount can be negative to remove bux from the user
         const { id, username } = recipient;
-        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = this.getHonbuxData();
         let balance;
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         const dataForModify = [
@@ -142,19 +142,19 @@ class HonbuxHelper {
     }
 
     getUserData(author) {
-        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = this.getHonbuxData();
         const { id, username } = author;
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         return honbuxData?.find((userdata) => userdata?.id === id);
     }
 
     getTopHonbux() {
-        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = this.getHonbuxData();
         return honbuxData.reduce((prev, current) => (prev && prev.honbalance > current.honbalance) ? prev : current)
     }
 
     getRankings() {
-        let honbuxData = JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        let honbuxData = this.getHonbuxData();
         const orderedData = honbuxData.map((data) => {
             const outdata = { username: data.username, honbalance: data.honbalance};
             return outdata;
@@ -190,6 +190,10 @@ class HonbuxHelper {
 
     getGameMetricsData() {
         return JSON.parse(fs.readFileSync('./honbuxHandler/gameMetrics.json')).metrics;
+    }
+    
+    getHonbuxData() {
+        return JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
     }
 
     getGameMetrics() {
@@ -259,6 +263,13 @@ class HonbuxHelper {
     bailOut(user) {
         const userdata = this.getUserData(user);
         if (userdata.honbalance < 100) this.modifyBux(user, 100 - userdata.honbalance, 'BailOut');
+    }
+
+    bailOutAll() {
+        const honbuxData = this.getHonbuxData();
+        honbuxData.forEach((user) => {
+            this.bailOut(user);
+        });
     }
 }
 

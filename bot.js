@@ -774,17 +774,23 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('bail')) {
                     if (msg.author.id === '167138850995437568') {
                         const recipients = msg.mentions.users;
-                        if(recipients.size > 0) {
-                            recipients.forEach((recipient) => {
-                                const balance = honbuxHelper.getUserData(recipient).honbalance;
-                                if (balance < 100) {
-                                    honbuxHelper.bailOut(recipient);
-                                    msg.react('✅');
-                                }
-                                else msg.react('❌');
-                            });
+                        const param = str.split(' ')[1];
+                        if (param.toLowerCase() === 'all') {
+                            honbuxHelper.bailOutAll();
+                            msg.react('✅');
                         } else {
-                            msg.channel.send('Message needs to be formatted as follows: h.bailout @user(s)');
+                            if(recipients.size > 0) {
+                                recipients.forEach((recipient) => {
+                                    const balance = honbuxHelper.getUserData(recipient).honbalance;
+                                    if (balance < 100) {
+                                        honbuxHelper.bailOut(recipient);
+                                        msg.react('✅');
+                                    }
+                                    else msg.react('❌');
+                                });
+                            } else {
+                                msg.channel.send('Message needs to be formatted as follows: h.bailout @user(s)');
+                            }
                         }
                     }
                 }
