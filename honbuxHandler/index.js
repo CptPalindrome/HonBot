@@ -252,7 +252,7 @@ class HonbuxHelper {
                 ]
                 const balance = this.modifyBux(userData, Number(result.payout), 'WheelSpin');
                 const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
-                // this.tagWheelTime(author.id);
+                this.tagWheelTime(author.id);
                 fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
                 outMessage = result.message.replace('{balance}', balance);
             } else outMessage = result.message;
