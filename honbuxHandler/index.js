@@ -127,6 +127,7 @@ class HonbuxHelper {
             { propName: 'honbalance', propValue: amount, propFunc: 'inc' }, 
             { propName: `${amount > 0 ? 'gained' : 'lost'}From${source}`, propValue: amount, propFunc: 'inc' }, 
             { propName: `times${source}Used`, propValue: 1, propFunc: 'inc' },
+            { propName: `times${amount > 0 ? 'Winning' : 'Losing'}From${source}`, propValue: 1,  propFunc:'inc' }
         ];
         const endData = this.utils.modifyData(honbuxData, id, dataForModify);
 
@@ -218,7 +219,8 @@ class HonbuxHelper {
         const params = [
             { propName: `times${result.result}`, propValue: 1, propFunc: 'inc' },
             { propName: `amount${result.amount > 0 ? 'Gained' : 'Lost'}ByCfBux`, propValue: result.amount, propFunc: 'inc' },
-            { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' }
+            { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' },
+            { propName: 'timesCoinFlipped', propValue: 1, propFunc: 'inc' }
         ]
         if (result.valid) {
             this.modifyBux(userData, result.amount, 'CfBux');
@@ -242,7 +244,9 @@ class HonbuxHelper {
                 const params = [
                     { propName: `times${result.result}`, propValue: 1, propFunc: 'inc' },
                     { propName: `amount${result.payout > 0 ? 'Gained' : 'Lost'}ByWheelSpin`, propValue: result.payout, propFunc: 'inc' },
-                    { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' }
+                    { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' },
+                    { propName: 'timesWheelSpun', propValue: 1, propFunc: 'inc' },
+                    { propName: `timesWheelSpin${result.payout > 0 ? 'Won' : 'Lost'}`, propValue: 1, propFunc: 'inc' }
                 ]
                 const balance = this.modifyBux(userData, Number(result.payout), 'WheelSpin');
                 const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
