@@ -23,17 +23,20 @@ class HonbuxHelper {
         } catch (e) {
             console.log(e);
         }
+        const d = new Date();
+        d.setHours(2);
+        this.dailyResetTime = d.valueOf();
     }
 
     generateDailyRandom() {
         const randomNum = Math.floor(Math.random() * 100);
 
         if (randomNum < 70) {
-            return { random: Math.floor(Math.random() * 150) + 200, rarity: 'common' }
+            return { random: Math.floor(Math.random() * 200) + 350, rarity: 'common' }
         } else if (randomNum < 94 && randomNum > 70) {
-            return { random: Math.floor(Math.random() * 200) + 500, rarity: 'scarce' }
+            return { random: Math.floor(Math.random() * 250) + 675, rarity: 'scarce' }
         } else {
-            return { random: Math.floor(Math.random() * 500) + 1000, rarity: 'rare' }
+            return { random: Math.floor(Math.random() * 600) + 1300, rarity: 'rare' }
         }
     }
 
@@ -51,10 +54,10 @@ class HonbuxHelper {
         return messageList[randomNum].message.replace('{amount}', amountGained).replace('{balance}', balance);
     }
 
-    getBadMessage(timeDiffHours, timeDiffMinutes) {
+    getBadMessage() {
         const messageList = this.resultMessages.badMessages;
         const randomNum = Math.floor(Math.random() * messageList.length);
-        return messageList[randomNum].message.replace('{hours}', timeDiffHours).replace('{minutes}', timeDiffMinutes);
+        return messageList[randomNum].message;
     }
 
     tagCfbuxTime(id) {
@@ -92,23 +95,17 @@ class HonbuxHelper {
     daily(msg) {
         const { id, username } = msg.author;
         let honbuxData = this.getHonbuxData();
-        const resetTimeInMilliseconds = 79200000;
         const { random, rarity } = this.generateDailyRandom();
         const dataForModify = [
             { propName: 'lastDaily', propValue: Date.now(),  propFunc: 'set'}
         ];
 
-        // currently not implemented, possible fixed reset time update for daily?
-        // const resetTime = Date.parse(new Date().setHours(2, 0, 0));
-
         honbuxData = this.utils.checkIfUserExistsOrCreateNewUser(id, username, honbuxData);
         let wasDailyValid = false
         const user = honbuxData?.find((userdata) => userdata?.id === id);
-        const dailyTimeDiff = Date.now() - user.lastDaily;
         let endData;
         let balance;
-        // if(user.lastDaily && (user.lastDaily > resetTime || Date.now() < resetTime)) {
-        if(user.lastDaily && dailyTimeDiff < resetTimeInMilliseconds) {
+        if(user.lastDaily && user.lastDaily > this.dailyResetTime) {
                 wasDailyValid = false;
         } else {
             endData = this.utils.modifyData(honbuxData, id, dataForModify );
@@ -116,11 +113,8 @@ class HonbuxHelper {
             balance = this.modifyBux(msg.author, Number(random), 'Daily');
             wasDailyValid = true;
         }
-
-        const timeDiffHours = Math.floor((resetTimeInMilliseconds - dailyTimeDiff) / 3600000).toString().padStart(2, '0');
-        const timeDiffMinutes = Math.floor((resetTimeInMilliseconds - dailyTimeDiff) % 3600000 / 60000).toString().padStart(2, '0');
         
-        return wasDailyValid ? this.getSuccessMessage(rarity, random, balance) : this.getBadMessage(timeDiffHours, timeDiffMinutes);
+        return wasDailyValid ? this.getSuccessMessage(rarity, random, balance) : this.getBadMessage();
     }
 
     modifyBux(recipient, amount, source) {

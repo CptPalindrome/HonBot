@@ -40,7 +40,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Apr. 13th 2024\nThe Honbux Update is real at long last. Added some new functions for gaining/spending. More coming soon! h.help honbux for more info.\`\`\``;
+const patchnoteText = `\`\`\`May. 14th 2024\nHonbux users are now auto-bailed out at the start of each day. Minor tweaks to daily payouts (higher). H.daily now resets at 2am each day.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -830,7 +830,7 @@ client.on(Events.MessageCreate, msg => {
 
                 if(str.toLowerCase().startsWith('top')) {
                     const topRandom = Math.floor(Math.random() * 100);
-                    if (topRandom <= 5) {
+                    if (topRandom <= 8) {
                         msg.channel.send({files: [new AttachmentBuilder('./media/top.gif')]});
                     } else {
                         const topGuy = honbuxHelper.getTopHonbux();
@@ -1539,6 +1539,7 @@ client.once(Events.ClientReady, (c) => {
             console.log(e);
         }
     }
+    honbuxHelper.bailOutAll();
 });
 
 client.login(auth.token);

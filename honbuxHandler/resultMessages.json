@@ -13,10 +13,11 @@
         { "rarity": "rare", "message": "Woah, <:honbux:966533492030730340>**{amount}**!! Hey, maybe you'll be able to afford a Force Gurgs soon! You're at <:honbux:966533492030730340>**{balance}**"}
     ],
     "badMessages": [
-        { "message": "Are you paying attention? You're not paying attention. You've still got `{hours}:{minutes}` left." },
-        { "message": "Time is only as you perceive it. But maybe you should reconsider your perception. You have `{hours}:{minutes}` left." },
-        { "message": "*EXTREMELY LOUD INCORRECT BUZZER SOUND*. `{hours}:{minutes}` remaining." },
-        { "message": "You can't do that just yet. You've got another `{hours}:{minutes}` to go." },
-        { "message": "Stop right there! You won't double h.daily on *my* watch! You must wait at least another `{hours}:{minutes}`!" }
+        { "message": "Are you paying attention? You're not paying attention." },
+        { "message": "Time is only as you perceive it. But maybe you should reconsider your perception." },
+        { "message": "*EXTREMELY LOUD INCORRECT BUZZER SOUND*." },
+        { "message": "You can't do that again today. Well. Not for money anyways." },
+        { "message": "Stop right there! You won't double h.daily on *my* watch!" },
+        { "message": "You've already done that today...Don't you remember?"}
     ]
 }
