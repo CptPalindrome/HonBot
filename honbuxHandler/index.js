@@ -227,16 +227,16 @@ class HonbuxHelper {
         const otherMetrics = metricsArray.filter((item) => item.header === 'other');
         let outString = 'Coinflip Metrics:\n';
         coinMetrics.forEach((data) => {
-            outString += `${data.key}: ${data.value}\n`;
+            outString += ` - ${data.key}: ${data.value}\n`;
         });
         outString += '\nWheel Metrics:\n';
         wheelMetrics.forEach((data) => {
-            outString += `${data.key}: ${data.value}\n`;
+            outString += ` - ${data.key}: ${data.value}\n`;
         });
         if (source === 'user') {
             outString += '\nOther Metrics:\n';
             otherMetrics.forEach((data) => {
-                outString += `${data.key}: ${data.value}\n`;
+                outString += ` - ${data.key}: ${data.value}\n`;
             }); 
         }
         return outString;
