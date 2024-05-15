@@ -198,7 +198,11 @@ class HonbuxHelper {
 
         const filtered = keys.reduce((acc, key, index) => {
             if (key.startsWith('amount') || key.startsWith('last') || key.startsWith('times')) {
-                acc.push({ key: key, value: values[index] })
+                let categoryHeader = 'wheel';
+                if (key.includes('Coin') || key.includes('Heads') || key.includes('Tails') || key.includes('Cf')) {
+                    categoryHeader = 'cf';
+                }
+                acc.push({ key: key, value: values[index], header: categoryHeader })
             } return acc;
         }, []).sort((a, b) => {
             if (a.key.toLowerCase() < b.key.toLowerCase()) return -1;
@@ -206,8 +210,14 @@ class HonbuxHelper {
             else return 0;
         });
 
-        let outString = '';
-        filtered.forEach((data) => {
+        const coinMetrics = filtered.filter((item) => item.header === 'cf');
+        const wheelMetrics = filtered.filter((item) => item.header === 'wheel');
+        let outString = 'Coinflip Metrics:\n';
+        coinMetrics.forEach((data) => {
+            outString += `${data.key}: ${data.value}\n`;
+        });
+        outString += '\n\nWheel Metrics:\n';
+        wheelMetrics.forEach((data) => {
             outString += `${data.key}: ${data.value}\n`;
         });
         return outString;
