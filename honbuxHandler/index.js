@@ -168,7 +168,14 @@ class HonbuxHelper {
 
         const filtered = keys.reduce((acc, key, index) => {
             if (key.startsWith('gainedFrom') || key.startsWith('lostFrom') || key.startsWith('times')) {
-                acc.push({ key: key, value: values[index] })
+                let categoryHeader = 'wheel';
+                if (key.includes('Coin') || key.includes('Heads') || key.includes('Tails') || key.includes('Cf')) {
+                    categoryHeader = 'cf';
+                }
+                else if (key.includes('Bail') || key.includes('Daily') || key.includes('Add')) {
+                    categoryHeader = 'other'
+                }
+                acc.push({ key: key, value: values[index], header: categoryHeader });
             } return acc;
         }, []).sort((a, b) => {
             if (a.key.toLowerCase() < b.key.toLowerCase()) return -1;
@@ -176,11 +183,11 @@ class HonbuxHelper {
             else return 0;
         });
 
-        let outString = '';
-        filtered.forEach((data) => {
-            outString += `${data.key}: ${data.value}\n`;
-        });
-        return outString;
+        // let outString = '';
+        // filtered.forEach((data) => {
+        //     outString += `${data.key}: ${data.value}\n`;
+        // });
+        return this.splitMetrics(filtered, 'user');
     }
 
     getGameMetricsData() {
@@ -202,7 +209,7 @@ class HonbuxHelper {
                 if (key.includes('Coin') || key.includes('Heads') || key.includes('Tails') || key.includes('Cf')) {
                     categoryHeader = 'cf';
                 }
-                acc.push({ key: key, value: values[index], header: categoryHeader })
+                acc.push({ key: key, value: values[index], header: categoryHeader });
             } return acc;
         }, []).sort((a, b) => {
             if (a.key.toLowerCase() < b.key.toLowerCase()) return -1;
@@ -210,16 +217,28 @@ class HonbuxHelper {
             else return 0;
         });
 
-        const coinMetrics = filtered.filter((item) => item.header === 'cf');
-        const wheelMetrics = filtered.filter((item) => item.header === 'wheel');
+        
+        return this.splitMetrics(filtered, 'game');
+    }
+
+    splitMetrics(metricsArray, source) {
+        const coinMetrics = metricsArray.filter((item) => item.header === 'cf');
+        const wheelMetrics = metricsArray.filter((item) => item.header === 'wheel');
+        const otherMetrics = metricsArray.filter((item) => item.header === 'other');
         let outString = 'Coinflip Metrics:\n';
         coinMetrics.forEach((data) => {
             outString += `${data.key}: ${data.value}\n`;
         });
-        outString += '\n\nWheel Metrics:\n';
+        outString += '\nWheel Metrics:\n';
         wheelMetrics.forEach((data) => {
             outString += `${data.key}: ${data.value}\n`;
         });
+        if (source === 'user') {
+            outString += '\nOther Metrics:\n';
+            otherMetrics.forEach((data) => {
+                outString += `${data.key}: ${data.value}\n`;
+            }); 
+        }
         return outString;
     }
 
