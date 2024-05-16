@@ -127,8 +127,10 @@ class HonbuxHelper {
             { propName: 'honbalance', propValue: amount, propFunc: 'inc' }, 
             { propName: `${amount > 0 ? 'gained' : 'lost'}From${source}`, propValue: amount, propFunc: 'inc' }, 
             { propName: `times${source}Used`, propValue: 1, propFunc: 'inc' },
-            { propName: `times${amount > 0 ? 'Winning' : 'Losing'}From${source}`, propValue: 1,  propFunc:'inc' }
         ];
+        if (source !== 'Daily' && source !== 'Bail' && source !== 'AddBux') {
+            dataForModify.push({ propName: `times${amount > 0 ? 'Winning' : 'Losing'}From${source}`, propValue: 1,  propFunc:'inc' });
+        }
         const endData = this.utils.modifyData(honbuxData, id, dataForModify);
 
         fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
