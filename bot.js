@@ -1,4 +1,5 @@
 /* eslint-disable no-case-declarations */
+//author: Brian P. --Github@cptpalindrome
 const { Client, Events, GatewayIntentBits, AttachmentBuilder, PermissionsBitField } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs');
