@@ -3,7 +3,7 @@ class WheelHelper {
         this.wheelCooldown = 36000000;
         this.tiers = ['Lowest', 'Low', 'Medium', 'High', 'Extreme'];
         this.weights = [13, 7, 4, 2, 1];
-        this.payoutRatios = [1.5, 2, 3, 4, 8]
+        this.payoutRatios = [1.25, 2, 3, 4, 8]
         this.wheel = [];
         this.weights.forEach((weight, index) => {
             for (let i = 0; i < weight; i++) {

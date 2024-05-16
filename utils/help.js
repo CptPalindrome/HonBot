@@ -81,7 +81,7 @@ function help(command) {
             return `**h.daily** to daily Honbux | **h.cfbux** to bet honbux on a coin flip! Type a number to bet and then 'tails' or 'heads' to bet on the result. | **h.honbalance** to check your balance. | **h.top** to see whose top dawg in the server. | **h.wheel** to spin the wheel of gambling.`
 
         case 'wheel':
-            return `**h.wheel <bet number> <risk value>** | The risk values are **lowest** | **low** | **medium** | **high** | **extreme**.\nThe higher the risk, the less likely you are to win, but a much higher payout if you do win. Numbers might be changed, but payout is 1.5x to 8x (lowest >> extreme).\nMinimum bet is 500, maximum is 5000, with a 10h cooldown.`
+            return `**h.wheel <bet number> <risk value>** | The risk values are **lowest** | **low** | **medium** | **high** | **extreme**.\nThe higher the risk, the less likely you are to win, but a much higher payout if you do win. Payout is 1.25x to 8x (lowest >> extreme).\nMinimum bet is 500, maximum is 5000, with a 10h cooldown.`
         
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;
