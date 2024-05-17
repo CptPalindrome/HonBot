@@ -5,7 +5,7 @@ class Utils {
             honbuxData.push({
                 id,
                 username,
-                honbalance: 0
+                honbalance: 100
             });
         } 
         return honbuxData;
