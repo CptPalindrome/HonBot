@@ -3,11 +3,6 @@
 const { Client, Events, GatewayIntentBits, AttachmentBuilder, PermissionsBitField } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs');
-const moment = require('moment');
-const logger = require('./logger.js');
-
-const envVars = require('./envVars.json');
-const auth = require('./auth.json');
 const ImageManipulator = require('./image-manip');
 const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
@@ -17,6 +12,10 @@ const { createTeams, generateTeamName, generateTeamNameAlliteration } = require(
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const { getRandomSong } = require('./pitbull');
+const randomProc = require('./utils/randomProc');
+const logger = require('./logger.js');
+const envVars = require('./envVars.json');
+const auth = require('./auth.json');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
@@ -536,17 +535,16 @@ client.on(Events.MessageCreate, msg => {
                     let madOptions = str.split(' ').slice(1).join(' ');
             
                     if(madlibs.getState() === 'none') {
-                        if(!madlibs.isMad && Math.floor(Math.random() * 10) === 1) {
+                        if(!madlibs.isMad && randomProc(1, 10)) {
                             msg.channel.send(`Yeah, I'm mad`);
                             madlibs.setMad(true);
                         }
 
                         else if(madlibs.isMad) {
-                            let rand = Math.floor(Math.random() * 10);
-                            if(rand === 1 || rand === 3) {
+                            if(randomProc(2, 10)) {
                                 msg.channel.send(`Still mad`);
                             }
-                            else if(rand === 2) {
+                            else if(randomProc(1, 10)) {
                                 msg.channel.send(`Less mad, but try again.`);
                                 madlibs.setMad(false);
                             }
@@ -831,8 +829,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('top')) {
-                    const topRandom = Math.floor(Math.random() * 100);
-                    if (topRandom <= 8) {
+                    if (randomProc(8, 100)) {
                         msg.channel.send({files: [new AttachmentBuilder('./media/top.gif')]});
                     } else {
                         const topGuy = honbuxHelper.getTopHonbux();
@@ -1089,7 +1086,8 @@ function isHandInProgress() {
 }
 
 function now() {
-    return moment().format('lll');
+    const now = new Date();
+    return `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}}`;
 }
 
 function gandhiQuote(quoteNum, msg) {
@@ -1339,13 +1337,13 @@ function addSuggestion(msg, user) {
 
     let temp = JSON.parse(fs.readFileSync('./suggestions.json'));
     temp.suggestions.push({title: title.trim(), content: content, suggester: user});
-    logger.info(`${user} @ ${moment().format('MMM D YYYY, h:mm a')} -- ${title} | ${content}`);
+    logger.info(`${user} @ ${now()} -- ${title} | ${content}`);
     fs.writeFileSync('./suggestions.json', JSON.stringify(temp,null,2));
 }
 
 function emailSuggestions() {
     let suggestionsList = JSON.parse(fs.readFileSync('./suggestions.json'));
-    let date = moment().format('MM-DD-YYYY');
+    let date = new Date();
     suggestionsList = suggestionsList.suggestions;
     suggestionsList.forEach((suggestion, index) => {
         let params = suggestion;
@@ -1353,11 +1351,11 @@ function emailSuggestions() {
         params.sugnum = index + 1;
         axios.post('https://api.emailjs.com/api/v1.0/email/send', {service_id: envVars.serviceid, template_id: envVars.templateid, template_params: params, user_id: envVars.userid})
         .then(res => {
-            logger.info(`${moment().format('MMM D YYYY, h:mm:ss a')} Email ${index + 1} status: ${res.data}`);
+            logger.info(`${now()} Email ${index + 1} status: ${res.data}`);
             resetSugg();
         })
         .catch(e => {
-            logger.error(`${moment().format('MMM D YYYY, h:mm:ss a')} Email ${index + 1} status: ${e.data}`);
+            logger.error(`${now()} Email ${index + 1} status: ${e.data}`);
         });
     })
 }
@@ -1528,7 +1526,7 @@ client.once(Events.ClientReady, (c) => {
         emailSuggestions()
     }
     let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
-    if(moment().format('D') === '15' && !fifteenSent) {
+    if(new Date().getDate === '15' && !fifteenSent) {
         fifteen = true;
         client.channels.cache.find(x => x.id == '452011709859627019').send({ files: [new AttachmentBuilder('./media/15.png')] }).then(msg => {
             msg.react('1️⃣')
@@ -1541,7 +1539,7 @@ client.once(Events.ClientReady, (c) => {
             console.log(e);
         }
     }
-    else if(moment().format('D') !== '15') {
+    else if(new Date().getDate !== '15') {
         try {
             fs.writeFileSync('./fifteenSentStatus.json', '{ "sent": false }');
         } catch(e) {
