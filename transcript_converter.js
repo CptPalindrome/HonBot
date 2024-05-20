@@ -1,5 +1,4 @@
 const fs = require('fs');
-const corejs = require('core-js');
 
 //takes text with endline chars and puts it to one line.
 //requires root directory file 'transcriptIn.txt' to exist.

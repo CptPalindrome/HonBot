@@ -1,6 +1,5 @@
 const Player = require('./player.js');
 const fs = require('fs');
-const corejs = require('core-js');
 let stories = require('./stories.json');
 
 /** GAMEFLOW: 

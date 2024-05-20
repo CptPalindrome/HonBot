@@ -323,6 +323,14 @@
         {
             "singular": "sponsored link",
             "plural": "sponsored links"
+        },
+        {
+            "singular": "bathroom",
+            "plural": "bathrooms"
+        },
+        {
+            "singular": "okapi",
+            "plural": "okapis"
         }
     ],
     "people": [
