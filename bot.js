@@ -16,6 +16,7 @@ const HonbuxHelper = require('./honbuxHandler');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
+const { getRandomSong } = require('./pitbull');
 const quotes = require('./gandhiQuotes.json');
 const chrisQuotes = require('./chrisQuotes.json');
 const fortunes = require('./magic8ball.json');
@@ -41,7 +42,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`May. 14th 2024\nHonbux users are now auto-bailed out at the start of each day. Minor tweaks to daily payouts (higher). H.daily now resets at 2am each day.\`\`\``;
+const patchnoteText = `\`\`\`May 14th 2024\nHonbux users are now auto-bailed out at the start of each day. Minor tweaks to daily payouts and wheel payouts low+ (higher). H.daily now resets at 2am CST each day.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -840,19 +841,26 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('ranking')) {
-                    const rankings = honbuxHelper.getRankings();
-                    msg.channel.send(`\`\`\`Honbux Rankings:\n\n${rankings}\`\`\``);
+                    msg.channel.send(`\`\`\`Honbux Rankings:\n\n${honbuxHelper.getRankings()}\`\`\``);
                 }
 
                 if(str.toLowerCase().startsWith('metrics')) {
-                    const metrics = honbuxHelper.getMetrics(msg.author);
-                    msg.channel.send(`\`\`\`${metrics}\`\`\``);
+                    msg.channel.send(`\`\`\`${honbuxHelper.getMetrics(msg.author)}\`\`\``);
                 }
 
                 if(str.toLowerCase().startsWith('gmetrics') || str.toLowerCase().startsWith('gamemetrics')) {
-                    const metrics = honbuxHelper.getGameMetrics();
-                    msg.channel.send(`\`\`\`${metrics}\`\`\``);
+                    msg.channel.send(`\`\`\`${honbuxHelper.getGameMetrics()}\`\`\``);
                 }
+
+                if(str.toLowerCase().startsWith('pitbull')) {
+                    msg.channel.send(`\`${getRandomSong()}\``);
+                }
+
+                // if(str.toLowerCase().startsWith('bank')) {
+                //     const depositAmount = Math.floor(Number(str.split(' ')[1]));
+                //     const numDays = Math.floor(Number(str.split(' ')[2]));
+                //     msg.channel.send(`\`${honbuxHelper.bankDeposit(depositAmount, numDays)}\``)
+                // }
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {
