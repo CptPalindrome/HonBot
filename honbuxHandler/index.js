@@ -2,22 +2,28 @@ const fs = require('fs');
 const Utils = require('./utils');
 const Coinflipper = require('./coinflipper');
 const WheelHelper = require('./wheelHelper');
+const BankHelper = require('./bankHelper');
+const randomProc = require('../utils/randomProc');
 
 class HonbuxHelper {
     constructor() {
         this.utils = new Utils();
         this.coinflipper = new Coinflipper();
         this.wheelHelper = new WheelHelper();
+        this.bankHelper = new BankHelper();
         this.init();
     }
 
     init() {
         try {
-            if(!fs.existsSync('./honbuxHandler/honbuxData.json')) {
-                fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify({honbuxData: []}, 0, 2));
+            if(!fs.existsSync('./honbuxHandler/dataFiles/honbuxData.json')) {
+                fs.writeFileSync('./honbuxHandler/dataFiles/honbuxData.json', JSON.stringify({honbuxData: []}, 0, 2));
             }
-            if(!fs.existsSync('./honbuxHandler/gameMetrics.json')) {
-                fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify({metrics: {}}, 0, 2));
+            if(!fs.existsSync('./honbuxHandler/dataFiles/gameMetrics.json')) {
+                fs.writeFileSync('./honbuxHandler/dataFiles/gameMetrics.json', JSON.stringify({metrics: {}}, 0, 2));
+            }
+            if(!fs.existsSync('./honbuxHandler/dataFiles/investmentData.json')) {
+                fs.writeFileSync('./honbuxHandler/dataFiles/investmentData.json', JSON.stringify({userData: [], stocks: []}, 0, 2));
             }
             this.resultMessages = JSON.parse(fs.readFileSync('./honbuxHandler/resultMessages.json'));
         } catch (e) {
@@ -26,26 +32,15 @@ class HonbuxHelper {
         const d = new Date();
         d.setHours(2);
         this.dailyResetTime = d.valueOf();
+        this.bankProcessing();
+        this.stocksProcessing();
+        console.log(this.testDateReader());
     }
 
     generateDailyRandom() {
-        const randomNum = Math.floor(Math.random() * 100);
-
-        if (randomNum < 70) {
-            return { random: Math.floor(Math.random() * 200) + 350, rarity: 'common' }
-        } else if (randomNum < 94 && randomNum > 70) {
-            return { random: Math.floor(Math.random() * 250) + 675, rarity: 'scarce' }
-        } else {
-            return { random: Math.floor(Math.random() * 600) + 1300, rarity: 'rare' }
-        }
-    }
-
-    getResultMessage(rarity, amountGained, balance, isValid, timeDiffHours, timediffMinutes) {
-        if (isValid) {
-            return this.getSuccessMessage(rarity, amountGained, balance);
-        } else {
-            return this.getBadMessage(timeDiffHours, timediffMinutes);
-        }
+        if (randomProc(6, 100)) return { random: Math.floor(Math.random() * 600) + 1300, rarity: 'rare' }
+        if (randomProc(24, 100)) return { random: Math.floor(Math.random() * 250) + 700, rarity: 'scarce' }
+        return { random: Math.floor(Math.random() * 50) + 500, rarity: 'common' }
     }
     
     getSuccessMessage(rarity, amountGained, balance) {
@@ -69,7 +64,7 @@ class HonbuxHelper {
             return userdata;
         })};
 
-        fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+        fs.writeFileSync('./honbuxHandler/dataFiles/honbuxData.json', JSON.stringify(endData, 0, 2));
     }
 
     tagWheelTime(id) {
@@ -81,7 +76,7 @@ class HonbuxHelper {
             return userdata;
         })};
 
-        fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+        fs.writeFileSync('./honbuxHandler/dataFiles/honbuxData.json', JSON.stringify(endData, 0, 2));
     }
 
     verifyBet(userData, bet, minBet, maxBet) {
@@ -108,8 +103,8 @@ class HonbuxHelper {
         if(user.lastDaily && user.lastDaily > this.dailyResetTime) {
                 wasDailyValid = false;
         } else {
-            endData = this.utils.modifyData(honbuxData, id, dataForModify );
-            fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+            endData = this.utils.modifyHonbuxData(honbuxData, id, dataForModify );
+            fs.writeFileSync('./honbuxHandler/dataFiles/honbuxData.json', JSON.stringify(endData, 0, 2));
             balance = this.modifyBux(msg.author, Number(random), 'Daily');
             wasDailyValid = true;
         }
@@ -131,9 +126,9 @@ class HonbuxHelper {
         if (source !== 'Daily' && source !== 'Bail' && source !== 'AddBux') {
             dataForModify.push({ propName: `times${amount > 0 ? 'Winning' : 'Losing'}From${source}`, propValue: 1,  propFunc:'inc' });
         }
-        const endData = this.utils.modifyData(honbuxData, id, dataForModify);
+        const endData = this.utils.modifyHonbuxData(honbuxData, id, dataForModify);
 
-        fs.writeFileSync('./honbuxHandler/honbuxData.json', JSON.stringify(endData, 0, 2));
+        fs.writeFileSync('./honbuxHandler/dataFiles/honbuxData.json', JSON.stringify(endData, 0, 2));
         balance = endData?.honbuxData?.find((userdata) => userdata.id === id || userdata.username === username)?.honbalance;
         return balance;
     }
@@ -185,19 +180,19 @@ class HonbuxHelper {
             else return 0;
         });
 
-        // let outString = '';
-        // filtered.forEach((data) => {
-        //     outString += `${data.key}: ${data.value}\n`;
-        // });
         return this.splitMetrics(filtered, 'user');
     }
 
     getGameMetricsData() {
-        return JSON.parse(fs.readFileSync('./honbuxHandler/gameMetrics.json')).metrics;
+        return JSON.parse(fs.readFileSync('./honbuxHandler/dataFiles/gameMetrics.json')).metrics;
     }
     
     getHonbuxData() {
-        return JSON.parse(fs.readFileSync('./honbuxHandler/honbuxData.json', 'utf8')).honbuxData;
+        return JSON.parse(fs.readFileSync('./honbuxHandler/dataFiles/honbuxData.json', 'utf8')).honbuxData;
+    
+    }
+    getInvestmentData() {
+        return JSON.parse(fs.readFileSync('./honbuxHandler/dataFiles/investmentData.json', 'utf8'));
     }
 
     getGameMetrics() {
@@ -258,7 +253,7 @@ class HonbuxHelper {
             // you didn't forget to re-enable this did you
             this.tagCfbuxTime(author.id);
             const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
-            fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
+            fs.writeFileSync('./honbuxHandler/dataFiles/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
         }
         return result.message;
     }
@@ -269,6 +264,8 @@ class HonbuxHelper {
         const maxBet = 5000;
         const validBet = this.verifyBet(userData, bet, minBet, maxBet);
         let outMessage = 'Input should be `h.wheel <bet number> <guess>`';
+        // if format is incorrect, jump out
+        if (Number.isNaN(bet) || !Number.isNaN(choice)) return outMessage;
         if (validBet.valid) {
             const result = this.wheelHelper.spinWheel(userData, bet, choice, minBet, maxBet);
             if (result.valid) {
@@ -282,7 +279,7 @@ class HonbuxHelper {
                 const balance = this.modifyBux(userData, Number(result.payout), 'WheelSpin');
                 const updatedMetrics = this.utils.gameMetrics(this.getGameMetricsData(), params);
                 this.tagWheelTime(author.id);
-                fs.writeFileSync('./honbuxHandler/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
+                fs.writeFileSync('./honbuxHandler/dataFiles/gameMetrics.json', JSON.stringify(updatedMetrics, 0, 2));
                 outMessage = result.message.replace('{balance}', balance);
             } else outMessage = result.message;
         } else outMessage = validBet.message;
@@ -299,6 +296,35 @@ class HonbuxHelper {
         honbuxData.forEach((user) => {
             this.bailOut(user);
         });
+    }
+
+    bankDeposit(amount, duration) {
+        // duration is in days
+        const investData = this.getInvestmentData();
+        const params = [
+            { propName: `times${result.result}`, propValue: 1, propFunc: 'inc' },
+            { propName: `last${result.result}`, propValue: Date(), propFunc: 'set' },
+        ]
+        const honbuxParams = [
+            { propName: `timesMoneyBanked`, propValue: 1, propFunc: 'inc' },
+            { propName: `amountBankedLifetime`, propValue: amount, propFunc: 'inc'}
+        ]
+        const endData = this.utils.modifyInvestmentData(investData, id, dataForModify );
+        fs.writeFileSync('./honbuxHandler/dataFiles/investmentData.json', JSON.stringify(endData, 0, 2));
+    }
+
+    bankProcessing() {
+        const investmentData = this.getInvestmentData();
+    }
+
+    stocksProcessing() {
+        const investmentData = this.getInvestmentData();
+    }
+
+    testDateReader() {
+        const investmentData = this.getInvestmentData();
+        console.log(investmentData);
+        return `${investmentData.lastProcessedMonth} - ${investmentData.lastProcessedDate}`;
     }
 }
 

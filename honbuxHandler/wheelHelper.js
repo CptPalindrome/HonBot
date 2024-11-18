@@ -1,9 +1,9 @@
 class WheelHelper {
     constructor() {
         this.wheelCooldown = 36000000;
-        this.tiers = ['Lowest', 'Low', 'Medium', 'High', 'Extreme'];
-        this.weights = [12, 8, 4, 2, 1];
-        this.payoutRatios = [1.20, 3.1, 6.15, 13.3, 27.6]
+        this.tiers = process.env.TIERS.split('_');
+        this.weights = process.env.WEIGHTS.split('_').map((number) => Number(number));
+        this.payoutRatios = [process.env.LOWEST, process.env.LOW, process.env.MEDIUM, process.env.HIGH, process.env.EXTREME]
         this.wheel = [];
         this.weights.forEach((weight, index) => {
             for (let i = 0; i < weight; i++) {
@@ -17,7 +17,7 @@ class WheelHelper {
         const timeDiffHours = Math.floor((this.wheelCooldown - wheelTimeDiff) / 3600000).toString().padStart(2, '0');
         const timeDiffMinutes = Math.floor((this.wheelCooldown - wheelTimeDiff) % 3600000 / 60000).toString().padStart(2, '0');
         if ((userData.lastWheelSpin && wheelTimeDiff > this.wheelCooldown) || !userData.lastWheelSpin) {
-            const spinResult = this.wheel[Math.floor(Math.random() * this.wheel.length)];
+            let spinResult = this.wheel[Math.floor(Math.random() * this.wheel.length)];
             let payout = bet * -1;
             switch (spinResult) {
                 case 'Lowest':
@@ -35,10 +35,16 @@ class WheelHelper {
                 case 'Extreme':
                     payout = Math.floor(bet * this.payoutRatios[4]);
                     break;
+                case 'Blank':
+                    const optionsWithout = this.wheel.filter((option) => {
+                        if (option.toLowerCase() !== guess && option !== 'Blank') return option
+                    });
+                    spinResult = optionsWithout[Math.floor(Math.random() * optionsWithout.length)]
+                    break;
             }
     
             payout = Number(payout);
-            if (!this.tiers.find((tier) => tier.toLowerCase() === guess)) return { valid: false, message: 'Invalid choice. Options are: lowest, low, medium, high, extreme.' };
+            if (!this.tiers.find((tier) => tier.toLowerCase() === guess) || guess == 'blank') return { valid: false, message: 'Invalid choice. Options are: lowest, low, medium, high, extreme.' };
             if (spinResult.toLowerCase() === guess) {
                 const message = this.messageBuilder(payout, spinResult)
                 return { payout, result: spinResult, valid: true, message };

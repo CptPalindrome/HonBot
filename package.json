@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node bot.js",
+    "start": "node --env-file=.env bot.js",
     "switch": "node Scripts/switch.js",
     "ConvertTranscript": "node transcript_converter.js",
     "txtFileCombiner": "node utils/fileCombiner.js"

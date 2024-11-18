@@ -11,7 +11,7 @@ class Utils {
         return honbuxData;
     }
 
-    modifyData(honbuxData, id, paramsToChange) {
+    modifyHonbuxData(honbuxData, id, paramsToChange) {
         let endData = { honbuxData: honbuxData.map((userdata) => { 
             if(userdata.id === id) {                    
                 paramsToChange.forEach((param) => {
@@ -39,6 +39,22 @@ class Utils {
         })
         
         return { metrics: data };
+    }
+
+    modifyInvestmentData(bankData, id, paramsToChange) {
+        let endData = { userData: bankData.map((userdata) => { 
+            if(userdata.id === id) {                    
+                paramsToChange.forEach((param) => {
+                    if (param.propFunc ==='set') {
+                        userdata[param.propName] = param.propValue;
+                    } else if (param.propFunc === 'inc') {
+                        userdata[param.propName] ? userdata[param.propName] += param.propValue : userdata[param.propName] = param.propValue;
+                    }
+                });
+            }
+            return userdata;
+        })};
+        return endData;
     }
 }
 

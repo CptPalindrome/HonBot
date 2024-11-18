@@ -15,6 +15,5 @@ suggestions.json
 playerSaveData.json
 package-lock.json
 fileCombinerOut
-/honbuxHandler/honbuxData.json
-/honbuxHandler/gameMetrics.json
+/honbuxHandler/dataFiles/*
 .env
