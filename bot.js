@@ -1343,11 +1343,10 @@ function addSuggestion(msg, user) {
 
 function emailSuggestions() {
     let suggestionsList = JSON.parse(fs.readFileSync('./suggestions.json'));
-    let date = new Date();
     suggestionsList = suggestionsList.suggestions;
     suggestionsList.forEach((suggestion, index) => {
         let params = suggestion;
-        params.date = date;
+        params.date = now();
         params.sugnum = index + 1;
         axios.post('https://api.emailjs.com/api/v1.0/email/send', {service_id: envVars.serviceid, template_id: envVars.templateid, template_params: params, user_id: envVars.userid})
         .then(res => {
