@@ -11,7 +11,7 @@ const HonbuxHelper = require('./honbuxHandler');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
-const { getRandomSong } = require('./pitbull');
+const { makeSongMessage } = require('./pitbull');
 const randomProc = require('./utils/randomProc');
 const logger = require('./logger.js');
 const envVars = require('./envVars.json');
@@ -850,7 +850,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('pitbull')) {
-                    msg.channel.send(`\`${getRandomSong()}\``);
+                    msg.channel.send(`${makeSongMessage()}`);
                 }
 
                 // if(str.toLowerCase().startsWith('bank')) {

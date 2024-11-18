@@ -1,134 +1,542 @@
 [
-    "All Night Long (Alexandra Burke song)",
-    "All the Things",
-    "Amore",
-    "The Anthem",
-    "Armada Latina",
-    "Ay Chico (Lengua Afuera)",
-    "Back in Time",
-    "Back It Up",
-    "Back Up",
-    "Bad Man",
-    "Baddest Girl in Town",
-    "Bailando Por El Mundo",
-    "Bailar",
-    "Be Quiet",
-    "Beat on My Drum",
-    "Better on Me",
-    "Blanco",
-    "Bojangles",
-    "Bon, Bon",
-    "Boomerang (DJ Felli Fel song)",
-    "Booty (Jennifer Lopez song)",
-    "Born-N-Raised",
-    "Can't Get Enough (Becky G song)",
-    "Can't Have",
-    "Can't Believe It (Flo Rida song)",
-    "Castle Made of Sand",
-    "Celebrate",
-    "Crazy (Lumidee song)",
-    "Culo",
-    "Dame Tu Cosita",
-    "Dammit Man",
-    "Dance Again",
-    "Dedicated",
-    "Dime",
-    "DJ Got Us Fallin' in Love",
-    "Don't Stop the Party",
-    "Drive You Crazy",
-    "Echa Pa'lla (Manos Pa'rriba)",
-    "Educate Ya",
-    "Egoísta",
-    "El Taxi",
-    "Everybody Fucks",
-    "Everybody Get Up",
-    "Exotic (Priyanka Chopra song)",
-    "Feel It (DJ Felli Fel song)",
-    "Feel This Moment",
-    "Fireball",
-    "Freedom",
-    "Fresh Out the Oven",
-    "Fun",
-    "Further Up (Na, Na, Na, Na, Na)",
-    "Gasolina",
-    "Get It Started",
-    "Get Ready",
-    "Give Me Everything",
-    "Go Girl",
-    "Goalie Goalie",
-    "Good Time (Inna song)",
-    "Greenlight",
-    "Habibi I Love You",
-    "Hey Baby (Drop It to the Floor)",
-    "Hey Ma (Pitbull and J Balvin song)",
-    "Hit the Floor (Twista song)",
-    "Holla at Me",
-    "Hot (Daddy Yankee song)",
-    "Hotel Room Service",
-    "I Feel Good",
-    "I Feel So Free with You",
-    "I Know You Want Me (Calle Ocho)",
-    "I Like How It Feels",
-    "I Like It (Enrique Iglesias song)",
-    "I Love You... Te Quiero",
-    "I'm a Freak",
-    "I'm All Yours",
-    "I'm in Miami Bitch",
-    "International Love",
-    "Kick Up Your Heels (Jessica Mauboy song)",
-    "Krazy",
-    "Letting Go (Cry Just a Little)",
-    "Live It Up (Jennifer Lopez song)",
-    "Mala (Pitbull and Becky G song)",
-    "Maldito Alcohol",
-    "Messin' Around",
-    "Mmm Yeah",
-    "Move Shake Drop",
-    "Move to Miami",
-    "Name of Love",
-    "Ni Rosas Ni Juguetes",
-    "No Lo Trates",
-    "Now I'm That Bitch",
-    "Now You See It (Shake That Ass)",
-    "Nuestro Himno",
-    "On the Floor",
-    "Only Love (Shaggy song)",
-    "Only Ones to Know",
-    "Options",
-    "Outta Control (Baby Bash song)",
-    "Outta Nowhere",
-    "Pass at Me",
-    "Pause",
-    "Pearly Gates",
-    "Por Favor",
-    "Rabiosa",
-    "Rain Over Me",
-    "Rock the Boat (Bob Sinclar song)",
-    "Secret Admirer",
-    "Sexy Body",
-    "Sexy People (The Fiat Song)",
-    "Shake (Ying Yang Twins song)",
-    "Shake Señora",
-    "She Doesn't Mind",
-    "Shooting Star (David Rush song)",
-    "Shut It Down",
-    "Slowly Slowly (Guru Randhawa song)",
-    "Sopa de Caracol",
-    "Sticky Icky",
-    "Suave (Kiss Me)",
-    "Superstar",
-    "That's Nasty",
-    "Timber",
-    "Time of Our Lives (Pitbull and Ne-Yo song)",
-    "Toma",
-    "Tu Cuerpo",
-    "U Know It Ain't Love",
-    "Vem Dançar Kuduro",
-    "Vida 23",
-    "Watagatapitusberry",
-    "We Are One (Ole Ola)",
-    "We Are Strong",
-    "We Run the Night",
-    "What U Gon' Do",
-    "Wild Wild Love"
+  {
+    "title": "Pitbull x NE-YO x AFROJACK ft. DJ Buddha - 2 The Moon (Official Audio)",
+    "url": "https://www.youtube.com/watch?v=Oq76FkBpgHE&pp=ygUSMiB0aGUgTW9vbiBwaXRidWxs"
+  },
+  {
+    "title": "Alexandra Burke - All Night Long (Official Video) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=Ymx6CQTtFSI&pp=ygUtQWxsIE5pZ2h0IExvbmcgKEFsZXhhbmRyYSBCdXJrZSBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "All the Things",
+    "url": "https://www.youtube.com/watch?v=BlWO0WbUbIo&pp=ygUlQWxsIHRoZSBUaGluZ3MgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull, Leona Lewis - Amore (From the \"Gotti\" Soundtrack)",
+    "url": "https://www.youtube.com/watch?v=nUogDsCenbs&pp=ygUcQW1vcmUgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "The Anthem",
+    "url": "https://www.youtube.com/watch?v=IzKzDSIfLLg&pp=ygUhVGhlIEFudGhlbSAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Cypress Hill - Armada Latina ft. Pitbull, Marc Anthony",
+    "url": "https://www.youtube.com/watch?v=fdi7VoAa8rI&pp=ygUVQXJtYWRhIExhdGluYSBwaXRidWxs"
+  },
+  {
+    "title": "@Pitbull - Ay Chico (Lengua Afuera) (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=st4Iu4maqJA&pp=ygUgQXkgQ2hpY28gKExlbmd1YSBBZnVlcmEpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Back in Time (Official Video)",
+    "url": "https://www.youtube.com/watch?v=zaSZE194D4I&pp=ygUjQmFjayBpbiBUaW1lIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Prince Royce - Back It Up (Official Video) ft. Jennifer Lopez, Pitbull",
+    "url": "https://www.youtube.com/watch?v=9w9dXWU5nMI&pp=ygUmQmFjayBJdCBVcCAoUHJpbmNlIFJveWNlIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Back Up",
+    "url": "https://www.youtube.com/watch?v=_kjcX2RywPU&pp=ygUeQmFjayBVcCAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Bad Man (Official Video) ft. Robin Thicke, Joe Perry, Travis Barker",
+    "url": "https://www.youtube.com/watch?v=zjQGYSEHtto&pp=ygUeQmFkIE1hbiAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull ft. Mohombi, Wisin - Baddest Girl in Town (Official Video)",
+    "url": "https://www.youtube.com/watch?v=YKnxtrFaq08&pp=ygUcQmFkZGVzdCBHaXJsIGluIFRvd24gcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Juan Magán - Bailando Por El Mundo (Video Mash Up Explicit Version) ft. Pitbull, El Cata",
+    "url": "https://www.youtube.com/watch?v=4QUa-6gZAfc&pp=ygUdQmFpbGFuZG8gUG9yIEVsIE11bmRvIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Deorro Ft. Pitbull & Elvis Crespo - Bailar (Official Audio)",
+    "url": "https://www.youtube.com/watch?v=uf5hY2as8Oo&pp=ygUVQmFpbGFyIChzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "@Pitbull - Be Quiet (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=SI0QFOtvcek&pp=ygUXQmUgUXVpZXQgKHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Gabry Ponte ft. Pitbull and Sophia del Carmen - Beat on my drum - Official Video",
+    "url": "https://www.youtube.com/watch?v=3Et7TzkJ8X8&pp=ygUXQmVhdCBvbiBNeSBEcnVtIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Better On Me (Official Video) ft. Ty Dolla $ign",
+    "url": "https://www.youtube.com/watch?v=2lrIgkzhXz0&pp=ygUUQmV0dGVyIG9uIE1lIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull ft. Pharrell - Blanco (Official Video)",
+    "url": "https://www.youtube.com/watch?v=YX2sQr82JS4&pp=ygUdQmxhbmNvIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Bojangles ft. Lil Jon and Ying Yang Twins [Official Video]",
+    "url": "https://www.youtube.com/watch?v=NXe8DZ_LsWc&pp=ygUYQm9qYW5nbGVzIChzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Bon, Bon (Official Video)",
+    "url": "https://www.youtube.com/watch?v=9O72RLP5fF4&pp=ygUQQm9uLCBCb24gcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "DJ Felli Fel - Boomerang Feat. Akon, Pitbull & Jermaine Dupri [Official Video] HD",
+    "url": "https://www.youtube.com/watch?v=iO9eBu6qqC4&pp=ygUlQm9vbWVyYW5nIChESiBGZWxsaSBGZWwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Jennifer Lopez - Booty ft. Iggy Azalea",
+    "url": "https://www.youtube.com/watch?v=nxtIRArhVD4&pp=ygUjQm9vdHkgKEplbm5pZmVyIExvcGV6IHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "DJ Khaled - \"Born N' Raised\" Uncensored",
+    "url": "https://www.youtube.com/watch?v=Ay89-fJi268&pp=ygUVQm9ybi1OLVJhaXNlZCBwaXRidWxs"
+  },
+  {
+    "title": "Becky G - Can't Get Enough ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=FwSHgcjEZNw&pp=ygUnQ2FuJ3QgR2V0IEVub3VnaCAoQmVja3kgRyBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Can't Have (Lyric Video) ft. Steven A. Clark, Ape Drums",
+    "url": "https://www.youtube.com/watch?v=VZGwnMPWvoQ&pp=ygUSQ2FuJ3QgSGF2ZSBwaXRidWxs"
+  },
+  {
+    "title": "Flo Rida - Can't Believe It ft. Pitbull [Official Music Video]",
+    "url": "https://www.youtube.com/watch?v=-WDcpwZqYlU&pp=ygUoQ2FuJ3QgQmVsaWV2ZSBJdCAoRmxvIFJpZGEgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull feat Kelly Rowland & Jamie Drastik- Castle Made of Sand",
+    "url": "https://www.youtube.com/watch?v=Qt8psT8zWRg&pp=ygUbQ2FzdGxlIE1hZGUgb2YgU2FuZCBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Celebrate (from the Original Motion Picture Penguins of Madagascar)",
+    "url": "https://www.youtube.com/watch?v=QqLs0CBNoSA&pp=ygUgQ2VsZWJyYXRlIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Lumidee - Crazy (feat. @Pitbull) (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=J4mLojTDsMw&pp=ygUcQ3JhenkgKEx1bWlkZWUgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Culo",
+    "url": "https://www.youtube.com/watch?v=7MnTLl7wMII&pp=ygUTQ3VsbyAoc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull x El Chombo x Karol G x Dancing Green Alien - Dame Tu Cosita ft. Cutty Ranks [Ultra Records]",
+    "url": "https://www.youtube.com/watch?v=FMN3AtsXqA0&pp=ygUWRGFtZSBUdSBDb3NpdGEgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Damnit Man ft. Piccallo [Official Video]",
+    "url": "https://www.youtube.com/watch?v=SbP8Racebes&pp=ygUSRGFtbWl0IE1hbiBwaXRidWxs"
+  },
+  {
+    "title": "Jennifer Lopez - Dance Again (Official Video) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=bjgFH01k0gU&pp=ygUTRGFuY2UgQWdhaW4gcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Dedicated (Audio) ft. R.Kelly, Austin Mahone",
+    "url": "https://www.youtube.com/watch?v=Jtij1tDE6ng&pp=ygUgRGVkaWNhdGVkIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Dime Remix ; Ken-Y ft. Pitbull (with lyrics!)",
+    "url": "https://www.youtube.com/watch?v=LTK00kki8eA&pp=ygUbRGltZSAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Usher - DJ Got Us Fallin' In Love (Official Music Video) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=C-dvTjK_07c&pp=ygUhREogR290IFVzIEZhbGxpbicgaW4gTG92ZSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Don't Stop The Party ft. TJR",
+    "url": "https://www.youtube.com/watch?v=i0vFid2tKbI&pp=ygUrRG9uJ3QgU3RvcCB0aGUgUGFydHkgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Jerrod Niemann - Drink to That All Night (Remix) ([feat. Pitbull]) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=mXx3DVppCwg&pp=ygUfRHJpbmsgdG8gVGhhdCBBbGwgTmlnaHQgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Drive You Crazy (Audio) ft. Jason Derulo, Juicy J",
+    "url": "https://www.youtube.com/watch?v=R4gQi-3fUSY&pp=ygUXRHJpdmUgWW91IENyYXp5IHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Echa Pa'lla (Manos Pa'rriba)",
+    "url": "https://www.youtube.com/watch?v=WO0gGlWuse8&pp=ygUkRWNoYSBQYSdsbGEgKE1hbm9zIFBhJ3JyaWJhKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Educate Ya (Audio) ft. Jason Derulo",
+    "url": "https://www.youtube.com/watch?v=DjLTdAuM2cM&pp=ygUSRWR1Y2F0ZSBZYSBwaXRidWxs"
+  },
+  {
+    "title": "Belinda - Egoista ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=S88LJBJhvwo&pp=ygUQRWdvw61zdGEgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "OSMANI GARCIA Ft. PITBULL, SENSATO, DAYAMI LA MUSA - El Taxi (Official Video) Reggaeton Cubaton",
+    "url": "https://www.youtube.com/watch?v=qRp3-D3SMwI&pp=ygUPRWwgVGF4aSBwaXRidWxs"
+  },
+  {
+    "title": "Everybody Fucks",
+    "url": "https://www.youtube.com/watch?v=u6ut80VKrKQ&pp=ygUXRXZlcnlib2R5IEZ1Y2tzIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "@Pitbull - Everybody Get Up (feat. Pretty Ricky) (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=gFkFSNyPMpk&pp=ygUnRXZlcnlib2R5IEdldCBVcCAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Priyanka Chopra - Exotic ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=sPhhZg9v9NU&pp=ygUlRXhvdGljIChQcml5YW5rYSBDaG9wcmEgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Feel It ((Explicit))",
+    "url": "https://www.youtube.com/watch?v=rTtbrX5S_Lg&pp=ygUjRmVlbCBJdCAoREogRmVsbGkgRmVsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Feel This Moment (Official Video) ft. Christina Aguilera",
+    "url": "https://www.youtube.com/watch?v=5jlI4uzZGjU&pp=ygUYRmVlbCBUaGlzIE1vbWVudCBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Fireball (Official Video) ft. John Ryan",
+    "url": "https://www.youtube.com/watch?v=HMqgVXSvwGo&pp=ygUfRmlyZWJhbGwgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Freedom (Audio)",
+    "url": "https://www.youtube.com/watch?v=fj0K60d4dTo&pp=ygUeRnJlZWRvbSAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Jennifer Lopez - Fresh Out The Oven ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=A_Ak-u83t1E&pp=ygUaRnJlc2ggT3V0IHRoZSBPdmVuIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Fun (Official Video) ft. Chris Brown",
+    "url": "https://www.youtube.com/watch?v=jKbR7u8J5PU&pp=ygUaRnVuIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Static & Ben El, Pitbull - Further Up (Na, Na, Na, Na, Na) (Official Video)",
+    "url": "https://www.youtube.com/watch?v=K3BQmbeXPok&pp=ygUnRnVydGhlciBVcCAoTmEsIE5hLCBOYSwgTmEsIE5hKSBwaXRidWxs"
+  },
+  {
+    "title": "Daddy Yankee - Gasolina Feat Pitbull",
+    "url": "https://www.youtube.com/watch?v=-pqW9z7p03I&pp=ygUQR2Fzb2xpbmEgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Get It Started ft. Shakira",
+    "url": "https://www.youtube.com/watch?v=q5SG7U76tls&pp=ygUWR2V0IEl0IFN0YXJ0ZWQgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Get Ready ft. Blake Shelton",
+    "url": "https://www.youtube.com/watch?v=Ejdx6_hYTiY&pp=ygUgR2V0IFJlYWR5IChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Give Me Everything ft. Ne-Yo, Afrojack, Nayer",
+    "url": "https://www.youtube.com/watch?v=EPo5wWmKEaI&pp=ygUaR2l2ZSBNZSBFdmVyeXRoaW5nIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Go Girl",
+    "url": "https://www.youtube.com/watch?v=_bI2BlPR3rc&pp=ygUeR28gR2lybCAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Arash Nyusha Pitbull Blanco - Goalie Goalie (Official video)",
+    "url": "https://www.youtube.com/watch?v=OI7Buc02Rz0&pp=ygUVR29hbGllIEdvYWxpZSBwaXRidWxs"
+  },
+  {
+    "title": "INNA - Good Time (feat. Pitbull) | Official Music Video",
+    "url": "https://www.youtube.com/watch?v=sEgXQJgYxoE&pp=ygUdR29vZCBUaW1lIChJbm5hIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Greenlight (Official Video) ft. Flo Rida, LunchMoney Lewis",
+    "url": "https://www.youtube.com/watch?v=R7xbhKIiw4Y&pp=ygUhR3JlZW5saWdodCAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Ahmed Chawki feat. Pitbull - Habibi I Love You",
+    "url": "https://www.youtube.com/watch?v=TyZEwpDPCCw&pp=ygUZSGFiaWJpIEkgTG92ZSBZb3UgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Hey Baby (Drop It To The Floor) ft. T-Pain",
+    "url": "https://www.youtube.com/watch?v=LefQdEMJP1I&pp=ygUnSGV5IEJhYnkgKERyb3AgSXQgdG8gdGhlIEZsb29yKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull & J Balvin - Hey Ma ft Camila Cabello (Spanish Version | The Fate of the Furious: The Album)",
+    "url": "https://www.youtube.com/watch?v=UWLr2va3hu0&pp=ygUqSGV5IE1hIChQaXRidWxsIGFuZCBKIEJhbHZpbiBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Twista - Hit The Floor (feat. Pitbull) [Official Video]",
+    "url": "https://www.youtube.com/watch?v=yohWU0qntys&pp=ygUjSGl0IHRoZSBGbG9vciAoVHdpc3RhIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "DJ Khaled - \"Holla At Me\" Uncensored",
+    "url": "https://www.youtube.com/watch?v=oI6oyAfGb84&pp=ygUTSG9sbGEgYXQgTWUgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Daddy Yankee x Pitbull - Hot (Official Video)",
+    "url": "https://www.youtube.com/watch?v=B5PLNv4Nc4o&pp=ygUfSG90IChEYWRkeSBZYW5rZWUgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Hotel Room Service (Official Video)",
+    "url": "https://www.youtube.com/watch?v=2up_Eq6r6Ko&pp=ygUaSG90ZWwgUm9vbSBTZXJ2aWNlIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull Ft. Anthony Watts & DJWS - I Feel Good (Official Video)",
+    "url": "https://www.youtube.com/watch?v=JmU16BbDmNM&pp=ygUTSSBGZWVsIEdvb2QgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Britney Spears - I Feel So Free With You Feat. Pitbull & Marc Anthony (Audio Official)",
+    "url": "https://www.youtube.com/watch?v=kmUqHbHZscs&pp=ygUfSSBGZWVsIFNvIEZyZWUgd2l0aCBZb3UgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "PITBULL - I know you want me (calle ocho) [Official video HD]",
+    "url": "https://www.youtube.com/watch?v=hFoxg4IFtqc&pp=ygUnSSBLbm93IFlvdSBXYW50IE1lIChDYWxsZSBPY2hvKSBwaXRidWxs"
+  },
+  {
+    "title": "Enrique Iglesias - I Like How It Feels (Official Music Video) ft. Pitbull, The WAV.s",
+    "url": "https://www.youtube.com/watch?v=klk8QPcfFYQ&pp=ygUbSSBMaWtlIEhvdyBJdCBGZWVscyBwaXRidWxs"
+  },
+  {
+    "title": "Enrique Iglesias - I Like It (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=X9_n8jakvWU&pp=ygUpSSBMaWtlIEl0IChFbnJpcXVlIElnbGVzaWFzIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Chesca, Pitbull, Frankie Valli - Te Quiero Baby (I Love You Baby)",
+    "url": "https://www.youtube.com/watch?v=IlwIDfqkDHs&pp=ygUfSSBMb3ZlIFlvdS4uLiBUZSBRdWllcm8gcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Enrique Iglesias - I'm A Freak ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=YUiVIPgJA0o&pp=ygUTSSdtIGEgRnJlYWsgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Jay Sean - I'm All Yours ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=Tog4FpNCjQ0&pp=ygUVSSdtIEFsbCBZb3VycyBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Hello/Party Rock/I'm In Miami Bitch (VEVO LIVE! Carnival 2012: Salvador, Brazil)",
+    "url": "https://www.youtube.com/watch?v=yx4BqJnOY_Q&pp=ygUaSSdtIGluIE1pYW1pIEJpdGNoIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - International Love (Official Video) ft. Chris Brown",
+    "url": "https://www.youtube.com/watch?v=CdXesX6mYUE&pp=ygUaSW50ZXJuYXRpb25hbCBMb3ZlIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Kick up Your Heels",
+    "url": "https://www.youtube.com/watch?v=anIvEXYGhHs&pp=ygUwS2ljayBVcCBZb3VyIEhlZWxzIChKZXNzaWNhIE1hdWJveSBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Krazy",
+    "url": "https://www.youtube.com/watch?v=WX3K3JkoYeI&pp=ygUcS3JhenkgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Qwote feat. Mr. Worldwide - Letting Go (Cry Just A Little) (Official Video)",
+    "url": "https://www.youtube.com/watch?v=FEYw45fTe9Q&pp=ygUmTGV0dGluZyBHbyAoQ3J5IEp1c3QgYSBMaXR0bGUpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Jennifer Lopez - Live It Up ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=BofL1AaiTjo&pp=ygUoTGl2ZSBJdCBVcCAoSmVubmlmZXIgTG9wZXogc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull feat. Becky G & De La Ghetto - Mala (Remix) [Official Video]",
+    "url": "https://www.youtube.com/watch?v=omeG3d5cHsI&pp=ygUnTWFsYSAoUGl0YnVsbCBhbmQgQmVja3kgRyBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull, Afrojack - Maldito Alcohol",
+    "url": "https://www.youtube.com/watch?v=MTHqYmCRNDg&pp=ygUXTWFsZGl0byBBbGNvaG9sIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull with Enrique Iglesias - Messin' Around (Official Video)",
+    "url": "https://www.youtube.com/watch?v=6X3SAs-5GUE&pp=ygUlTWVzc2luJyBBcm91bmQgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Austin Mahone - Mmm Yeah ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=MMAppa1cAVo&pp=ygUQTW1tIFllYWggcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull Feat Flo Rida - Move Shake Drop [HQ]",
+    "url": "https://www.youtube.com/watch?v=KRKMTgifqR8&pp=ygUXTW92ZSBTaGFrZSBEcm9wIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Enrique Iglesias - MOVE TO MIAMI (Official Video) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=l884wKofd54&pp=ygUVTW92ZSB0byBNaWFtaSBwaXRidWxs"
+  },
+  {
+    "title": "JEAN-ROCH FEAT PITBULL & NAYER - NAME OF LOVE (OFFICIAL VIDEO)",
+    "url": "https://www.youtube.com/watch?v=zUGwBTp86qU&pp=ygUUTmFtZSBvZiBMb3ZlIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "PAULINA RUBIO: Ni Rosas Ni Juguetes (Pitbull Remix)",
+    "url": "https://www.youtube.com/watch?v=rLfATbnjmMc&pp=ygUcTmkgUm9zYXMgTmkgSnVndWV0ZXMgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull, Daddy Yankee & Natti Natasha - No Lo Trates (Official Video)",
+    "url": "https://www.youtube.com/watch?v=maShEST7IkI&pp=ygUUTm8gTG8gVHJhdGVzIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Livvi Franc - Now I'm That Bitch ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=T2onHaKs5zs&pp=ygUaTm93IEknbSBUaGF0IEJpdGNoIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull x Bon Jovi - Now or Never (Official Video)",
+    "url": "https://www.youtube.com/watch?v=5tit_16Jha0&pp=ygUwTm93IG9yIE5ldmVyIChQaXRidWxsIGFuZCBCb24gSm92aSBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Honorebel ft Pitbull & Jump Smokers - Now You See It (Official Music Video) [HD]",
+    "url": "https://www.youtube.com/watch?v=o7kUMvYJQtw&pp=ygUnTm93IFlvdSBTZWUgSXQgKFNoYWtlIFRoYXQgQXNzKSBwaXRidWxs"
+  },
+  {
+    "title": "The Anthem",
+    "url": "https://www.youtube.com/watch?v=IzKzDSIfLLg&pp=ygUVTnVlc3RybyBIaW1ubyBwaXRidWxs"
+  },
+  {
+    "title": "Jennifer Lopez - On The Floor ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=t4H_Zoh7G5A&pp=ygUUT24gdGhlIEZsb29yIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Shaggy - Only Love (Audio) ft. Pitbull, Gene Noble",
+    "url": "https://www.youtube.com/watch?v=vqK96E0_3bk&pp=ygUfT25seSBMb3ZlIChTaGFnZ3kgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Only Ones To Know (Audio) ft. Leona Lewis",
+    "url": "https://www.youtube.com/watch?v=oqjjWZ6OAI8&pp=ygUZT25seSBPbmVzIHRvIEtub3cgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Options (Official Video) ft. Stephen Marley",
+    "url": "https://www.youtube.com/watch?v=xALCpLXcIYY&pp=ygUeT3B0aW9ucyAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Baby Bash - Outta Control feat. Pitbull - Official Video",
+    "url": "https://www.youtube.com/watch?v=ygToAvG71V8&pp=ygUmT3V0dGEgQ29udHJvbCAoQmFieSBCYXNoIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Outta Nowhere (Official Lyric Video) ft. Danny Mercer",
+    "url": "https://www.youtube.com/watch?v=2HGcab-pTVY&pp=ygUVT3V0dGEgTm93aGVyZSBwaXRidWxs"
+  },
+  {
+    "title": "Timbaland - Pass At Me (Explicit Version) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=ZYJVKT0V-9U&pp=ygUSUGFzcyBhdCBNZSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Pause (Audio)",
+    "url": "https://www.youtube.com/watch?v=FYHIBkOSLYM&pp=ygUcUGF1c2UgKFBpdGJ1bGwgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Feat. Nayer Pearly Gates (Official Video)",
+    "url": "https://www.youtube.com/watch?v=8-kvjhBJ5Q0&pp=ygUbUGVhcmx5IEdhdGVzIChzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull, Fifth Harmony - Por Favor (Official Video)",
+    "url": "https://www.youtube.com/watch?v=uZ1M3DkKCEI&pp=ygUYUG9yIEZhdm9yIChzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Shakira - Rabiosa (Pitbull Version) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=gqdFnKcmOHk&pp=ygUWUmFiaW9zYSAoc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Rain Over Me ft. Marc Anthony",
+    "url": "https://www.youtube.com/watch?v=SmM0653YvXU&pp=ygUUUmFpbiBPdmVyIE1lIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Bob Sinclar - Rock the Boat feat. Pitbull, Dragonfly and Fatman Scoop [Official Video Clip]",
+    "url": "https://www.youtube.com/watch?v=oFEyXkkleOI&pp=ygUoUm9jayB0aGUgQm9hdCAoQm9iIFNpbmNsYXIgc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "@Pitbull - Secret Admirer (feat. Lloyd) (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=1ikFrwK8F1w&pp=ygUdU2VjcmV0IEFkbWlyZXIgKHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull, Jennifer Lopez - Sexy Body (Official Audio)",
+    "url": "https://www.youtube.com/watch?v=ewLzsi1jVJU&pp=ygUgU2V4eSBCb2R5IChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Arianna - Sexy People (The FIAT Song) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=Wk9PfN2Hphw&pp=ygUjU2V4eSBQZW9wbGUgKFRoZSBGaWF0IFNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Ying Yang Twins - Shake (feat. @Pitbull) (Official Music Video)",
+    "url": "https://www.youtube.com/watch?v=DZ9SioGG0BQ&pp=ygUkU2hha2UgKFlpbmcgWWFuZyBUd2lucyBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Shake Senora (Audio) ft. T-Pain, Sean Paul",
+    "url": "https://www.youtube.com/watch?v=AmuKdoe8MvI&pp=ygUVU2hha2UgU2XDsW9yYSBwaXRidWxs"
+  },
+  {
+    "title": "She Doesn't Mind (Pitbull Remix)",
+    "url": "https://www.youtube.com/watch?v=jne3-DFt3sU&pp=ygUYU2hlIERvZXNuJ3QgTWluZCBwaXRidWxs"
+  },
+  {
+    "title": "David Rush - Shooting Star ft. Pitbull, Kevin Rudolf, LMFAO",
+    "url": "https://www.youtube.com/watch?v=U8QKXpfPbKw&pp=ygUnU2hvb3RpbmcgU3RhciAoRGF2aWQgUnVzaCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Shut It Down ft. Akon",
+    "url": "https://www.youtube.com/watch?v=QECUFmEPbU0&pp=ygUbU2h1dCBJdCBEb3duIChzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "SLOWLY SLOWLY | Guru Randhawa ft. Pitbull | Bhushan Kumar | DJ Shadow, Blackout, Vee, DJ MoneyWillz",
+    "url": "https://www.youtube.com/watch?v=hGsVLXnFgbA&pp=ygUqU2xvd2x5IFNsb3dseSAoR3VydSBSYW5kaGF3YSBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Elvis Crespo, Pitbull - Sopa de Caracol (ft. DJ Chino)",
+    "url": "https://www.youtube.com/watch?v=LeZqF0jZTvQ&pp=ygUXU29wYSBkZSBDYXJhY29sIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Sticky Icky",
+    "url": "https://www.youtube.com/watch?v=awd2MjD4HTw&pp=ygUTU3RpY2t5IElja3kgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Nayer ft. Pitbull & Mohombi - Suave (Kiss Me) (Official Video)",
+    "url": "https://www.youtube.com/watch?v=o0PpP0ksmcI&pp=ygUXU3VhdmUgKEtpc3MgTWUpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Superstar (Official Copa America Song) ft. Becky G",
+    "url": "https://www.youtube.com/watch?v=S-tJuHsCDzc&pp=ygUgU3VwZXJzdGFyIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "That's Nasty",
+    "url": "https://www.youtube.com/watch?v=hhGFifk_3bs&pp=ygUbVGhhdCdzIE5hc3R5IChzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull, Ke$ha - Timber (featuring Ke$ha - Official Video)",
+    "url": "https://www.youtube.com/watch?v=hHUbLv4ThOo&pp=ygUdVGltYmVyIChQaXRidWxsIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull, Ne-Yo - Time Of Our Lives",
+    "url": "https://www.youtube.com/watch?v=bTXJQ5ql5Fw&pp=ygUyVGltZSBvZiBPdXIgTGl2ZXMgKFBpdGJ1bGwgYW5kIE5lLVlvIHNvbmcpIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Pitbull - Toma (feat. Lil Jon)",
+    "url": "https://www.youtube.com/watch?v=K-nVQfBs7yE&pp=ygUTVG9tYSAoc29uZykgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Tu Cuerpo ft. Jencarlos Canela",
+    "url": "https://www.youtube.com/watch?v=0ghPCj0wWV8&pp=ygURVHUgQ3VlcnBvIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "RJ feat. Pitbull - U Know It Ain't Love (Official Video)",
+    "url": "https://www.youtube.com/watch?v=cv8SHUN-rv8&pp=ygUcVSBLbm93IEl0IEFpbid0IExvdmUgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Lucenzo, Qwote, Pitbull - Danza Kuduro (Throw Your Hands Up) (Official Video HD)",
+    "url": "https://www.youtube.com/watch?v=83_YVokD-p0&pp=ygUaVmVtIERhbsOnYXIgS3VkdXJvIHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "Vida 23 (Let's Have a Real Good Time) - Pitbull ft. Faye",
+    "url": "https://www.youtube.com/watch?v=PSExILkaF6U&pp=ygUPVmlkYSAyMyBwaXRidWxs"
+  },
+  {
+    "title": "Pitbull - Watagatapitusberry (Remix) ft. Lil Jon, Sensato, Black Point, El Cata",
+    "url": "https://www.youtube.com/watch?v=xzSeSe8XB0s&pp=ygUaV2F0YWdhdGFwaXR1c2JlcnJ5IHBpdGJ1bGw%3D"
+  },
+  {
+    "title": "We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song] (Olodum Mix)",
+    "url": "https://www.youtube.com/watch?v=TGtWWb9emYI&pp=ygUcV2UgQXJlIE9uZSAoT2xlIE9sYSkgcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - We Are Strong (Audio) ft. Kiesza",
+    "url": "https://www.youtube.com/watch?v=M_2KZX-ATL8&pp=ygUkV2UgQXJlIFN0cm9uZyAoUGl0YnVsbCBzb25nKSBwaXRidWxs"
+  },
+  {
+    "title": "Havana Brown - We Run The Night (Explicit) ft. Pitbull",
+    "url": "https://www.youtube.com/watch?v=AP4dnGkZne4&pp=ygUYV2UgUnVuIHRoZSBOaWdodCBwaXRidWxs"
+  },
+  {
+    "title": "lil jon,daddy yankee,pitbull what you gonna do remix",
+    "url": "https://www.youtube.com/watch?v=ecDGFaopUao&pp=ygUWV2hhdCBVIEdvbicgRG8gcGl0YnVsbA%3D%3D"
+  },
+  {
+    "title": "Pitbull - Wild Wild Love ft. G.R.L.",
+    "url": "https://www.youtube.com/watch?v=EAyzpLGBI1E&pp=ygUWV2lsZCBXaWxkIExvdmUgcGl0YnVsbA%3D%3D"
+  }
 ]
