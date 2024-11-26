@@ -1,3 +1,5 @@
+const randomProc = require("../utils/randomProc");
+
 class WheelHelper {
     constructor() {
         this.wheelCooldown = 36000000;
@@ -52,8 +54,8 @@ class WheelHelper {
 
     messageBuilder(payout, result,) {
         if (payout > 0) {
-            return `**${result}**! You won <:honbux:966533492030730340>**${payout}**. New balance is <:honbux:966533492030730340>**{balance}**`
-        } else return `**${result}**... You lose <:honbux:966533492030730340>**${payout}**. New balance is <:honbux:966533492030730340>**{balance}**`
+            return `**${result}**${randomProc(2, 10) ? '!' : '...'} You won <:honbux:966533492030730340>**${payout}**. New balance is <:honbux:966533492030730340>**{balance}**`
+        } else return `**${result}**${randomProc(2, 10) ? '...' : '!'} You lose <:honbux:966533492030730340>**${payout}**. New balance is <:honbux:966533492030730340>**{balance}**`
     }
 }
 
