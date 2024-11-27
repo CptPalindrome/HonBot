@@ -829,7 +829,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('top')) {
-                    if (randomProc(8, 100)) {
+                    if (randomProc(4, 10)) {
                         msg.channel.send({files: [new AttachmentBuilder('./media/top.gif')]});
                     } else {
                         const topGuy = honbuxHelper.getTopHonbux();
