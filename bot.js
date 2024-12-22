@@ -9,7 +9,7 @@ const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const HonbuxHelper = require('./honbuxHandler');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
-const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm } = require('./utils/converter.js');
+const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm, f2chirp, chirp2f } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const { makeSongMessage } = require('./pitbull');
 const randomProc = require('./utils/randomProc');
@@ -41,7 +41,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`May 14th 2024\nHonbux users are now auto-bailed out at the start of each day. Minor tweaks to daily payouts and wheel payouts low+ (higher). H.daily now resets at 2am CST each day.\`\`\``;
+const patchnoteText = `\`\`\`Dec 21th 2024\nNew temperature conversion type: chirp2f & f2chirp. A conversion for number of cricket chirps per minute to F and vise versa.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -641,6 +641,25 @@ client.on(Events.MessageCreate, msg => {
                         let temp2 = c2f(temp);
                         msg.channel.send(`**${Math.round(temp)}C** is about **${temp2}F**`);
                     }
+                    return;
+                }
+
+                if(str.toLowerCase().startsWith('f2chirp')) {
+                    let temp = str.split(' ')[1];
+                    if(temp && !isNaN(temp)) {
+                        let chrip = f2chirp(temp);
+                        msg.channel.send(`**${Math.round(temp)}F** is about **${chrip} chirps/minute**`);
+                    }
+                    return;
+                }
+
+                if(str.toLowerCase().startsWith('chirp2f')) {
+                    let chirp = str.split(' ')[1];
+                    if(chirp && !isNaN(chirp)) {
+                        let temp = chirp2f(chirp);
+                        msg.channel.send(`**${Math.round(chirp)} chirps/minute** is about **${temp}F**`);
+                    }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('f2c')) {
@@ -648,7 +667,7 @@ client.on(Events.MessageCreate, msg => {
                     if(temp && !isNaN(temp)) {
                         let temp2 = f2c(temp);
                         msg.channel.send(`**${Math.round(temp)}F** is about **${temp2}C**`);
-                    }
+                    }return;
                 }
 
                 if(str.toLowerCase().startsWith('cad2usd')) {
@@ -657,6 +676,7 @@ client.on(Events.MessageCreate, msg => {
                         let amnt2 = cad2usd(amnt);
                         msg.channel.send(`**$${amnt} CAD** is about **$${amnt2} USD**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('usd2cad')) {
@@ -665,6 +685,7 @@ client.on(Events.MessageCreate, msg => {
                         let amnt2 = usd2cad(amnt);
                         msg.channel.send(`**$${amnt} USD** is about **$${amnt2} CAD**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('km2mi')) {
@@ -673,6 +694,7 @@ client.on(Events.MessageCreate, msg => {
                         let dist2 = km2mi(dist);
                         msg.channel.send(`**${Math.round(dist)}km** is about **${dist2}mi**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('mi2km')) {
@@ -681,6 +703,7 @@ client.on(Events.MessageCreate, msg => {
                         let dist2 = mi2km(dist);
                         msg.channel.send(`**${Math.round(dist)}mi** is about **${dist2}km**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('in2cm')) {
@@ -689,6 +712,7 @@ client.on(Events.MessageCreate, msg => {
                         let dist2 = in2cm(dist);
                         msg.channel.send(`**${Math.round(dist)}in** is about **${dist2}cm**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('cm2in')) {
@@ -697,6 +721,7 @@ client.on(Events.MessageCreate, msg => {
                         let dist2 = cm2in(dist);
                         msg.channel.send(`**${Math.round(dist)}cm** is about **${dist2}in**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('ft2m')) {
@@ -705,6 +730,7 @@ client.on(Events.MessageCreate, msg => {
                         let dist2 = ft2m(dist);
                         msg.channel.send(`**${Math.round(dist)}ft** is about **${dist2}m**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('m2ft')) {
@@ -713,6 +739,7 @@ client.on(Events.MessageCreate, msg => {
                         let dist2 = m2ft(dist);
                         msg.channel.send(`**${Math.round(dist)}m** is about **${dist2}ft**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('kg2lb')) {
@@ -721,6 +748,7 @@ client.on(Events.MessageCreate, msg => {
                         let weight2 = kg2lb(weight);
                         msg.channel.send(`**${Math.round(weight)}kg** is about **${weight2}lbs**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('lb2kg')) {
@@ -729,6 +757,7 @@ client.on(Events.MessageCreate, msg => {
                         let weight2 = lb2kg(weight);
                         msg.channel.send(`**${Math.round(weight)}lbs** is about **${weight2}kg**`);
                     }
+                    return;
                 }
 
                 if(str.toLowerCase().startsWith('help')) {

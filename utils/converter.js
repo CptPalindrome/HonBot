@@ -46,4 +46,12 @@ function lb2kg(weight) {
     return Math.round(((weight / 2.205) * 10)) / 10
 }
 
-module.exports = { c2f, f2c, usd2cad, cad2usd, km2mi, mi2km, kg2lb, lb2kg, in2cm, cm2in, ft2m, m2ft };
+function f2chirp(temp) {
+    return Math.round(((temp - 50) * 4) + 40);
+}
+
+function chirp2f(chirp) {
+    return Math.round(50 + ((chirp - 40) / 4));
+}
+
+module.exports = { c2f, f2c, usd2cad, cad2usd, km2mi, mi2km, kg2lb, lb2kg, in2cm, cm2in, ft2m, m2ft, f2chirp, chirp2f };

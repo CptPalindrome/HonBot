@@ -48,7 +48,7 @@ function help(command) {
         
         case 'conversions':
         case 'conversion':
-            return `There are conversions for metric units to freedom units. Currently supported: Celcius, Km, Kg and CAD to their American counterparts. Functions are noted by (abbreviated unit)2(abbreviated unit). **Ex: f2c 90 or km2mi 45**`
+            return `There are conversions for metric units to freedom units. Currently supported: Celcius, Km, Kg and CAD to their American counterparts. Also chirps. Functions are noted by (abbreviated unit)2(abbreviated unit). **Ex: f2c 90 or km2mi 45**`
 
         case 'obl':
             return `Absolutely destroy the quality of any png/jpg image send as an attachment. (Might take a second to process)`
