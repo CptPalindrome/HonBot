@@ -8,10 +8,12 @@ const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const HonbuxHelper = require('./honbuxHandler');
+const Letter = require('./letter');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm, f2chirp, chirp2f } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const { makeSongMessage } = require('./pitbull');
+const getHoagie = require('./utils/hoagieGetter.js')
 const randomProc = require('./utils/randomProc');
 const logger = require('./logger.js');
 const envVars = require('./envVars.json');
@@ -41,7 +43,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Dec 21th 2024\nNew temperature conversion type: chirp2f & f2chirp. A conversion for number of cricket chirps per minute to F and vise versa.\`\`\``;
+const patchnoteText = `\`\`\`Dec 21th 2024\nNew temperature conversion type: chirp2f & f2chirp. A conversion for number of cricket chirps per minute to F and vise versa.\nh.letter is now available. You can input a letter after to determine starting letter to subset the alphabet.\nAdditionally, h.hoagie is now a thing. Get a hoagie!\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -882,6 +884,17 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send(`${makeSongMessage()}`);
                 }
 
+                if(str.toLowerCase().startsWith('letter')) {
+                    const startingLetter = str.split(' ')?.[1];
+                    const lowerOnly = str.split(' ')?.[2] === 'true' ? true : false;
+                    msg.channel.send(new Letter().getRandomLetter(startingLetter, lowerOnly));
+                }
+
+                if(str.toLowerCase().startsWith('hoagie')) {
+                    const hoagie = getHoagie();
+                    msg.channel.send({content: `This hoagie is called: \`${hoagie.hoagieName}\``, files: [new AttachmentBuilder(`./hoagies/${hoagie.fileName}`)]});
+                }
+
                 // if(str.toLowerCase().startsWith('bank')) {
                 //     const depositAmount = Math.floor(Number(str.split(' ')[1]));
                 //     const numDays = Math.floor(Number(str.split(' ')[2]));
@@ -918,7 +931,7 @@ client.on(Events.MessageCreate, msg => {
                     }
                 }
 
-                if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle') && Math.floor(Math.random() * 10) <= 2)
+                if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle' || (element?.provider?.name && randomProc(8, 10))))
                     msg.reply(`do you get paid for these links?`);
             }
         }

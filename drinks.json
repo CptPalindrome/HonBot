@@ -79,6 +79,10 @@
         {
             "name": "coffee",
             "namePlural": "coffees"
+        },
+        {
+            "name": "Slurpee",
+            "namePlural": "Slurpees"
         }
     ],
     "containers": [

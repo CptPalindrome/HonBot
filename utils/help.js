@@ -83,6 +83,11 @@ function help(command) {
         case 'wheel':
             return `**h.wheel <bet number> <risk value>** | The risk values are **lowest** | **low** | **medium** | **high** | **extreme**.\nThe higher the risk, the less likely you are to win, but a much higher payout if you do win. Payout is 1.25x to 8x (lowest >> extreme).\nMinimum bet is 500, maximum is 5000, with a 10h cooldown.`
         
+        case 'hoagie':
+            return `**h.hoagie gives you a picture of a hoagie. And its legal name.**`
+
+        case 'letter':
+            return `**h.letter will give you a letter. You can specify a starting letter to get a subset.**`
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;
     }

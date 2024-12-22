@@ -27,6 +27,8 @@
         "makeTeams | mt",
         "generateTeamName | gtn | gtna (alliteration)",
         "tags | gettags",
-        "honbux > daily | honba(lance) | top | ranking | metrics | gameMetrics | cfbux | wheel"
+        "honbux > daily | honba(lance) | top | ranking | metrics | gameMetrics | cfbux | wheel",
+        "letter > starting letter",
+        "hoagie"
     ]
 }

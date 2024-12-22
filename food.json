@@ -111,6 +111,10 @@
         {
             "singular": "sardines",
             "plural": "sardines"
+        },
+        {
+            "singular": "persimmon",
+            "plural": "persimmons"
         }
     ],
     "containers": [
