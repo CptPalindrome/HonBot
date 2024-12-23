@@ -43,7 +43,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Dec 21th 2024\nNew temperature conversion type: chirp2f & f2chirp. A conversion for number of cricket chirps per minute to F and vise versa.\nh.letter is now available. You can input a letter after to determine starting letter to subset the alphabet.\nAdditionally, h.hoagie is now a thing. Get a hoagie!\`\`\``;
+const patchnoteText = `\`\`\`Dec 21th 2024\nNew temperature conversion type: chirp2f & f2chirp. A conversion for number of cricket chirps per minute to F and vice versa.\nh.letter is now available. You can input a letter after to determine starting letter to subset the alphabet.\nAdditionally, h.hoagie is now a thing. Get a hoagie!\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -886,8 +886,8 @@ client.on(Events.MessageCreate, msg => {
 
                 if(str.toLowerCase().startsWith('letter')) {
                     const startingLetter = str.split(' ')?.[1];
-                    const lowerOnly = str.split(' ')?.[2] === 'true' ? true : false;
-                    msg.channel.send(new Letter().getRandomLetter(startingLetter, lowerOnly));
+                    const endingLetter = str.split(' ')?.[2];
+                    msg.channel.send(new Letter().getRandomLetter(startingLetter, endingLetter));
                 }
 
                 if(str.toLowerCase().startsWith('hoagie')) {
@@ -931,7 +931,7 @@ client.on(Events.MessageCreate, msg => {
                     }
                 }
 
-                if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle' || (element?.provider?.name && randomProc(8, 10))))
+                if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle' || (element?.provider?.name === 'Steam' && randomProc(8, 10))))
                     msg.reply(`do you get paid for these links?`);
             }
         }
