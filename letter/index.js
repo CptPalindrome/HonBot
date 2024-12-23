@@ -14,13 +14,13 @@ class Letter {
         try {
             if(startingLetter.toLowerCase() !== 'a' || endLetter.toLowerCase !== 'z') {
                 subAlphaLower = subAlphaLower.slice(subAlphaLower.findIndex((letter) => letter === startingLetter.toLowerCase()), subAlphaLower.findIndex((letter) => letter === endLetter.toLowerCase()));
-                subAlphaUpper = subAlphaUpper.slice(subAlphaUpper.findIndex((letter) => letter === startingLetter.toUpperCase()), subAlphaUpper.findIndex((letter) => letter === endLetter.toLowerCase()));
+                subAlphaUpper = subAlphaUpper.slice(subAlphaUpper.findIndex((letter) => letter === startingLetter.toUpperCase()), subAlphaUpper.findIndex((letter) => letter === endLetter.toUpperCase()));
             }
         } catch(e) {
             console.error(e);
             return 'Hmm...something went wrong, are your parameters broke'
         }
-            const subsetAlpha = lowerOnly ? subAlphaLower : subAlphaLower.concat(subAlphaUpper);
+            const subsetAlpha = subAlphaLower.concat(subAlphaUpper);
             return subsetAlpha[Math.floor(Math.random() * subsetAlpha.length)];
     }
 }
