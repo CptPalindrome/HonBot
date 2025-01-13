@@ -13,7 +13,8 @@ const { createTeams, generateTeamName, generateTeamNameAlliteration } = require(
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm, f2chirp, chirp2f } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const { makeSongMessage } = require('./pitbull');
-const getHoagie = require('./utils/hoagieGetter.js')
+const getHoagie = require('./utils/hoagieGetter.js');
+const getCard = require('./yugioh');
 const randomProc = require('./utils/randomProc');
 const logger = require('./logger.js');
 const envVars = require('./envVars.json');
@@ -43,7 +44,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Dec 21th 2024\nNew temperature conversion type: chirp2f & f2chirp. A conversion for number of cricket chirps per minute to F and vice versa.\nh.letter is now available. You can input a letter after to determine starting letter to subset the alphabet.\nAdditionally, h.hoagie is now a thing. Get a hoagie!\`\`\``;
+const patchnoteText = `\`\`\`Jan 12vth 2025\nh.yugioh has been added to give you a random card art from a card that was in S1-2 of the anime.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -893,6 +894,11 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('hoagie')) {
                     const hoagie = getHoagie();
                     msg.channel.send({content: `This hoagie is called: \`${hoagie.hoagieName}\``, files: [new AttachmentBuilder(`./hoagies/${hoagie.fileName}`)]});
+                }
+
+                if(str.toLowerCase().startsWith('yugi')) {
+                    const card = getCard();
+                    msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
                 }
 
                 // if(str.toLowerCase().startsWith('bank')) {
