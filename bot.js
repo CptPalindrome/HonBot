@@ -4,7 +4,6 @@ const { Client, Events, GatewayIntentBits, AttachmentBuilder, PermissionsBitFiel
 const axios = require('axios');
 const fs = require('fs');
 const ImageManipulator = require('./image-manip');
-const gameClass = require('./blackjack/blackjack.js');
 const Acro = require('./acro/acro');
 const Madlibs = require('./madlibs/madlibs');
 const HonbuxHelper = require('./honbuxHandler');
@@ -31,20 +30,15 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
     GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessageReactions] });
 const prefix = 'h.';
 
-let game = new gameClass;
 let acro = new Acro;
 let madlibs = new Madlibs;
 let honbuxHelper = new HonbuxHelper;
 let cancelConfirm = false;
-let handInProgress = false;
-let gameStarted = false;
-let currentGameChannel;
-let fifteen = false;
 let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Jan 12vth 2025\nh.yugioh has been added to give you a random card art from a card that was in S1-2 of the anime.\`\`\``;
+const patchnoteText = `\`\`\`Jan 32nd 2025\nRemoving blackjack and associated commands. It may return at a later time but at present it is poorly implemented garbage and I don't like looking at it so it's bye bye for now.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -90,13 +84,6 @@ client.on(Events.MessageCreate, msg => {
                         msg.channel.send({files: [new AttachmentBuilder('./media/newportbiden.png')]});
                         break;
 
-                    case '15':
-                        if (fifteen) {
-                            const attachment = new AttachmentBuilder('./media/15.png');
-                            msg.channel.send({files: [attachment]});
-                        }
-                        break;
-
                     case 'die':
                         msg.channel.send(`${Math.floor(Math.random() * 6) + 1}`)
                         break;
@@ -117,127 +104,6 @@ client.on(Events.MessageCreate, msg => {
                         msg.channel.send(`\`\`\`${getCommands()}\n\nDo help <command name> for more info on individual commands.\`\`\``)
                         break;
                     
-                    case 'bljk':
-                        if(gameIsStarted()) {
-                            msg.channel.send(`A game is already in progress!`);
-                        }
-                        else {
-                            setTimeout(() => play(), 15000);
-                            msg.channel.send(`Game starts in 15 seconds. Use \`h.join\` to join the game!`);
-                            gameStarted = true;
-                            currentGameChannel = msg.channel;
-                        }
-                        break;
-
-                    case 'join':
-                        let joinPos = isPlayerInGame(game.players, msg.author.id);
-                        if (gameIsStarted() && !isHandInProgress() && joinPos === -1) {
-                            game.addPlayer(msg.author.id, msg.author.username);
-                            joinPos = isPlayerInGame(game.players, msg.author.id);
-                            msg.react(`✅`);
-                        }
-                        else if (joinPos != -1) {
-                            msg.channel.send(`***${msg.author.username}***, you're already in the game.`);
-                        }
-                        else {
-                            msg.channel.send(`Either a game has not been started or a hand is in progress.`);
-                        }
-                        break;
-
-                    case 'leave':
-                        if (!gameIsStarted()) {
-                            msg.channel.send(`You can't leave a game that hasn't started!`);
-                        }
-                        else if (isPlayerInGame(game.players, msg.author.id) === -1) {
-                            msg.channel.send(`You have not joined the game.`);
-                        }
-                        else if (!isHandInProgress()) {
-                            game.removePlayer(msg.author.id);
-                            msg.channel.send(`Okay, bye ${msg.author.username}`);
-                        }
-                        break;
-
-                    case 'hit':
-                        if (!gameIsStarted()) {
-                            msg.channel.send(`A game has not been started yet!`);
-                            break;
-                        }
-                        
-                        let pos = isPlayerInGame(game.players, msg.author.id);
-                        if (isHandInProgress() && pos !== -1) {
-                            if (game.players[pos].status == 'not done') {
-                                game.hit(game.players[pos]);
-                                currentGameChannel.send(`***${game.players[pos].username}*** hits. They now have **${game.players[pos].currentHand()}** *(${game.players[pos].handTotal()})*`)
-                                if (game.players[pos].status == 'busted') {
-                                    currentGameChannel.send(`***${game.players[pos].username}*** has busted.`);
-                                }
-                                if (checkPlayers(game)) {
-                                    cardsDrawnByDealer = resolveDealer(game);
-                                    resolveHand(game);
-                                }
-                            }
-                        }
-
-                        else {
-                            msg.channel.send(`You're either not in the game, or there is not an active hand.`);
-                        }
-                        break;
-                    
-                    case 'stand':
-                        if (!gameIsStarted()) {
-                            msg.channel.send(`A game has not been started yet!`);
-                            break;
-                        }
-                        
-                        let standPos = isPlayerInGame(game.players, msg.author.id);
-                        if (isHandInProgress() && standPos !== -1) {
-                            if (game.players[standPos].status == 'not done') {
-                                msg.react(`✅`);
-                                game.players[standPos].status = 'done';
-                                if (checkPlayers(game)) {
-                                    cardsDrawnByDealer = resolveDealer(game);
-                                    resolveHand(game);
-                                }
-                            }
-                        }
-                        else {
-                            msg.channel.send(`You're either not in the game, or there is not an active hand.`);
-                        }
-                        break;
-
-                    case 'nh':
-                        if (gameIsStarted() && !isHandInProgress()) {
-                            currentGameChannel.send(`Starting a new hand! You have 10 seconds to leave or join!`);
-                            setTimeout(() => play(), 10000);
-                        }
-                        else if (!gameIsStarted() || isHandInProgress()) {
-                            currentGameChannel.send(`Either a game isn't started or you're in a hand already.`);
-                        }
-                        break;
-                        
-                    case 'afk':
-                        if (gameIsStarted() && isHandInProgress()) {
-                            currentGameChannel.send(`Resolving AFK Players in 15 seconds.`);
-                            
-                            setTimeout(() => resolveAFK(), 15000);
-                        }
-                        else {
-                            currentGameChannel.send(`Either a game or a hand have not started.`);
-                        }
-                        break;
-
-                    case 'stop':
-                            if(gameIsStarted() && !isHandInProgress()) {
-                                msg.channel.send(`Game has stopped.`);
-                                gameStarted = false;
-                                handInProgress = false;
-                                game.resetPlayers();
-                            }
-                            else {
-                                msg.channel.send(`Game is not started yet, or a hand is in progress.`);
-                            }
-                            break;
-
                     case 'cf':
                         let coin = Math.floor(Math.random() * 2);
                         if(coin) {
@@ -896,6 +762,10 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send({content: `This hoagie is called: \`${hoagie.hoagieName}\``, files: [new AttachmentBuilder(`./hoagies/${hoagie.fileName}`)]});
                 }
 
+                if(str.toLowerCase().startsWith('hoahie')) {
+                    msg.channel.send('"h.hoahie" 🤓');
+                }
+
                 if(str.toLowerCase().startsWith('yugi')) {
                     const card = getCard();
                     msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
@@ -956,182 +826,6 @@ client.on(Events.MessageCreate, msg => {
         }
     }
 });
-
-let cardsDrawnByDealer = 0;
-function play() {
-    if (game.players.length == 0) {
-            currentGameChannel.send(`No one has joined! Ending game.`);
-            gameStarted = false;
-            handInProgress = false;
-            return;
-        }
-    console.log(`Now playing!`);
-    currentGameChannel.send(`Now beginning game. Players: ${generatePlayerList(game)}.`);
-    game.addPlayer('dealer', 'Dealer');
-    game.buildDeck(2);
-    let startMessage = '';
-    game.players.forEach(player => {
-        player.reset();
-        game.hit(player);
-        game.hit(player);
-        if (player.handTotal() == 21) {
-            player.status = 'bj';
-        }
-        if(player.userId !== 'dealer') {
-            startMessage += `***${player.username}*** has **${player.currentHand()}** *(${player.handTotal()})*\n`;
-        }
-        else {
-            startMessage += `***__${player.username}__*** showing **${player.getFirst()}** \n`;
-            if (player.status != 'bj') {
-                player.status = 'unflipped';
-            }
-        }
-    });
-    currentGameChannel.send(startMessage);
-    
-    handInProgress = true;
-    return;
-}
-
-function resolveAFK() {
-    let inactivePlayerNames = [];
-    let nameList = '';
-    game.players.forEach(player => {
-        if (player.status == 'not done') {
-            player.status = 'afk';
-            inactivePlayerNames.push(player.username);
-        }
-    });
-    nameList = inactivePlayerNames.join(', ');
-    currentGameChannel.send(`Resolved Inactive Players: ***${nameList}***.`);
-    if (checkPlayers(game)) {
-        cardsDrawnByDealer = resolveDealer(game);
-        resolveHand(game);
-    }
-}
-
-function generatePlayerList(game) {
-    let playerList = '';
-    let index = 1;
-    if (game.players.length > 0) {
-        playerList += game.players[0].username;
-    }
-    while (index <= game.players.length - 1) {
-        playerList += `, ${game.players[index].username}`;
-        index++;
-    }
-    return playerList;
-}
-
-function gameIsStarted() {
-    if(!gameStarted) {
-        return false;
-    }
-    return true;
-}
-
-function checkPlayers(game) {
-    let doneStatus = true;
-    game.players.forEach(player => {
-        if (player.status == 'not done') {
-            doneStatus = false;
-        }
-    })
-    return doneStatus; //oh no it's 5:30 am
-}
-
-function resolveDealer(game) {
-    let cardsDrawnByDealer = 0;
-    game.players.forEach(player => {
-        if (player.userId == 'dealer') {
-            while (player.handTotal() < 17) {
-                game.hit(player);
-                cardsDrawnByDealer++;
-            }
-            player.status = 'done';
-        }
-    });
-    return cardsDrawnByDealer;
-}
-
-function resolveHand(game) {
-    let dealerPos = isPlayerInGame(game.players, 'dealer');
-    let endMessage = '';
-    let dealerTotal = game.players[dealerPos].handTotal();
-    endMessage += `***__Dealer__*** drew ${cardsDrawnByDealer} card(s) and has **${game.players[dealerPos].currentHand()}** *(${game.players[dealerPos].handTotal()})*\n`
-    if (dealerTotal > 21) {
-        endMessage += `***__Dealer__*** has busted!\n`;
-    }
-
-    game.players.forEach(player => {
-        if (player.userId !== 'dealer') {
-            if (player.status == 'done' || player.status == 'double') {
-                if (dealerTotal <= 21) {
-                    if (player.handTotal() < dealerTotal) {
-                        endMessage += `***${player.username}*** *(${player.handTotal()})*, you lose.\n`;
-                        player.resolveBet('lose');
-                    }
-                    if (player.handTotal() == dealerTotal) {
-                        endMessage += `***${player.username}*** *(${player.handTotal()})*, you push.\n`;
-                        player.resolveBet('push');
-                    }
-                    if (player.handTotal() > dealerTotal) {
-                        endMessage += `***${player.username}*** *(${player.handTotal()})*, you win!\n`;
-                        player.resolveBet('win');
-                    }
-                }
-                
-                if (dealerTotal > 21) {
-                    endMessage += `***${player.username}*** *(${player.handTotal()})*, you win!\n`;
-                    player.resolveBet('win');
-                }
-            }
-            else if (player.status == 'bj') {
-                if (game.players[dealerPos].status == 'bj') {
-                    endMessage += `***${player.username}*** *(${player.handTotal()})*, you push.\n`;
-                    player.resolveBet('push');
-                }
-                else {
-                    endMessage += `***${player.username}*** *(${player.handTotal()})*, you win!\n`;
-                    player.resolveBet('bj');
-                }
-            }
-
-            else if (player.status == 'busted') {
-                endMessage += `***${player.username}*** *(${player.handTotal()})*, you lose.\n`;
-                player.resolveBet('lose');
-            }
-        }
-    });
-    currentGameChannel.send(endMessage);
-    handInProgress = false;
-    game.removePlayer('dealer');
-    let afkIds = [];
-    game.players.forEach(player => {
-        if (player.status == 'afk') {
-            afkIds.push(player.userId);
-        }
-    });
-    game.removePlayers(afkIds);
-}
-
-function isPlayerInGame(players, id) {
-    //if player is not found, will return -1, otherwise will return their position in player order
-    if (!players) {
-        return -1;
-    }
-    let pos = -1;
-    players.forEach((player, index) => {
-        if (player.userId === id) {
-            pos = index;
-        }
-    });
-    return pos;
-}
-
-function isHandInProgress() {
-    return handInProgress;
-}
 
 function now() {
     const now = new Date();
@@ -1571,27 +1265,6 @@ client.once(Events.ClientReady, (c) => {
 
     if(suggestionsReady()) {
         emailSuggestions()
-    }
-    let fifteenSent = JSON.parse(fs.readFileSync('./fifteenSentStatus.json')).sent;
-    if(new Date().getDate === '15' && !fifteenSent) {
-        fifteen = true;
-        client.channels.cache.find(x => x.id == '452011709859627019').send({ files: [new AttachmentBuilder('./media/15.png')] }).then(msg => {
-            msg.react('1️⃣')
-                .then(() => msg.react('5️⃣'))
-                .catch(error => console.error('Reaction FAILURE. No emotions now', error));
-        });
-        try {
-            fs.writeFileSync('./fifteenSentStatus.json', '{ "sent": true }');
-        } catch(e) {
-            console.log(e);
-        }
-    }
-    else if(new Date().getDate !== '15') {
-        try {
-            fs.writeFileSync('./fifteenSentStatus.json', '{ "sent": false }');
-        } catch(e) {
-            console.log(e);
-        }
     }
     honbuxHelper.bailOutAll();
 });

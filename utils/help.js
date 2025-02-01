@@ -7,12 +7,6 @@ function help(command) {
         case 'help wyd':
             return `You can use numbers or *super secret phrases* to select specific sentence templates. Format as {#}`;
             
-        case 'blackjack':
-            return `\`\`\`Blackjack Commands: \n h.bljk -- starts a new game\n h.join -- join a game in progress\n h.leave -- leave a game you've joined\n h.hit/h.stand -- gameplay functions\n h.afk -- will end a round if people are afk and remove them\n h.stop -- stops a game in progress\n h.nh -- starts a new hand with the same players\`\`\``;
-            
-        case 'bljk':
-            return `\`\`\`Blackjack Commands: \n h.bljk -- starts a new game\n h.join -- join a game in progress\n h.leave -- leave a game you've joined\n h.hit/h.stand -- gameplay functions\n h.afk -- will end a round if people are afk and remove them\n h.stop -- stops a game in progress\n h.nh -- starts a new hand with the same players\`\`\``;
-            
         case 'food':
             return `You can use \`h.food\` to get a random food order that will be 100% super tasty. You can put \`"plain"\` and/or \`"group"\`/\`"round"\` after to get some other results!`;
             
