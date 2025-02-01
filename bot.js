@@ -763,7 +763,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('hoahie')) {
-                    msg.channel.send('"h.hoahie" 🤓');
+                    msg.reply('"h.hoahie" 🤓');
                 }
 
                 if(str.toLowerCase().startsWith('yugi')) {
