@@ -1254,6 +1254,25 @@ function getCommands() {
     return commands.commandlist.join('\n');
 }
 
+client.on('messageReactionAdd', async (reaction, user) => {
+    try {
+        // Fetch the reaction if it's partial (needed for uncached messages)
+        if (reaction.partial) {
+            await reaction.fetch();
+        }
+
+        const ID_TO_DESTROY = '177401030739361792';
+
+         // Check if the reaction is from the specific user
+         if (user.id === ID_TO_DESTROY) {
+            console.log('id matches');
+            setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);            
+        }
+    } catch (error) {
+        console.error('Error removing reaction:', error);
+    }
+})
+
 client.once(Events.ClientReady, (c) => {
     console.log(`Logged in as ${c.user.tag}!`);
     client.user.setStatus('available');
