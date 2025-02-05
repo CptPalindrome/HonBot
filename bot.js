@@ -29,6 +29,7 @@ const commands = require('./commands.json');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessageReactions] });
 const prefix = 'h.';
+const ABSOLUTE_OLIGARCH = '167138850995437568';
 
 let acro = new Acro;
 let madlibs = new Madlibs;
@@ -44,7 +45,7 @@ client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
-        if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === '167138850995437568') {
+        if(msg.author.id != '266744954922074112' && !userInBlacklist(msg.author.id) || msg.author.id === ABSOLUTE_OLIGARCH) {
             if(str.toLowerCase().startsWith(prefix)) {
                 hasPrefix = true;
                 str = str.substring(prefix.length);
@@ -94,7 +95,7 @@ client.on(Events.MessageCreate, msg => {
                     
                     case 'mike':
                         const ripboyz = ['265065191731888130', '186268546106523648', '450763119149449226',
-                            '167138850995437568', '265567107280797696', '182325251927965697']
+                            ABSOLUTE_OLIGARCH, '265567107280797696', '182325251927965697']
                         if(ripboyz.includes(msg.author.id)) {
                             msg.channel.send('🙏');
                         }
@@ -670,7 +671,7 @@ client.on(Events.MessageCreate, msg => {
                 }
                 
                 if(str.toLowerCase().startsWith('bail')) {
-                    if (msg.author.id === '167138850995437568') {
+                    if (msg.author.id === ABSOLUTE_OLIGARCH) {
                         const recipients = msg.mentions.users;
                         const param = str.split(' ')[1];
                         if (param.toLowerCase() === 'all') {
@@ -694,7 +695,7 @@ client.on(Events.MessageCreate, msg => {
                 }
                 
                 if(str.toLowerCase().startsWith('addbux')) {
-                    if (msg.author.id === '167138850995437568') {
+                    if (msg.author.id === ABSOLUTE_OLIGARCH) {
                         const recipients = msg.mentions.users;
                         let amount = str.split(' ')[1];
                         if(recipients.size > 0 && amount && !isNaN(amount)) {
@@ -771,7 +772,7 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
                 }
 
-                if(str.toLowerCase().startsWith('logdump') && msg.author.id === '167138850995437568') {
+                if(str.toLowerCase().startsWith('logdump') && msg.author.id === ABSOLUTE_OLIGARCH) {
                     msg.channel.send({files: [new AttachmentBuilder(`./HonLogs/combined.log`)]});
                 }
             } //end of h. requirements
@@ -1262,7 +1263,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         const ID_TO_DESTROY = '177401030739361792';
 
          // Check if the reaction is from the specific user
-         if (user.id === ID_TO_DESTROY) {
+         if (user.id === ID_TO_DESTROY && reaction.count > 1) {
             setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
             const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
             logger.info(`${now()}: Hiro reaction queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
