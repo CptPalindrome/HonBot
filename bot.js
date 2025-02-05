@@ -1266,7 +1266,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
          if (user.id === ID_TO_DESTROY && reaction.count > 1) {
             setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
             const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
-            logger.info(`${now()}: Hiro reaction queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
+            logger.info(`${now()}: Hiro reaction ${reaction.emoji.name} queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
         }
     } catch (error) {
         console.error('Error removing reaction:', error);
