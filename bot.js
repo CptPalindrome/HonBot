@@ -771,11 +771,9 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
                 }
 
-                // if(str.toLowerCase().startsWith('bank')) {
-                //     const depositAmount = Math.floor(Number(str.split(' ')[1]));
-                //     const numDays = Math.floor(Number(str.split(' ')[2]));
-                //     msg.channel.send(`\`${honbuxHelper.bankDeposit(depositAmount, numDays)}\``)
-                // }
+                if(str.toLowerCase().startsWith('logdump') && msg.author.id === '167138850995437568') {
+                    msg.channel.send({files: [new AttachmentBuilder(`./HonLogs/combined.log`)]});
+                }
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {
@@ -829,7 +827,7 @@ client.on(Events.MessageCreate, msg => {
 
 function now() {
     const now = new Date();
-    return `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}}`;
+    return `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}-${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 }
 
 function gandhiQuote(quoteNum, msg) {
@@ -1265,8 +1263,9 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
          // Check if the reaction is from the specific user
          if (user.id === ID_TO_DESTROY) {
-            console.log('id matches');
-            setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);            
+            setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
+            const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
+            logger.info(`${now()}: Hiro reaction queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
         }
     } catch (error) {
         console.error('Error removing reaction:', error);
