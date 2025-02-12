@@ -12,6 +12,7 @@ const { createTeams, generateTeamName, generateTeamNameAlliteration } = require(
 const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm, f2chirp, chirp2f } = require('./utils/converter.js');
 const { help } = require('./utils/help.js');
 const { makeSongMessage } = require('./pitbull');
+const { incrementH, getH } = require('./hCounter/incrementH.js');
 const getHoagie = require('./utils/hoagieGetter.js');
 const getCard = require('./yugioh');
 const randomProc = require('./utils/randomProc');
@@ -775,6 +776,10 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('logdump') && msg.author.id === ABSOLUTE_OLIGARCH) {
                     msg.channel.send({files: [new AttachmentBuilder(`./HonLogs/combined.log`)]});
                 }
+
+                if(str.toLowerCase().startsWith('geth') && msg.author.id === ABSOLUTE_OLIGARCH) {
+                    msg.channel.send(`The current H count is: ${getH()}`);
+                }
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {
@@ -808,19 +813,6 @@ client.on(Events.MessageCreate, msg => {
 
                 if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle' || (element?.provider?.name === 'Steam' && randomProc(8, 10))))
                     msg.reply(`do you get paid for these links?`);
-            }
-        }
-    }
-    //TESTING CODE ZONE
-    else {
-        if(msg.author.id != '266744954922074112') {
-            if(str.toLowerCase().startsWith(prefix)) {
-                str = str.substring(prefix.length);
-                switch(str) {
-                    case 'test':
-                        msg.reply(`ID: ${msg.author.id}\nUsername: ${msg.author.username}\n...author?: ${msg.author.toString()}`);
-                        break;
-                }
             }
         }
     }
@@ -1095,7 +1087,7 @@ function emailSuggestions() {
             resetSugg();
         })
         .catch(e => {
-            logger.error(`${now()} Email ${index + 1} status: ${e.data}`);
+            logger.error(`${now()} Email ${index + 1} status: ${e}`);
         });
     })
 }
@@ -1266,6 +1258,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
          if (user.id === ID_TO_DESTROY && reaction.count > 1) {
             setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
             const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
+            incrementH();
             logger.info(`${now()}: Hiro reaction ${reaction.emoji.name} queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
         }
     } catch (error) {
