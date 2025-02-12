@@ -18,4 +18,5 @@ fileCombinerOut
 /honbuxHandler/honbuxData.json
 /honbuxHandler/gameMetrics.json
 /honbuxHandler/dataFiles/*
+/hCounter/hCounter.json
 .env
