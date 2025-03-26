@@ -1255,7 +1255,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         const ID_TO_DESTROY = '177401030739361792';
 
          // Check if the reaction is from the specific user
-         if (user.id === ID_TO_DESTROY && reaction.count > 1) {
+         if (user.id === ID_TO_DESTROY && reaction.count > 1 && (reaction.channelId !== '1105005167558008852' || reaction.channelId !== '1105005238194274324')) {
             setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
             const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
             incrementH();
