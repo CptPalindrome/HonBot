@@ -1246,23 +1246,27 @@ function getCommands() {
 }
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    try {
-        // Fetch the reaction if it's partial (needed for uncached messages)
-        if (reaction.partial) {
-            await reaction.fetch();
-        }
+    const enabled = false;
 
-        const ID_TO_DESTROY = '177401030739361792';
-
-         // Check if the reaction is from the specific user
-         if (user.id === ID_TO_DESTROY && reaction.count > 1 && (reaction.channelId !== '1105005167558008852' || reaction.channelId !== '1105005238194274324')) {
-            setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
-            const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
-            incrementH();
-            logger.info(`${now()}: Hiro reaction ${reaction.emoji.name} queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
+    if (enabled) {
+        try {
+            // Fetch the reaction if it's partial (needed for uncached messages)
+            if (reaction.partial) {
+                await reaction.fetch();
+            }
+    
+            const ID_TO_DESTROY = '177401030739361792';
+    
+             // Check if the reaction is from the specific user
+             if (user.id === ID_TO_DESTROY && reaction.count > 1 && (reaction.channelId !== '1105005167558008852' || reaction.channelId !== '1105005238194274324')) {
+                setTimeout(async () => await reaction.users.remove(user), 1000 * 60 * 3);
+                const messageLink = `https://discord.com/channels/${reaction.message.guildId}/${reaction.message.channelId}/${reaction.message.id}`;
+                incrementH();
+                logger.info(`${now()}: Hiro reaction ${reaction.emoji.name} queued for deletion in 3 minutes. Link to reacted message: ${messageLink}.`);
+            }
+        } catch (error) {
+            console.error('Error removing reaction:', error);
         }
-    } catch (error) {
-        console.error('Error removing reaction:', error);
     }
 })
 
