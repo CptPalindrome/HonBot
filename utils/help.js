@@ -45,9 +45,9 @@ function help(command) {
             return `There are conversions for metric units to freedom units. Currently supported: Celcius, Km, Kg and CAD to their American counterparts. Also chirps. Functions are noted by (abbreviated unit)2(abbreviated unit). **Ex: f2c 90 or km2mi 45**`
 
         case 'obl':
-            return `Absolutely destroy the quality of any png/jpg image send as an attachment. Customize the amount of obliteration with a number from 0.1 (less) to 50 (more). 15+ stops being intelligible. (Might take a second to process)`
+            return `Absolutely destroy the quality of any png/jpg image send as an attachment. Customize the amount of obliteration with a number from 0.1 (less) to 50 (more). 5+ stops being intelligible. (Might take a second to process)`
         case 'obliterate':
-            return `Absolutely destroy the quality of any png/jpg image send as an attachment. Customize the amount of obliteration with a number from 0.1 (less) to 50 (more). 15+ stops being intelligible. (Might take a second to process)`
+            return `Absolutely destroy the quality of any png/jpg image send as an attachment. Customize the amount of obliteration with a number from 0.1 (less) to 50 (more). 5+ stops being intelligible. (Might take a second to process)`
 
         case 'zamch':
             return `Zoom in and maintain the current hance.`

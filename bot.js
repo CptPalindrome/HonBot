@@ -40,7 +40,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Apr 7st 2025\nUpdating the h.obl command because I wanted to. You can now do custom obliteration ratios! You can go anywhere from 0.1 - 50 (technically). At values above 15 it stops being discernable usually so have fun.\`\`\``;
+const patchnoteText = `\`\`\`Apr 7st 2025\nUpdating the h.obl command because I wanted to. You can now do custom obliteration ratios! You can go anywhere from 0.1 - 50 (technically). At values above 5 it stops being discernable usually so have fun.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
