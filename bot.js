@@ -40,7 +40,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Jan 32nd 2025\nRemoving blackjack and associated commands. It may return at a later time but at present it is poorly implemented garbage and I don't like looking at it so it's bye bye for now.\`\`\``;
+const patchnoteText = `\`\`\`Apr 7st 2025\nUpdating the h.obl command because I wanted to. You can now do custom obliteration ratios! You can go anywhere from 0.1 - 50 (technically). At values above 15 it stops being discernable usually so have fun.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -638,7 +638,8 @@ client.on(Events.MessageCreate, msg => {
 
                 if(str.toLowerCase().startsWith('obliterate') || str.toLowerCase().startsWith('obl')) {
                     const files = [...msg.attachments.values()];
-                    if(files[0]?.name) imgManip.obliterate(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
+                    const ratio = str.split(' ')[1] || 1;
+                    if(files[0]?.name) imgManip.obliterate(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height }, ratio);
                     else msg.channel.send('No attachment sent.');
                 }
                 if(str.toLowerCase().startsWith('zoomandmaintaincurrenthance') || str.toLowerCase().startsWith('zamch')) {

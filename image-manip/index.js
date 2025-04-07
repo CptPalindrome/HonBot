@@ -23,15 +23,19 @@ class ImageManipluator {
         });
     }
         
-    async obliterate (imageUrl, channel, dimensions) {
+    async obliterate (imageUrl, channel, dimensions, ratio = 1) {
         if(!this.legalAttachment(imageUrl)) {
             channel.send('Invalid file type');
             return;
         }
+        // ratio affects the intensity of the obliteration. > 1 is more intense, < 1 is less intense
+        // if ratio < 0.1 it sets to 0.1 to avoid the intention of reducing obliteration ending up obliterating more at extreme values
+        const cleanedRatio = ratio < 0.1 ? 0.1 : ratio;
+        const shrinkWidth = Math.round(50 / cleanedRatio) < 1 ? 1 : Math.round(50 / cleanedRatio);
         const imagePath = await this.getImage(imageUrl);
-        await sharp(imagePath).resize({ width: 50 }).toFile('./image-manip/outfile.jpg');
+        await sharp(imagePath).resize({ width: shrinkWidth }).toFile('./image-manip/outfile.jpg');
         await sharp('./image-manip/outfile.jpg').resize({ width: 2000 }).toFile('./image-manip/tempoutfile.jpg');
-        await sharp('./image-manip/tempoutfile.jpg').resize({ width: 50 }).toFile('./image-manip/outfile.jpg');
+        await sharp('./image-manip/tempoutfile.jpg').resize({ width: shrinkWidth }).toFile('./image-manip/outfile.jpg');
         await sharp('./image-manip/outfile.jpg').resize({ width: 2000 }).toFile('./image-manip/tempoutfile.jpg');
         await sharp('./image-manip/tempoutfile.jpg').resize({ width: dimensions.width }).toFile('./image-manip/outfile.jpg');
         const attachment = new AttachmentBuilder('./image-manip/outfile.jpg');
