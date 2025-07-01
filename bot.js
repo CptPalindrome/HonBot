@@ -115,11 +115,6 @@ client.on(Events.MessageCreate, msg => {
                             msg.channel.send(`Tails 🚫`);
                         }
                         break;
-                    case 'acro':
-                        if (acro.getState() === 'none') {
-                            acro.acroStart(msg.channel);
-                        }
-                        break;
 
                     case 'gtn':
                         msg.channel.send(generateTeamName());
@@ -773,6 +768,10 @@ client.on(Events.MessageCreate, msg => {
                     const card = getCard();
                     msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
                 }
+                
+                if(str.toLowerCase().startsWith('otdog')) {
+                    msg.channel.send({files: [new AttachmentBuilder(`./media/rcthotdog.gif`)]});
+                }
 
                 if(str.toLowerCase().startsWith('logdump') && msg.author.id === ABSOLUTE_OLIGARCH) {
                     msg.channel.send({files: [new AttachmentBuilder(`./HonLogs/combined.log`)]});
@@ -780,6 +779,13 @@ client.on(Events.MessageCreate, msg => {
 
                 if(str.toLowerCase().startsWith('geth') && msg.author.id === ABSOLUTE_OLIGARCH) {
                     msg.channel.send(`The current H count is: ${getH()}`);
+                }
+
+                if(str.toLowerCase().startsWith('acro')) {
+                    const letterSeq = str.split(' ')?.[1];
+                    if (acro.getState() === 'none') {
+                        acro.acroStart(msg.channel, letterSeq);
+                    }
                 }
             } //end of h. requirements
             else {
@@ -931,18 +937,24 @@ function buildString(number) {
     }
 
     parsedSentence = parsedSentence.charAt(0).toUpperCase() + parsedSentence.slice(1);
+    while (parsedSentence.includes('{ACON}')) {
+        // Search for ALL CAPS tags and capitalizes whatever is between them.
+        let start = parsedSentence.indexOf('{ACON}') + 6;
+        let stop = parsedSentence.indexOf('{ACOFF}');
+        let toBeCapsed = parsedSentence.substring(start, stop);
+        parsedSentence = parsedSentence.replace(toBeCapsed, toBeCapsed.toUpperCase()).replace('{ACON}', '').replace('{ACOFF}', '');
+    }
+
+    while (parsedSentence.includes('{CON}')) {
+        // Search for CAPITALIZE tags and capitalizes the first letter of whatever is between them.
+        let start = parsedSentence.indexOf('{CON}') + 6;
+        let stop = parsedSentence.indexOf('{COFF}');
+        let toBeCapsed = parsedSentence.substring(start, stop);
+        parsedSentence = parsedSentence.replace(toBeCapsed, toBeCapsed.charAt(0).toUpperCase() + toBeCapsed.slice(1)).replace('{CON}', '').replace('{COFF}', '');
+    }
     return parsedSentence;
 }
 
-/**
- * 
- * @param {string} sentenceToParse 
- * @param {number} count 
- * @param {any[]} category 
- * @param {string} prefix 
- * @param {string} suffix 
- * @param {string} categorySubtype 
- */
 function parseSentence(sentenceToParse, count, category, prefix, suffix, categorySubtype) {
         for(let i = 0; i < count; i++) {
             let categoryIndex = Math.floor(Math.random() * category.length);

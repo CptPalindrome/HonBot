@@ -115,6 +115,14 @@
         {
             "singular": "persimmon",
             "plural": "persimmons"
+        },
+        {
+            "singular": "Canadian bacon",
+            "plural": "Canadian bacon"
+        },
+        {
+            "singular": "American bacon",
+            "plural": "American bacon"
         }
     ],
     "containers": [

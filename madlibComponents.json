@@ -331,6 +331,82 @@
         {
             "singular": "okapi",
             "plural": "okapis"
+        },
+        {
+            "singular": "milkshake",
+            "plural": "milkshakes"
+        },
+        {
+            "singular": "sword",
+            "plural": "swords"
+        },
+        {
+            "singular": "candle",
+            "plural": "candles"
+        },
+        {
+            "singular": "towel",
+            "plural": "towels"
+        },
+        {
+            "singular": "piano",
+            "plural": "pianos"
+        },
+        {
+            "singular": "bottle of water",
+            "plural": "bottles of water"
+        },
+        {
+            "singular": "couch",
+            "plural": "couches"
+        },
+        {
+            "singular": "suitcase",
+            "plural": "suitcases"
+        },
+        {
+            "singular": "trophy",
+            "plural": "trophies"
+        },
+        {
+            "singular": "computer",
+            "plural": "computers"
+        },
+        {
+            "singular": "teddy bear",
+            "plural": "teddy bears"
+        },
+        {
+            "singular": "crown",
+            "plural": "crowns"
+        },
+        {
+            "singular": "scepter",
+            "plural": "scepters"
+        },
+        {
+            "singular": "cigar",
+            "plural": "cigars"
+        },
+        {
+            "singular": "bottle of ketchup",
+            "plural": "bottles of ketchup"
+        },
+        {
+            "singular": "epic stuffed crust Papa John's pepperoni pizza",
+            "plural": "epic stuffed crust Papa John's pepperoni pizzas"
+        },
+        {
+            "singular": "shrub",
+            "plural": "shrubs"
+        },
+        {
+            "singular": "1992 Dell mouse",
+            "plural": "1992 Dell mice"
+        },
+        {
+            "singular": "shrum",
+            "plural": "shrum"
         }
     ],
     "people": [
@@ -421,7 +497,13 @@
         "Tidus",
         "The Rizzler",
         "Baby Gronk",
-        "The Drip King"
+        "The Drip King",
+        "Yukon Cornelius",
+        "Holden",
+        "Mike Hoops",
+        "Michael H. Oops",
+        "The Pope",
+        "Count Dooku"
     ],
     "locations": [
         "Brazil",
@@ -466,7 +548,11 @@
         "the tavern",
         "an abandoned steak n shake",
         "Necromunda",
-        "Toilet County"
+        "Toilet County",
+        "Denny's (3 AM)",
+        "Manitoba",
+        "Nintendo 3DS kiosk",
+        "Toontown"
     ],
     "verbs": [
         {
@@ -528,11 +614,6 @@
             "present": "slap",
             "past": "slapped",
             "ing": "slapping"
-        },
-        {
-            "present": "shrug",
-            "past": "shrugged",
-            "ing": "shrugging"
         },
         {
             "present": "rest",
@@ -825,9 +906,29 @@
             "ing": "scrounging"
         },
         {
-            "present": "chacha slide",
-            "past": "chacha slid",
-            "ing": "chacha sliding"
+            "present": "sterilize",
+            "past": "sterilized",
+            "ing": "sterilizing"
+        },
+        {
+            "present": "pulverize",
+            "past": "pulverized",
+            "ing": "pulverizing"
+        },
+        {
+            "present": "liquify",
+            "past": "liquified",
+            "ing": "liquifying"
+        },
+        {
+            "present": "slurp",
+            "past": "slurped",
+            "ing": "slurping"
+        },
+        {
+            "present": "atomize",
+            "past": "atomized",
+            "ing": "atomizing"
         }
     ],
     "verbsIntransitive": [
@@ -1115,6 +1216,46 @@
             "present": "bang tunes left",
             "past": "banged tunes left",
             "ing": "bangin tunes left"
+        },
+        {
+            "present": "chillax",
+            "past": "chillaxed",
+            "ing": "chillaxing"
+        },
+        {
+            "present": "squawk",
+            "past": "squawked",
+            "ing": "squawking"
+        },
+        {
+            "present": "twerk",
+            "past": "twerked",
+            "ing": "twerking"
+        },
+        {
+            "present": "vibe",
+            "past": "vibed",
+            "ing": "vibing"
+        },
+        {
+            "present": "yell",
+            "past": "yelled",
+            "ing": "yelling"
+        },
+        {
+            "present": "restore",
+            "past": "restored",
+            "ing": "restoring"
+        },
+        {
+            "present": "chacha slide",
+            "past": "chacha slid",
+            "ing": "chacha sliding"
+        },
+        {
+            "present": "shrug",
+            "past": "shrugged",
+            "ing": "shrugging"
         }
     ],
     "adjectives": [
@@ -1950,7 +2091,7 @@
             "adv": 1
         },
         {
-            "s": "I’ve come to make an announcement: {p1}’s a bitch ass mother fucker. They {v1p} on my fucking {n1}. That’s right, they took their hedgehog fuckin' quilly {n2} out and they {v1p} on my fucking {n1}, and they said their {n2} was THIS BIG. And I said “that’s {a1}!” So I’m making a callout {n3} on my twitter dot com: \"{p2}, you got a small {n2}, it’s the size of this {n4} except WAY {a1er}.\" And guess what, here’s what my {n5} looks like: PFFFFFFFFGJT. That’s right baby. All {n6}, no {n1pl}, no {n2pl}, look at that it looks like two {n3pl} and a {n7}. They {v2p} my {n1} so guess what, I’m gonna {v1} the {l1}. THATS RIGHT THIS IS WHAT YOU GET, MY {a2} {a3} {n8}! Except I’m not gonna {v2} on {l2}, I’m gonna go higher. I’m {iv1ing} on {l3}! How do you like that, {p3}? I {iv1ed} ON {l3}, YOU {n9}! You have twenty-three hours before the {a4} {n4pl} hit the fucking {l4}, now get out of my fucking sight before I {iv1} on you too!",
+            "s": "I’ve come to make an announcement: {p1}’s a bitch ass mother fucker. They {v1p} on my fucking {n1}. That’s right, they took their hedgehog fuckin' quilly {n2} out and they {v1p} on my fucking {n1}, and they said their {n2} was THIS BIG. And I said “that’s {a1}!” So I’m making a callout {n3} on my twitter dot com: \"{p2}, you got a small {n2}, it’s the size of this {n4} except WAY {a1er}.\" And guess what, here’s what my {n5} looks like: PFFFFFFFFGJT. That’s right baby. All {n6}, no {n1pl}, no {n2pl}, look at that it looks like two {n3pl} and a {n7}. They {v2p} my {n1} so guess what, I’m gonna {v1} the {l1}. THATS RIGHT THIS IS WHAT YOU GET, MY {ACON}{a2}{ACOFF} {ACON}{a3}{ACOFF} {ACON}{n8}{ACOFF}! Except I’m not gonna {v2} on {l2}, I’m gonna go higher. I’m {iv1ing} on {l3}! How do you like that, {p3}? I {iv1ed} ON {l3}, YOU {n9}! You have twenty-three hours before the {a4} {n4pl} hit the fucking {l4}, now get out of my fucking sight before I {iv1} on you too!",
             "n": 9,
             "npl": 4,
             "a": 4,
@@ -1999,6 +2140,11 @@
             "a": 2,
             "vp": 1,
             "tags": ["burger"]
+        },
+        {
+            "s": "I do not \"{v1}.\" I do not {v2}, I do not {v3}, I do not {v4}, I do not {v5}, I do not {v6}, I do not {v7}, I do not {v8}, I do not {v9} - I {ACON}{v10}{ACOFF}. And if I don't {v11} it, I don't {v12}.",
+            "v": 12,
+            "tags": ["anton", "ego", "ratatouille"]
         }
     ]
 }

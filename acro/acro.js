@@ -20,7 +20,7 @@ class Acro {
         this.weights = [9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1];
     }
     
-    acroStart(channel, writeTime = 30, voteTime = 20) {
+    acroStart(channel, acro = this.generateAcronym(), writeTime = 30, voteTime = 20) {
         if (!writeTime) {
             writeTime = 30;
         }
@@ -35,9 +35,16 @@ class Acro {
         }
         this.gameState = 'writing';
         this.gameChannel = channel;
-        this.generateAcronym();
-        if(this.acro.length === 4) writeTime += 10;
-        else if(this.acro.length === 5) writeTime += 15;
+        // verify acronym is only letters
+        if (acro.match(/[^a-z]/i)) {
+            // if invalid, kill the user
+            channel.send(`\`Hmm... It seems at least one of those letters is not a letter... Might be hard to start a word with that. But maybe you're special?\``);
+            this.reset();
+            return;
+        }
+        this.acro = acro.toLowerCase();
+        if(this.acro.length > 3) writeTime += 5 * (this.acro.length - 3);
+        if(this.acro.length > 5) voteTime += 5 * (Math.floor(this.acro.length / 3));
         channel.send(`\`${this.acro}\` (${writeTime} seconds)`);
         setTimeout(() => this.voting(voteTime), writeTime * 1000);
         setTimeout(() => this.writeWarning(), (writeTime - 5) * 1000);
@@ -205,7 +212,7 @@ class Acro {
             });
         } while(acroUnsafe);
         
-        this.acro = acronym;
+        return acronym;
     }
 
     weightedAlphabet() {
