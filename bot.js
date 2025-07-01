@@ -40,7 +40,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Apr 7st 2025\nUpdating the h.obl command because I wanted to. You can now do custom obliteration ratios! You can go anywhere from 0.1 - 50 (technically). At values above 5 it stops being discernable usually so have fun.\`\`\``;
+const patchnoteText = `\`\`\`Jul 1nd 2025\nA lot of miscellaneous changes in this one. Firstly, most requests for things to be added to gandhi/food/wyd components have been added. Additionally, h.acro now supports custom letter sequences, and it gives extra time based on the length. h.wyd templates now also support first letter capitalizing or all capsing template words! So now if you wanted to yell something random in your template, it's possible.\`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;

@@ -14,7 +14,7 @@ function help(command) {
             return `You can use \`h.drink\` to get a delicious drink that will satiate your thirst guaranteed. You can put \`"mystery"\` and/or \`"group"\`/\`"round"\` after to get some other results!`;
             
         case 'acro':
-            return `Enter a message that has the same number of words that start with the letters provided. Make sure not to use too many spaces! It'll not work!`;
+            return `Enter a message that has the same number of words that start with the letters provided. Make sure not to use too many spaces! It'll not work! You can also input a custom sequence of letters after the command to use those instead.`;
             
         case 'madlibs':
             return `Madlibs is triggered by using the command \`h.mad\`. Join with \`h.j\` to get started, then simply type a message for your submission whenever it's your turn. \nYou can enter the name of a story after \`h.mad\` to do a specific template. \nUse \`h.help madlibs+\` and \`h.help madlibs++\` for extra info and commands.`;
