@@ -1788,7 +1788,7 @@
             "a": 1
         },
         {
-            "s": "Buying {n1}, selling {n2}. {v1} me for offers.",
+            "s": "Buying {n1}, selling {n2}. {CON}{v1}{COFF} me for offers.",
             "n": 2,
             "v": 1
         },
@@ -1801,7 +1801,7 @@
             "v": 1
         },
         {
-            "s": "Sorry, can't talk now. {p1} is going to {v1} me in a few minutes.",
+            "s": "Sorry, can't talk now. {CON}{p1}{COFF} is going to {v1} me in a few minutes.",
             "p": 1,
             "v": 1
         },
@@ -1818,7 +1818,8 @@
             "s": "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}.",
             "n": 1,
             "iv": 1,
-            "a": 1
+            "a": 1,
+            "tags": ["perfectworld"]
         },
         {
             "s": "That feeling you get when you {v1} a(n) {a1} {n1}.",
@@ -1832,7 +1833,8 @@
         },
         {
             "s": "{n1pl}, {n2pl}, {n3pl}, you want it? It's yours my friend. As long as you have enough {n4pl}.",
-            "npl": 4
+            "npl": 4,
+            "tags": ["morshu"]
         },
         {
             "s": "Could you help me put this {n1} {prep1} my {n2}? It would really help me out.",
@@ -2073,7 +2075,8 @@
             "l": 3,
             "n": 6,
             "v": 4,
-            "a": 1
+            "a": 1,
+            "tags": ["lego", "legocity"]
         },
         {
             "s": "You think it’s funny to take screenshots of people’s {n1pl}, huh? You must be a very {a1} person to steal someone’s {n3} that they PAID for. Yeah, I said it. You’re the kind of person who thinks that {n3} theft (a seriously {a3} offence) is a {n4}. I don’t even know why you took that screenshot, because you didn’t pay 1000 dollars for it. I did. The {n1} doesn’t lie. Even if you try to {v1} it, it’s my {n3}. You’re just angry that you couldn’t afford this {a2} {n2}. Even if you could, your {n2pl} couldn’t even {v2} fast enough to get one of the 10000 {n1pl} sold. You’re just mad you don’t {v3} what I {v3}. So, delete that screenshot, or I swear, you’ll be hearing from {p1}.",
@@ -2132,7 +2135,7 @@
             "tags": ["megaman", "jayeazy", "eazy", "booksmart", "moneysmart"]
         },
         {
-            "s": "I've {v1p} more {n1} at varied {l1} this year than you have probably {v1p} in your entire life. I love {n1} more than life itself. I {v1} at least one every single day usually two or three. I could {v1} it for the rest of eternity and never get tired of it. I have tried every single {n1}{l1} in {l2}. Sure there is good bar {n1} but we are comparing {a1} {n2} places so obviously I am going to use another {a1} {n2} place to compare. Next time you want to try to {v2} a fight with someone do your homework you {a2} {n3}, you aren't even worthy to lick the {n4} dust off of the {p1} of my {n4}.",
+            "s": "I've {v1p} more {n1} at varied {l1} this year than you have probably {v1p} in your entire life. I love {n1} more than life itself. I {v1} at least one every single day usually two or three. I could {v1} it for the rest of eternity and never get tired of it. I have tried every single {n1} {l1} in {l2}. Sure there is good bar {n1} but we are comparing {a1} {n2} places so obviously I am going to use another {a1} {n2} place to compare. Next time you want to try to {v2} a fight with someone do your homework you {a2} {n3}, you aren't even worthy to lick the {n4} dust off of the {p1} of my {n4}.",
             "v": 2,
             "n": 4,
             "l": 2,

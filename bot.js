@@ -745,6 +745,10 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send(`\`\`\`${honbuxHelper.getGameMetrics()}\`\`\``);
                 }
 
+                if(str.toLowerCase().startsWith('ithw') || str.toLowerCase().startsWith('isthehousewinning')) {
+                    msg.channel.send(`${honbuxHelper.isHouseWinning()}`);
+                }
+
                 if(str.toLowerCase().startsWith('pitbull')) {
                     msg.channel.send(`${makeSongMessage()}`);
                 }

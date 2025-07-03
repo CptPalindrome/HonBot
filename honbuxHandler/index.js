@@ -289,6 +289,16 @@ class HonbuxHelper {
         return outMessage;
     }
 
+    isHouseWinning() {
+        const gmetrics = this.getGameMetricsData();
+        const total = gmetrics?.amountLostByWheelSpin + gmetrics?.amountLostByCfBux + gmetrics?.amountGainedByWheelSpin + gmetrics?.amountGainedByCfBux;
+        if (total > 0) {
+            return `The house is losing. Players are ahead by ${total} Honbux.`;
+        } else {
+            return `The house is winning. Players are behind by ${Math.abs(total)} Honbux.`;
+        }
+    }
+
     bailOut(user) {
         const userdata = this.getUserData(user);
         if (userdata.honbalance < 100) this.modifyBux(user, 100 - userdata.honbalance, 'BailOut');

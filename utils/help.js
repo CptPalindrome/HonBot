@@ -85,6 +85,9 @@ function help(command) {
         
         case 'yugioh':
             return `Gives you a random card art image. Filename may not mean anything so good luck!`
+
+        case 'ithw':
+            return `Tells you if the house is winning in regards to honbux gambling and by how much.`
         
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;
