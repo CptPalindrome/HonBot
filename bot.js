@@ -725,7 +725,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('top')) {
-                    if (randomProc(4, 10)) {
+                    if (randomProc(1, 10)) {
                         msg.channel.send({files: [new AttachmentBuilder('./media/top.gif')]});
                     } else {
                         const topGuy = honbuxHelper.getTopHonbux();
@@ -951,7 +951,7 @@ function buildString(number) {
 
     while (parsedSentence.includes('{CON}')) {
         // Search for CAPITALIZE tags and capitalizes the first letter of whatever is between them.
-        let start = parsedSentence.indexOf('{CON}') + 6;
+        let start = parsedSentence.indexOf('{CON}') + 5;
         let stop = parsedSentence.indexOf('{COFF}');
         let toBeCapsed = parsedSentence.substring(start, stop);
         parsedSentence = parsedSentence.replace(toBeCapsed, toBeCapsed.charAt(0).toUpperCase() + toBeCapsed.slice(1)).replace('{CON}', '').replace('{COFF}', '');

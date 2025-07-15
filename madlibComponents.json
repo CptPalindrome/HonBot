@@ -1790,7 +1790,8 @@
         {
             "s": "Buying {n1}, selling {n2}. {CON}{v1}{COFF} me for offers.",
             "n": 2,
-            "v": 1
+            "v": 1,
+            "tags": ["trade offer", "to"]
         },
         {
             "s": "{v1} your teeth, bitch.",
