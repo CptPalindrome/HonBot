@@ -749,7 +749,7 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send(`${honbuxHelper.isHouseWinning()}`);
                 }
 
-                if(str.toLowerCase().startsWith('pitbull')) {
+                if(str.toLowerCase().startsWith('pitbull') || str.toLowerCase().startsWith('dale') || str.toLowerCase().startsWith('mrworldwide')) {
                     msg.channel.send(`${makeSongMessage()}`);
                 }
 
