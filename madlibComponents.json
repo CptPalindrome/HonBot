@@ -2149,6 +2149,13 @@
             "s": "I do not \"{v1}.\" I do not {v2}, I do not {v3}, I do not {v4}, I do not {v5}, I do not {v6}, I do not {v7}, I do not {v8}, I do not {v9} - I {ACON}{v10}{ACOFF}. And if I don't {v11} it, I don't {v12}.",
             "v": 12,
             "tags": ["anton", "ego", "ratatouille"]
+        },
+        {
+            "s": "Sorry {p1}, I can't give {n1}! Come back when you're a little MMMM... {a1er}!",
+            "p": 1,
+            "n": 1,
+            "aer": 1,
+            "tags": ["morshu2"]
         }
     ]
 }
