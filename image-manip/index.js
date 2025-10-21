@@ -75,7 +75,36 @@ class ImageManipluator {
             console.log(`Error during file deletion ${e}`);
         }
     }
-    
+
+    async stretch(imageUrl, channel, dimensions, mult = 1, vertical = false) {
+        if(!this.legalAttachment(imageUrl)) {
+            channel.send('Invalid file type');
+            return;
+        }
+        const imagePath = await this.getImage(imageUrl);
+        try {
+            const stretchWidth = dimensions.width * mult;
+            const stretchHeight = dimensions.height * mult;
+            if(vertical) {
+                await sharp(imagePath).resize({ vertical: stretchHeight, fit: sharp.fit.fill }).toFile('./image-manip/outfile.jpg');
+            }
+            else {
+                await sharp(imagePath).resize({ width: stretchWidth, fit: sharp.fit.fill }).toFile('./image-manip/outfile.jpg');
+            }
+            const attachment = new AttachmentBuilder('./image-manip/outfile.jpg');
+            await channel.send({ files: [attachment] });
+        } catch (e) {
+            console.log(e);
+            channel.send('An error occurred, image is probably too big.');
+        }
+        try {
+            fs.unlinkSync('./image-manip/outfile.jpg');
+            fs.unlinkSync(imagePath);
+        } catch (e) {
+            console.log(`Error during file deletion ${e}`);
+        }
+    }
+
     legalAttachment(imageUrl) {
         const legalExts = ['.png', '.jpg', '.jpeg', '.gif'];
         return legalExts.some((ext) => imageUrl.includes(ext));

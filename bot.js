@@ -40,7 +40,7 @@ let blacklistUsers = [];
 
 const imgManip = new ImageManipulator();
 
-const patchnoteText = `\`\`\`Jul 1nd 2025\nA lot of miscellaneous changes in this one. Firstly, most requests for things to be added to gandhi/food/wyd components have been added. Additionally, h.acro now supports custom letter sequences, and it gives extra time based on the length. h.wyd templates now also support first letter capitalizing or all capsing template words! So now if you wanted to yell something random in your template, it's possible.\`\`\``;
+const patchnoteText = `\`\`\`Oct 21th 2025\nYou can stretch images. Make em extra wiiiiiiide. Try it now with h.stretch! Put a number after it and it will multiply the width of the image by that amount. Note, if it goes too wide the image will probably fail to be made. If you want to, you can stretch images vertically with h.vstretch. \`\`\``;
 
 client.on(Events.MessageCreate, msg => {
     let hasPrefix = false;
@@ -640,6 +640,18 @@ client.on(Events.MessageCreate, msg => {
                 if(str.toLowerCase().startsWith('zoomandmaintaincurrenthance') || str.toLowerCase().startsWith('zamch')) {
                     const files = [...msg.attachments.values()];
                     if(files[0]?.name) imgManip.zoomCurrentHance(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
+                    else msg.channel.send('No attachment sent.');
+                }
+                if(str.toLowerCase().startsWith('stretch')) {
+                    const files = [...msg.attachments.values()];
+                    const multiplier = str.split(' ')[1] || 1;
+                    if(files[0]?.name) imgManip.stretch(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height }, multiplier);
+                    else msg.channel.send('No attachment sent.');
+                }
+                if(str.toLowerCase().startsWith('vstretch')) {
+                    const files = [...msg.attachments.values()];
+                    const multiplier = str.split(' ')[1] || 1;
+                    if(files[0]?.name) imgManip.stretch(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height }, multiplier, true);
                     else msg.channel.send('No attachment sent.');
                 }
                 if(str.toLowerCase().startsWith('num')) {

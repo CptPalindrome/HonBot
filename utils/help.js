@@ -88,6 +88,9 @@ function help(command) {
 
         case 'ithw':
             return `Tells you if the house is winning in regards to honbux gambling and by how much.`
+
+        case 'stretch':
+            return `Stretch an image horizontally by a specified multiplier. Attach an image and use \`h.stretch <multiplier>\`. Example: \`h.stretch 2\` will double the width of the image.`
         
         default:
             return `The prefix is \`h.\`. The full list of commands is viewable using \`h.commands\`. More info on the readme on github or by typing \`h.help <command name>\` for applicable commands. \nIf you were trying to get help for a command and got this instead, check your spelling.`;

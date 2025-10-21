@@ -23,6 +23,7 @@
         "conversion > (f2c | cad2usd | mi2km | in2cm | ft2m | lb2kg | f2chirp | chirp2f)",
         "obliterate - obl",
         "zoomandmaintaincurrenthance - zamch",
+        "stretch",
         "makeTeams | mt",
         "generateTeamName | gtn | gtna (alliteration)",
         "tags | gettags",
