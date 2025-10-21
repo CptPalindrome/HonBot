@@ -83,8 +83,8 @@ class ImageManipluator {
         }
         const imagePath = await this.getImage(imageUrl);
         try {
-            const stretchWidth = dimensions.width * mult;
-            const stretchHeight = dimensions.height * mult;
+            const stretchWidth = Math.round(dimensions.width * mult);
+            const stretchHeight = Math.round(dimensions.height * mult);
             if(vertical) {
                 await sharp(imagePath).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile('./image-manip/outfile.png');
             }
@@ -95,7 +95,7 @@ class ImageManipluator {
             await channel.send({ files: [attachment] });
         } catch (e) {
             console.log(e);
-            channel.send('An error occurred, image is probably too big.');
+            channel.send(`An error occurred. ${e}`);
         }
         try {
             fs.unlinkSync('./image-manip/outfile.png');
