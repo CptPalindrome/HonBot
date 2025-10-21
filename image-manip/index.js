@@ -86,7 +86,7 @@ class ImageManipluator {
             const stretchWidth = dimensions.width * mult;
             const stretchHeight = dimensions.height * mult;
             if(vertical) {
-                await sharp(imagePath).resize({ vertical: stretchHeight, fit: sharp.fit.fill }).toFile('./image-manip/outfile.jpg');
+                await sharp(imagePath).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile('./image-manip/outfile.jpg');
             }
             else {
                 await sharp(imagePath).resize({ width: stretchWidth, fit: sharp.fit.fill }).toFile('./image-manip/outfile.jpg');
