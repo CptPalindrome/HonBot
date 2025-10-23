@@ -94,8 +94,8 @@ class ImageManipluator {
             const attachment = new AttachmentBuilder('./image-manip/outfile.png');
             await channel.send({ files: [attachment] });
         } catch (e) {
-            console.log(e);
-            channel.send(`An error occurred. ${e}`);
+            logger.error(e);
+            channel.send(`An error occurred. Try again if you want.`);
         }
         try {
             fs.unlinkSync('./image-manip/outfile.png');
