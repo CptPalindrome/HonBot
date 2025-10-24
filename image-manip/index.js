@@ -33,16 +33,17 @@ class ImageManipluator {
         const cleanedRatio = ratio < 0.1 ? 0.1 : ratio;
         const shrinkWidth = Math.round(50 / cleanedRatio) < 1 ? 1 : Math.round(50 / cleanedRatio);
         const imagePath = await this.getImage(imageUrl);
-        await sharp(imagePath).resize({ width: shrinkWidth }).toFile('./image-manip/outfile.png');
-        await sharp('./image-manip/outfile.png').resize({ width: 2000 }).toFile('./image-manip/tempoutfile.png');
-        await sharp('./image-manip/tempoutfile.png').resize({ width: shrinkWidth }).toFile('./image-manip/outfile.png');
-        await sharp('./image-manip/outfile.png').resize({ width: 2000 }).toFile('./image-manip/tempoutfile.png');
-        await sharp('./image-manip/tempoutfile.png').resize({ width: dimensions.width }).toFile('./image-manip/outfile.png');
-        const attachment = new AttachmentBuilder('./image-manip/outfile.png');
+        const infile = imagePath.match(/[^\\/]+$/)[0];
+        await sharp(imagePath).resize({ width: shrinkWidth }).toFile(`./image-manip/${infile}-outfile.png`);
+        await sharp(`./image-manip/${infile}-outfile.png`).resize({ width: 2000 }).toFile(`./image-manip/${infile}-tempoutfile.png`);
+        await sharp(`./image-manip/${infile}-tempoutfile.png`).resize({ width: shrinkWidth }).toFile(`./image-manip/${infile}-outfile.png`);
+        await sharp(`./image-manip/${infile}-outfile.png`).resize({ width: 2000 }).toFile(`./image-manip/${infile}-tempoutfile.png`);
+        await sharp(`./image-manip/${infile}-tempoutfile.png`).resize({ width: dimensions.width }).toFile(`./image-manip/${infile}-outfile.png`);
+        const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile.png`);
         await channel.send({ files: [attachment] });
         try {
-            fs.unlinkSync('./image-manip/outfile.png');
-            fs.unlinkSync('./image-manip/tempoutfile.png');
+            fs.unlinkSync(`./image-manip/${infile}-outfile.png`);
+            fs.unlinkSync(`./image-manip/${infile}-tempoutfile.png`);
             fs.unlinkSync(imagePath);
         } catch (e) {
             console.log(`Error during file deletion ${e}`);
@@ -55,21 +56,22 @@ class ImageManipluator {
             return;
         }
         const imagePath = await this.getImage(imageUrl);
+        const infile = imagePath.match(/[^\\/]+$/)[0];
         const sideBuffer = Math.floor((dimensions.width * 0.25));
         const topBuffer = Math.floor((dimensions.height * 0.25));
         try {
             await sharp(imagePath)
                 .extract({ left: sideBuffer, top: topBuffer, width: dimensions.width - sideBuffer * 2, height: dimensions.height - topBuffer * 2})
                 .resize(dimensions.width, dimensions.height)
-                .toFile('./image-manip/outfile.png');
+                .toFile(`./image-manip/${infile}-outfile.png`);
         } catch (e) {
             console.log(e);
         }
     
-        const attachment = new AttachmentBuilder('./image-manip/outfile.png');
+        const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile.png`);
         await channel.send({ files: [attachment] });
         try {
-            fs.unlinkSync('./image-manip/outfile.png');
+            fs.unlinkSync(`./image-manip/${infile}-outfile.png`);
             fs.unlinkSync(imagePath);
         } catch (e) {
             console.log(`Error during file deletion ${e}`);
@@ -82,23 +84,24 @@ class ImageManipluator {
             return;
         }
         const imagePath = await this.getImage(imageUrl);
+        const infile = imagePath.match(/[^\\/]+$/)[0];
         try {
             const stretchWidth = Math.round(dimensions.width * mult);
             const stretchHeight = Math.round(dimensions.height * mult);
             if(vertical) {
-                await sharp(imagePath).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile('./image-manip/outfile.png');
+                await sharp(imagePath).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile.png`);
             }
             else {
-                await sharp(imagePath).resize({ width: stretchWidth, fit: sharp.fit.fill }).toFile('./image-manip/outfile.png');
+                await sharp(imagePath).resize({ width: stretchWidth, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile.png`);
             }
-            const attachment = new AttachmentBuilder('./image-manip/outfile.png');
+            const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile.png`);
             await channel.send({ files: [attachment] });
         } catch (e) {
             logger.error(e);
             channel.send(`An error occurred. Try again if you want.`);
         }
         try {
-            fs.unlinkSync('./image-manip/outfile.png');
+            fs.unlinkSync(`./image-manip/${infile}-outfile.png`);
             fs.unlinkSync(imagePath);
         } catch (e) {
             console.log(`Error during file deletion ${e}`);
