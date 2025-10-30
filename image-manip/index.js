@@ -78,7 +78,7 @@ class ImageManipluator {
         }
     }
 
-    async stretch(imageUrl, channel, dimensions, mult = 1, vertical = false) {
+    async stretch(imageUrl, channel, dimensions, mult = 3, vertical = false) {
         if(!this.legalAttachment(imageUrl)) {
             channel.send('Invalid file type');
             return;
