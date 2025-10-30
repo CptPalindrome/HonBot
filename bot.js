@@ -644,13 +644,13 @@ client.on(Events.MessageCreate, msg => {
                 }
                 if(str.toLowerCase().startsWith('stretch')) {
                     const files = [...msg.attachments.values()];
-                    const multiplier = str.split(' ')[1] || 1;
+                    const multiplier = str.split(' ')[1];
                     if(files[0]?.name) imgManip.stretch(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height }, multiplier);
                     else msg.channel.send('No attachment sent.');
                 }
                 if(str.toLowerCase().startsWith('vstretch')) {
                     const files = [...msg.attachments.values()];
-                    const multiplier = str.split(' ')[1] || 1;
+                    const multiplier = str.split(' ')[1];
                     if(files[0]?.name) imgManip.stretch(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height }, multiplier, true);
                     else msg.channel.send('No attachment sent.');
                 }
