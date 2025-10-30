@@ -109,7 +109,7 @@ class ImageManipluator {
     }
 
     legalAttachment(imageUrl) {
-        const legalExts = ['.png', '.jpg', '.jpeg', '.gif'];
+        const legalExts = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
         return legalExts.some((ext) => imageUrl.includes(ext));
     }
 }
