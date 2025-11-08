@@ -761,7 +761,7 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send(`${honbuxHelper.isHouseWinning()}`);
                 }
 
-                if(str.toLowerCase().startsWith('pitbull') || str.toLowerCase().startsWith('dale') || str.toLowerCase().startsWith('mrworldwide')) {
+                if(str.toLowerCase().startsWith('pitbull') || str.toLowerCase().startsWith('dale') || str.toLowerCase().startsWith('mrworldwide') || str.toLowerCase().startsWith('mr305')) {
                     msg.channel.send(`${makeSongMessage()}`);
                 }
 
@@ -802,6 +802,11 @@ client.on(Events.MessageCreate, msg => {
                     if (acro.getState() === 'none') {
                         acro.acroStart(msg.channel, letterSeq);
                     }
+                }
+
+                if(str.toLowerCase().startsWith('miku')) {
+                    // I'm not documenting this one because I'm lazy and it's secret iykyk type beat you feel me
+                    msg.channel.send('oo ee oo');
                 }
             } //end of h. requirements
             else {

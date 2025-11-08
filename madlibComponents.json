@@ -407,6 +407,18 @@
         {
             "singular": "shrum",
             "plural": "shrum"
+        },
+        {
+            "singular": "mini bober",
+            "plural": "mini bobers"
+        },
+        {
+            "singular": "mega bober",
+            "plural": "mega bobers"
+        },
+        {
+            "singular": "fax machine glue",
+            "plural": "fax machine glue"
         }
     ],
     "people": [
@@ -506,7 +518,8 @@
         "Count Dooku",
         "Fortnite Lebron James",
         "Lebron James",
-        "Valorant Lebron James"
+        "Valorant Lebron James",
+        "Jim Davis"
     ],
     "locations": [
         "Brazil",
@@ -555,7 +568,12 @@
         "Denny's (3 AM)",
         "Manitoba",
         "Nintendo 3DS kiosk",
-        "Toontown"
+        "Toontown",
+        "Femboy Hooters",
+        "the broken payphone near my house",
+        "a Taco Bell that was formerly a Pizza Hut",
+        "a random business that you can tell used to be a Pizza Hut due to the roof line",
+        "hot dog stall"
     ],
     "verbs": [
         {
@@ -1586,6 +1604,16 @@
             "regular": "drippy",
             "er": "drippier",
             "est": "drippiest"
+        },
+        {
+            "regular": "mini",
+            "er": "minier",
+            "est": "miniest"
+        },
+        {
+            "regular": "mega",
+            "er": "megaer",
+            "est": "megaest"
         }
     ],
     "adverbs": [
@@ -2159,6 +2187,11 @@
             "n": 1,
             "aer": 1,
             "tags": ["morshu2"]
+        },
+        {
+            "s": "The {n1}, mwahahahaha. The {n2}, muahahahaha.",
+            "n": 2,
+            "tags": ["jackolantern", "shaq"]
         }
     ]
 }
