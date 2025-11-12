@@ -1674,524 +1674,298 @@
     ],
     "sentences": [
         {
-            "s": "I've gotta {adv1} {v1} the {a1e} {n1}.",
-            "adv": 1,
-            "v": 1,
-            "ae": 1,
-            "n": 1
+            "s": "I've gotta {adv1} {v1} the {a1er} {n1}."
         },
         {
-            "s": "I just {v1p} the president of {a1} {n1pl}.",
-            "vp": 1,
-            "a": 1,
-            "npl": 1
+            "s": "I just {v1p} the president of {a1} {n1pl}."
         },
         {
-            "s": "I'm busy {v1ing} a(n) {a1} {n1}.",
-            "ving": 1,
-            "a": 1,
-            "n": 1
+            "s": "I'm busy {v1ing} a(n) {a1} {n1}."
         },
         {
-            "s": "My name is {p1}. You killed my {n1}. Prepare to {iv1}.",
-            "p": 1,
-            "n": 1,
-            "iv": 1
+            "s": "My name is {p1}. You killed my {n1}. Prepare to {iv1}."
         },
         {
-            "s": "I'm about to {v1} my {a1}, {a2} {n1} and {iv1}.",
-            "n": 1,
-            "v": 1,
-            "iv": 1,
-            "a": 2
+            "s": "I'm about to {v1} my {a1}, {a2} {n1} and {iv1}."
         },
         {
-            "s": "If you {v1} me, I might have to {v2} your {a1} {n1}.",
-            "n": 1,
-            "v": 2,
-            "a": 1
+            "s": "If you {v1} me, I might have to {v2} your {a1} {n1}."
         },
         {
-            "s": "If you thought that was {a1}, wait til you see my {a2} {n1}.",
-            "n": 1,
-            "a": 2
+            "s": "If you thought that was {a1}, wait til you see my {a2} {n1}."
         },
         {
-            "s": "I'm busy {adv1} drawing a picture of a(n) {a1} {n1}.",
-            "n": 1,
-            "a": 1,
-            "adv": 1
+            "s": "I'm busy {adv1} drawing a picture of a(n) {a1} {n1}."
         },
         {
-            "s": "Uhhhh, well I was about to {v1} a(n) {n1}, but now I'm going to {adv1} {v2} a(n) {a1}, {a2} {n2}.",
-            "n": 2,
-            "v": 2,
-            "a": 2,
-            "adv": 1
+            "s": "Uhhhh, well I was about to {v1} a(n) {n1}, but now I'm going to {adv1} {v2} a(n) {a1}, {a2} {n2}."
         },
         {
-            "s": "Well if you must know. I am going to {iv1} with my buddy.",
-            "iv": 1
+            "s": "Well if you must know. I am going to {iv1} with my buddy."
         },
         {
-            "s": "I couldn't imagine a more {a1} world, than one where I {iv1} with my homies.",
-            "iv": 1,
-            "a": 1
+            "s": "I couldn't imagine a more {a1} world, than one where I {iv1} with my homies."
         },
         {
-            "s": "If you're looking for a(n) {a1} {n1}, then look no further than my {n2}.",
-            "n": 2,
-            "a": 1
+            "s": "If you're looking for a(n) {a1} {n1}, then look no further than my {n2}."
         },
         {
-            "s": "I didn't know my {n1} was going to {iv1} until I felt my {a1} {n2}.",
-            "n": 2,
-            "iv": 1,
-            "a": 1
+            "s": "I didn't know my {n1} was going to {iv1} until I felt my {a1} {n2}."
         },
         {
-            "s": "Sometimes when I {iv1}, I can't help but wonder if {a1} {n1pl} really {v1}.",
-            "n": 1,
-            "npl": 1,
-            "v": 1,
-            "iv": 1,
-            "a": 1
+            "s": "Sometimes when I {iv1}, I can't help but wonder if {a1} {n1pl} really {v1}."
         },
         {
-            "s": "By the look of it, I'm about to {v1} a(n) {n1}, and then maybe {iv1}.",
-            "n": 1,
-            "v": 1,
-            "iv": 1
+            "s": "By the look of it, I'm about to {v1} a(n) {n1}, and then maybe {iv1}."
         },
         {
-            "s": "I'll tell you what, if you can {v1} your {n1} for 15 minutes, I'll {adv1} {v2} you.",
-            "n": 1,
-            "v": 2,
-            "adv": 1
+            "s": "I'll tell you what, if you can {v1} your {n1} for 15 minutes, I'll {adv1} {v2} you."
         },
         {
-            "s": "I'm about to karate {v1} you.",
-            "v": 1
+            "s": "I'm about to karate {v1} you."
         },
         {
-            "s": "Give me an entire {n1}, or your {a1}, {a2} {n2} will be forfeit.",
-            "n": 2,
-            "a": 2
+            "s": "Give me an entire {n1}, or your {a1}, {a2} {n2} will be forfeit."
         },
         {
-            "s": "I'm robbing you. Give me your {a1} {n1} or I'll have no choice but to {v1} you until you {iv1}.",
-            "n": 1,
-            "v": 1,
-            "iv": 1,
-            "a": 1
+            "s": "I'm robbing you. Give me your {a1} {n1} or I'll have no choice but to {v1} you until you {iv1}."
         },
         {
-            "s": "When will you {iv1}? That your {n1pl} have {n2pl}!?",
-            "npl": 2,
-            "iv": 1
+            "s": "When will you {iv1}? That your {n1pl} have {n2pl}!?"
         },
         {
-            "s": "Yeah, can I get uhhhh, {n1}, and can you put {a1} {n1pl} on it?",
-            "n": 1,
-            "a": 1,
-            "npl": 1
+            "s": "Yeah, can I get uhhhh, {n1}, and can you put {a1} {n2pl} on it?"
         },
         {
-            "s": "The only way to {v1} {p1} is with a(n) {a1} {n1}.",
-            "n": 1,
-            "p": 1,
-            "v": 1,
-            "a": 1
+            "s": "The only way to {v1} {p1} is with a(n) {a1} {n1}."
         },
         {
-            "s": "Sorry fellas, I can't play Minecraft tonight, I'm going to {iv1} with {p1} at {l1}.",
-            "p": 1,
-            "iv": 1,
-            "l": 1
+            "s": "Sorry fellas, I can't play Minecraft tonight, I'm going to {iv1} with {p1} at {l1}."
         },
         {
-            "s": "If you ask me again, I'm just going to defer you to {p1}, my chief of security.",
-            "p": 1
+            "s": "If you ask me again, I'm just going to defer you to {p1}, my chief of security."
         },
         {
-            "s": "Help me traveler! I'm stuck in a(n) {a1} {n1} and can't get out!",
-            "n": 1,
-            "a": 1
+            "s": "Help me traveler! I'm stuck in a(n) {a1} {n1} and can't get out!"
         },
         {
             "s": "Buying {n1}, selling {n2}. {CON}{v1}{COFF} me for offers.",
-            "n": 2,
-            "v": 1,
             "tags": ["trade offer", "to"]
         },
         {
-            "s": "{v1} your teeth, bitch.",
-            "v": 1
+            "s": "{v1} your teeth, bitch."
         },
         {
-            "s": "{v1} Mog.",
-            "v": 1
+            "s": "{v1} Mog."
         },
         {
-            "s": "Sorry, can't talk now. {CON}{p1}{COFF} is going to {v1} me in a few minutes.",
-            "p": 1,
-            "v": 1
+            "s": "Sorry, can't talk now. {CON}{p1}{COFF} is going to {v1} me in a few minutes."
         },
         {
-            "s": "I never leave home without a(n) {a1} {n1} and my {n2}.",
-            "n": 2,
-            "a": 1
+            "s": "I never leave home without a(n) {a1} {n1} and my {n2}."
         },
         {
-            "s": "{n1} seller, I need your finest {n1}. I need your strongest {n1} to be successful in the battle.",
-            "n": 1
+            "s": "{n1} seller, I need your finest {n1}. I need your strongest {n1} to be successful in the battle."
         },
         {
             "s": "In a(n) {a1} {n1}, men like me would not {iv1}. But this. Is not a(n) {a1} {n1}.",
-            "n": 1,
-            "iv": 1,
-            "a": 1,
             "tags": ["perfectworld"]
         },
         {
-            "s": "That feeling you get when you {v1} a(n) {a1} {n1}.",
-            "n": 1,
-            "v": 1,
-            "a": 1
+            "s": "That feeling you get when you {v1} a(n) {a1} {n1}."
         },
         {
-            "s": "In a pinch, a(n) {n1} can be used as a(n) {n2}.",
-            "n": 2
+            "s": "In a pinch, a(n) {n1} can be used as a(n) {n2}."
         },
         {
             "s": "{n1pl}, {n2pl}, {n3pl}, you want it? It's yours my friend. As long as you have enough {n4pl}.",
-            "npl": 4,
             "tags": ["morshu"]
         },
         {
-            "s": "Could you help me put this {n1} {prep1} my {n2}? It would really help me out.",
-            "n": 2,
-            "prep": 1
+            "s": "Could you help me put this {n1} {prep1} my {n2}? It would really help me out."
         },
         {
-            "s": "Put that {n1} {prep1} {p1}'s {n2}.",
-            "n": 2,
-            "p": 1,
-            "prep": 1
+            "s": "Put that {n1} {prep1} {p1}'s {n2}."
         },
         {
-            "s": "I am the bane of the {a1} people.",
-            "a": 1
+            "s": "I am the bane of the {a1} people."
         },
         {
-            "s": "It's just a(n) {a1} ass {a2} ass {n1}.",
-            "a": 2,
-            "n": 1
+            "s": "It's just a(n) {a1} ass {a2} ass {n1}."
         },
         {
-            "s": "Oh boy! I'm so {a1}, I could {v1} a(n) {n1}!",
-            "a": 1,
-            "v": 1,
-            "n": 1
+            "s": "Oh boy! I'm so {a1}, I could {v1} a(n) {n1}!"
         },
         {
-            "s": "I {adv1}, {adv2}, opened a(n) {n1}, and {prep1} it was the {a1e} {n2} I had ever seen.",
-            "ae": 1,
-            "n": 2,
-            "adv": 2,
-            "prep": 1
+            "s": "I {adv1}, {adv2}, opened a(n) {n1}, and {prep1} it was the {a1er} {n2} I had ever seen."
         },
         {
-            "s": "My boy, this {n1} is what all {a1} {n1pl} strive for.",
-            "n": 1,
-            "a": 1,
-            "npl": 1
+            "s": "My boy, this {n1} is what all {a1} {n1pl} strive for."
         },
         {
-            "s": "I just wonder what {p1} is up to.",
-            "p": 1
+            "s": "I just wonder what {p1} is up to."
         },
         {
-            "s": "Gee, sure is {a1} around here.",
-            "a": 1
+            "s": "Gee, sure is {a1} around here."
         },
         {
-            "s": "Your Majesty, {p1} and his minions have seized the island of {l1}.",
-            "p": 1,
-            "l": 1
+            "s": "Your Majesty, {p1} and his minions have seized the island of {l1}."
         },
         {
-            "s": "I just saw a whole flock of {n1pl} go {prep1} {l1}.",
-            "npl": 1,
-            "prep": 1,
-            "l": 1
+            "s": "I just saw a whole flock of {n1pl} go {prep1} {l1}."
         },
         {
-            "s": "I'm going on vaction to {l1} with {p1}.",
-            "l": 1,
-            "p": 1
+            "s": "I'm going on vaction to {l1} with {p1}."
         },
         {
-            "s": "I saw {p1} {v1ing} when {p2} showed up and {v1p} their {n1pl}.",
-            "p": 2,
-            "vp": 1,
-            "npl": 1,
-            "ving": 1
+            "s": "I saw {p1} {v1ing} when {p2} showed up and {v2p} their {n1pl}."
         },
         {
-            "s": "My job as a(n) {n1} is relocating me to {l1} because I {v1p} too many {n1pl}.",
-            "n": 1,
-            "l": 1,
-            "vp": 1,
-            "npl": 1
+            "s": "My job as a(n) {n1} is relocating me to {l1} because I {v1p} too many {n2pl}."
         },
         {
-            "s": "I traveled by {n1} to {l1} to {iv1}.",
-            "n": 1,
-            "l": 1,
-            "iv": 1
+            "s": "I traveled by {n1} to {l1} to {iv1}."
         },
         {
             "s": "Why do they call it {n1} when you of {prep1} the {a1} {n2} of {prep2} {a2} {v1} the {n3}?",
-            "n": 3,
-            "prep": 2,
-            "a": 2,
-            "v": 1,
             "tags": ["oven"]
         },
         {
-            "s": "There's a boy outside with a(n) {n1}. He doesn't see me, but I {v1} his {n1pl}. I see his {n2pl}. He's not what he seems.",
-            "n": 1,
-            "v": 1,
-            "npl": 2
+            "s": "There's a boy outside with a(n) {n1}. He {v1} around, and listens to {n2pl} and He doesn't see you, but you {v2} his {n3pl}. I {v3} his {n4pl}. He's not what he seems."
         },
         {
-            "s": "I'm {adv1} working on creating my {p1} x {p2} fic.",
-            "adv": 1,
-            "p": 2
+            "s": "I'm {adv1} working on creating my {p1} x {p2} fic."
         },
         {
-            "s": "I'm thinking about spicing up my office meetings. What do you think about bringing {n1pl}?",
-            "npl": 1
+            "s": "I'm thinking about spicing up my office meetings. What do you think about bringing {n1pl}?"
         },
         {
-            "s": "There once was a man from {l1}, who {iv1ed} of {v1ing} his {n1}.",
-            "l": 1,
-            "ived": 1,
-            "ving": 1,
-            "n": 1
+            "s": "There once was a man from {l1}, who {iv1ed} of {v1ing} his {n1}."
         },
         {
-            "s": "I was trying to see if I could {iv1} without {iv1ing}.",
-            "iv": 1,
-            "iving": 1
+            "s": "I was trying to see if I could {iv1} without {iv2ing}."
         },
         {
-            "s": "He {iv1ed} as he {iv2ed}, {iv1ing}.",
-            "ived": 2,
-            "iving": 1
+            "s": "He {iv1ed} as he {iv2ed}, {iv3ing}."
         },
         {
-            "s": "{iv1}, {iv1} with your {a1} {n1pl}.",
-            "iv": 1,
-            "a": 1,
-            "npl": 1
+            "s": "{iv1}, {iv1} with your {a1} {n1pl}."
         },
         {
-            "s": "Don't forget to {v1} the homies goodnight.",
-            "v": 1
+            "s": "Don't forget to {v1} the homies goodnight."
         },
         {
-            "s": "Don't {v1} me I'm {a1}.",
-            "a": 1,
-            "v": 1
+            "s": "Don't {v1} me I'm {a1}."
         },
         {
-            "s": "I'm {a1er} than you or {p1} could ever hope to be.",
-            "aer": 1,
-            "p": 1
+            "s": "I'm {a1er} than you or {p1} could ever hope to be."
         },
         {
-            "s": "I have the power of {p1} AND {n1} on my side.",
-            "p": 1,
-            "n": 1
+            "s": "I have the power of {p1} AND {n1} on my side."
         },
         {
-            "s": "Bop it, twist it, pull it, {v1} it!",
-            "v": 1
+            "s": "{CON}{v1}{COFF} it, {v2} it, {v3} it, {v4} it!"
         },
         {
-            "s": "My {n1} is {a1er} than your {n2}.",
-            "n": 2,
-            "aer": 1
+            "s": "My {n1} is {a1er} than your {n2}."
         },
         {
-            "s": "I've never seen someone more {a1er} than {p1} when they were at {l1} with {p2}.",
-            "aer": 1,
-            "p": 2,
-            "l": 1
+            "s": "I've never seen someone more {a1er} than {p1} when they were at {l1} with {p2}."
         },
         {
-            "s": "Open up, this is the {a1} police.",
-            "a": 1
+            "s": "Open up, this is the {a1} police."
         },
         {
-            "s": "Open up, this is the {n1} police.",
-            "n": 1
+            "s": "Open up, this is the {n1} police."
         },
         {
-            "s": "Why is a(n) {n1} called a {n1} when it's more like a(n) {n2}.",
-            "n": 2
+            "s": "Why is a(n) {n1} called a {n1} when it's more like a(n) {n2}."
         },
         {
-            "s": "Take this! My {n1} attack!",
-            "n": 1
+            "s": "Take this! My {n1} attack!"
         },
         {
-            "s": "Hi, I'm {p1}. Would you like to land a(n) {n1} on my forehead?",
-            "p": 1,
-            "n": 1
+            "s": "Hi, I'm {p1}. Would you like to land a(n) {n1} on my forehead?"
         },
         {
-            "s": "Does it look like I know what a {n1} is? I just want a picture of a got dang {n2}.",
-            "n": 2
+            "s": "Does it look like I know what a {n1} is? I just want a picture of a got dang {n2}."
         },
         {
-            "s": "I'm about to watch a title fight between {p1} and {p2} in {l1}. It's gonna be {a1}!",
-            "p": 2,
-            "l": 1,
-            "a": 1
+            "s": "I'm about to watch a title fight between {p1} and {p2} in {l1}. It's gonna be {a1}!"
         },
         {
-            "s": "What the fuck did you just fucking say about me, you {a1} {n1}? I'll have you know I graduated top of my {n2} in the Navy {n1pl}, and I've been involved in numerous secret raids on {p1}, and I have over 300 confirmed kills. I am trained in {n4} warfare and I'm the top sniper in the entire {l1} armed forces. You are nothing to me but just another {n5}. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking {n6}. You think you can get away with saying that shit to me over the Internet? Think again, {n7}. As we speak I am contacting my secret network of {n2pl} across the USA and your {n8} is being {v1p} right now so you better prepare for the storm, {n9}. The storm that wipes out the {a2} {a3} thing you call your {n10}. You're fucking dead, {n11}. I can be anywhere, anytime, and I can {v1} you in over seven hundred ways, and that's just with my bare {n3pl}. Not only am I extensively trained in unarmed combat, but I have access to the entire {n12} of the {l2} Marine Corps and I will {v2} it to its full extent to wipe your miserable ass off the face of the {n13}, you {a4} {n14}. If only you could have known what unholy retribution your little \"{a5}\" {n15} was about to bring down upon you, maybe you would have held your fucking {n16}. But you couldn't, you didn't, and now you're {v1ing} the {n17}, you goddamn {n18}. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.",
-            "n": 18,
-            "npl": 3,
-            "a": 5,
-            "vp": 1,
-            "ving": 1,
-            "p": 1,
-            "l": 2,
-            "v": 2,
+            "s": "What the fuck did you just fucking say about me, you {a1} {n1}? I'll have you know I graduated top of my {n2} in the Navy {n19pl}, and I've been involved in numerous secret raids on {p1}, and I have over 300 confirmed kills. I am trained in {n4} warfare and I'm the top sniper in the entire {l1} armed forces. You are nothing to me but just another {n5}. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking {n6}. You think you can get away with saying that shit to me over the Internet? Think again, {n7}. As we speak I am contacting my secret network of {n20pl} across the USA and your {n8} is being {v1p} right now so you better prepare for the storm, {n9}. The storm that wipes out the {a2} {a3} thing you call your {n10}. You're fucking dead, {n11}. I can be anywhere, anytime, and I can {v1} you in over seven hundred ways, and that's just with my bare {n21pl}. Not only am I extensively trained in unarmed combat, but I have access to the entire {n12} of the {l2} Marine Corps and I will {v2} it to its full extent to wipe your miserable ass off the face of the {n13}, you {a4} {n14}. If only you could have known what unholy retribution your little \"{a5}\" {n15} was about to bring down upon you, maybe you would have held your fucking {n16}. But you couldn't, you didn't, and now you're {v1ing} the {n17}, you goddamn {n18}. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.",
             "tags": ["navy"]
         },
         {
-            "s": "Getting sick of seeing {n1} in two places within consecutive minutes of each other. {p1} this made me {a1} enough to ruin my day, quit being suck a {a2} {a3} {n2}. You're not {a4}. Just incredibly {a5}. Fuck it, there's no reason to bother with you anymore. Privileged {a6} {a7} {n1pl} aren't going to {iv1} how {n2pl} work until you {v1} someone like me in real life and get a reality check real {adv1}. Underexposed flyover {n3}, starting to develop a real dislike of {l1}. Could you be any worse of a {a8} {n4}. {p2}. Last few {n3pl} have been more than sufficient to tell me it's a {n5} of {a9} {n4pl} and {a10} ones at that. At least here in {l2} {n5pl} are ready to deal with their {n6pl} and do it to people's {n7pl}. {p3}, fuck you so hard. I have to deal with your type and worse for another decade or until I {iv2}. Whichever {iv3}s first. Except this time with a(n) {n6}. This is so {a11} to me now. I hope the latter comes first.",
-            "n": 6,
-            "npl": 7,
-            "a": 11,
-            "v": 1,
-            "iv": 3,
-            "p": 3,
-            "l": 2,
-            "adv": 1,
+            "s": "Getting sick of seeing {n1} in two places within consecutive minutes of each other. {p1} this made me {a1} enough to ruin my day, quit being suck a {a2} {a3} {n2}. You're not {a4}. Just incredibly {a5}. Fuck it, there's no reason to bother with you anymore. Privileged {a6} {a7} {n7pl} aren't going to {iv1} how {n8pl} work until you {v1} someone like me in real life and get a reality check real {adv1}. Underexposed flyover {n3}, starting to develop a real dislike of {l1}. Could you be any worse of a {a8} {n4}. {p2}. Last few {n9pl} have been more than sufficient to tell me it's a {n5} of {a9} {n10pl} and {a10} ones at that. At least here in {l2} {n11pl} are ready to deal with their {n12pl} and do it to people's {n13pl}. {p3}, fuck you so hard. I have to deal with your type and worse for another decade or until I {iv2}. Whichever {iv3}s first. Except this time with a(n) {n6}. This is so {a11} to me now. I hope the latter comes first.",
             "tags": ["lagg"]
         },
         {
-            "s": "Given the chance, I would absolutely {v1} a muppet.",
-            "v": 1
+            "s": "Given the chance, I would absolutely {v1} a muppet."
         },
         {
-            "s": "{p1} is a heretic!",
-            "p": 1
+            "s": "{p1} is a heretic!"
         },
         {
-            "s": "You can call me {p1}, unlike {p2} I don't {iv1}. I'd rather {v1} my {n1pl}.",
-            "p": 2,
-            "iv": 1,
-            "v": 1,
-            "npl": 1
+            "s": "You can call me {p1}, unlike {p2} I don't {iv1}. I'd rather {v1} my {n1pl}."
         },
         {
-            "s": "{p1} has fallen into the river in LEGO {l1}! Start the new rescue {n1}! HEY! {v1} the {n1}, and off to {l2}! {v2} the {n3}, {v3} the {n4}, and {v4} the {n5}! The {a1} emergency {n6} from LEGO®️ {l3}.",
-            "p": 1,
-            "l": 3,
-            "n": 6,
-            "v": 4,
-            "a": 1,
+            "s": "{CON}{p1}{COFF} has fallen into the river in LEGO {l1}! Start the new rescue {n1}! HEY! {CON}{v1}{COFF} the {n1}, and off to {l2}! {CON}{v2}{COFF} the {n3}, {v3} the {n4}, and {v4} the {n5}! The {a1} emergency {n6} from LEGO®️ {l3}.",
             "tags": ["lego", "legocity"]
         },
         {
-            "s": "You think it’s funny to take screenshots of people’s {n1pl}, huh? You must be a very {a1} person to steal someone’s {n3} that they PAID for. Yeah, I said it. You’re the kind of person who thinks that {n3} theft (a seriously {a3} offence) is a {n4}. I don’t even know why you took that screenshot, because you didn’t pay 1000 dollars for it. I did. The {n1} doesn’t lie. Even if you try to {v1} it, it’s my {n3}. You’re just angry that you couldn’t afford this {a2} {n2}. Even if you could, your {n2pl} couldn’t even {v2} fast enough to get one of the 10000 {n1pl} sold. You’re just mad you don’t {v3} what I {v3}. So, delete that screenshot, or I swear, you’ll be hearing from {p1}.",
-            "npl": 2,
-            "n": 4,
-            "a": 3,
-            "v": 3,
-            "p": 1,
+            "s": "You think it's funny to take screenshots of people's {n1pl}, huh? You must be a very {a1} person to steal someone's {n3} that they PAID for. Yeah, I said it. You're the kind of person who thinks that {n3} theft (a seriously {a3} offence) is a {n4}. I don't even know why you took that screenshot, because you didn't pay 1000 dollars for it. I did. The {n5} doesn't lie. Even if you try to {v1} it, it's my {n3}. You're just angry that you couldn't afford this {a2} {n6}. Even if you could, your {n2pl} couldn't even {v2} fast enough to get one of the 10000 {n1pl} sold. You're just mad you don't {v3} what I {v3}. So, delete that screenshot, or I swear, you'll be hearing from {p1}.",
             "tags": ["nft"]
         },
         {
-            "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own rules, seeking only their own approval, but then later decides that they care about what other people think because that's how society works.",
-            "p": 1,
-            "a": 1,
-            "adv": 1
+            "s": "You see, {p1} is the kind of guy who'd forget their own kid's name and then think they're {a1} by asking him how he \"spells it\". They're the kind of guy who can {adv1} recite one thousand digits of Pi incorrectly. They're the kind of guy who lives by their own {n1pl}, seeking only their own {n2}, but then later decides that they care about what other people think because that's how {n3} works."
         },
         {
-            "s": "I’ve come to make an announcement: {p1}’s a bitch ass mother fucker. They {v1p} on my fucking {n1}. That’s right, they took their hedgehog fuckin' quilly {n2} out and they {v1p} on my fucking {n1}, and they said their {n2} was THIS BIG. And I said “that’s {a1}!” So I’m making a callout {n3} on my twitter dot com: \"{p2}, you got a small {n2}, it’s the size of this {n4} except WAY {a1er}.\" And guess what, here’s what my {n5} looks like: PFFFFFFFFGJT. That’s right baby. All {n6}, no {n1pl}, no {n2pl}, look at that it looks like two {n3pl} and a {n7}. They {v2p} my {n1} so guess what, I’m gonna {v1} the {l1}. THATS RIGHT THIS IS WHAT YOU GET, MY {ACON}{a2}{ACOFF} {ACON}{a3}{ACOFF} {ACON}{n8}{ACOFF}! Except I’m not gonna {v2} on {l2}, I’m gonna go higher. I’m {iv1ing} on {l3}! How do you like that, {p3}? I {iv1ed} ON {l3}, YOU {n9}! You have twenty-three hours before the {a4} {n4pl} hit the fucking {l4}, now get out of my fucking sight before I {iv1} on you too!",
-            "n": 9,
-            "npl": 4,
-            "a": 4,
-            "aer": 1,
-            "v": 3,
-            "vp": 2,
-            "iv": 1,
-            "ived": 1,
-            "iving": 1,
-            "l": 4,
-            "p": 3,
+            "s": "I've come to make an announcement: {p1}'s a bitch ass mother fucker. They {v1p} on my fucking {n1}. That's right, they took their hedgehog fuckin' quilly {n2} out and they {v1p} on my fucking {n1}, and they said their {n2} was THIS BIG. And I said “that's {a1}!” So I'm making a callout {n3} on my twitter dot com: \"{p2}, you got a small {n2}, it's the size of this {n4} except WAY {a5er}.\" And guess what, here's what my {n5} looks like: PFFFFFFFFGJT. That's right baby. All {n6}, no {n10pl}, no {n11pl}, look at that it looks like two {n12pl} and a {n7}. They {v2p} my {n1} so guess what, I'm gonna {v2} the {l1}. THATS RIGHT THIS IS WHAT YOU GET, MY {ACON}{a2}{ACOFF} {ACON}{a3}{ACOFF} {ACON}{n8}{ACOFF}! Except I'm not gonna {v3} on {l2}, I'm gonna go higher. I'm {iv1ing} on {l3}! How do you like that, {p3}? I {iv1ed} ON {l3}, YOU {n9}! You have twenty-three hours before the {a4} {n4pl} hit the fucking {l4}, now get out of my fucking sight before I {iv1} on you too!",
             "tags": ["eggman"]
         },
         {
-            "s": "Having {a1} {n1pl} is a virtue",
-            "npl": 1,
-            "a": 1
+            "s": "Having {a1} {n1pl} is a virtue"
         },
         {
-            "s": "I'm gonna lick a(n) {n1}",
-            "n": 1
+            "s": "I'm gonna lick a(n) {n1}"
         },
         {
             "s": "I don't claim to be the best {n1} in {l1}, {p1}'s got that honor. Their {n2} is {a1}. All I ask is a {a2} {n3}.",
-            "n": 3,
-            "a": 2,
-            "l": 1,
-            "p": 1,
             "tags": ["eorlund"]
         },
         {
-            "s": "I was never {n1} smart I'm {n2} smart‼ Makes me more {a1}‼ Call me Mr. Rock Festival, I got hella {n1pl}‼ Shawty {a2} and her {n3} too‼ Told her get a {n4}‼ She gon make me {v1} with my {n5} like I'm {p1}",
-            "n": 5,
-            "npl": 1,
-            "a": 2,
-            "v": 1,
-            "p": 1,
+            "s": "I was never {n1} smart I'm {n2} smart‼ Makes me more {a1}‼ Call me Mr. Rock Festival, I got hella {n3pl}‼ Shawty {a2} and her {n4} too‼ Told her get a {n5}‼ She gon make me {v1} with my {n6} like I'm {p1}",
             "tags": ["megaman", "jayeazy", "eazy", "booksmart", "moneysmart"]
         },
         {
             "s": "I've {v1p} more {n1} at varied {l1} this year than you have probably {v1p} in your entire life. I love {n1} more than life itself. I {v1} at least one every single day usually two or three. I could {v1} it for the rest of eternity and never get tired of it. I have tried every single {n1} {l1} in {l2}. Sure there is good bar {n1} but we are comparing {a1} {n2} places so obviously I am going to use another {a1} {n2} place to compare. Next time you want to try to {v2} a fight with someone do your homework you {a2} {n3}, you aren't even worthy to lick the {n4} dust off of the {p1} of my {n4}.",
-            "v": 2,
-            "n": 4,
-            "l": 2,
-            "p": 1,
-            "a": 2,
-            "vp": 1,
             "tags": ["burger"]
         },
         {
             "s": "I do not \"{v1}.\" I do not {v2}, I do not {v3}, I do not {v4}, I do not {v5}, I do not {v6}, I do not {v7}, I do not {v8}, I do not {v9} - I {ACON}{v10}{ACOFF}. And if I don't {v11} it, I don't {v12}.",
-            "v": 12,
             "tags": ["anton", "ego", "ratatouille"]
         },
         {
             "s": "Sorry {p1}, I can't give {n1}! Come back when you're a little MMMM... {a1er}!",
-            "p": 1,
-            "n": 1,
-            "aer": 1,
             "tags": ["morshu2"]
         },
         {
             "s": "The {n1}, mwahahahaha. The {n2}, muahahahaha.",
-            "n": 2,
             "tags": ["jackolantern", "shaq"]
         }
-    ]
+    ],
+    "key": {
+        "nouns": "{n#}{n#pl}",
+        "verbs": "{v#}{v#p}{v#ing}",
+        "intransitive verbs": "{iv#}{iv#ed}{iv#ing}",
+        "locations": "{l#}",
+        "people": "{p#}",
+        "adjectives": "{a#}{a#er}{a#est}",
+        "adverbs": "{adv#}",
+        "prepositions": "{prep}",
+        "capitalize": "{CON}{COFF}",
+        "allcaps": "{ACON}{ACOFF}"
+    }
 }

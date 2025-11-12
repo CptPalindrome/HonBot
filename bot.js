@@ -9,7 +9,8 @@ const Madlibs = require('./madlibs/madlibs');
 const HonbuxHelper = require('./honbuxHandler');
 const Letter = require('./letter');
 const { createTeams, generateTeamName, generateTeamNameAlliteration } = require('./utils/teamMaker.js');
-const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm, f2chirp, chirp2f } = require('./utils/converter.js');
+const { c2f, f2c, cad2usd, usd2cad, km2mi, mi2km, kg2lb, lb2kg, m2ft, cm2in, ft2m, in2cm, f2chirp, chirp2f, en2am } = require('./utils/converter.js');
+const { wyd } = require('./wyd/wyd.js');
 const { help } = require('./utils/help.js');
 const { makeSongMessage } = require('./pitbull');
 const { incrementH, getH } = require('./hCounter/incrementH.js');
@@ -240,10 +241,10 @@ client.on(Events.MessageCreate, msg => {
                     try {
                         if(wydArgs.length == 1) {
                             number = Math.floor(Math.random() * madComps.sentences.length);
-                            wyd(msg, number, '');
+                            getSentence(msg, number, '');
                         }
 
-                        else if(wyd.length > 1) {
+                        else if(wydArgs.length > 1) {
                             if (wydArgs[1].includes('{') && wydArgs[1].includes('}')) {
                                 madComps.sentences.forEach((sentence, index) => {
                                     if(sentence.tags) {
@@ -258,7 +259,7 @@ client.on(Events.MessageCreate, msg => {
                             } else number = Math.floor(Math.random() * madComps.sentences.length);
 
                             wydArgs.shift();
-                            wyd(msg, number, wydArgs.join(' ').trim());
+                            getSentence(msg, number, wydArgs.join(' ').trim());
                         }
                     }
                     catch(e) {
@@ -626,6 +627,19 @@ client.on(Events.MessageCreate, msg => {
                     return;
                 }
 
+                if(str.toLowerCase().startsWith('en2am')) {
+                    let text = str.split(' ').slice(1).join(' ');
+                    if(text) {
+                        try {
+                            let convertedText = en2am(text);
+                            msg.channel.send(`American Text: \`${convertedText}\``);
+                        }
+                        catch(e) {
+                            logger.error(`${now()}: ${e}`);
+                        }
+                    }
+                }
+
                 if(str.toLowerCase().startsWith('help')) {
                     let cmnd = str.split(' ')?.[1];
                     msg.channel.send(help(cmnd));
@@ -872,8 +886,8 @@ function chrisQuote(msg) {
     }
 }
 
-function wyd(msg, number, name) {
-    let outString = buildString(number);
+function getSentence(msg, number, name) {
+    let outString = wyd(number);
     if(name == '') {
         name = 'Honbar';
     }
@@ -882,113 +896,23 @@ function wyd(msg, number, name) {
         name = msg.mentions.members.first().displayName;
     }
 
-    msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
-}
-
-function buildString(number) {
-    let sentence = madComps.sentences[number];
-    let parsedSentence = sentence.s;
-    const nounsCopy = [...madComps.nouns];
-    const peopleCopy = [...madComps.people];
-    const locationsCopy = [...madComps.locations];
-    const verbsCopy = [...madComps.verbs];
-    const iverbsCopy = [...madComps.verbsIntransitive];
-    const adjectivesCopy = [...madComps.adjectives];
-    const adverbsCopy = [...madComps.adverbs];
-    const prepositionsCopy = [...madComps.prepositions];
-
-    if(sentence.n > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.n, nounsCopy, 'n', '', 'singular');
-    }
-    
-    if(sentence.npl > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.npl, nounsCopy, 'n', 'pl', 'plural');
-    }
-
-    if(sentence.p > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.p, peopleCopy, 'p', '');
-    }
-
-    if(sentence.l > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.l, locationsCopy, 'l', '');
-    }
-    
-    if(sentence.v > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.v, verbsCopy, 'v', '', 'present');
-    }
-    
-    if(sentence.vp > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.vp, verbsCopy, 'v', 'p', 'past');
-    }
-    
-    if(sentence.ving > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.ving, verbsCopy, 'v', 'ing', 'ing');
-    }
-
-    if(sentence.iv > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.iv, iverbsCopy, 'iv', '', 'present');
-    }
-
-    if(sentence.ived > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.ived, iverbsCopy, 'iv', 'ed', 'past');
-    }
-
-    if(sentence.iving > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.iving, iverbsCopy, 'iv', 'ing', 'ing');
-    }
-
-    if(sentence.a > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.a, adjectivesCopy, 'a', '', 'regular');
-    }
-
-    if(sentence.aer > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.aer, adjectivesCopy, 'a', 'er', 'er');
-    }
-
-    if(sentence.ae > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.ae, adjectivesCopy, 'a', 'e', 'est');
-    }
-
-    if(sentence.adv > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.adv, adverbsCopy, 'adv', '');
-    }
-
-    if(sentence.prep > 0) {
-        parsedSentence = parseSentence(parsedSentence, sentence.prep, prepositionsCopy, 'prep', '');
-    }
-
-    parsedSentence = parsedSentence.charAt(0).toUpperCase() + parsedSentence.slice(1);
-    while (parsedSentence.includes('{ACON}')) {
+    while (outString.includes('{ACON}')) {
         // Search for ALL CAPS tags and capitalizes whatever is between them.
-        let start = parsedSentence.indexOf('{ACON}') + 6;
-        let stop = parsedSentence.indexOf('{ACOFF}');
-        let toBeCapsed = parsedSentence.substring(start, stop);
-        parsedSentence = parsedSentence.replace(toBeCapsed, toBeCapsed.toUpperCase()).replace('{ACON}', '').replace('{ACOFF}', '');
+        let start = outString.indexOf('{ACON}') + 6;
+        let stop = outString.indexOf('{ACOFF}');
+        let toBeCapsed = outString.substring(start, stop);
+        outString = outString.replace(toBeCapsed, toBeCapsed.toUpperCase()).replace('{ACON}', '').replace('{ACOFF}', '');
     }
 
-    while (parsedSentence.includes('{CON}')) {
+    while (outString.includes('{CON}')) {
         // Search for CAPITALIZE tags and capitalizes the first letter of whatever is between them.
-        let start = parsedSentence.indexOf('{CON}') + 5;
-        let stop = parsedSentence.indexOf('{COFF}');
-        let toBeCapsed = parsedSentence.substring(start, stop);
-        parsedSentence = parsedSentence.replace(toBeCapsed, toBeCapsed.charAt(0).toUpperCase() + toBeCapsed.slice(1)).replace('{CON}', '').replace('{COFF}', '');
+        let start = outString.indexOf('{CON}') + 5;
+        let stop = outString.indexOf('{COFF}');
+        let toBeCapsed = outString.substring(start, stop);
+        outString = outString.replace(toBeCapsed, toBeCapsed.charAt(0).toUpperCase() + toBeCapsed.slice(1)).replace('{CON}', '').replace('{COFF}', '');
     }
-    return parsedSentence;
-}
 
-function parseSentence(sentenceToParse, count, category, prefix, suffix, categorySubtype) {
-        for(let i = 0; i < count; i++) {
-            let categoryIndex = Math.floor(Math.random() * category.length);
-            const reg = new RegExp(`{${prefix}${i+1}${suffix}}`, 'g',);
-            if(categorySubtype) {
-                sentenceToParse = sentenceToParse.replace(reg, category[categoryIndex][categorySubtype]);
-            }
-            else {
-                sentenceToParse = sentenceToParse.replace(reg, category[categoryIndex]);
-            }
-            category.splice(categoryIndex, 1);
-        }
-    return sentenceToParse;
+    msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
 }
 
 function fortune(msg, question) {
