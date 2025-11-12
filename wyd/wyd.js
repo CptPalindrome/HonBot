@@ -55,19 +55,16 @@ function wyd(number = -1) {
         const tag = match[0].slice(1, -1); // Remove the curly braces
         const prefix = tag.split(/\d/)[0];
         const number = tag.match(/\d+/);
-        console.log('NUMBER:', number);
         const category = madComps[map[prefix]];
         
         let categoryIndex = Math.floor(Math.random() * category.length);
         
         const filloutMatcher = new RegExp(`{${prefix}${number}[a-z]*}`, 'g');
         
-        // console.log(filloutMatcher);
         while(filloutMatcher.test(sentence)) {
             const match2 = sentence.match(filloutMatcher);
             const tag2 = match2[0].slice(1, -1); // Remove the curly braces;
             const suffix = tag2.split(/\d+/)[1];
-            console.log('SUFFIX:', suffix);
             const parsedSuffix = parseSuffix(prefix, suffix);
             
             
