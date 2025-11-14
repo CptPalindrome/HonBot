@@ -1237,6 +1237,7 @@ client.once(Events.ClientReady, (c) => {
         }
     });
 
+    imgManip.cleanImgDir();
     if(suggestionsReady()) {
         emailSuggestions()
     }

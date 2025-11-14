@@ -1,7 +1,9 @@
 const sharp = require('sharp');
+const logger = require('../logger');
 const fs = require('fs');
 const { AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
+const path = require('path');
 
 class ImageManipluator {
     
@@ -88,6 +90,7 @@ class ImageManipluator {
         try {
             const stretchWidth = Math.round(dimensions.width * mult);
             const stretchHeight = Math.round(dimensions.height * mult);
+            logger.info(`Stretching image to width: ${stretchWidth}, height: ${stretchHeight}`);
             if(vertical) {
                 await sharp(imagePath).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile.png`);
             }
@@ -104,13 +107,31 @@ class ImageManipluator {
             fs.unlinkSync(`./image-manip/${infile}-outfile.png`);
             fs.unlinkSync(imagePath);
         } catch (e) {
-            console.log(`Error during file deletion ${e}`);
+            logger.error(`Error during file deletion ${e}`);
         }
     }
 
     legalAttachment(imageUrl) {
         const legalExts = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
         return legalExts.some((ext) => imageUrl.includes(ext));
+    }
+
+    cleanImgDir() {
+        const files = fs.readdirSync('./image-manip/');
+        for (const file of files) {
+            if (file === 'index.js') continue;
+            const fullPath = path.join('./image-manip/', file);
+            try {
+                const stat = fs.lstatSync(fullPath);
+                if (stat.isDirectory()) {
+                    fs.rmSync(fullPath, { recursive: true, force: true });
+                } else {
+                    fs.unlinkSync(fullPath);
+                }
+            } catch (e) {
+                logger.error(`Error deleting ${fullPath}: ${e}`);
+            }
+        }
     }
 }
     
