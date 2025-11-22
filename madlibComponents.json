@@ -519,7 +519,8 @@
         "Fortnite Lebron James",
         "Lebron James",
         "Valorant Lebron James",
-        "Jim Davis"
+        "Jim Davis",
+        "Strongman Iron"
     ],
     "locations": [
         "Brazil",
@@ -1954,6 +1955,10 @@
         {
             "s": "The {n1}, mwahahahaha. The {n2}, muahahahaha.",
             "tags": ["jackolantern", "shaq"]
+        },
+        {
+            "s": "Tell me. For whom do you {v1}? Hmph! How very {a1}. And do you believe in {l1}? {CON}{l1}{COFF}'s {n1} is {iv4ed} of {n2}. Its {n3pl} are {iv5ed} on {n4}. And its {n5} is an instrument of {n6}. It is naught but a {n7} of {n8pl}. To {v4} in {l1} is to {v4} in nothing. In {l1}, the {n9pl} often summon {n10pl} to {v5} in their stead--though your {n11pl} only rarely respond in kind. Which is {a2}, is it not? Are the \"{n12pl}\" otherwise {v6ed}? I was given to understand they were your {n13pl}. If you truly believe them your {n14pl}, why do you not repeat the trick that served you so well at {l2}, and call them down? They will {v7}--so long as you lavish them with {n15pl} and gorge them on {n16pl}. Your {n17pl} are no different than those of the {n18pl}—{n19pl}, every one. Accept but this, and you will {iv2} how {l1}'s {n5} is bleeding the {l3} dry. Nor is this unknown to your {n21pl}. Which prompts the question: Why do they {v9} to these {a3} {n22pl}? What drives even {n23pl} of {iv3ing}--even the great {p1}--to {v11} at their {n24}? The answer? Your {n21pl} lack the {n25} to do otherwise! For the {l4} of {n23} to mean anything, {n23} must {v12} the {l4}. To this end, he hath fought ever to {v13} himself through {n27}--to grow {a3} through {n28}. And when the {n29} of battle settles, is it ever the {a4} who dictate the fate of the {a5}. Knowing this, but a single path is open to the {a6} {n30}--that of {a7} {n31}. A path which leads to {n32} and {n33}. Only a {n23} of {n34} can rightly steer the course of civilization. And in this {l5} of creeping {n35}, that one truth will prove its salvation. Come, champion of {l1}, {v14} me! Your {iv1} shall serve as proof of my readiness to {v16}! It is only right that I should {v17} your {l6}. For none among you has the {n36} to {v18} me!",
+            "tags": ["gaius", "baelsar", "arr", "ffxiv"]
         }
     ],
     "key": {

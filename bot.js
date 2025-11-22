@@ -901,7 +901,8 @@ function getSentence(msg, number, name) {
         let start = outString.indexOf('{ACON}') + 6;
         let stop = outString.indexOf('{ACOFF}');
         let toBeCapsed = outString.substring(start, stop);
-        outString = outString.replace(toBeCapsed, toBeCapsed.toUpperCase()).replace('{ACON}', '').replace('{ACOFF}', '');
+        const capsed = toBeCapsed.toUpperCase()
+        outString = outString.slice(0, start).concat(capsed).concat(outString.slice(stop)).replace('{ACON}', '').replace('{ACOFF}', '');
     }
 
     while (outString.includes('{CON}')) {
@@ -909,10 +910,23 @@ function getSentence(msg, number, name) {
         let start = outString.indexOf('{CON}') + 5;
         let stop = outString.indexOf('{COFF}');
         let toBeCapsed = outString.substring(start, stop);
-        outString = outString.replace(toBeCapsed, toBeCapsed.charAt(0).toUpperCase() + toBeCapsed.slice(1)).replace('{CON}', '').replace('{COFF}', '');
+        const capsed = toBeCapsed.charAt(0).toUpperCase() + toBeCapsed.slice(1)
+        outString = outString.slice(0, start).concat(capsed).concat(outString.slice(stop)).replace('{CON}', '').replace('{COFF}', '');
     }
 
-    msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
+    if (outString.length > 1900) {
+        let halfpoint = Math.floor(outString.length / 2);
+        if (outString.charAt(halfpoint) != ' ') {
+            halfpoint = outString.lastIndexOf(' ', halfpoint);
+        }
+        const half1 = outString.substring(0, halfpoint);
+        const half2 = outString.substring(halfpoint);
+        msg.channel.send(`\`\`\`${half1.trim()}\`\`\``);
+        msg.channel.send(`\`\`\`${half2.trim()} \n\n--${name}\`\`\``);
+    } else {
+        msg.channel.send(`\`\`\`${outString} \n\n--${name}\`\`\``);
+    }
+
 }
 
 function fortune(msg, question) {
