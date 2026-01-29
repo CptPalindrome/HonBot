@@ -771,7 +771,7 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send(`\`\`\`${honbuxHelper.getGameMetrics()}\`\`\``);
                 }
 
-                if(str.toLowerCase().startsWith('ithw') || str.toLowerCase().startsWith('isthehousewinning')) {
+                if(str.toLowerCase().startsWith('ithw') || str.toLowerCase().startsWith('itfhw') || str.toLowerCase().startsWith('isthehousewinning') || str.toLowerCase().startsWith('isthefuckinghousewinning')) {
                     msg.channel.send(`${honbuxHelper.isHouseWinning()}`);
                 }
 
