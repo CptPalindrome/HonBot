@@ -800,7 +800,7 @@ client.on(Events.MessageCreate, msg => {
                 }
 
                 if(str.toLowerCase().startsWith('yuhi')) {
-                    msg.reply('"h.yuhi" 🤓');
+                    msg.reply('"h.yuhioh" 🤓');
                 }
                 
                 if(str.toLowerCase().startsWith('otdog')) {
