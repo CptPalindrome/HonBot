@@ -799,7 +799,7 @@ client.on(Events.MessageCreate, msg => {
                     msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
                 }
 
-                if(str.toLowerCase().startsWith('yuhi')) {
+                if(str.toLowerCase().startsWith('yuhioh')) {
                     msg.reply('"h.yuhioh" 🤓');
                 }
                 
