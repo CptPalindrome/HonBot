@@ -798,6 +798,10 @@ client.on(Events.MessageCreate, msg => {
                     const card = getCard();
                     msg.channel.send({files: [new AttachmentBuilder(`./media/cards/${card}`)]});
                 }
+
+                if(str.toLowerCase().startsWith('yuhi')) {
+                    msg.reply('"h.yuhi" 🤓');
+                }
                 
                 if(str.toLowerCase().startsWith('otdog')) {
                     msg.channel.send({files: [new AttachmentBuilder(`./media/rcthotdog.gif`)]});
