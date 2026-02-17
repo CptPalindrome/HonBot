@@ -669,17 +669,18 @@ client.on(Events.MessageCreate, msg => {
                     else msg.channel.send('No attachment sent.');
                 }
                 if(str.toLowerCase().startsWith('num')) {
-                    let aNumber = '';
-                    let max = str.split(' ')?.[1] || Number.MAX_SAFE_INTEGER;
-                    if (max > Number.MAX_SAFE_INTEGER || isNaN(max)) max = Number.MAX_SAFE_INTEGER;
-                    let quant = str.split(' ')?.[2] || 1;
+                    const numbers = [];
+                    let max = Number(str.split(' ')[1]);
+                    if (isNaN(max) || max > Number.MAX_SAFE_INTEGER) max = Number.MAX_SAFE_INTEGER;
+                    let quant = Number(str.split(' ')[2]);
+                    if (isNaN(quant) || quant < 1) quant = 1;
                     if (quant > 20) quant = 20;
-                    else if (isNaN(quant)) quant = 1;
                     for(let i = 0; i < quant; i++) {
-                        aNumber += `${Math.floor(Math.random() * max)} `;
+                        const n = Math.floor(Math.random() * max);
+                        numbers.push(n.toLocaleString('en-US'));
                     }
                     try {
-                        msg.channel.send(aNumber);
+                        msg.channel.send(numbers.join(' '));
                     } catch (e) { logger.error('message too lawnnng'); }
                 }
 
