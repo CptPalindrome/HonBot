@@ -123,6 +123,10 @@
         {
             "singular": "American bacon",
             "plural": "American bacon"
+        },
+        {
+            "singular": "tiramisu",
+            "plural": "tiramisu"
         }
     ],
     "containers": [
@@ -219,7 +223,9 @@
         "Etch-a-Sketch",
         "hellfire missiles",
         "pickled eggs",
-        "toothpaste"
+        "toothpaste",
+        "AI slop",
+        "tiramisu"
     ],
     "serviceMessages": [
         "Eat up!",
