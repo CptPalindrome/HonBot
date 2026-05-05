@@ -1,18 +1,109 @@
 {
     "items": [
         {
-            "name": "Spend 1 honbuck",
-            "description": "You buy this and then you have 1 less honbuck.",
-            "id": "s1h",
-            "cost": 1,
-            "type": "instant"
+            "itemId": "daily1",
+            "name": "Daily Bonus Upgrade",
+            "description": "Increases your daily reward by 10% (additive) for each level.",
+            "maxLevel": 20,
+            "basePrice": 300,
+            "type": "upgrade",
+            "effect": {
+                "source": "Daily",
+                "value": 0.1
+            },
+            "prerequisites": []
         },
         {
-            "name": "Draw 4 Me",
-            "description": "Redeem this to have [me] draw something you specify or photoshop something. Quality not guaranteed but it will be handmade :)",
-            "id": "honbux",
-            "cost": 20000,
-            "type": "consumable"
+            "itemId": "daily2",
+            "name": "Daily Bonus Upgrade V2",
+            "description": "Increases your daily reward by 20% (additive) for each level. Stacks with the original Daily Bonus Upgrade.",
+            "maxLevel": 10,
+            "basePrice": 5000,
+            "type": "upgrade",
+            "effect": {
+                "source": "Daily",
+                "value": 0.2
+            },
+            "prerequisites": [
+                {
+                    "item": "Daily Bonus Upgrade",
+                    "level": 10
+                }
+            ]
+        },
+        {
+            "itemId": "coinupgrade",
+            "name": "Strangly Shaped Coin",
+            "description": "This coin kinda looks like a regular coin...?",
+            "maxLevel": 1,
+            "basePrice": 20000,
+            "type": "upgrade",
+            "effect": 0.15,
+            "prerequisites": [
+                {
+                    "item": "Daily Bonus Upgrade",
+                    "level": 20
+                },
+                {
+                    "item": "Daily Bonus Upgrade V2",
+                    "level": 1
+                }
+            ]
+        },
+        {
+            "itemId": "stonk1",
+            "name": "[HST] - Honstonks",
+            "description": "This is the best stonk in the world! Definitely not a scam.",
+            "maxLevel": 500,
+            "basePrice": 100,
+            "type": "stock",
+            "effect": 0.0,
+            "prerequisites": [
+                {
+                    "item": "Money Baver Badge",
+                    "level": 1
+                }
+            ]
+        },
+        {
+            "itemId": "stonk2",
+            "name": "[HSTT] - Honstonk 2 (NAME TBD)",
+            "description": "This is the real best stonk in the world (WIP)! Definitely a scam.",
+            "maxLevel": 500,
+            "basePrice": 500,
+            "type": "stock",
+            "effect": 0.0,
+            "prerequisites": [
+                {
+                    "item": "Stonkster",
+                    "level": 1
+                }
+            ]
+        },
+        {
+            "itemId": "stonk3",
+            "name": "[HSC] - Honbar's Space Shipping Container Corporation",
+            "description": "We make and sell shipping containers. We also run a little podcast on the side, you may have heard of it, #SpaceBoatPodcast",
+            "maxLevel": 500,
+            "basePrice": 5000,
+            "type": "stock",
+            "effect": 0.0,
+            "prerequisites": [
+                {
+                    "item": "Stonkmaster",
+                    "level": 1
+                }
+            ]
         }
-    ]
+    ],
+    "template": {
+            "itemId": "",
+            "name": "",
+            "description": "",
+            "maxLevel": 0,
+            "basePrice": 0,
+            "type": "",
+            "effect": 0.0,
+            "prerequisites": []
+    }
 }

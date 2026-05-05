@@ -1,0 +1,85 @@
+{
+    "awards": [
+        {
+            "id": "hoarder1",
+            "name": "Money Haver Badge",
+            "description": "Have at least 1,000 Honbux in your account."
+        },
+        {
+            "id": "hoarder2",
+            "name": "Something of an Accumulator",
+            "description": "Have at least 10,000 Honbux in your account."
+        },
+        {
+            "id": "hoarder3",
+            "name": "Honbux Hoarder",
+            "description": "Have at least 100,000 Honbux in your account.",
+            "flavorText": "Still less than you'd win doing a 5000 extreme wheel spin...back in the day..."
+        },
+        {
+            "id": "hoarder4",
+            "name": "Greed Master",
+            "description": "Have at least 1,000,000 Honbux in your account. How did you do that??"
+        },
+        {
+            "id": "stonk1",
+            "name": "Stonkster",
+            "description": "Made 1,000 Honbux from the stonk market."
+        },
+        {
+            "id": "stonk2",
+            "name": "Stonkmaster",
+            "description": "Made 10,000 Honbux from the stonk market."
+        },
+        {
+            "id": "stonk3",
+            "name": "Stonklord",
+            "description": "Made 100,000 Honbux from the stonk market."
+        },
+        {
+            "id": "stonk4",
+            "name": "Stonkster 2 (NAME TBD)",
+            "description": "Made 1,000,000 Honbux from the stonk market."
+        },
+        {
+            "id": "coin1",
+            "name": "Coin Flippa",
+            "description": "Make 10,000 Honbux from coin flips."
+        },
+        {
+            "id": "daily1",
+            "name": "Attender",
+            "description": "Use Daily 10 times."
+        },
+        {
+            "id": "daily2",
+            "name": "Regular Attendee",
+            "description": "Use Daily 50 times."
+        },
+        {
+            "id": "daily3",
+            "name": "Veteran Attendee",
+            "description": "Use Daily 100 times."
+        },
+        {
+            "id": "daily4",
+            "name": "Attendence Freak",
+            "description": "Use Daily 200 times."
+        },
+        {
+            "id": "daily5",
+            "name": "Okayyy, you can go home now...",
+            "description": "Use daily 300 times."
+        },
+        {
+            "id": "daily6",
+            "name": "Alright, we have a problem. SECURITY!!!",
+            "description": "Use Daily 500 times."
+        }
+    ],
+    "template": {
+        "id": "",
+        "name": "",
+        "description": ""
+    }
+}

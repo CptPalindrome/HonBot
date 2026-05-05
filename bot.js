@@ -1,5 +1,6 @@
 /* eslint-disable no-case-declarations */
 //author: Brian P. --Github@cptpalindrome
+require('dotenv').config();
 const { Client, Events, GatewayIntentBits, AttachmentBuilder, PermissionsBitField } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs');
@@ -43,7 +44,7 @@ const imgManip = new ImageManipulator();
 
 const patchnoteText = `\`\`\`Oct 21th 2025\nYou can stretch images. Make em extra wiiiiiiide. Try it now with h.stretch! Put a number after it and it will multiply the width of the image by that amount. Note, if it goes too wide the image will probably fail to be made. If you want to, you can stretch images vertically with h.vstretch. \`\`\``;
 
-client.on(Events.MessageCreate, msg => {
+client.on(Events.MessageCreate, async msg => {
     let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
@@ -827,6 +828,48 @@ client.on(Events.MessageCreate, msg => {
                     // I'm not documenting this one because I'm lazy and it's secret iykyk type beat you feel me
                     msg.channel.send('oo ee oo');
                 }
+
+                if(str.toLowerCase().startsWith('testup')) {
+                    await honbuxHelper.modifyData(msg.author);
+                    const userData = await honbuxHelper.getUser(msg.author.id);
+                    msg.channel.send(`Upserted user. Current data:\n\`\`\`${JSON.stringify(userData, null, 2)}\`\`\``);
+                }
+                
+                if(str.toLowerCase().startsWith('inv')) {
+                    const data = await honbuxHelper.getUser(msg.author);
+                    const res = JSON.stringify(data, null, 2);
+                    msg.channel.send(`\`\`\`${res}\`\`\``);
+                }
+                
+                if(str.toLowerCase().startsWith('modbux')) {
+                    let amount = str.split(' ')[1];
+                    console.log('AMOUNT:', amount);
+                    await honbuxHelper.addBux(msg.author, parseInt(amount));
+                    const userData = await honbuxHelper.getUser(msg.author);
+                    msg.channel.send(`Upserted user. Current data:\n\`\`\`${JSON.stringify(userData, null, 2)}\`\`\``);
+                }
+
+                if(str.toLowerCase().startsWith('daly')) {
+                    const result = await honbuxHelper.daily(msg.author);
+                    msg.channel.send(result);
+                }
+                if(str.toLowerCase().startsWith('stoar')) {
+                    const result = await honbuxHelper.store(msg.author);
+                    let resultStr = '';
+                    result.forEach(item => {
+                        resultStr += `**${item?.shopIndex}.** **${item?.name}** - ${item?.description}\nCost: ${item?.cost} Honbux (${item.itemLevel}/${item.maxLevel})\n\n`;
+                    });
+                    msg.channel.send(`__**Store Items:**__ \n${resultStr}`);
+                }
+                if(str.toLowerCase().startsWith('buy')) {
+                    const result = await honbuxHelper.buyItem(msg.author, str.split(' ')[1]);
+                    msg.channel.send(result);
+                }
+                if(str.toLowerCase().startsWith('reset')) {
+                    await honbuxHelper.resetDaily(msg.author);
+                    msg.channel.send('Daily reset!');
+                }
+                
             } //end of h. requirements
             else {
                 if (acro.getState() === 'writing') {
