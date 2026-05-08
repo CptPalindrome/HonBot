@@ -860,6 +860,17 @@ client.on(Events.MessageCreate, msg => {
 
                 if(msg.embeds && msg.embeds.some(element => element?.provider?.name === 'Humble Bundle' || (element?.provider?.name === 'Steam' && randomProc(8, 10))))
                     msg.reply(`do you get paid for these links?`);
+                
+                if(msg?.attachments && msg.author.id === '189125614358364160') {
+                    const files = [...msg.attachments.values()];
+                    const fileIsForbidden = files.some(file => {
+                        return file?.name.toLowerCase().includes('beer_gif') || file?.name.toLowerCase().includes('beer gif') || file?.title.toLowerCase().includes('beer gif');
+                    });
+                    if(fileIsForbidden) {
+                        msg.delete();
+                        msg.channel.send(`${Math.floor(Math.random() * 6) + 1}`)
+                    }
+                }
             }
         }
     }
