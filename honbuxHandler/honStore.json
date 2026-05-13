@@ -1,5 +1,5 @@
 {
-    "items": [
+    "upgrades": [
         {
             "itemId": "daily1",
             "name": "Daily Bonus Upgrade",
@@ -33,12 +33,12 @@
         },
         {
             "itemId": "coinupgrade",
-            "name": "Strangly Shaped Coin",
-            "description": "This coin kinda looks like a regular coin...?",
+            "name": "Coin Flipster Gloves",
+            "description": "A pair of gloves for...flipping coins?",
             "maxLevel": 1,
-            "basePrice": 20000,
+            "basePrice": 10000,
             "type": "upgrade",
-            "effect": 0.15,
+            "effect": 0.1,
             "prerequisites": [
                 {
                     "item": "Daily Bonus Upgrade",
@@ -47,9 +47,33 @@
                 {
                     "item": "Daily Bonus Upgrade V2",
                     "level": 1
+                },
+                {
+                    "item": "Coin Flippa",
+                    "level": 1
                 }
             ]
         },
+        {
+            "itemId": "coinupgrade2",
+            "name": "Coin Flipster Gauntlets",
+            "description": "A pair of gauntlets!? For flipping coins!?",
+            "maxLevel": 1,
+            "basePrice": 15000,
+            "type": "upgrade",
+            "effect": 0.2,
+            "prerequisites": [
+                {
+                    "item": "Coin Flipster Gloves",
+                    "level": 1
+                },
+                {
+                    "item": "Coin Flipster"
+                }
+            ]
+        }
+    ],
+    "stocks": [
         {
             "itemId": "stonk1",
             "name": "[HST] - Honstonks",
@@ -60,7 +84,7 @@
             "effect": 0.0,
             "prerequisites": [
                 {
-                    "item": "Money Baver Badge",
+                    "item": "Money Haver Badge",
                     "level": 1
                 }
             ]

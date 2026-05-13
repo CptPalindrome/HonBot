@@ -843,14 +843,13 @@ client.on(Events.MessageCreate, async msg => {
                 
                 if(str.toLowerCase().startsWith('modbux')) {
                     let amount = str.split(' ')[1];
-                    console.log('AMOUNT:', amount);
                     await honbuxHelper.addBux(msg.author, parseInt(amount));
                     const userData = await honbuxHelper.getUser(msg.author);
-                    msg.channel.send(`Upserted user. Current data:\n\`\`\`${JSON.stringify(userData, null, 2)}\`\`\``);
+                    msg.channel.send(`Updated user. Current Honbux:\n\`\`\`${userData?.honbux}\`\`\``);
                 }
 
                 if(str.toLowerCase().startsWith('daly')) {
-                    const result = await honbuxHelper.daily(msg.author);
+                    const result = await honbuxHelper.daily(msg.author, msg);
                     msg.channel.send(result);
                 }
                 if(str.toLowerCase().startsWith('stoar')) {
@@ -861,8 +860,21 @@ client.on(Events.MessageCreate, async msg => {
                     });
                     msg.channel.send(`__**Store Items:**__ \n${resultStr}`);
                 }
+                if(str.toLowerCase().startsWith('awards')) {
+                    const result = await honbuxHelper.getAwards(msg.author);
+                    let resultStr = '';
+                    if (result.length === 0) {
+                        msg.channel.send(`You have no awards yet. Do some stuff and maybe you'll get some!`);
+                        return;
+                    }
+                    console.log(result);
+                    result.forEach((item, index) => {
+                        resultStr += `**${index + 1}.** **${item?.name}** - ${item?.description}\n\n`;
+                    });
+                    msg.channel.send(`__**Awards:**__ \n${resultStr}`);
+                }
                 if(str.toLowerCase().startsWith('buy')) {
-                    const result = await honbuxHelper.buyItem(msg.author, str.split(' ')[1]);
+                    const result = await honbuxHelper.buyItem(msg.author, str.split(' ')[1], msg);
                     msg.channel.send(result);
                 }
                 if(str.toLowerCase().startsWith('reset')) {

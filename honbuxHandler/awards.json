@@ -1,85 +1,194 @@
 {
     "awards": [
         {
-            "id": "hoarder1",
+            "awardId": "hoarder01",
             "name": "Money Haver Badge",
-            "description": "Have at least 1,000 Honbux in your account."
+            "description": "Have at least 1,000 Honbux in your account.",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 1000
+            }
         },
         {
-            "id": "hoarder2",
+            "awardId": "hoarder02",
             "name": "Something of an Accumulator",
-            "description": "Have at least 10,000 Honbux in your account."
+            "description": "Have at least 10,000 Honbux in your account.",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 10000
+            }
         },
         {
-            "id": "hoarder3",
+            "awardId": "hoarder03",
             "name": "Honbux Hoarder",
             "description": "Have at least 100,000 Honbux in your account.",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 100000
+            },
             "flavorText": "Still less than you'd win doing a 5000 extreme wheel spin...back in the day..."
         },
         {
-            "id": "hoarder4",
+            "awardId": "hoarder04",
             "name": "Greed Master",
-            "description": "Have at least 1,000,000 Honbux in your account. How did you do that??"
+            "description": "Have at least 1,000,000 Honbux in your account. How did you do that??",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 1000000
+            }
         },
         {
-            "id": "stonk1",
-            "name": "Stonkster",
-            "description": "Made 1,000 Honbux from the stonk market."
-        },
-        {
-            "id": "stonk2",
-            "name": "Stonkmaster",
-            "description": "Made 10,000 Honbux from the stonk market."
-        },
-        {
-            "id": "stonk3",
-            "name": "Stonklord",
-            "description": "Made 100,000 Honbux from the stonk market."
-        },
-        {
-            "id": "stonk4",
-            "name": "Stonkster 2 (NAME TBD)",
-            "description": "Made 1,000,000 Honbux from the stonk market."
-        },
-        {
-            "id": "coin1",
-            "name": "Coin Flippa",
-            "description": "Make 10,000 Honbux from coin flips."
-        },
-        {
-            "id": "daily1",
+            "awardId": "daily1",
             "name": "Attender",
-            "description": "Use Daily 10 times."
+            "description": "Use Daily 10 times.",
+            "categoryNum": 2,
+            "requirement": {
+                "type": "metrics.Daily.timesUsed",
+                "value": 10
+            }
         },
         {
-            "id": "daily2",
+            "awardId": "daily2",
             "name": "Regular Attendee",
-            "description": "Use Daily 50 times."
+            "description": "Use Daily 50 times.",
+            "categoryNum": 2,
+            "requirement": {
+                "type": "metrics.Daily.timesUsed",
+                "value": 50
+            }
         },
         {
-            "id": "daily3",
+            "awardId": "daily3",
             "name": "Veteran Attendee",
-            "description": "Use Daily 100 times."
+            "description": "Use Daily 100 times.",
+            "categoryNum": 2,
+            "requirement": {
+                "type": "metrics.Daily.timesUsed",
+                "value": 100
+            }
         },
         {
-            "id": "daily4",
+            "awardId": "daily4",
             "name": "Attendence Freak",
-            "description": "Use Daily 200 times."
+            "description": "Use Daily 200 times.",
+            "categoryNum": 2,
+            "requirement": {
+                "type": "metrics.Daily.timesUsed",
+                "value": 200
+            }
         },
         {
-            "id": "daily5",
+            "awardId": "daily5",
             "name": "Okayyy, you can go home now...",
-            "description": "Use daily 300 times."
+            "description": "Use daily 300 times.",
+            "categoryNum": 2,
+            "requirement": {
+                "type": "metrics.Daily.timesUsed",
+                "value": 300
+            }
         },
         {
-            "id": "daily6",
+            "awardId": "daily6",
             "name": "Alright, we have a problem. SECURITY!!!",
-            "description": "Use Daily 500 times."
+            "description": "Use Daily 500 times.",
+            "categoryNum": 2,
+            "requirement": {
+                "type": "metrics.Daily.timesUsed",
+                "value": 500
+            }
+        },
+        {
+            "awardId": "stonk1",
+            "name": "Stonkster",
+            "description": "Made 1,000 Honbux from the stonk market.",
+            "categoryNum": 3,
+            "requirement": {
+                "type": "metrics.stonks.gained",
+                "value": 1000
+            }
+        },
+        {
+            "awardId": "stonk2",
+            "name": "Stonkmaster",
+            "description": "Made 10,000 Honbux from the stonk market.",
+            "categoryNum": 3,
+            "requirement": {
+                "type": "metrics.stonks.gained",
+                "value": 10000
+            }
+        },
+        {
+            "awardId": "stonk3",
+            "name": "Stonklord",
+            "description": "Made 100,000 Honbux from the stonk market.",
+            "categoryNum": 3,
+            "requirement": {
+                "type": "metrics.stonks.gained",
+                "value": 100000
+            }
+        },
+        {
+            "awardId": "stonk4",
+            "name": "Stonkster 2 (NAME TBD)",
+            "description": "Made 1,000,000 Honbux from the stonk market.",
+            "categoryNum": 3,
+            "requirement": {
+                "type": "metrics.stonks.gained",
+                "value": 1000000
+            }
+        },
+        {
+            "awardId": "coin1",
+            "name": "Coin Flippa",
+            "description": "Make 1,000 Honbux from coin flips.",
+            "categoryNum": 4,
+            "requirement": {
+                "type": "metrics.Coinflip.gained",
+                "value": 1000
+            }
+        },
+        {
+            "awardId": "coin2",
+            "name": "Coin Flipster",
+            "description": "Make 10,000 Honbux from coin flips.",
+            "categoryNum": 4,
+            "requirement": {
+                "type": "metrics.Coinflip.gained",
+                "value": 10000
+            }
+        },
+        {
+            "awardId": "coin3",
+            "name": "Coin FlipStar",
+            "description": "Make 100,000 Honbux from coin flips.",
+            "categoryNum": 4,
+            "requirement": {
+                "type": "metrics.Coinflip.gained",
+                "value": 100000
+            }
+        },
+        {
+            "awardId": "coin4",
+            "name": "Coin Flip Lord",
+            "description": "Make 1,000,000 Honbux from coin flips!!!",
+            "categoryNum": 4,
+            "requirement": {
+                "type": "metrics.Coinflip.gained",
+                "value": 1000000
+            }
         }
     ],
     "template": {
-        "id": "",
+        "awardId": "",
         "name": "",
-        "description": ""
+        "description": "",
+        "requirement": {
+            "type": "",
+            "value": 0
+        }
     }
 }

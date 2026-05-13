@@ -6,7 +6,7 @@ node_modules/
 /image-manip/image.jpg
 envVars.json
 test.js
-eventuality.json
+Simulators/*
 transcriptIn.txt
 transcriptOut.txt
 fifteenSentStatus.json

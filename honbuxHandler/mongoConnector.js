@@ -4,8 +4,11 @@ const uri = `mongodb://${process.env.MONGODB_USR}:${process.env.MONGODB_PWD}@loc
 const client = new MongoClient(uri);
 
 const db = client.db('honbotdb');
-const users = db.collection('users');
-const gameMetrics = db.collection('gameMetrics');
-const store = db.collection('store');
-const awards = db.collection('awards');
-module.exports = { users, gameMetrics, store, awards };
+const collections = {
+    users: db.collection('users'),
+    gameMetrics: db.collection('gameMetrics'),
+    store: db.collection('store'),
+    awards: db.collection('awards'),
+    stonks: db.collection('stonks')
+}
+module.exports = { collections };

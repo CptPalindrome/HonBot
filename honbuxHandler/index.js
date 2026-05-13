@@ -1,4 +1,4 @@
-const { users, gameMetrics, store, awards } = require('./mongoConnector.js');
+const { collections } = require('./mongoConnector.js');
 const fs = require('fs');
 
 class HonbuxHelper {
@@ -21,16 +21,21 @@ class HonbuxHelper {
         const rawAwardsData = fs.readFileSync('./honbuxHandler/awards.json');
         const storeData = JSON.parse(rawStoreData);
         const awardsData = JSON.parse(rawAwardsData);
-        storeData.items.map(async (item) => {
-            await store.updateOne({ itemId: item.itemId }, { $set: item }, { upsert: true });
+        storeData.upgrades.map(async (item) => {
+            await collections.store.updateOne({ upgradeId: item.itemId }, { $set: item }, { upsert: true });
+        });
+        storeData.stocks.map(async (item) => {
+            await collections.stonks.updateOne({ stonkId: item.itemId }, { $set: item }, { upsert: true });
         });
         awardsData.awards.map(async (award) => {
-            await awards.updateOne({ itemId: award.itemId }, { $set: award }, { upsert: true });
+            await collections.awards.updateOne({ awardId: award.awardId }, { $set: award }, { upsert: true });
         });
     }
 
     async modifyData(author, dataToUpsert) {
-        await users.updateOne({ id: author.id }, { $setOnInsert: { username: author.username }, ...dataToUpsert }, { upsert: true });
+        await collections.users.updateOne({ id: author.id, username: author.username }, dataToUpsert, { upsert: true });
+        const result = await this.checkAwards(author);
+        return result;
     }
 
     async modifyBux(author, amount, source, hasCooldown = false) {
@@ -41,35 +46,36 @@ class HonbuxHelper {
         }
         const update = { 
             $inc: 
-            { 
+            {
                 honbalance: amount, 
                 [`metrics.${source}.${gainlost}`]: amount, 
                 [`metrics.${source}.timesUsed`]: 1, 
-                [`metrics.${source}.net`]: amount 
+                [`metrics.${source}.net`]: amount,
+                [`metrics.lifetimeHonbux${gainlost[0].toUpperCase() + gainlost.slice(1)}`]: amount
             }, 
         };
         if (hasCooldown) {
             update.$set = { [`cooldowns.${source}`]: Date.now() };
         }
-        await gameMetrics.updateOne(
-            { id: author.id }, 
+        await collections.gameMetrics.updateOne(
+            { id: `${source}.${gainlost}`}, 
             { $inc: { [`${source}.timesUsed`]: 1, [`${source}.${gainlost}`]: amount, [`${source}.net`]: amount } },
             { upsert: true }
         );
-        await this.modifyData(author, update);
+        return await this.modifyData(author, update);
     }
 
     async getUser(author) {
-        let res = await users.findOne({ id: author.id });
+        let res = await collections.users.findOne({ id: author.id });
         if (!res) {
             await this.modifyData(author, { $setOnInsert: { items: [], cooldowns: {}, metrics: {} } }, { upsert: true });
-            res = await users.findOne({ id: author.id });
+            res = await collections.users.findOne({ id: author.id });
         }
         return res;
     }
 
     async addBux(author, amount) {
-        await this.modifyBux(author, amount, 'AddBux');
+        return await this.modifyBux(author, amount, 'AddBux');
     }
 
     async daily(author) {
@@ -82,12 +88,10 @@ class HonbuxHelper {
             const dailyBoni = upgrades.filter((upgrade) => upgrade.effect?.source === source)
                 .map((upgrade) => upgrade.effect.value * upgrade.level)
                 .reduce((acc, curr) => acc * (curr + 1), 1);
-            console.log('DAILY BONI:', dailyBoni);
             const dailyReward = 500 * (dailyBoni);
-            console.log('DAILY REWARD:', dailyReward);
-            await this.modifyBux(author, dailyReward, source, false); // TODO: CHANGE BACK TO TRUE SO THAT IT HAS A COOLDOWN, TESTING PURPOSES ONLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            const modifyBuxResult = await this.modifyBux(author, dailyReward, source, false); // TODO: CHANGE BACK TO TRUE SO THAT IT HAS A COOLDOWN, TESTING PURPOSES ONLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             const updatedUser = await this.getUser(author); // to trigger user creation if not exists
-            return `You received ${dailyReward} honbux from your daily! You're now at ${updatedUser.honbalance}.`;
+            return `You received ${dailyReward} honbux from your daily! You're now at ${updatedUser.honbalance}.\n\n${modifyBuxResult ? modifyBuxResult : ''}`;
         }
     }
 
@@ -103,7 +107,7 @@ class HonbuxHelper {
 
     async getShopList(author) {
         const userData = await this.getUser(author);
-        const result = await store.find().sort({ itemId: 1 }).toArray().then((res) => {
+        const result = await collections.store.find().sort({ itemId: 1 }).toArray().then((res) => {
             // Get the store items
             return res.map((item) => {
                 return {
@@ -151,8 +155,6 @@ class HonbuxHelper {
     async buyItem(author, itemId) {
         const userData = await this.getUser(author);
         const shopList = await this.getShopList(author);
-        console.log('SHOPLIST:', shopList);
-        console.log('ITEMID:', itemId);
         const itemToBuy = shopList.find((item) => item.shopIndex === parseInt(itemId));
         if (!itemToBuy) {
             return 'Item not found in shop.';
@@ -160,16 +162,16 @@ class HonbuxHelper {
         if (userData.honbalance < itemToBuy.cost) {
             return 'Not enough honbux to purchase this item.';
         }
-        await this.modifyBux(author, -itemToBuy.cost, 'UpgradePurchase');
-        const levelUpResult = await users.updateOne({ id: author.id, "items.name": itemToBuy.name }, { $inc: { "items.$.level": 1 } });
+        const modifyBuxResult = await this.modifyBux(author, -itemToBuy.cost, 'UpgradePurchase');
+        const levelUpResult = await collections.users.updateOne({ id: author.id, "items.name": itemToBuy.name }, { $inc: { "items.$.level": 1 } });
         if (levelUpResult.matchedCount === 0) {
-            await users.updateOne({ id: author.id }, { $push: { items: { name: itemToBuy.name, description: itemToBuy.description, effect: itemToBuy.effect, type: itemToBuy.type, maxLevel: itemToBuy.maxLevel, level: 1 } } });
+            await collections.users.updateOne({ id: author.id }, { $push: { items: { name: itemToBuy.name, description: itemToBuy.description, effect: itemToBuy.effect, type: itemToBuy.type, maxLevel: itemToBuy.maxLevel, level: 1 } } });
         }
-        return 'You purchased ' + itemToBuy.name + ' for ' + itemToBuy.cost + ' honbux! Your new balance is ' + (userData.honbalance - itemToBuy.cost) + ' honbux.';
+        return 'You purchased ' + itemToBuy.name + ' for ' + itemToBuy.cost + ' honbux! Your new balance is ' + (userData.honbalance - itemToBuy.cost) + ' honbux.\n\n' + (modifyBuxResult ? modifyBuxResult : '');
     }
 
     async resetDaily(author) {
-        await users.updateOne({ id: author.id }, { $unset: { "cooldowns.Daily": "" } });
+        await collections.users.updateOne({ id: author.id }, { $unset: { "cooldowns.Daily": "" } });
     }
 
     getItemLevel(userData, shopItem) {
@@ -180,6 +182,35 @@ class HonbuxHelper {
     getUpgrades(userData) {
         const upgrades = userData?.items?.filter((item) => item.type === 'upgrade') || [];
         return upgrades;
+    }
+
+    async checkAwards(author, msg) {
+        const userData = await this.getUser(author);
+        const awards = await collections.awards.find().sort({ awardId: 1 }).toArray();
+        const userAwards = awards?.filter((item) => {
+            const prereq = item?.requirement?.type;
+            const value = item?.requirement?.value;
+            const prereqValue = prereq.split('.').reduce((obj, key) => obj?.[key], userData);
+            if (prereqValue && prereqValue >= value) {
+                if (!userData?.awards?.find((award) => award?.awardId === item.awardId)) {
+                    collections.users.updateOne({ id: author.id }, { $push: { awards: { awardId: item.awardId, name: item.name, description: item.description, categoryNum: item.categoryNum } } });
+                    return true;
+                }
+            }
+            return false;
+        }) || [];
+        if (userAwards.length > 0) {
+            let awardsStr = '';
+            userAwards.forEach((award) => {
+                awardsStr += `${award.name} - ${award.description}\n`;
+            });
+            return `__You've just earned the following award(s)__\n**${awardsStr}**`;
+        }
+    }
+
+    async getAwards(author) {
+        const userData = await this.getUser(author);
+        return userData.awards.sort((a, b) => a.categoryNum - b.categoryNum) || [];
     }
 
     bailOutAll() {
