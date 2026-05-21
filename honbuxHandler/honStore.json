@@ -32,13 +32,16 @@
             ]
         },
         {
-            "itemId": "coinupgrade",
+            "itemId": "coinoddsupgrade",
             "name": "Coin Flipster Gloves",
             "description": "A pair of gloves for...flipping coins?",
             "maxLevel": 1,
             "basePrice": 10000,
             "type": "upgrade",
-            "effect": 0.1,
+            "effect": {
+                "source": "coinOdds",
+                "value": 0.1
+            },
             "prerequisites": [
                 {
                     "item": "Daily Bonus Upgrade",
@@ -55,13 +58,16 @@
             ]
         },
         {
-            "itemId": "coinupgrade2",
+            "itemId": "coinoddsupgrade2",
             "name": "Coin Flipster Gauntlets",
             "description": "A pair of gauntlets!? For flipping coins!?",
             "maxLevel": 1,
             "basePrice": 15000,
             "type": "upgrade",
-            "effect": 0.2,
+            "effect": {
+                "source": "coinOdds",
+                "value": 0.2
+            },
             "prerequisites": [
                 {
                     "item": "Coin Flipster Gloves",

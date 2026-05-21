@@ -3,7 +3,7 @@
         {
             "awardId": "hoarder01",
             "name": "Money Haver Badge",
-            "description": "Have at least 1,000 Honbux in your account.",
+            "description": "Have at least 1,000 Honbux in your account. The ball is rolling!",
             "categoryNum": 1,
             "requirement": {
                 "type": "honbalance",
@@ -22,17 +22,46 @@
         },
         {
             "awardId": "hoarder03",
+            "name": "Honbux Collector",
+            "description": "Have at least 50,000 Honbux in your account. That's a lot of money!",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 500000
+            }
+        },
+        {
+            "awardId": "hoarder04",
             "name": "Honbux Hoarder",
-            "description": "Have at least 100,000 Honbux in your account.",
+            "description": "Have at least 100,000 Honbux in your account. Okay now THAT is money.",
             "categoryNum": 1,
             "requirement": {
                 "type": "honbalance",
                 "value": 100000
-            },
-            "flavorText": "Still less than you'd win doing a 5000 extreme wheel spin...back in the day..."
+            }
         },
         {
-            "awardId": "hoarder04",
+            "awardId": "hoarder05",
+            "name": "Honbux Penny-pincher",
+            "description": "Have at least 250,000 Honbux in your account. You gonna spend all that?",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 250000
+            }
+        },
+        {
+            "awardId": "hoarder06",
+            "name": "Number-Go-Up Watcher",
+            "description": "Have at least 500,000 Honbux in your account. That's...a lot...!",
+            "categoryNum": 1,
+            "requirement": {
+                "type": "honbalance",
+                "value": 500000
+            }
+        },
+        {
+            "awardId": "hoarder07",
             "name": "Greed Master",
             "description": "Have at least 1,000,000 Honbux in your account. How did you do that??",
             "categoryNum": 1,
@@ -93,7 +122,7 @@
         },
         {
             "awardId": "daily6",
-            "name": "Alright, we have a problem. SECURITY!!!",
+            "name": "Please...go home...",
             "description": "Use Daily 500 times.",
             "categoryNum": 2,
             "requirement": {
@@ -180,12 +209,103 @@
                 "type": "metrics.Coinflip.gained",
                 "value": 1000000
             }
+        },
+        {
+            "awardId": "upgrade01",
+            "name": "Your first upgrade",
+            "description": "Bought your very first upgrade.",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 1
+            }
+        },
+        {
+            "awardId": "upgrade02",
+            "name": "Upgrade Buyer",
+            "description": "Bought 5 upgrades.",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 5
+            }
+        },
+        {
+            "awardId": "upgrade03",
+            "name": "Upgraded Guy",
+            "description": "You've got 10 upgrades now. That's 10 more than you started at!",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 10
+            }
+        },
+        {
+            "awardId": "upgrade04",
+            "name": "Upgrade Collector",
+            "description": "Up to 20 now? That's so many upgrades...",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 20
+            }
+        },
+        {
+            "awardId": "upgrade05",
+            "name": "Upgrade-a-holic",
+            "description": "30 upgrades. Big investment. Big payout?",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 30
+            }
+        },
+        {
+            "awardId": "upgrade06",
+            "name": "Upgrade Swallower",
+            "description": "You just can't stop buying them!!! Congrats on 40 upgrades.",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 40
+            }
+        },
+        {
+            "awardId": "upgrade07",
+            "name": "Upgrade Master",
+            "description": "You have so many upgrades. Fifty in fact!",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 50
+            }
+        },
+        {
+            "awardId": "upgrade08",
+            "name": "Upgrade Enterprise",
+            "description": "Did I really make that many different upgrades? One HUNDRED of them!? Alright man whatever you say.",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 100
+            }
+        },
+        {
+            "awardId": "upgrade09",
+            "name": "Upgrade Emperor",
+            "description": "Are there even any more upgrades to get? I'll tell you this, there's not any more awards to get for upgrade buying! Probably!",
+            "categoryNum": 5,
+            "requirement": {
+                "type": "metrics.UpgradePurchase.timesUsed",
+                "value": 150
+            }
         }
     ],
     "template": {
         "awardId": "",
         "name": "",
         "description": "",
+        "categoryNum": 0,
         "requirement": {
             "type": "",
             "value": 0
