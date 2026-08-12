@@ -20,3 +20,4 @@ fileCombinerOut
 /honbuxHandler/dataFiles/*
 /hCounter/hCounter.json
 .env
+Simulators/*

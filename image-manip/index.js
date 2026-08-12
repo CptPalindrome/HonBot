@@ -89,27 +89,37 @@ class ImageManipluator {
         }
         const imagePath = await this.getImage(imageUrl);
         const infile = imagePath.match(/[^\\/]+$/)[0];
+        const ext = path.extname(infile).toLowerCase();
+        // console.log(`Extension: ${ext}`);
+        const isAnimated = ext === '.gif';
+        
+        // console.log(`Is animated: ${isAnimated}`);
         try {
             const stretchWidth = Math.round(dimensions.width * mult);
             const stretchHeight = Math.round(dimensions.height * mult);
             logger.info(`Stretching image to width: ${stretchWidth}, height: ${stretchHeight}`);
             if(vertical) {
-                await sharp(imagePath).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile.png`);
+                if (ext === '.gif') {
+                    await sharp(imagePath, { animated: isAnimated }).resize({ height: stretchHeight, fit: sharp.fit.fill }).webp({ effort: 6, quality: 80 }).toFile(`./image-manip/${infile}-outfile.webp`, { animated: isAnimated });
+                } else await sharp(imagePath, { animated: isAnimated }).resize({ height: stretchHeight, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile${ext}`, { animated: isAnimated });
             }
             else {
-                await sharp(imagePath).resize({ width: stretchWidth, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile.png`);
+                if (ext === '.gif') {
+                    await sharp(imagePath, { animated: isAnimated }).resize({ width: stretchWidth, fit: sharp.fit.fill }).webp({ effort: 6, quality: 80 }).toFile(`./image-manip/${infile}-outfile.webp`, { animated: isAnimated});
+                }
+                await sharp(imagePath, { animated: isAnimated }).resize({ width: stretchWidth, fit: sharp.fit.fill }).toFile(`./image-manip/${infile}-outfile${ext}`, { animated: isAnimated});
             }
-            const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile.png`);
+            const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile${ext === '.gif' ? '.webp' : ext}`);
             await channel.send({ files: [attachment] });
         } catch (e) {
             logger.error(e);
-            channel.send(`An error occurred. Try again if you want.`);
+            channel.send(`An error occurred. Try again if you want. ${e}`);
         }
         try {
-            fs.unlinkSync(`./image-manip/${infile}-outfile.png`);
+            fs.unlinkSync(`./image-manip/${infile}-outfile${ext === '.gif' ? '.webp' : ext}`);
             fs.unlinkSync(imagePath);
         } catch (e) {
-            logger.error(`Error during file deletion ${e}`);
+            logger.error(`Error during file deletion `);
         }
     }
 
