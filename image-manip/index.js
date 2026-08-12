@@ -13,15 +13,16 @@ class ImageManipluator {
 
     async getImage (url) {
         let imagePath;
+        const ext = path.extname(url).split('?')[0].toLowerCase();
         const res = await axios({
             method: 'get',
             url: url,
             responseType: 'stream'
         });
         return new Promise((resolve, reject) => {
-            res.data.pipe(fs.createWriteStream(`./image-manip/image.${url.slice(url.length - 3)}`).on('error', reject).once('close', () => {
-                imagePath = `./image.${url.slice(url.length - 3)}`;
-                resolve(`./image-manip/image.${url.slice(url.length - 3)}`)}));
+            res.data.pipe(fs.createWriteStream(`./image-manip/image.${ext}`).on('error', reject).once('close', () => {
+                imagePath = `./image.${ext}`;
+                resolve(`./image-manip/image.${ext}`)}));
         });
     }
         
@@ -36,16 +37,17 @@ class ImageManipluator {
         const shrinkWidth = Math.round(50 / cleanedRatio) < 1 ? 1 : Math.round(50 / cleanedRatio);
         const imagePath = await this.getImage(imageUrl);
         const infile = imagePath.match(/[^\\/]+$/)[0];
-        await sharp(imagePath).resize({ width: shrinkWidth }).toFile(`./image-manip/${infile}-outfile.png`);
-        await sharp(`./image-manip/${infile}-outfile.png`).resize({ width: 2000 }).toFile(`./image-manip/${infile}-tempoutfile.png`);
-        await sharp(`./image-manip/${infile}-tempoutfile.png`).resize({ width: shrinkWidth }).toFile(`./image-manip/${infile}-outfile.png`);
-        await sharp(`./image-manip/${infile}-outfile.png`).resize({ width: 2000 }).toFile(`./image-manip/${infile}-tempoutfile.png`);
-        await sharp(`./image-manip/${infile}-tempoutfile.png`).resize({ width: dimensions.width }).toFile(`./image-manip/${infile}-outfile.png`);
-        const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile.png`);
+        const ext = path.extname(infile).toLowerCase();
+        console.log(`Extension: ${ext}`);
+        let isAnimated = ext === '.gif';
+        await sharp(imagePath, { animated: isAnimated }).resize({ width: shrinkWidth }).toFile(`./image-manip/${infile}-outfile${ext}`, { animated: isAnimated });
+        await sharp(`./image-manip/${infile}-outfile${ext}`, { animated: isAnimated }).resize({ width: 2000 }).toFile(`./image-manip/${infile}-tempoutfile${ext}`, { animated: isAnimated });
+        await sharp(`./image-manip/${infile}-tempoutfile${ext}`, { animated: isAnimated }).resize({ width: dimensions.width }).toFile(`./image-manip/${infile}-outfile${ext}`, { animated: isAnimated });
+        const attachment = new AttachmentBuilder(`./image-manip/${infile}-outfile${ext}`);
         await channel.send({ files: [attachment] });
         try {
-            fs.unlinkSync(`./image-manip/${infile}-outfile.png`);
-            fs.unlinkSync(`./image-manip/${infile}-tempoutfile.png`);
+            fs.unlinkSync(`./image-manip/${infile}-outfile${ext}`);
+            fs.unlinkSync(`./image-manip/${infile}-tempoutfile${ext}`);
             fs.unlinkSync(imagePath);
         } catch (e) {
             console.log(`Error during file deletion ${e}`);
@@ -112,7 +114,7 @@ class ImageManipluator {
     }
 
     legalAttachment(imageUrl) {
-        const legalExts = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
+        const legalExts = ['.png', '.jpg', '.gif', '.jpeg', '.webp'];
         return legalExts.some((ext) => imageUrl.includes(ext));
     }
 

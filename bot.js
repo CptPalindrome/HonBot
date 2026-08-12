@@ -27,6 +27,7 @@ const madComps = require('./madlibComponents.json');
 const drinks = require('./drinks.json');
 const food = require('./food.json');
 const commands = require('./commands.json');
+require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessageReactions] });
@@ -43,7 +44,7 @@ const imgManip = new ImageManipulator();
 
 const patchnoteText = `\`\`\`Oct 21th 2025\nYou can stretch images. Make em extra wiiiiiiide. Try it now with h.stretch! Put a number after it and it will multiply the width of the image by that amount. Note, if it goes too wide the image will probably fail to be made. If you want to, you can stretch images vertically with h.vstretch. \`\`\``;
 
-client.on(Events.MessageCreate, msg => {
+client.on(Events.MessageCreate, async msg => {
     let hasPrefix = false;
     let str = msg.content;
     if(!envVars.TEST_MODE) {
@@ -668,6 +669,22 @@ client.on(Events.MessageCreate, msg => {
                     if(files[0]?.name) imgManip.stretch(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height }, multiplier, true);
                     else msg.channel.send('No attachment sent.');
                 }
+                if(str.toLowerCase().startsWith('circle')) {
+                    const files = [...msg.attachments.values()];
+                    const multiplier = str.split(' ')[1];
+                    if(files[0]?.name) imgManip.redCircle(files[0].url, msg.channel, { width: files[0]?.width, height: files[0]?.height });
+                    else msg.channel.send('No attachment sent.');
+                }
+
+                if(str.toLowerCase().startsWith('convert')) {
+                    const conversionArgs = str.split(' ').slice(1);
+                    let response = '';
+                    if(conversionArgs.length < 3) {
+                        msg.channel.send('Please provide two currency abbreviations and an amount. Example: `h.convert 100 usd cad`');
+                    }
+                    else msg.channel.send(currencyConvert(conversionArgs[0], conversionArgs[1], conversionArgs[2]));
+                }
+
                 if(str.toLowerCase().startsWith('num')) {
                     const numbers = [];
                     let max = Number(str.split(' ')[1]);

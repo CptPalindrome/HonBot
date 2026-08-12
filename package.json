@@ -20,6 +20,7 @@
   "dependencies": {
     "axios": "^1.7.1",
     "discord.js": "^14.13.0",
+    "dotenv": "^17.4.2",
     "emailjs-com": "^3.2.0",
     "npm": "^10.8.0",
     "sharp": "^0.33.4",
